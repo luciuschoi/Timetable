@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  	User.find_by(id: current_user.id).delete
+  
     session[:user_id] = nil
     session[:user_name] = nil
 
