@@ -183,6 +183,7 @@ DEPENDENCIES
   iconv
   jbuilder (~> 2.0)
   jquery-rails
+  omniauth
   omniauth-facebook
   rails (= 4.2.2)
   roo (= 2.0.0)
