@@ -3,12 +3,11 @@ Rails.application.routes.draw do
  # get 'users/new'
 
 root 'static_pages#home'
-get '/login' => 'sessions#new'
-post '/login' => 'sessions#create'
-delete '/login' => 'sessions#destroy'
+
 #resources :lectures
 resources :users
-
+get 'auth/:provider/callback', to: 'sessions#create'
+get 'logout', to: 'sessions#destroy'
 resources :lectures do
   collection { post :import }
 end

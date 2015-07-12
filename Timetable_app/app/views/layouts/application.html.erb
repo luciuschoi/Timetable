@@ -23,15 +23,8 @@
        
       		<p class="navbar-text"><a href="/" class="navbar-link">세종대 강의 평가</a></p>
       
-      	<% if(user_signed_in?)%>
-        <p class="navbar-text navbar-right" ><%= link_to "Log out", login_path, method: :delete %></p>
-       <p class="navbar-text navbar-right" ><%= link_to current_user.nickname, edit_user_path(id: current_user.id) %>
+    
      
-        <% else %>
-        
-          <p class="navbar-text navbar-right" ><%= link_to "Log in", login_path %></p>
-          <p class="navbar-text navbar-right"><%= link_to "Sign up", new_user_path %></p>
-        <%end%>
        
 
 
