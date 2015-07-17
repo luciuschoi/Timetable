@@ -1,5 +1,5 @@
 class Lecture < ActiveRecord::Base
-	validates :subject, presence: true, length: {maximum: 40}
+	validates :subject, presence: true, length: {maximum: 40}, uniqueness: { scope: :professor}
 	validates :professor, length: {maximum: 40}
 	validates :major, presence:true
   has_many :comments, dependent: :destroy
@@ -20,7 +20,7 @@ def self.import(file)
     lecture = find_by_id(row["id"]) || new
     lecture.attributes = row.to_hash.slice("subject", "professor", "major")
 
-    lecture.save!
+    lecture.save
   end
 end
 
@@ -34,4 +34,14 @@ def self.open_spreadsheet(file)
   else raise "Unknown file type: #{file.original_filename}"
   end
 end
+
+
+ def self.search(search)
+    if search
+      where('subject LIKE ?', "%#{search}%")
+    else
+   
+    end
+  end
+
 end

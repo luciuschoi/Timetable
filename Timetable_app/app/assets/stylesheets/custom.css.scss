@@ -7,9 +7,18 @@
 .fb-login-button{
   padding-top: 15px;
 }
+h1{
+  display: inline;
+}
 
 #sejonglogo{
   padding-top: 5px;
+}
+
+#form1{
+  display: inline;
+  float: right;
+ 
 }
 
 @mixin box_sizing {
@@ -28,4 +37,23 @@
   width: 82.5%;
   margin-top: 45px;
   @include box_sizing; 
+}
+/*
+#lecture_list:hover {
+  background-color: yellow;
+  line: false;
+}
+*/
+
+tr.lovelyrow{
+  background-color: #F6E3CE;
+}
+
+tr.lovelyrow:hover{
+  background-color: #CEF6EC;
+  cursor: pointer;
+}
+
+table.nogap{
+  border-collapse: collapse;
 }
