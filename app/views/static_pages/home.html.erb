@@ -1,30 +1,58 @@
 <div class="row">
-	<div class="col-md-1"></div>   
-	<div class="col-md-10" align="left">
-		<h1> Listing Lectures</h1>
-		<h4> 강의&nbsp;&nbsp; 교수명 &nbsp;&nbsp; 개설학과 </h4>
-		<% Lecture.all.each do |lec| %>
-    <%= lec.subject%> <%=lec.professor%> <%= lec.major%> &nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to "Show",   lecture_path(lec) %>  &nbsp; <%= link_to "Edit", 
-    edit_lecture_path(lec)%>  &nbsp;<%= link_to "Destroy", lecture_path(lec), method: :delete, data: {confirm: "Are you sure you want to delete this? (#{lec.subject})"}%> <br>
-
- 	   <% end %>
-
- 	 <%= link_to "New_Lecture", new_lecture_path %>
-
-
- 	 
- 	 <%= form_tag import_lectures_path, multipart: true do %>
-	 <%= file_field_tag :file %>
- 	 <%= submit_tag "Import" %>
+	<div class="col-md-2"></div>   
+	<div class="col-md-8" align="left">
+		<h1> 최근 강의 평가</h1>
+	 <div id="form1">
+		<%= form_tag root_path, :method => 'get' do %>
+		 
+    강의명 <%= text_field_tag :search, params[:search] %>
+    	   <%= submit_tag "Search", :subejct => nil %>
+		 
 		<% end %>
-		
+     </div>
+     <br><br>
+      <div class="table-responsive">
+        <table class="table nogap">
+         <thead>
+      
+         <tr class> 
+
+           <th>강의</th>
+           <th>교수명</th>
+           <th>개설학과</th>
+           <th>댓글</th>
+           <th>up&down</th>
+           
+         </tr>
+         </thead>
+    	 <tbody>     
+		<% @lectures.each do |lec| %>
+	
+         <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+    <td><%= lec.subject%></td> <td><%=lec.professor%> </td>
+    <td><%= lec.major%></td>
+		</tr>
+
+   	   <% end %>
+   	   	</tbody>
+   	   	</table>
+   	   	</div>
+   	   	</div>
+ 	 
 
   	</div> 
-
-	<div class="col-md-1"></div >	 
+ 
+	<div class="col-md-2"></div >	 
 
    
 
 </div>    
 
+<div class="row">
+	<div class="col-md-2"></div>   
+	<div class="col-md-8" align="left">
+	<%= will_paginate @lectures %>
+	</div>
+	<div class="col-md-2"></div>
+	</div>
+	

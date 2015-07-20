@@ -1,10 +1,25 @@
-<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-<%= @lecture.subject %>
-<%= @lecture.professor %>
+<div class = "row">
+	<div class="col-md-2"></div>
 
-</div>
+	<div class="col-md-8">
+		<div class="page-header">
 
-	<div class="col-md-1"></div>
-	</div>
+
+			<h2 class="inline-blk"> <%= @lecture.subject %> </h2> <span><%= @lecture.major%></span>
+			<p class="lead">
+				<%= @lecture.professor %></p>
+
+			<%= render 'lectures/xtachi' %>
+		</div>
+	
+
+		<div class="reply-box">
+			<%= render 'shared/comment_form' %>
+			<ol class= "comments">
+				<%= render @comments %>
+			</ol>
+		</div>
+
+	</div><!-- /.col-md-8 -->
+			
+<div class="col-md-2"></div>
