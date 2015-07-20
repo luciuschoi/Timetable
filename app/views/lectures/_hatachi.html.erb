@@ -1,0 +1,7 @@
+<%= form_for current_user.valuations.build, html: { class: "inline-blk" } do |f|  %>
+		<%= hidden_field_tag :lecture_id, @lecture.id %>
+
+		<%= hidden_field_tag :hatachi, 1 %>
+
+	<%= f.submit 'ㅎㅌㅊ  '+@lecture.hatachi.to_s, class: "btn btn-deafult hatachi" %>
+<% end %>
