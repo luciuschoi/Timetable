@@ -1,0 +1,30 @@
+
+<% if logged_in_user? %>
+	<div class="xtachi_form align-center">
+		<!-- ㅅㅌㅊ, ㅎㅌㅊ 누르지 않았을 때 -->
+		<% unless current_user.valuations.find_by(lecture_id: @lecture.id) %>
+		<%= render 'uptachi' %>
+		<%= render 'hatachi' %>			
+
+		<!-- ㅅㅌㅊ or ㅎㅌㅊ 둘 중 하나 눌렀을 때 -->
+		<% else %>
+		
+		
+
+			<% if current_user.valuations.find_by(lecture_id: @lecture.id).valuated == 1 %>
+				<a class="btn btn-success uptachi"> ㅅㅌㅊ <%= @lecture.uptachi %> </a>
+				<%= render 'lectures/hatachi' %>			
+
+			<% else %>
+
+				<%= render 'lectures/uptachi' %>
+				<a class="btn btn-default hatachi"> ㅎㅌㅊ <%= @lecture.hatachi %></a>
+			<% end %>
+		<% end %>
+	</div>
+
+<% else %>
+
+로그인해라
+
+<% end %>

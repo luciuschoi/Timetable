@@ -11,15 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715063747) do
 
-  create_table "authorizations", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20150716042707) do
+
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -39,6 +33,10 @@ ActiveRecord::Schema.define(version: 20150715063747) do
     t.string   "major"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+    t.integer  "uptachi"
+    t.integer  "hatachi"
+
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,5 +49,15 @@ ActiveRecord::Schema.define(version: 20150715063747) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+
+  create_table "valuations", force: :cascade do |t|
+    t.integer  "valuated"
+    t.integer  "user_id"
+    t.integer  "lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 
 end

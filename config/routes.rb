@@ -13,6 +13,10 @@ resources :lectures do
   collection { post :import }
 end
 
+resources :valuations, only: [:create, :destroy]
+resources :comments, only: [:create, :destroy, :edit, :update]
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

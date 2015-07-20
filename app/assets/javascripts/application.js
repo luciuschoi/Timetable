@@ -108,7 +108,6 @@
         // Person is now logged out
     });
 
-
 </script>
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
@@ -135,6 +134,3 @@ window.fbAsyncInit = ->
       FB.logout() if response.authResponse
     true
 */
-
-
-

@@ -2,6 +2,12 @@ class LecturesController < ApplicationController
 	require 'roo'
 	def show
 		@lecture = Lecture.find_by(id: params[:id])
+
+		#@comment = current_user.comments.build
+
+		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
+
+
 	end
 
 	def edit
@@ -14,7 +20,7 @@ class LecturesController < ApplicationController
 	end
 
 	def create
-		
+
 		Lecture.create(subject: params[:lecture][:subject], professor: params[:lecture][:professor], 
 			major: params[:lecture][:major])
 		redirect_to root_url
@@ -36,11 +42,12 @@ class LecturesController < ApplicationController
 	end 
 
 	def import
-  Lecture.import(params[:file])
-  redirect_to root_url, notice: "decorations imported."
+
+		Lecture.import(params[:file])
+		redirect_to root_url, notice: "decorations imported."
     end
 
-	
+
 private
 	def lecture_params
 		params.require(:lecture).permit(:subject, :professor, :major)
