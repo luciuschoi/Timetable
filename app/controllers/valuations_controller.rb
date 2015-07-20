@@ -6,7 +6,7 @@ class ValuationsController < ApplicationController
 
 		if current_user.valuations.find_by(lecture_id: @lecture.id)
 			if params[:uptachi]
-
+ 
 				@lecture.lec_uptachi
 				@lecture.hatachi -= 1
 				current_user.revaluated(@lecture, 1)
