@@ -1,0 +1,14 @@
+<% if logged_in_user? %>
+	<%= form_for current_user.comments.build do |f| %>
+		
+		<div class="field">
+			<%= f.text_area :content, cols: 80, rows: 3, placeholder: "강의에 대하여 간단한 평가를 남겨주세요." %>
+		</div>
+			<%= hidden_field_tag :lecture_id, @lecture.id %>
+		
+		<%= f.submit "Post", class: "btn btn-primary" %>
+		
+	<% end %>
+<% else %>
+	로그인해
+<% end %>
