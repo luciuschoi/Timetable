@@ -1,14 +1,4 @@
-<div class="row">
-	<div class="col-md-1"></div>   
-	<div class="col-md-10" align="left">
-		<h1> 최근 강의 평가</h1>
-		<%= form_tag root_path, :method => 'get' do %>
-		  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :subejct => nil %>
-		  </p>
-<% end %>
-		<h4> 강의&nbsp;&nbsp; 교수명 &nbsp;&nbsp; 개설학과 </h4>
+	<h4> 강의&nbsp;&nbsp; 교수명 &nbsp;&nbsp; 개설학과 </h4>
 		<% @lectures.each do |lec| %>
     <%= lec.subject%> <%=lec.professor%> <%= lec.major%> &nbsp;&nbsp;&nbsp;&nbsp;
     <%= link_to "Show",   lecture_path(lec) %>  &nbsp; <%= link_to "Edit", 

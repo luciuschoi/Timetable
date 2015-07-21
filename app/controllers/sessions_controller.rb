@@ -4,9 +4,12 @@ class SessionsController < ApplicationController
 	    user = User.from_omniauth(env["omniauth.auth"])
         session[:user_id] = user.id 
         session[:user_name] = user.name
-        
 
-      redirect_to root_path
+        if user.nickname.nil?
+          redirect_to :controller => 'users', :action => 'edit', :id => user.id
+        else
+          redirect_to root_path
+        end
       
   end
 
