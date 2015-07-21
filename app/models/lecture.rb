@@ -6,6 +6,7 @@ class Lecture < ActiveRecord::Base
   has_many :valuations
 require 'rubygems'
 require 'roo'
+
 def Lecture.accessible_attributes
   ["subject", "professor", "major"]
 end 
@@ -39,6 +40,15 @@ end
   def lec_hatachi
     self.hatachi +=1
   end
+ 
+  def self.search(search)  
+     if search  
+      where('subject LIKE ?', "%#{search}%")  
+     else  
+     
+     end  
+   end  
+
 
 
 
