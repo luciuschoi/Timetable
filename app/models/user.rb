@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
       user.uid      = auth.uid
       user.name     = auth.info.name
       user.token    = auth.token
-      
       user.save
     end
   end
