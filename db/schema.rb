@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150723011939) do
+=======
+ActiveRecord::Schema.define(version: 20150721054700) do
+>>>>>>> origin/master
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -42,8 +46,10 @@ ActiveRecord::Schema.define(version: 20150723011939) do
     t.string   "image"
     t.string   "token"
     t.datetime "expires_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "nickname"
+    t.boolean  "admin",      default: false
   end
 
   create_table "valuations", force: :cascade do |t|
