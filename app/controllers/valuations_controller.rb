@@ -3,40 +3,47 @@ class ValuationsController < ApplicationController
 
 		@lecture = Lecture.find(params[:lecture_id])
 
-
+		# 해당 강의에 대해 현재 유저가 평가 한적 있는지 검사
 		if current_user.valuations.find_by(lecture_id: @lecture.id)
-			if params[:uptachi]
- 
-				@lecture.lec_uptachi
-				@lecture.hatachi -= 1
-				current_user.revaluated(@lecture, 1)
-			elsif params[:hatachi]
-				@lecture.lec_hatachi
-				@lecture.uptachi -= 1
-				current_user.revaluated(@lecture, 2)
-			end
-			@lecture.save!
+			render 'lectures/show'
 		else
 			if params[:uptachi]
 				@lecture.lec_uptachi
-				current_user.evaluated(@lecture, 1)
+				current_user.evaluated_up(@lecture, 1)
 
 			elsif params[:hatachi]
-
 				@lecture.lec_hatachi
-				current_user.evaluated(@lecture, 2)
-
+				current_user.evaluated_down(@lecture, 1)
 			else
 				render 'lectures/show'
 			end
-
-			@lecture.save
 		end
-		
-		redirect_to @lecture
-#		respond_to do |format|
-#			format.html {redirect_to @lecture}
-#			format.js
-#		end
+
+		@lecture.save!
+
+		respond_to do |format|
+			format.html {redirect_to @lecture}
+			format.js
+		end
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

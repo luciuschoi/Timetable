@@ -33,12 +33,11 @@ end
   end
 
   def lec_uptachi
-    self.uptachi +=1
-    
+    self.uptachi += 1
   end
 
   def lec_hatachi
-    self.hatachi +=1
+    self.hatachi += 1
   end
  
   def self.search(search)  

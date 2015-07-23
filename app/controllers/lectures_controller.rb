@@ -2,12 +2,8 @@ class LecturesController < ApplicationController
 	require 'roo'
 	def show
 		@lecture = Lecture.find_by(id: params[:id])
-
 		#@comment = current_user.comments.build
-
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
-
-
 	end
 
 	def edit

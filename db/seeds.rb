@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+99.times do |n|
+	subject = "알고리즘"
+	professor = "나중채"
+	major = "컴퓨터공학과"
+	Lecture.create!(subject: subject,
+					professor: professor,
+					major: major)
+end

@@ -9,5 +9,6 @@ class CommentsController < ApplicationController
 		redirect_to lecture_path(params[:lecture_id])
 		else
 			redirect_to "/auth/facebook", id: "sign_in" 
+		end
 	end
 end

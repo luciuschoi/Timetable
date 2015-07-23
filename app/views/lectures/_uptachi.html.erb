@@ -1,7 +1,11 @@
-<%= form_for current_user.valuations.build, html: { class: "inline-blk" } do |f|  %>
-				<%= hidden_field_tag :lecture_id, @lecture.id %>
-				<%= hidden_field_tag :uptachi, 1 %>
+<%= form_for @lecture.valuations.build, html: { class: "inline-blk" }, remote: true do |f|  %>
+	<%= hidden_field_tag :lecture_id, @lecture.id %>
+	<%= hidden_field_tag :uptachi, 1 %>
 
-				<%= f.submit 'ㅅㅌㅊ  '+@lecture.uptachi.to_s, class: "btn btn-success uptachi" %>
-				
-			<% end %>
+	<%= f.submit 'ㅅㅌㅊ  ', class: "btn btn-success uptachi" %>
+
+<% end %>
+
+<span id = "uptachi_num"><%= @lecture.uptachi.to_s %></span>
+
+
