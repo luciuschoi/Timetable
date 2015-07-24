@@ -2,10 +2,29 @@
 	<%= hidden_field_tag :lecture_id, @lecture.id %>
 	<%= hidden_field_tag :uptachi, 1 %>
 
-	<%= f.submit 'ㅅㅌㅊ  ', class: "btn btn-success uptachi" %>
+	<%= f.submit 'up  ', class: "btn btn-success uptachi" %>
 
 <% end %>
 
 <span id = "uptachi_num"><%= @lecture.uptachi.to_s %></span>
 
 
+<% if logged_in_user? %>
+
+	<% if current_user.valuations.find_by(lecture_id: @lecture.id)%>
+		<% if current_user.valuations.find_by(lecture_id: @lecture.id).up == 1 %>
+			<script>
+				$('.uptachi').click(function(){
+					alert('<%= @lecture.professor %>교수님을 이미 Up으로 평가하셨습니다. 그만해!!');
+				});
+			</script>
+
+		<% elsif current_user.valuations.find_by(lecture_id: @lecture.id).down == 1 %>
+			<script>
+				$('.uptachi').click(function(){
+					alert('<%= @lecture.professor %>교수님을 이미 down으로 평가하셨습니다. 그만해!!');
+				});
+			</script>
+		<% end %>
+	<% end %>
+<% end %>

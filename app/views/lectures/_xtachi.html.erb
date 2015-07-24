@@ -1,30 +1,8 @@
-
-
-
 <%= render 'lectures/uptachi' %>
 <%= render 'lectures/hatachi' %>			
 
 
 <!-- 로그인된 유저에게만 valuation 검사  -->
-
-<% if logged_in_user? %>
-	
-	<!-- 로그인된 유저가 현재 강의의 평가 유무 검사  -->
-	<% if current_user.valuations.find_by(lecture_id: @lecture.id)%>
-		
-		<% if  current_user.valuations.find_by(lecture_id: @lecture.id).up == 1 ||
-			current_user.valuations.find_by(lecture_id: @lecture.id).down == 2	 %>
-			<script>
-				$('#testing').ready(function(){
-				     $('.uptachi').attr('disabled','disabled');
-				     $('.hatachi').attr('disabled','disabled');
-				 });
-
-				
-			</script>
-		<% end %>
-	<% end %>
-<% end %>
 
 
 
