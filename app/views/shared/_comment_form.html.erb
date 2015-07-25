@@ -1,14 +1,15 @@
 <% if logged_in_user? %>
-	<%= form_for current_user.comments.build do |f| %>
+	<span class = "user_form"> <%= current_user.nickname %> </span>
+	<%= form_for current_user.comments.build, class: "comment_submit_btn" do |f| %>
 		
-		<div class="field">
+		<div class="field comment_submit_btn">
 			<%= f.text_area :content, cols: 80, rows: 3, placeholder: "강의에 대하여 간단한 평가를 남겨주세요." %>
 		</div>
 			<%= hidden_field_tag :lecture_id, @lecture.id %>
 		
-		<%= f.submit "Post", class: "btn btn-primary" %>
+		<%= f.submit "Post", class: "btn btn-primary comment_submit_btn" %>
 		
 	<% end %>
 <% else %>
-	로그인해
+	로그인해주십쇼
 <% end %>

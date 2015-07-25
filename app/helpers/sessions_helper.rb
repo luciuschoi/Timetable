@@ -9,4 +9,9 @@ module SessionsHelper
 		!session[:user_id].nil?
 	end
 
+
+	def current_user?(user)
+		user == current_user
+	end
+
 end

@@ -1,0 +1,9 @@
+/*form_for text_area 다시 생성 
+Edit link -> update submit 버튼*/
+
+$('#comment-<%=@comment.id%>').append("<%= escape_javascript(render('comments/edit_form')) %>")
+
+$('.comment', '#comment-<%=@comment.id%>').remove();
+$('.timestamp', '#comment-<%=@comment.id%>').remove();
+$('.comment_edit_btn', '#comment-<%=@comment.id%>').remove();
+

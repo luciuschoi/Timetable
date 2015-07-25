@@ -1,4 +1,4 @@
-class LecturesController < ApplicationController
+ class LecturesController < ApplicationController
 	require 'roo'
 	def show
 		@lecture = Lecture.find_by(id: params[:id])

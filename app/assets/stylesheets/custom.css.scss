@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 .row{
-	padding-top: 30px;
+  padding-top: 30px;
 }
 .fb-login-button{
   padding-top: 15px;
@@ -45,9 +45,6 @@ h1{
 }
 */
 
-tr.lovelyrow{
-  background-color: #F6E3CE;
-}
 
 tr.lovelyrow:hover{
   background-color: #CEF6EC;
@@ -57,3 +54,89 @@ tr.lovelyrow:hover{
 table.nogap{
   border-collapse: collapse;
 }
+
+
+
+
+
+
+.inline-blk {
+  display: inline-block;
+}
+
+
+.align-center{
+  text-align:center;
+  margin : 0 auto;
+}
+
+.textarea {
+  width : 50%;
+  height : 50px;
+}
+
+
+
+
+/* comment */
+
+.comments {
+  border-top : 1px solid #e8e8e8;
+  list-style: none;
+  padding : 0;
+  margin-top: 10px;
+  li {
+    padding: 10px 40px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+    text-align : right;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+
+/* comment-form */ 
+
+.comment-box {
+  
+  .user_form {
+    margin-left : 40px;
+  }
+  .comment_submit_btn {
+    margin-left: 40px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
