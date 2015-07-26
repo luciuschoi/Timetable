@@ -4,7 +4,10 @@
 		<span class = "user"> <%= comment.user.nickname %> </span>
 		<br>
 		<span class = "comment"> <%= comment.content %> </span>
-		<span class = "timestamp"><%= comment.created_at.strftime("%m/%d %H:%m") %> </span>
+		<span class = "timestamp"> 
+			<%= comment.timestamp_division%>
+		</span>
+
 		<br>
 		
 		<% if current_user?(comment.user) %>

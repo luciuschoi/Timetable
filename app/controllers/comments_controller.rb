@@ -4,17 +4,13 @@ class CommentsController < ApplicationController
 		if logged_in_user?
 			@comment = current_user.comments.build(lecture_id: params[:lecture_id],
 									content: params[:comment][:content])
-
 			@comments = Comment.where("lecture_id = ?", params[:lecture_id]).order('created_at DESC')
-
 			@comment.save
-
+			
 			respond_to do |format|
 				format.js
 				format.html {redirect_to lecture_path(params[:lecture_id])}
 			end
-
-			
 		else
 			redirect_to "/auth/facebook", id: "sign_in" 
 		end
@@ -27,9 +23,7 @@ class CommentsController < ApplicationController
 		respond_to do |format|
 			format.js
 			format.html {redirect_to @lecture}
-			
 		end
-
 	end
 
 	def update
