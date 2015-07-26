@@ -8,7 +8,10 @@
 		<br>
 		
 		<% if current_user?(comment.user) %>
-			<%= link_to 'Edit', edit_comment_path(comment.id), remote: true, class: 'comment_edit_btn' %> 
+			<%= link_to '편집', edit_comment_path(comment.id), remote: true, class: 'comment_edit_btn' %>
+			<%= link_to '삭제', comment_path(comment.id), method: :delete, remote: true, data:
+			{confirm: "댓글 지울꺼에요?"}, class: 'comment_edit_btn' %>
+
 		<% end %>
 	<% end %>
 </li>
