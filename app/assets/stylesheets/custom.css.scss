@@ -1,6 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* 댓글 입력폼 설정 */
+#login_comment{
+  resize:none;
+}
+#comment_content{
+  resize:none;
+}
+
+
 .row{
   padding-top: 30px;
 }
@@ -21,11 +31,22 @@ h1{
  
 }
 
+
 @mixin box_sizing {
 
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
+}
+
+
+/* header */
+
+#header{
+  font-size: 30px;
+  
+  color: white;
+  font-weight:bold;
 }
 
 /* miscellaneous */
@@ -44,17 +65,27 @@ h1{
   line: false;
 }
 */
+<<<<<<< HEAD
 
+=======
+/*
+tr.lovelyrow{
+  background-color: #F6E3CE;
+}
+*/
+>>>>>>> origin/master
 
 tr.lovelyrow:hover{
   background-color: #CEF6EC;
   cursor: pointer;
+  font-weight:bold;
 }
 
 table.nogap{
   border-collapse: collapse;
 }
 
+<<<<<<< HEAD
 
 
 
@@ -73,10 +104,18 @@ table.nogap{
 .textarea {
   width : 50%;
   height : 50px;
+=======
+#tb_unspot{
+ color: gray;
+ }
+#tb_spot{
+  font-weight:bold;
+>>>>>>> origin/master
 }
 
 
 
+<<<<<<< HEAD
 
 /* comment */
 
@@ -140,3 +179,23 @@ table.nogap{
 
 
 
+=======
+/* side bar */
+
+aside {
+  display:inline-block;
+  float:right;
+  width:150px;
+
+}
+#side_bar_pro {
+  display :inline-block;
+  float : right;
+  
+}
+#side_bar_sub {
+  display :inline-block;
+  float : right;
+  
+}
+>>>>>>> origin/master

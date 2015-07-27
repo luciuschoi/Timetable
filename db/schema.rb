@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150727074228) do
 
   create_table "comment_valuations", force: :cascade do |t|

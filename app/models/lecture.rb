@@ -1,17 +1,18 @@
 class Lecture < ActiveRecord::Base
+
   include ActionView::Helpers::DateHelper
-  validates :subject, presence: true, length: {maximum: 40}
+  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
   has_many :comments, dependent: :destroy
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
-require 'rubygems'
-require 'roo'
+  require 'rubygems'
+  require 'roo'
 
-def Lecture.accessible_attributes
-  ["subject", "professor", "major"]
-end 
+  def Lecture.accessible_attributes
+    ["subject", "professor", "major"]
+  end 
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -21,7 +22,7 @@ end
       lecture = find_by_id(row["id"]) || new
       lecture.attributes = row.to_hash.slice("subject", "professor", "major")
 
-      lecture.save!
+      lecture.save
     end
   end
 

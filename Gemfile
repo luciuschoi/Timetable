@@ -23,6 +23,7 @@ gem 'omniauth-facebook'
 gem 'omniauth'
 
 gem 'will_paginate'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
