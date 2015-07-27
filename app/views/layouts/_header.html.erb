@@ -1,0 +1,50 @@
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+         
+         <!-- 처음 로그인하고나서, 닉네임 설정 안했을 때 다른 페이지로 갈 수 없도록-->
+              <% if current_user && current_user.nickname.nil?%>
+                <p class="navbar-text navbar-link" id="header"> 아 뭐듣지?! </a></p>
+
+              <%else %>
+
+                <p class="navbar-text"><a href="/" class="navbar-link" id="header"> 아 뭐듣지?! </a></p>
+              <% end %> 
+                  <% if current_user %>
+             
+                   <% unless current_user.nickname.nil? %>
+                         <p class="navbar-text navbar-right" id="header"> Welcome <strong><%= link_to current_user.nickname, edit_user_path(current_user) %>  </strong>!
+                          <a href="http://25.25.128.138:3003/signout"><%=image_tag("facelogout.gif", alt: "페이스북 로그인") %> </a>
+
+                 <!--<%= link_to "Sign out", signout_path, id: "sign_out" %></p></p>-->
+                   <% end %>
+                
+                 <% else %>
+                
+               <p class="navbar-text navbar-right" id="header">
+                <a href="http://25.25.128.138:3003/auth/facebook"><%=image_tag("facelogin.gif", alt: "페이스북 로그인") %> </a>
+               <!--      <%= link_to "Facebook login", "/auth/facebook", id: "sign_in" %> -->  </p>
+
+                 <% end %>
+            </div>
+            <div class="col-md-1"></div>
+
+               
+              </div><!-- /.container-fluid -->
+
+          </nav>
+
+
+        </div><!-- /.col-md-8 -->
+
+
+        <div class="col-md-1"></div>
+
+
+      </div> 
