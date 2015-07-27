@@ -1,9 +1,9 @@
 class Lecture < ActiveRecord::Base
-  validates :subject, presence: true, length: {maximum: 40}
+  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
-  has_many :comments
-  has_many :valuations
+  has_many :comments, dependent: :destroy
+  has_many :valuations, dependent: :destroy
 require 'rubygems'
 require 'roo'
 
@@ -19,7 +19,7 @@ end
       lecture = find_by_id(row["id"]) || new
       lecture.attributes = row.to_hash.slice("subject", "professor", "major")
 
-      lecture.save!
+      lecture.save
     end
   end
 
@@ -33,12 +33,11 @@ end
   end
 
   def lec_uptachi
-    self.uptachi +=1
-    
+    self.uptachi += 1
   end
 
   def lec_hatachi
-    self.hatachi +=1
+    self.hatachi += 1
   end
  
   def self.search(search)  

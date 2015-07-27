@@ -1,11 +1,12 @@
 <li id = "comment-<%=comment.id%>">
 	<% if comment %>
 	
-		<span class = "user"> <%= comment.user.name %> </span>
+		<span class = "user"> <%= comment.user.nickname %> </span>
 		<br>
 		<span class = "comment"> <%= comment.content %> </span>
 		<span class = "timestamp"><%= comment.created_at.strftime("%m/%d %H:%m") %> </span>
 		<br>
+		
 	
 	<% end %>
 </li>

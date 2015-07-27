@@ -1,7 +1,9 @@
-<%= form_for current_user.valuations.build, html: { class: "inline-blk" } do |f|  %>
-		<%= hidden_field_tag :lecture_id, @lecture.id %>
-
-		<%= hidden_field_tag :hatachi, 1 %>
-
-	<%= f.submit 'ㅎㅌㅊ  '+@lecture.hatachi.to_s, class: "btn btn-deafult hatachi" %>
+<%= form_for @lecture.valuations.build, html: { class: "inline-blk" }, remote: true do |f|  %>
+	<%= hidden_field_tag :lecture_id, @lecture.id %>
+	<%= hidden_field_tag :hatachi, 1 %>
+	<span id = "testing"><%= f.submit 'ㅎㅌㅊ  ', class: "btn btn-deafult hatachi" %></span>
 <% end %>
+
+<span id = "hatachi_num"><%= @lecture.hatachi.to_s %></span>
+
+

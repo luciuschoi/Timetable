@@ -1,13 +1,12 @@
 class LecturesController < ApplicationController
+	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	require 'roo'
 	def show
 		@lecture = Lecture.find_by(id: params[:id])
-
+		@AnotherProfessors = Lecture.where("subject = ?", @lecture.subject)
+		@AnotherSubjects = Lecture.where("professor = ?", @lecture.professor)
 		#@comment = current_user.comments.build
-
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
-
-
 	end
 
 	def edit
@@ -52,4 +51,8 @@ private
 	def lecture_params
 		params.require(:lecture).permit(:subject, :professor, :major)
 	end
+
+	def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end

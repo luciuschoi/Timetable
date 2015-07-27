@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	 has_many :comments
-	 has_many :valuations
+	 has_many :comments, dependent: :destroy
+	 has_many :valuations, dependent: :destroy
    validates :nickname, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
 
 	def self.from_omniauth(auth)
@@ -13,13 +13,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def evaluated(lec, what_valuated)
-    valuations.create(lecture_id: lec.id, valuated: what_valuated)
+  def evaluated_up(lec, what_valuated)
+    valuations.create(lecture_id: lec.id, up: what_valuated)
   end
-
-  def revaluated(lec, what_valuated)
-    v = valuations.find_by(lecture_id: lec.id)
-    v.update_attribute(:valuated, what_valuated)
+  
+  def evaluated_down(lec, what_valuated)
+    valuations.create(lecture_id: lec.id, down: what_valuated)
   end
 
 end

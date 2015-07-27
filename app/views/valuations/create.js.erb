@@ -3,4 +3,11 @@ $("input.uptachi").html('<%= @lecture.uptachi %>');
 $("a.uptachi").html('<%= @lecture.uptachi %>');
 $("a.hatachi").html('<%= @lecture.hatachi %>');
 
-$(".xtachi-form").html("<%= escape_javascript(render('lectures/xtachi')) %>");*/
+*/
+// hatachi 갯수 최신화
+$("#uptachi_num").html('<%= @lecture.uptachi %>')
+$("#hatachi_num").html('<%= @lecture.hatachi %>')
+
+$(".xtachi-form").html("<%= escape_javascript(render('lectures/xtachi')) %>")
+// uptachi 갯수 최신
+
