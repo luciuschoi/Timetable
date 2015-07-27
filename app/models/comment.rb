@@ -3,6 +3,7 @@ class Comment < ActiveRecord::Base
 	validates :content, :length => { :minimum => 1, :maximum => 500 }
 	belongs_to :user
 	belongs_to :lecture	
+	has_many :comment_valuations, dependent: :destroy
 
 	def timestamp_division
 		difference = Time.zone.now - created_at

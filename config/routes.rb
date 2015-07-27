@@ -15,6 +15,7 @@ end
 
 resources :valuations, only: [:create, :destroy]
 resources :comments, only: [:create, :destroy, :edit, :update]
+resources :comment_valuations, only: [:create, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

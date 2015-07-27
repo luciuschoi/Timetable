@@ -10,6 +10,10 @@
 
 		<br>
 		
+		
+		<span><%= comment.likedcount.to_s %></span>
+
+
 		<% if current_user?(comment.user) %>
 			<%= link_to '편집', edit_comment_path(comment.id), remote: true, class: 'comment_edit_btn' %>
 			<%= link_to '삭제', comment_path(comment.id), method: :delete, remote: true, data:
@@ -18,3 +22,5 @@
 		<% end %>
 	<% end %>
 </li>
+
+

@@ -1,9 +1,11 @@
 class Lecture < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
   validates :subject, presence: true, length: {maximum: 40}
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
   has_many :comments, dependent: :destroy
   has_many :valuations, dependent: :destroy
+  has_many :comment_valuations, dependent: :destroy
 require 'rubygems'
 require 'roo'
 
