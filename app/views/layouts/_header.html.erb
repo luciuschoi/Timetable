@@ -20,7 +20,7 @@
              
                    <% unless current_user.nickname.nil? %>
                          <p class="navbar-text navbar-right" id="header"> Welcome <strong><%= link_to current_user.nickname, edit_user_path(current_user) %>  </strong>!
-                          <a href="http://25.25.128.138:3003/signout"><%=image_tag("facelogout.gif", alt: "페이스북 로그인") %> </a>
+                          <a href="/signout"><%=image_tag("facelogout.gif", alt: "페이스북 로그인") %> </a>
 
                  <!--<%= link_to "Sign out", signout_path, id: "sign_out" %></p></p>-->
                    <% end %>
@@ -28,7 +28,7 @@
                  <% else %>
                 
                <p class="navbar-text navbar-right" id="header">
-                <a href="http://25.25.128.138:3003/auth/facebook"><%=image_tag("facelogin.gif", alt: "페이스북 로그인") %> </a>
+                <a href="/auth/facebook"><%=image_tag("facelogin.gif", alt: "페이스북 로그인") %> </a>
                <!--      <%= link_to "Facebook login", "/auth/facebook", id: "sign_in" %> -->  </p>
 
                  <% end %>

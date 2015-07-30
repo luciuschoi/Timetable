@@ -11,16 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150727074228) do
 
   create_table "comment_valuations", force: :cascade do |t|
-    t.integer  "like"
+    t.boolean  "like",       default: false
     t.integer  "user_id"
     t.integer  "comment_id"
     t.integer  "lecture_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "comment_valuations", ["comment_id", "user_id"], name: "index_comment_valuations_on_comment_id_and_user_id"

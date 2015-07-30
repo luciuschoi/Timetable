@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 									content: params[:comment][:content])
 			@comments = Comment.where("lecture_id = ?", params[:lecture_id]).order('created_at DESC')
 			@comment.save
-			
+
 			respond_to do |format|
 				format.js
 				format.html {redirect_to lecture_path(params[:lecture_id])}

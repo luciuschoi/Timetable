@@ -8,6 +8,7 @@
 		@AnotherSubjects = Lecture.where("professor = ?", @lecture.professor)
 		#@comment = current_user.comments.build
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
+		
 	end
 
 	def edit

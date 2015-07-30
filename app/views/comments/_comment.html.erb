@@ -1,17 +1,32 @@
 <li id = "comment-<%=comment.id%>">
 	<% if comment %>
-	
-		<span class = "user"> <%= comment.user.nickname %> </span>
+	<ul>
+		<li><span class = "user"> <%= comment.user.nickname %> </span></li>
 		<br>
-		<span class = "comment"> <%= comment.content %> </span>
-		<span class = "timestamp"> 
+		<li><span class = "comment"> <%= comment.content %> </span></li>
+		<li><span class = "timestamp"> 
 			<%= comment.timestamp_division%>
-		</span>
+		</span></li>
 
 		<br>
+
 		
-		
-		<span><%= comment.likedcount.to_s %></span>
+		<li id="<%=comment.id%>-comment_valuation">
+			<% unless logged_in_user? %>
+					<%= render 'comment_valuations/also', :comment => comment %>
+			<% else %>
+				<% if current_user.comment_valuations.find_by(comment_id: comment.id) %>
+					<%= render 'comment_valuations/unalso', :comment => comment%>
+				<% else %>
+					<%= render 'comment_valuations/also', :comment => comment %>
+				<% end %>
+			<% end %>
+		</li>
+
+
+		<span id = "<%=comment.id%>-liked_num">
+			<%= comment.likedcount.to_s %>
+		</span>
 
 
 		<% if current_user?(comment.user) %>
@@ -20,6 +35,7 @@
 			{confirm: "댓글 지울꺼에요?"}, class: 'comment_edit_btn' %>
 
 		<% end %>
+	</ul>
 	<% end %>
 </li>
 
