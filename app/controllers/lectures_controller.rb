@@ -48,6 +48,10 @@
 		redirect_to root_url, notice: "decorations imported."
     end
 
+    def timetable
+       
+    end 
+
 
 private
 	def lecture_params

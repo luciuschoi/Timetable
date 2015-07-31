@@ -1,6 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf')}
+
+body{
+  font-family: Nanum_Gothic;
+}
+
+div{
+  li{
+    padding-left : 0px;
+  }
+}
 
 /* 댓글 입력폼 설정 */
 #login_comment{
@@ -28,7 +39,15 @@ h1{
 #form1{
   display: inline;
   float: right;
- 
+}
+.row_padding_reduction{
+  padding-top:10px;
+}
+.zero-padding-right{
+  padding-right:0;
+}
+.zero-padding-left{
+  padding-left:0;
 }
 
 
@@ -92,7 +111,6 @@ table.nogap{
   display: inline-block;
 }
 
-
 .align-center{
   text-align:center;
   margin : 0 auto;
@@ -107,7 +125,6 @@ table.nogap{
  }
 #tb_spot{
   font-weight:bold;
-
 }
 
 
@@ -116,18 +133,18 @@ table.nogap{
 /* comment */
 
 .comments {
-  border-top : 1px solid #e8e8e8;
   list-style: none;
   padding : 0;
   margin-top: 10px;
   li {
+    /*border-top : 1px solid #e8e8e8;*/
+    list-style: none;
     padding: 10px 40px;
-    border-bottom: 1px solid #e8e8e8;
+    /*border-bottom: 1px solid #e8e8e8;*/
   }
   .user {
-    margin-top: 5em;
+    color:$gray-light;
     padding-top: 0;
-
   }
   .content {
     display: block;
@@ -135,16 +152,21 @@ table.nogap{
   }
   .timestamp {
     color: $gray-light;
-    display: block;
-    margin-left: 60px;
     text-align : right;
   }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
+  .thumbs_margin{
+    margin-left:8px;
+    margin-right:5px;
+    margin-bottom:3px;
+  }
+  .color-orange{
+    color:red;
+    margin-right: 5px;
   }
 }
+
+
+
 
 
 /* comment-form */ 
@@ -155,9 +177,36 @@ table.nogap{
     margin-left : 40px;
   }
   .comment_submit_btn {
-    margin-left: 40px;
+    margin-left: 0px;
   }
 }
+
+#comments_border_top {
+  border-top : 1px solid #e8e8e8;
+}
+
+#new_comment{
+  float:left;
+}
+
+
+
+
+/* comment_valuation */
+
+.new_comment_valuation {
+  float:left;
+}
+.edit_comment_valuation {
+  float:left;
+}
+.also_unalso_btn {
+  padding : 0;
+  border : 0;
+}
+
+
+
 
 
 /* side bar */
@@ -178,4 +227,63 @@ aside {
   float : right;
   
 }
+
+/* xtachi_form */
+
+#xtachi_count{
+  text-align: center;
+
+}
+
+.btn_half {
+  margin:0;
+  width:50%;
+}
+
+.xtachi_num{
+  font-size:22px;
+  display:block;
+  text-align: center
+}
+
+#uptachi_form{
+  float:right;
+  display:inline-block;
+}
+
+#hatachi_form{
+  float:left;
+  display:inline-block;
+}
+.hatachi{
+  font-size:18px;
+}
+.uptachi{
+  font-size:18px;
+}
+
+
+/* lecture */
+.border-box {
+  border : 1px solid #e8e8e8;
+  padding-bottom: 25px;
+}
+
+.border-left-right{
+    border-left : 1px solid #e8e8e8;
+    border-right : 1px solid #e8e8e8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

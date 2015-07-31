@@ -11,7 +11,9 @@ match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do
   collection { post :import }
+  member { get :timetable }
 end
+
 
 resources :valuations, only: [:create, :destroy]
 resources :comments, only: [:create, :destroy, :edit, :update]

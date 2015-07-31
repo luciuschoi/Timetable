@@ -2,11 +2,10 @@
 	<%= hidden_field_tag :lecture_id, @lecture.id %>
 	<%= hidden_field_tag :uptachi, 1 %>
 
-	<%= f.submit 'up  ', class: "btn btn-success uptachi" %>
+	<%= f.submit '좋아요', class: "btn btn-danger uptachi" %>
 
 <% end %>
 
-<span id = "uptachi_num"><%= @lecture.uptachi.to_s %></span>
 
 
 <% if logged_in_user? %>
