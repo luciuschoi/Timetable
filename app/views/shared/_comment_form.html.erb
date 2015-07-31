@@ -1,5 +1,9 @@
 <% if logged_in_user? %>
-	<span class = "user_form"> <%= current_user.nickname %> </span>
+<div class ="row">
+	<div class="col-md-2 zero-padding-right">
+	<span class = "user"> <%= current_user.nickname %> </span>
+	</div>
+	<div class="col-md-10 zero-padding-left">
 	<%= form_for current_user.comments.build, remote: true, class: "comment_submit_btn" do |f| %>
 		
 		<div class="field comment_submit_btn">
@@ -8,8 +12,10 @@
 			<%= hidden_field_tag :lecture_id, @lecture.id %>
 		
 		<%= f.submit "Post", class: "btn btn-primary comment_submit_btn" %>
-		
+		</div>
+	</div>
 	<% end %>
+	<div class="col-md-2"></div>
 <% else %>
 		<textarea cols=80 rows=3 id='login_comment'> </textarea>
 <% end %>
