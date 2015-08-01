@@ -1,0 +1,108 @@
+   <div class="row">
+        <div class="col-md-2">
+         <div id="form1">
+		<%= form_tag root_path, :method => 'get' do %>
+		 
+    	강의명 <%= text_field_tag :search, params[:search] %>
+    	   <%= submit_tag "찾아줘!", :subejct => nil %>
+		 
+		<% end %>
+        </div>
+        	 <div class="table-responsive">
+        		<table id="search_table" class="table nogap" >
+         			<thead>
+      
+       				  <tr class> 
+
+         			  <th>교수명</th>
+           			  <th>강의명</th>
+            		  <th>강의시간</th>
+           
+         			  </tr>
+         			</thead>
+    	 		    <tbody>
+	    	 		     <tr class="lovelyrow" onclick="painttable(this)">     
+						 <td> 김도년 </td>
+						 <td> c# 	 </td>
+						 <td> 월15:00~18:00 </td>
+						 </tr>
+
+						 <tr class="lovelyrow" onclick="painttable(this)">
+						 <td> 국형준 </td>
+						 <td> 알고리즘 </td>
+						 <td> 화목12:00~13:30</td>
+					 	 </tr>
+
+					 </tbody>
+
+        			
+    			</table>
+    		</div>	
+		 </div> 	
+		<div class="col-md-8">
+        			 <div class="table-responsive">
+        		<table id="time_table" class="table nogap" >
+         			<thead>
+      
+       				  <tr id="timetable_tr">
+       				  <th id="timetable_td_time">시간</th> 
+       				  <th id="timetable_td"> 월 </th>
+       				  <th id="timetable_td"> 화 </th>
+       				  <th id="timetable_td"> 수 </th>
+       				  <th id="timetable_td"> 목 </th>
+       				  <th id="timetable_td"> 금 </th>
+       				  </tr>
+   				   </thead>
+       				  <tbody>
+       				  <% for i in 8..19 %>
+       				     <% for j in 0..1 %>
+       				     	<% if i<10 %>
+	       				   <tr id="timetable_tr">
+	       				       <% if j==0 %>		 
+		       				   <td id="timetable_td_time">0<%=i%>:00</td>
+		       				   <% elsif j==1 %>
+		       				   	<td id="timetable_td_time">0<%=i%>:<%=j*30%></td>
+		       				   <% end %>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+
+		       				<% elsif %>   
+		       				<tr id="timetable_tr">		 
+		       				  <% if j==0 %>		 
+		       				   <td id="timetable_td_time"><%=i%>:00</td>
+		       				   <% elsif j==1 %>
+		       				   	<td id="timetable_td_time"><%=i%>:<%=j*30%></td>
+		       				   	<% end %>
+		       				  <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   <td id="timetable_td">   </td>
+		       				   
+	       				   </tr>
+	       				  <%end%>
+	       				  <%end%>
+       				  <%end%> 
+	   				   </tbody>
+				   </table>
+		</div>
+
+
+
+    </div>
+<script>
+
+   function painttable(table_row){
+   		var searchtable = document.getElementById("search_table")
+    	var timetable = document.getElementById('time_table');
+    	var rowLen = searchtable.rows.length -1;
+        alert(table_row)
+    	alert(document.getElementById("search_table").rows[1].cells[2].innerHTML);
+    	timetable.rows[0].cells[0].style.backgroundColor = 'red'
+    
+
+   }
+</script>

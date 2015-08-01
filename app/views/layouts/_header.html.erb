@@ -19,9 +19,13 @@
                   <% if current_user %>
              
                    <% unless current_user.nickname.nil? %>
-                         <p class="navbar-text navbar-right" id="header"> Welcome <strong><%= link_to current_user.nickname, edit_user_path(current_user) %>  </strong>!
-                          <a href="/signout"><%=image_tag("facelogout.gif", alt: "페이스북 로그인") %> </a>
 
+                         <p class="navbar-text navbar-right" id="#"> 
+                         <%= link_to "시간표 짜기", timetable_lecture_url(current_user) %>
+                         Welcome <strong><%= link_to current_user.nickname, edit_user_path(current_user) %>  </strong>!
+                          <a href="/signout"><%=image_tag("facelogout.gif", alt: "페이스북 로그아웃") %> </a>
+                           
+                           
                  <!--<%= link_to "Sign out", signout_path, id: "sign_out" %></p></p>-->
                    <% end %>
                 

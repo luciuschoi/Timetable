@@ -1,5 +1,7 @@
  class LecturesController < ApplicationController
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
+	before_action :fillnickname, only: [:show]
+	before_action :correct_user, only: [:timetable]
 	require 'roo'
 	
 	def show
@@ -60,5 +62,18 @@ private
 
 	def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+    def fillnickname 
+	  	if logged_in_user? && current_user.nickname.nil?
+	  		flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
+	  		redirect_to edit_user_url(current_user)
+	  	end
+  	end
+  	def correct_user 
+      @user = User.find(params[:id])
+      unless current_user?(@user) 
+          flash[:danger]="Invalid access!"
+          redirect_to root_path
+        end
     end
 end
