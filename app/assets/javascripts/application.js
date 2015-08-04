@@ -15,8 +15,13 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+$(function() {
+$("#lecturetables").on("click", ".pagination a", function(){
+    $.getScript(this.href);
+    return false;
+  });
+});
 
-<div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -108,6 +113,12 @@
         // Person is now logged out
     });
      
+$(function () {
+  $('#lecturetables .pagination a').live('click', function () {
+    $.getScript(this.href);
+    return false;
+  });
+})
 
 </script>
 

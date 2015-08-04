@@ -25,7 +25,7 @@
 	def create
 
 		Lecture.create(subject: params[:lecture][:subject], professor: params[:lecture][:professor], 
-			major: params[:lecture][:major])
+			major: params[:lecture][:major], lecturetime: params[:lecture][:lecturetime])
 		redirect_to root_url
 	end
 
@@ -50,14 +50,31 @@
 		redirect_to root_url, notice: "decorations imported."
     end
 
+
     def timetable
-       
+
+    	if params[:search].nil?
+  		@lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
+  	#@lectures=Lecture.paginate(:per_page =>20, :page => params[:page])
+ 	 	else
+  		@lectures=Lecture.search(params[:search_from],params[:search]).paginate(:page => params[:page], :per_page => 10 )
+  	    end
+
+  	    respond_to do |format|
+  	    format.js
+	    format.html # timetable.html.erb
+	  
+		end
+  
     end 
+
+
+  
 
 
 private
 	def lecture_params
-		params.require(:lecture).permit(:subject, :professor, :major)
+		params.require(:lecture).permit(:subject, :professor, :major, :lecturetime)
 	end
 
 	def admin_user

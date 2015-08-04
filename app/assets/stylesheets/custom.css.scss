@@ -276,8 +276,13 @@ aside {
 
 
 /* timetable */
-
+#time_table{
+  table-layout: fixed;
+  font-weight:bold;
+  
+}
 #timetable_td{
+
     border: 1px solid;
     border-collapse: collapse; 
 
