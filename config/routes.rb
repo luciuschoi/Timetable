@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
 root 'static_pages#home'
 
+#if Rails.env.production?
+   get '404', :to => 'application#page_not_found'
+#end
+
 #resources :lectures
 resources :users
 match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
@@ -16,6 +20,8 @@ end
 resources :valuations, only: [:create, :destroy]
 resources :comments, only: [:create, :destroy, :edit, :update]
 resources :comment_valuations, only: [:create, :destroy]
+
+#match ":url" => "application#redirect_user", :constraints => { :url => /.*/ }
 
 
   # The priority is based upon order of creation: first created -> highest priority.

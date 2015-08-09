@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
+	default_scope -> {order(created_at: :desc)}
 	include ActionView::Helpers::DateHelper
-	validates :content, :length => { :minimum => 1, :maximum => 500 }
+	validates :content, :length => { :minimum => 1, :maximum => 3000 }
 	belongs_to :user
 	belongs_to :lecture	
 	has_many :comment_valuations, dependent: :destroy

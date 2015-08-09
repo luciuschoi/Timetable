@@ -1,50 +1,51 @@
 
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
-         
-         <!-- 처음 로그인하고나서, 닉네임 설정 안했을 때 다른 페이지로 갈 수 없도록-->
-              <% if current_user && current_user.nickname.nil?%>
-                <p class="navbar-text navbar-link" id="header"> 아 뭐듣지?! </a></p>
-
-              <%else %>
-
-                <p class="navbar-text"><a href="/" class="navbar-link" id="header"> 아 뭐듣지?! </a></p>
-              <% end %> 
-                  <% if current_user %>
-             
-                   <% unless current_user.nickname.nil? %>
-                         <p class="navbar-text navbar-right" id="header"> Welcome <strong><%= link_to current_user.nickname, edit_user_path(current_user) %>  </strong>!
-                          <a href="/signout"><%=image_tag("facelogout.gif", alt: "페이스북 로그인") %> </a>
-
-                 <!--<%= link_to "Sign out", signout_path, id: "sign_out" %></p></p>-->
-                   <% end %>
-                
-                 <% else %>
-                
-               <p class="navbar-text navbar-right" id="header">
-                <a href="/auth/facebook"><%=image_tag("facelogin.gif", alt: "페이스북 로그인") %> </a>
-               <!--      <%= link_to "Facebook login", "/auth/facebook", id: "sign_in" %> -->  </p>
-
-                 <% end %>
-            </div>
-            <div class="col-md-1"></div>
-
-               
-              </div><!-- /.container-fluid -->
-
-          </nav>
 
 
-        </div><!-- /.col-md-8 -->
 
 
-        <div class="col-md-1"></div>
 
 
-      </div> 
+    <nav class="navbar navbar-inverse">
+      <div class="container" id = "navbar_padding_lr">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <% if current_user && current_user.nickname.nil?%>
+            <a class="navbar-brand" href="#">아뭐듣지</a>
+          <% else %>
+            <a class="navbar-brand" href="/">아뭐듣지</a>
+          <% end %>
+        </div>
+          
+          <ul class="nav navbar-nav navbar-right">        
+<% if current_user %>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <% unless current_user.nickname.nil? %>
+            <div id = "navbar_margin_top"><li> <span id = "navbar_hello_color">안녕 !</span>  <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>   <a href="/signout">logout </a></li></div>
+          <% end %>
+            <li> </li>
+          
+<% else %>
+          
+          <div id ="navbar_margin_top"><li> 
+                <a href="/auth/facebook"> Facebook login </a>
+                <!--      <%= link_to "Facebook login", "/auth/facebook", id: "sign_in" %> -->  </p>
+          </li></div>
+<% end %>
+
+
+          </ul>
+
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+
