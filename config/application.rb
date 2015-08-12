@@ -28,6 +28,7 @@ module TimetableApp
     # Include the authenticity token in remote forms.
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
+    config.exceptions_app = self.routes
 
   end
 end

@@ -22,9 +22,9 @@ div{
 }
 
 
-.row{
+/*.row{
   padding-top: 30px;
-}
+}*/
 .fb-login-button{
   padding-top: 15px;
 }
@@ -105,10 +105,16 @@ table.nogap{
 
 
 
-
+.padding-rl-100 {
+  padding-left:100px;
+  padding-right:100px;
+}
 
 .inline-blk {
   display: inline-block;
+}
+.in-blk{
+ display: inline; 
 }
 
 .align-center{
@@ -126,6 +132,28 @@ table.nogap{
 #tb_spot{
   font-weight:bold;
 }
+
+
+/* navbar */
+
+#navbar_margin_top{
+  margin-top:15px;
+}
+#navbar_padding_lr{
+  padding-left:130px;
+  padding-right:130px;
+}
+.navbar-inverse {
+  .navbar-brand{
+    color : white;
+  }
+}
+#navbar_hello_color{
+  color : white;
+}
+
+
+
 
 
 
@@ -204,6 +232,8 @@ table.nogap{
   padding : 0;
   border : 0;
 }
+
+ 
 
 
 
@@ -317,7 +347,6 @@ aside {
 
 
 }
-
 
 
 

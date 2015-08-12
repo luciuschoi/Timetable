@@ -4,7 +4,10 @@ class Lecture < ActiveRecord::Base
   validates :subject, presence: true, length: {maximum: 40}#, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
-  has_many :comments, dependent: :destroy
+  #has_many :comments, -> { order("comments.created_at DESC") }, dependent: :destroy
+  has_many :comments 
+  scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
+  scope :group_by_id, ->  { group(:id)}
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
 
