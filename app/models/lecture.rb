@@ -1,7 +1,7 @@
 class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
-  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
+  validates :subject, presence: true, length: {maximum: 40}#, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
   has_many :comments, dependent: :destroy
