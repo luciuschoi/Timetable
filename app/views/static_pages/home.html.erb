@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-2"></div>   
 	<div class="col-md-8" align="left">
-		<h1> 강의 평가</h1>
+		<h1> 최근 강의 평가</h1>
 	 <div id="form1">
 		<%= form_tag root_path, :method => 'get' do %>
  
@@ -20,12 +20,19 @@
       <%= render 'home_admin'%>
       
       <% else %>                   <!-- 로그인시 유저 -->
-    
-      <%= render 'home_user' %>
 
+            <% if params[:search] %> 
+            <%= render 'home_search' %>
+            <% else %>
+            <%= render 'home_user' %>
+            <%end%>
       <% end %>
 
     <% else %>            <!-- 비로그인시  -->
-  
-      <%= render 'home_user' %>
+      
+            <% if params[:search] %> 
+            <%= render 'home_search' %>
+            <% else %>
+            <%= render 'home_user' %>
+            <%end%>
     <% end %>

@@ -47,7 +47,7 @@
 			       				   </tr>
 			       				   <% else %> 
 			       				   <tr id="timetable_tr">
-			       				   <td id="timetable_td"></td>
+			       				   <td id="timetable_td here"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
@@ -69,7 +69,7 @@
 			       				   </tr>
 			       				   <% else %> 
 			       				   <tr id="timetable_tr" >
-			       				   <td id="timetable_td"></td>
+			       				   <td id="timetable_td here"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
@@ -90,7 +90,7 @@
 
     </div>
 
-<script type="text/javascript" charset="euc-kr">
+<script type="text/javascript" charset="utf-8">
 
 function doCsv() {
 
@@ -98,21 +98,25 @@ function doCsv() {
 	var table= document.getElementById('time_table').innerHTML;
 	alert(table);
 
-	var data = table.replace(/<[^>\/]+>/g,'')
+	var data = table.replace(/<thead>/g,'')
 	.replace(/<\/thead>/g,'')
+	.replace(/<tbody>/g,'')
 	.replace(/<\/tbody>/g,'')
+	.replace(/<tr id="timetable_tr">/g,'')
 	.replace(/<\/tr>/g,'\r\n')
 	.replace(/<\/th>/g,'')
 	.replace(/<\/td>/g,'')
 	.replace(/\t/g,'')
-	.replace(/\n/g,'');
-	
+	.replace(/\n/g,'')
+	.replace(/<td id="timetable_td here">/g,'\r\n')
+	.replace(/<[^>]+>/g,'')
+
+
 	alert(data);
     
 	var mylink = document.createElement('a');
 	mylink.download = "아뭐듣시간표.csv";
-	mylink.href= "data:application/csv," + escape(data);
-	mylink.innerHTML=unescape(data);
+	mylink.href= "data:application/csv;charset=utf-8,%EF%BB%BF," + encodeURI(data);
 	mylink.click();
 
 
