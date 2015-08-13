@@ -1,18 +1,18 @@
-<div class="row">
-	<div class="col-md-2"></div>   
-	<div class="col-md-8" align="left">
-		<h1> 최근 강의 평가</h1>
-	 <div id="form1">
-		<%= form_tag root_path, :method => 'get' do %>
+<div class="row" id="recent">
+   <div class="col-md-2"></div>   
+   <div class="col-md-8"  align="left">
+      <h1> 최근 강의 평가</h1>
+    <div id="form1">
+      <%= form_tag root_path, :method => 'get' do %>
  
       <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>
      <%= text_field_tag :search, params[:search], placeholder: :"빈칸 = 모든과목 검색" %>
-    	   <%= submit_tag "찾아줘!", :subejct => nil %>
-		 
-		<% end %>
+          <%= submit_tag "찾아줘!", :subejct => nil %>
+       
+      <% end %>
      </div>
      <br><br>
-
+     <div id="lecturelist">
     <% if current_user%>   <!-- 로그인 여부 체크  -->
 
       <% if current_user.admin? %>  <!-- 로그인시 어드민 -->
@@ -36,3 +36,4 @@
             <%= render 'home_user' %>
             <%end%>
     <% end %>
+    </div>
