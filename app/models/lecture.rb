@@ -7,7 +7,7 @@ class Lecture < ActiveRecord::Base
   #has_many :comments, -> { order("comments.created_at DESC") }, dependent: :destroy
   has_many :comments 
   scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
-  scope :group_by_id, ->  { group(:id)}
+  scope :group_by_id, ->  { group(:lecture_id)}
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
 

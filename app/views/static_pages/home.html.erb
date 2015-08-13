@@ -4,7 +4,7 @@
 	<div class="col-md-8"  align="left">
 		<h1> 최근 강의 평가</h1>
 	 <div id="form1">
-		<%= form_tag root_path, :method => 'get' do %>em
+		<%= form_tag root_path, :method => 'get' do %>
  
       <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>
      <%= text_field_tag :search, params[:search], placeholder: :"빈칸 = 모든과목 검색" %>
