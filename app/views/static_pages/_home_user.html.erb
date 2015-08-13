@@ -1,33 +1,107 @@
   <br><br>
+
   <div class="table-responsive">
         <table class="table nogap">
          <thead>
       
          <tr class> 
 
-           <th>개설학과</th>
-           <th>교수명</th>
-           <th>강의명</th>
-           <th>up</th>
-           <th>down</th>
+   
+           <th >오늘</th>
            
          </tr>
          </thead>
-    	 <tbody>     
-		<% @lectures.each do |lec| %>
-	
-    <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
-    <td id="tb_unspot"><%= lec.major%></td> <td id="tb_unspot"><%=lec.professor%> </td>
-    <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
-    <td> <%= lec.uptachi %> </td>
-    <td> <%= lec.hatachi %> </td>
-		</tr>
+    	 <tbody>   
+    
+          		<% @lectures.each do |lec| %>
+          	<%if lec.comments.any? %>    
+                <%if lec.comments.first.timestamp_today? %>
+              <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+              <td width= "100px", id="tb_unspot"><%=lec.professor%> </td>
 
-   	   <% end %>
+              
+              <td width= "300px", id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+                <%if !Valuation.find_by(lecture_id: lec.id, user_id: lec.comments.first.user_id).nil? %>
+                          <%if Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).up ==1 %>
+                               <td width="500px"> <%="업"+lec.comments.first.content %> </td>
+                          <%elsif Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).down ==1 %>
+                               <td width="500px"> <%="다운"+lec.comments.first.content %> </td>
+
+                      
+                           <%end%>
+                <%else %>
+                            <td width="500px"> <%=lec.comments.first.content %> </td>   
+                <%end%>             
+           
+          		</tr>
+
+             	    <% end %>
+                 
+               <% end %>
+                 <%end %>   
    	   	</tbody>
+   
    	   	</table>
+          <table class="table nogap">
+         <thead>
+      
+         <tr class> 
+
+   
+           <th>어제</th>
+           
+         </tr>
+         </thead>
+       <tbody>   
+   
+              <% @lectures.each do |lec| %>
+              <%if lec.comments.any? %>  
+             <%if lec.comments.first.timestamp_yesterday? %>    
+              <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+              <td id="tb_unspot"><%=lec.professor%> </td>
+              <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+              <td> <%= lec.comments.first.content %> </td>
+           
+              </tr>
+                 <% end %>
+                 <% end %>
+                     <%end %>   
+        </tbody>
+
+        </table>
+
+         <table class="table nogap">
+         <thead>
+      
+         <tr class> 
+
+   
+           <th>예전에....</th>
+           
+         </tr>
+         </thead>
+       <tbody>   
+   
+              <% @lectures.each do |lec| %>
+                <%if lec.comments.any? %>  
+                  <%if !(lec.comments.first.timestamp_today?) && !(lec.comments.first.timestamp_yesterday?) %>   
+              <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+              <td id="tb_unspot"><%=lec.professor%> </td>
+              <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+              <td> <%= lec.comments.first.content %> </td>
+           
+              </tr>
+                       <%end %>
+                  <%end %>  
+                     <%end %>   
+        </tbody>
+
+        </table>
+
+
    	   	</div>
    	   	</div>
+
  	 
 
   	</div> 
@@ -39,10 +113,10 @@
 </div>    
 
 <div class="row">
-
-	<div class="col-md-12" align="center">
+	<div class="col-md-2"></div>   
+	<div class="col-md-8" align="center">
 	<%= will_paginate @lectures %>
 	</div>
-	
-</div>
+	<div class="col-md-2"></div>
+	</div>
 	

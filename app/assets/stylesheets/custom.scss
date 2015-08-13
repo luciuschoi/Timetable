@@ -308,6 +308,50 @@ aside {
 }
 
 
+/* timetable */
+#time_table{
+  height: 600px;
+  table-layout: fixed;
+  font-weight:bold;
+  font-size:8px;
+
+
+  
+}
+#timetable_td{
+
+    border: 1px solid;
+    border-collapse: collapse; 
+    text-align: center;
+     vertical-align: middle;
+
+
+ }
+ #timetable_th{
+   border: 1px solid;
+    border-collapse: collapse; 
+    text-align: center;
+     vertical-align: middle;
+     width: 150;
+ }
+#timetable_td_time{
+    padding: 0px;
+    width: 80px;
+    text-align: center;
+    vertical-align: middle;
+
+   
+}
+#timetable_tr{
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+  vertical-align: middle;
+
+
+}
+
+
 
 
 

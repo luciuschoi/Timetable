@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
-	default_scope -> {order(created_at: :desc)}
 	include ActionView::Helpers::DateHelper
-	validates :content, :length => { :minimum => 1, :maximum => 3000 }
+	default_scope -> {order(created_at: :desc)}
+	validates :content, :length => { :minimum => 1, :maximum => 500 }
 	belongs_to :user
 	belongs_to :lecture	
 	has_many :comment_valuations, dependent: :destroy
@@ -24,11 +24,37 @@ class Comment < ActiveRecord::Base
 		# 1시간 ~ 24시간
 		elsif difference > 3600 && difference < 86400
 			(difference/3600).to_i.to_s + "시간전"
-		# 하루 전 ~ 과거
+		# 하루 전
+		elsif difference > 86400 && difference < 172800
+			"어제"
+		#과거 
 		else
 			created_at.strftime("%m/%d %H:%M")
 		end
 	end
+
+    def timestamp_today?
+        if(timestamp_division.include?('방금전')||timestamp_division.include?('분전')||
+           timestamp_division.include?('시간전') )
+        	return true
+        else 
+        	return false
+      	end  		
+
+    end
+
+    def timestamp_yesterday?
+    	if(timestamp_division.include?('어제'))
+    		return true
+    	else
+    		return false
+    	end
+
+    end
+
+   
+  
+
 
 end
 

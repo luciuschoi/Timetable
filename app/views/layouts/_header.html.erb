@@ -3,7 +3,7 @@
 
 
 
-
+               
 
     <nav class="navbar navbar-inverse">
       <div class="container" id = "navbar_padding_lr">
@@ -27,7 +27,9 @@
         <div id="navbar" class="navbar-collapse collapse">
 
           <% unless current_user.nickname.nil? %>
-            <div id = "navbar_margin_top"><li> <span id = "navbar_hello_color">안녕 !</span>  <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>   <a href="/signout">logout </a></li></div>
+            <div id = "navbar_margin_top"><li> <span id = "navbar_hello_color">안녕 !</span>  <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  
+             <%= link_to "시간표 짜기", timetable_lecture_url(current_user) %>
+             <a href="/signout">logout </a></li></div>
           <% end %>
             <li> </li>
           
@@ -36,7 +38,7 @@
           <div id ="navbar_margin_top"><li> 
                 <a href="/auth/facebook"> Facebook login </a>
                 <!--      <%= link_to "Facebook login", "/auth/facebook", id: "sign_in" %> -->  </p>
-          </li></div>
+                      </li></div>
 <% end %>
 
 

@@ -1,7 +1,7 @@
 class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
-  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
+  validates :subject, presence: true, length: {maximum: 40}#, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
   #has_many :comments, -> { order("comments.created_at DESC") }, dependent: :destroy
@@ -10,11 +10,12 @@ class Lecture < ActiveRecord::Base
   scope :group_by_id, ->  { group(:id)}
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
+
   require 'rubygems'
   require 'roo'
 
   def Lecture.accessible_attributes
-    ["subject", "professor", "major"]
+    ["subject", "professor", "major","lecturetime"]
   end 
 
   def self.import(file)
@@ -23,7 +24,7 @@ class Lecture < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       lecture = find_by_id(row["id"]) || new
-      lecture.attributes = row.to_hash.slice("subject", "professor", "major")
+      lecture.attributes = row.to_hash.slice("subject", "professor", "major","lecturetime")
 
       lecture.save
     end
@@ -46,13 +47,24 @@ class Lecture < ActiveRecord::Base
     self.hatachi += 1
   end
  
-  def self.search(search)  
+
+def self.search(search_from, search)  
      if search  
+      if(search_from=='강의')
       where('subject LIKE ?', "%#{search}%")  
+    elsif(search_from=='교수')
+      where('professor LIKE ?', "%#{search}%")
+    elsif(search_from=='개설학과')
+      where('major LIKE ?', "%#{search}%")
+    elsif(search_from=='강의시간')
+      where('lecturetime LIKE ?', "%#{search}%")
+    
+      end
      else  
-     
+     scoped
      end  
    end  
+
 
 
 

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
    has_many :comment_valuations, dependent: :destroy
    validates :nickname, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
 
+
 	def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider 
