@@ -13,19 +13,19 @@
          </thead>
     	 <tbody>   
     
-          		<% @lectures.each do |lec| %>
+          	<% @lectures.each do |lec| %>
           	<%if lec.comments.any? %>    
                 <%if lec.comments.first.timestamp_today? %>
               <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
               <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
 
               
-              <td width="140px"  id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+              <td width="140px", id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
                 <%if !Valuation.find_by(lecture_id: lec.id, user_id: lec.comments.first.user_id).nil? %>
                           <%if Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).up ==1 %>
-                               <td width="200px" align="left"> <%=image_tag("thumbs-up.png", alt: "업손가락", height: "20px") %><%=lec.comments.first.content %> </td>
+                               <td width="500px",align="left"> <%=image_tag("thumbs-up.png", alt: "업손가락", height: "20px") %><%=lec.comments.first.content %> </td>
                           <%elsif Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).down ==1 %>
-                               <td width="200px" align="left"> <%=image_tag("thumbs-down.png", alt: "다운손가락", height: "20px") %><%=lec.comments.first.content %> </td>
+                               <td width="500px",align="left"> <%=image_tag("thumbs-down.png", alt: "다운손가락", height: "20px") %><%=lec.comments.first.content %> </td>
 
                       
                            <%end%>
@@ -42,6 +42,8 @@
    	   	</tbody>
    
    	   	</table>
+
+
           <table class="table nogap">
          <thead>
       
@@ -58,9 +60,21 @@
               <%if lec.comments.any? %>  
              <%if lec.comments.first.timestamp_yesterday? %>    
               <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
-              <td id="tb_unspot"><%=lec.professor%> </td>
-              <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
-              <td> <%= lec.comments.first.content %> </td>
+              <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
+
+              
+              <td width="140px", id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+                <%if !Valuation.find_by(lecture_id: lec.id, user_id: lec.comments.first.user_id).nil? %>
+                          <%if Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).up ==1 %>
+                               <td width="500px", align="left"> <%=image_tag("thumbs-up.png", alt: "업손가락", height: "20px") %><%=lec.comments.first.content %> </td>
+                          <%elsif Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).down ==1 %>
+                               <td width="500px", align="left"> <%=image_tag("thumbs-down.png", alt: "다운손가락", height: "20px") %><%=lec.comments.first.content %> </td>
+
+                      
+                           <%end%>
+                <%else %>
+                            <td width="500px"> <%=lec.comments.first.content %> </td>   
+                <%end%>             
            
               </tr>
                  <% end %>
@@ -85,12 +99,25 @@
               <% @lectures.each do |lec| %>
                 <%if lec.comments.any? %>  
                   <%if !(lec.comments.first.timestamp_today?) && !(lec.comments.first.timestamp_yesterday?) %>   
-              <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
-              <td id="tb_unspot"><%=lec.professor%> </td>
-              <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
-              <td> <%= lec.comments.first.content %> </td>
+             <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+              <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
+
+              
+              <td width="140px", id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+                <%if !Valuation.find_by(lecture_id: lec.id, user_id: lec.comments.first.user_id).nil? %>
+                          <%if Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).up ==1 %>
+                               <td width="500px" align="left"> <%=image_tag("thumbs-up.png", alt: "업손가락", height: "20px") %><%=lec.comments.first.content %> </td>
+                          <%elsif Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).down ==1 %>
+                               <td width="500px" align="left"> <%=image_tag("thumbs-down.png", alt: "다운손가락", height: "20px") %><%=lec.comments.first.content %> </td>
+
+                      
+                           <%end%>
+                <%else %>
+                            <td width="500px"> <%=lec.comments.first.content %> </td>   
+                <%end%>             
            
               </tr>
+              
                        <%end %>
                   <%end %>  
                      <%end %>   
@@ -115,7 +142,7 @@
 <div class="row">
 	<div class="col-md-2"></div>   
 	<div class="col-md-8" align="center">
-	<%= will_paginate @lectures %>
+
 	</div>
 	<div class="col-md-2"></div>
 	</div>

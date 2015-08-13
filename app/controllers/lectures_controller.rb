@@ -11,7 +11,7 @@
 		@AnotherSubjects = Lecture.where("professor = ?", @lecture.professor)
 		#@comment = current_user.comments.build
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
-		
+		@lectures=Lecture.order_by_comments.group_by_id
 	end
 
 	def edit
