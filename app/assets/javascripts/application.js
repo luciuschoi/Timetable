@@ -16,15 +16,17 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
+
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.4&appId=851870488230120";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-  <script>
+}(document, 'script', 'facebook-jssdk'));
+
+
+
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -39,12 +41,12 @@
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      'into Facebook.';
     }
   }
 
@@ -58,8 +60,8 @@
   }
 
   window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '{851870488230120}',
+    FB.init({
+      appId      : '{851870488230120}',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -82,7 +84,7 @@
     statusChangeCallback(response);
   });
 
-  };
+};
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -100,20 +102,18 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+      'Thanks for logging in, ' + response.name + '!';
     });
   }
 
-     FB.logout(function(response) {
+  FB.logout(function(response) {
         // Person is now logged out
-    });
-     
-
-</script>
+      });
 
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
 /*
 jQuery ->
   $('body').prepend('<div id="fb-root"></div>')
@@ -136,4 +136,4 @@ window.fbAsyncInit = ->
     FB.getLoginStatus (response) ->
       FB.logout() if response.authResponse
     true
-*/
+    */

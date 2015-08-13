@@ -1,7 +1,10 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+/*@import "bootstrap-sprockets";*/
+/*@import "bootstrap";*/
 
-@font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf')}
+$light-gray: #777;
+
+
+@font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf');}
 
 body{
   font-family: Nanum_Gothic;
@@ -171,7 +174,7 @@ table.nogap{
     /*border-bottom: 1px solid #e8e8e8;*/
   }
   .user {
-    color:$gray-light;
+    color:$light-gray;
     padding-top: 0;
   }
   .content {
@@ -179,7 +182,7 @@ table.nogap{
     margin-left: 60px;
   }
   .timestamp {
-    color: $gray-light;
+    color: $light-gray;
     text-align : right;
   }
   .thumbs_margin{
@@ -273,7 +276,7 @@ aside {
 .xtachi_num{
   font-size:22px;
   display:block;
-  text-align: center
+  text-align: center;
 }
 
 #uptachi_form{
