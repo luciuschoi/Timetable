@@ -1,7 +1,7 @@
 <%= form_for @lecture.valuations.build, html: { class: "inline-blk" }, remote: true do |f|  %>
 	<%= hidden_field_tag :lecture_id, @lecture.id %>
 	<%= hidden_field_tag :hatachi, 1 %>
-	<span id = "testing"><%= f.submit '손해', class: "btn btn-deafult hatachi" %></span>
+	<span id = "testing"><%= f.submit '별로에요', class: "btn btn-deafult hatachi" %></span>
 <% end %>
 
 

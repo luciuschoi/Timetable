@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
+
   def home
 
      if params[:search].nil?
@@ -14,6 +15,14 @@ class StaticPagesController < ApplicationController
         flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
         redirect_to edit_user_url(current_user)
      end
+  end
+
+  def home_admin
+    if current_user.admin?
+      @lectures=Lecture.paginate(:page => params[:page], :per_page => 20 )
+    else
+      redirect_to root_url
+    end
   end
   
 end

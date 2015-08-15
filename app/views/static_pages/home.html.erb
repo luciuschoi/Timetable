@@ -14,28 +14,12 @@
      </div>
      <br><br>
      <div id="lecturelist">
-    <% if current_user%>   <!-- 로그인 여부 체크  -->
-
-      <% if current_user.admin? %>  <!-- 로그인시 어드민 -->
-
-      <%= render 'home_admin'%>
-      
-      <% else %>                   <!-- 로그인시 유저 -->
-
-            <% if params[:search] %> 
-            <%= render 'home_search' %>
-            <% else %>
-            <%= render 'home_user' %>
-            <%end%>
-      <% end %>
-
-    <% else %>            <!-- 비로그인시  -->
       
             <% if params[:search] %> 
             <%= render 'home_search' %>
             <% else %>
             <%= render 'home_user' %>
             <%end%>
-    <% end %>
+
     </div>
     
