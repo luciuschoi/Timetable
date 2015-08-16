@@ -5,6 +5,8 @@ class LecturesController < ApplicationController
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
 	require 'roo'
+
+
 	
 	def show
 		@lecture = Lecture.find_by(id: params[:id])

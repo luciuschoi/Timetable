@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
  # get 'users/new'
-  get 'home_admin' => 'static_pages#home_admin'
+ get 'home_admin' => 'static_pages#home_admin'
+ get 'lecture_search' => 'static_pages#search'
+
 root 'static_pages#home'
 
 #if Rails.env.production?
