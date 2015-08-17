@@ -1,13 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$light-gray: #777;
-
-
-@font-face{font-family:'Nanum_Gothic'; src:url("<%= asset_path('nanum_gothic.ttf')%>");}
+@font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf')}
 
 body{
-  font-family: 'Nanum_Gothic';
+  font-family: Nanum_Gothic;
 }
 
 div{
@@ -46,8 +43,7 @@ h1{
 
 }
 .row_padding_reduction{
-  padding-top:5px;
-  padding-bottom:20px;
+  padding-top:10px;
 }
 .zero-padding-right{
   padding-right:0;
@@ -108,13 +104,12 @@ table.nogap{
 }
 
 
-
-.navbar-inverse {
+/*.navbar-inverse {
   .navbar-brand{
-
-        color : white;
+    color : white;
   }
-}
+}*/
+
 #navbar_margin_top{
   margin-top:15px;
 }
@@ -168,7 +163,7 @@ table.nogap{
     /*border-bottom: 1px solid #e8e8e8;*/
   }
   .user {
-    color:$light-gray;
+    color:$gray-light;
     padding-top: 0;
   }
   .content {
@@ -176,7 +171,7 @@ table.nogap{
     margin-left: 60px;
   }
   .timestamp {
-    color: $light-gray;
+    color: $gray-light;
     text-align : right;
   }
   .thumbs_margin{
@@ -268,7 +263,7 @@ aside {
 .xtachi_num{
   font-size:22px;
   display:block;
-  text-align: center;
+  text-align: center
 }
 
 #uptachi_form{
@@ -298,12 +293,6 @@ aside {
     border-left : 1px solid #e8e8e8;
     border-right : 1px solid #e8e8e8;
 }
-
-#up_down_mgn_bottom{
-  margin-bottom:30px;
-}
-
-
 
 
 /* timetable */
@@ -361,7 +350,6 @@ aside {
 }
 
 
-
 /* users index */
 .users {
   list-style: none;
@@ -375,6 +363,10 @@ aside {
 
 
 
+/* home */
+#border-none{
+  border-color:white;
+}
 
 
 

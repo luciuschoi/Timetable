@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   	@user = User.find_by(id: params[:id])
   end
 
-
   def update
   	@user=User.find(params[:id])
   	if @user.update_attributes(nick_params)

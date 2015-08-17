@@ -18,11 +18,6 @@ class StaticPagesController < ApplicationController
 
   end
 
-  def search
-    @lectures = Lecture.where('major = ?', params[:lecture_name])
-
-    render '_home_user'    
-  end
 
   def fillnickname 
      if logged_in_user? && current_user.nickname.nil?
