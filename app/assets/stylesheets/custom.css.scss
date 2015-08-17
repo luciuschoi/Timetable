@@ -63,12 +63,9 @@ h1{
 
 /* header */
 
-#header{
-  font-size: 17px;
-  
-  color: white;
-  font-weight:bold;
-}
+
+
+
 
 /* miscellaneous */
 
@@ -103,15 +100,30 @@ table.nogap{
   border-collapse: collapse;
 }
 
-
-
-.navbar-inverse {
+/* navbarnavbar */
+/*.navbar-inverse {
   .navbar-brand{
+    color : white;
+  }
+}*/
+#navbar_margin_top{
+  margin-top:15px;
+}
+#navbar_padding_lr{
+  padding-left:130px;
+  padding-right:130px;
+}
 
-        color : white;
+#navbar_hello_color{
+  color : white;
+  a{
+    color : white;
   }
 }
 
+#navbar_logout{
+  color:gray;
+}
 
 
 .inline-blk {
@@ -337,11 +349,23 @@ aside {
 }
 
 
+/* users index */
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
 
 
 
-
-
+/* home */
+#border-none{
+  border-color:white;
+}
 
 
 

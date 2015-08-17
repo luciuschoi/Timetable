@@ -15,6 +15,10 @@ class StaticPagesController < ApplicationController
   	end
   end
 
+  def rank
+    
+  end
+
   def search
     @lectures = Lecture.where('major = ?', params[:lecture_name])
 
