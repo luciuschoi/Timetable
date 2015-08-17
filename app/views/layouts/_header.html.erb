@@ -1,6 +1,5 @@
 
-
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse" role="navigation">
       <div class="container" id = "navbar_padding_lr">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,39 +9,60 @@
             <span class="icon-bar"></span>
           </button>
 
+          <!-- QQQQ -->
           <% if current_user && current_user.nickname.nil?%>
             <a class="navbar-brand" href="#" id="header">아뭐듣지</a>
           <% else %>
             <a class="navbar-brand" href="/" id="header">아뭐듣지</a>
           <% end %>
         </div>
-          
-          <ul class="nav navbar-nav navbar-right">        
-<% if current_user %>
+
+
         <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
 
-          <% unless current_user.nickname.nil? %>
-            <div id = "navbar_margin_top"><li> <span id = "navbar_hello_color">안녕 !</span>  <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  
-             <%= link_to "시간표 짜기", timetable_lecture_url(current_user) %>
-             <a href="/signout">logout </a></li></div>
-          <% end %>
-            <li> </li>
-          
-<% else %>
-          
-          <div id ="navbar_margin_top"><li> 
-                <a href="/auth/facebook" style ="color:white"> 페이스북 로그인 </a>
-                <!--      <%= link_to "Facebook login", "/auth/facebook", id: "sign_in" %> -->  </p>
-                      </li></div>
-<% end %>
+            <% if current_page? controller: 'static_pages', action: 'home'%>
+              <li class ="active">
+                <%= link_to '최근평가', root_path%>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to '최근평가', root_path%>
+              </li>
+            <% end %>
 
-
+            <% if current_page? controller: 'static_pages', action: 'rank' %>
+              <li class="active">
+                <%= link_to '강의순위', rank_path%>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to '강의순위', rank_path%>
+              </li>
+            <% end %>
           </ul>
+          
 
+          <ul class="nav navbar-nav navbar-right">   
+            <% if current_user %>
 
+                <% unless current_user.nickname.nil? %>
+                  <div id = "navbar_margin_top">
+                    <li> <span id = "navbar_hello_color">
+                    <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   </span>
+                    
+                    </li>
+                  </div>
+                <% end %>
+
+            <% else %>
+              <div id ="navbar_margin_top">
+                <li> 
+                  <a href="/auth/facebook" style ="color:white"> 페이스북 로그인 </a> 
+                </li>
+              </div>
+            <% end %>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
-
-

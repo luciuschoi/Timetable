@@ -19,6 +19,14 @@ class StaticPagesController < ApplicationController
   end
 
 
+  def rank
+    
+  end
+
+  def search
+    @lectures = Lecture.where('major = ?', params[:lecture_name])
+  end
+  
   def fillnickname 
      if logged_in_user? && current_user.nickname.nil?
         flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
