@@ -1,8 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
 @font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf')}
 
+.fancybox{
+  display:none;
+}
 body{
   font-family: Nanum_Gothic;
 }
@@ -294,7 +296,7 @@ aside {
   height: 600px;
   table-layout: fixed;
   font-weight:bold;
-  font-size:8px;
+  border-collapse: collapse; 
 
 
   
@@ -302,30 +304,29 @@ aside {
 #timetable_td{
 
     border: 1px solid;
-    border-collapse: collapse; 
+
     text-align: center;
      vertical-align: middle;
-
+     font-size:9px;
+      height:25px;
 
  }
  #timetable_th{
    border: 1px solid;
-    border-collapse: collapse; 
+
     text-align: center;
      vertical-align: middle;
      width: 150;
- }
-#timetable_td_time{
-    padding: 0px;
-    width: 80px;
-    text-align: center;
-    vertical-align: middle;
+     font-size:15px;
+
+ } #timetable_td_time{     height: 50px;     width: 80px;     text-align:
+center;      vertical-align: middle;     font-size:15px;
 
    
 }
 #timetable_tr{
     border: 1px solid;
-    border-collapse: collapse;
+
     text-align: center;
   vertical-align: middle;
 

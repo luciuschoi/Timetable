@@ -4,6 +4,7 @@ class LecturesController < ApplicationController
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
+
 	require 'roo'
 
 
@@ -15,6 +16,7 @@ class LecturesController < ApplicationController
 		#@comment = current_user.comments.build
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
 		@lectures=Lecture.order_by_comments.group_by_id
+		render(:layout => "layouts/showinglecture")
 	end
 
 	def edit
@@ -24,6 +26,7 @@ class LecturesController < ApplicationController
 
 	def new
 		@lecture = Lecture.new
+
 	end
 
 	def create
@@ -76,6 +79,7 @@ class LecturesController < ApplicationController
 
 
    private
+
 
    def lecture_params
     params.require(:lecture).permit(:subject, :professor, :major, :lecturetime)

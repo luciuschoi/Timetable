@@ -1,13 +1,4 @@
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-66444683-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 <br><br>
 
 <div class="table-responsive">
@@ -132,3 +123,29 @@
 	<div class="col-md-2"></div>
 	</div>
 
+	
+
+<script>
+  function showLecture(lec_num)
+  {
+  <% if user_login? %>
+      $.fancybox({
+        type: 'iframe',
+        href: '/lectures/'+lec_num.toString(),
+          'scrolling' : 'yes',
+            'padding' : 20,
+            'width'   :1200,
+            'height'  :600,
+            'transitionIn'    :    'none',
+            'transitionOut'    :    'none',
+            'speedIn'        :    400,
+            'speedOut'        :    200,
+            'autoDimensions'  : false,
+            'overlayShow'    :    true
+
+      });
+   <% else %>
+            window.location="/auth/facebook"
+   <% end %>        
+  }
+</script>

@@ -39,8 +39,16 @@
       <% end %>
      </div>
      <br><br>
-     <div id="lecturelist">
-    
+
+     <%= render 'home_daemoon'%>
+      <div id="lecturelist">
+    <% if current_user%>   <!-- 로그인 여부 체크  -->
+
+      <% if current_user.admin? %>  <!-- 로그인시 어드민 -->
+
+      <%= render 'home_admin'%>
+      
+      <% else %>                   <!-- 로그인시 유저 -->
 
             <% if params[:search] %> 
             <%= render 'home_search' %>
@@ -48,6 +56,3 @@
             <%= render 'home_user' %>
             <%end%>
     </div>
-
-
-    
