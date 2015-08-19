@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	 has_many :comments, dependent: :destroy
 	 has_many :valuations, dependent: :destroy
    has_many :comment_valuations, dependent: :destroy
-   validates :nickname, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
+   validates :nickname, presence: true, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
 
 
 	def self.from_omniauth(auth)
