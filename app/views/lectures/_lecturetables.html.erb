@@ -13,7 +13,7 @@
     	 		    <tbody>
     	 		    <% @lectures.each do |lec| %>
 
-	    	 		     <tr class="lovelyrow" onclick="painttable(this)">     
+	    	 		     <tr class="lovelyrow" onclick="painttable(this)" onmouseover="OnMouseIn(this)" onmouseout="OnMouseOut(this)">     
 						 <td><%=lec.subject%></td>
 						 <td><%=lec.professor%></td>
 						 <td><%=lec.lecturetime%></td>

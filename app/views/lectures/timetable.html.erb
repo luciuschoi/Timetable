@@ -17,9 +17,9 @@
     		</div>	
     			
 		 </div> 	
-		<div class="col-md-9">
-        			 <div class="table-responsive">
-        		<table id="time_table" class="table nogap" bgcolor="white">
+		<div class="col-md-9" >
+        			 <div class="table-responsive" id="target" >
+        		<table id="time_table" class="table nogap" bgcolor="white" >
          			<thead>
       
        				  <tr id="timetable_tr">
@@ -47,7 +47,7 @@
 			       				   </tr>
 			       				   <% else %> 
 			       				   <tr id="timetable_tr">
-			       				   <td id="timetable_td here"></td>
+			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
@@ -69,7 +69,7 @@
 			       				   </tr>
 			       				   <% else %> 
 			       				   <tr id="timetable_tr" >
-			       				   <td id="timetable_td here"></td>
+			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
 			       				   <td id="timetable_td"></td>
@@ -84,14 +84,43 @@
 
 		</div>
 
-		<button onClick="doCsv()">
+		<button id="save_image_locally">
 		 시간표 다운로드
 		 </button>
 
     </div>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script type="text/javascript" charset="utf-8">
 
+
+$('#save_image_locally').click(function() {
+
+	html2canvas($('#target'),
+			 {
+			 	 letterRendering:true,
+			 	 logging:true, 
+				 background:"white",
+				  onrendered: function(canvas) {
+				  	 var a = document.createElement('a');
+				    a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+				     a.download = '아뭐듣지시간표.jpg';
+				     a.click();
+				  }
+
+			});
+});
+
+function OnMouseIn(elem)
+{
+		
+}
+function OnMouseOut(elem)
+{
+
+}
 function doCsv() {
 
 

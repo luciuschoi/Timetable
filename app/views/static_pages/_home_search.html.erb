@@ -16,7 +16,7 @@
     	 <tbody>     
 		<% @lectures.each do |lec| %>
 	
-    <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+    <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
     <td id="tb_unspot"><%= lec.major%></td> <td id="tb_unspot"><%=lec.professor%> </td>
     <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
     <td> <%= lec.uptachi %> </td>
@@ -45,3 +45,29 @@
 	</div>
 	<div class="col-md-2"></div>
 	</div>
+
+
+
+
+  
+<script>
+  function showLecture(lec_num)
+  {
+  
+      $.fancybox({
+        type: 'iframe',
+        href: '/lectures/'+lec_num.toString(),
+          'scrolling' : 'yes',
+            'padding' : 20,
+            'width'   :1200,
+            'height'  :600,
+            'transitionIn'    :    'none',
+            'transitionOut'    :    'none',
+            'speedIn'        :    400,
+            'speedOut'        :    200,
+            'autoDimensions'  : false,
+            'overlayShow'    :    true
+
+      });
+  }
+</script>

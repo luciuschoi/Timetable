@@ -7,6 +7,20 @@ class StaticPagesController < ApplicationController
   		@lectures=Lecture.search(params[:search_from],params[:search]).paginate(:page => params[:page], :per_page => 10 )
   	end
   end
+
+
+   
+
+
+  def user_login?
+      if(session[:user_id].nil?&&session[:user_name].nil?)
+          false
+      else 
+          true
+     end
+  end
+
+
   def fillnickname 
   	if logged_in_user? && current_user.nickname.nil?
   		flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
