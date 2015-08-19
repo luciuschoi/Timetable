@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
  # get 'users/new'
-
+ get 'home_admin' => 'static_pages#home_admin'
+ get 'lecture_search' => 'static_pages#search'
 root 'static_pages#home'
 
 #if Rails.env.production?
@@ -9,7 +10,7 @@ root 'static_pages#home'
 #end
 
 #resources :lectures
-resources :users
+resources :users, only: [:index, :edit, :update]
 match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
