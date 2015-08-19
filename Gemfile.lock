@@ -58,6 +58,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.5.2)
+    fancybox-rails (0.2.1)
+      railties (>= 3.1.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     figaro (1.1.1)
@@ -194,10 +196,11 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (= 3.1.7)
-  bootstrap-sass (= 3.2.0.0)
+  bootstrap-sass
   bootstrap-will_paginate (= 0.0.10)
   byebug
   coffee-rails (~> 4.1.0)
+  fancybox-rails
   figaro
   iconv
   jbuilder (~> 2.0)
@@ -207,7 +210,7 @@ DEPENDENCIES
   rails (= 4.2.2)
   roo (= 2.0.0)
   roo-xls
-  sass-rails (~> 5.0)
+  sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   spring
   sqlite3
