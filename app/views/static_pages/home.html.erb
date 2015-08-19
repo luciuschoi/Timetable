@@ -28,34 +28,20 @@
 
   
 	 <div id="form1">
-		<%= form_tag root_path, :method => 'get' do %>
+    <%= form_tag root_path, :method => 'get' do %>
  
       <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>
      <%= text_field_tag :search, params[:search], placeholder: :"빈칸 = 모든과목 검색" %>
-    	   <%= submit_tag "찾아줘!", :subejct => nil %>
-		 
-		<% end %>
+          <%= submit_tag "찾아줘!", :subejct => nil %>
+       
+      <% end %>
      </div>
      <br><br>
-
      <%= render 'home_daemoon'%>
       <div id="lecturelist">
-    <% if current_user%>   <!-- 로그인 여부 체크  -->
-
-      <% if current_user.admin? %>  <!-- 로그인시 어드민 -->
-
-      <%= render 'home_admin'%>
-      
-      <% else %>                   <!-- 로그인시 유저 -->
-
-
             <% if params[:search] %> 
             <%= render 'home_search' %>
             <% else %>
             <%= render 'home_user' %>
             <%end%>
-       <%end%>
-    <%end%>  
     </div>
-
-

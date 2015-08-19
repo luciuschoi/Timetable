@@ -17,8 +17,15 @@
 
 
 
+
     <script>
+
     $(document).ready(function() {
+      var visited = $.cookie('visited');
+      if ( visited =='yes')
+           { return false;}
+      else { 
+          $.cookie('visited','yes', { expires: 0.5}); //반나절 뒤에 쿠키삭제됨.
           $("a.fancybox").fancybox({
             'scrolling' : 'yes',
             'padding' : 20,
@@ -31,7 +38,7 @@
             'autoDimensions'  : false,
             'overlayShow'    :    true
           });
-          
+          }
 });
 
     </script>

@@ -3,7 +3,7 @@
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
-
+	
 	require 'roo'
 
 
@@ -82,6 +82,8 @@
 
 
 private
+	
+
 
 
    def lecture_params

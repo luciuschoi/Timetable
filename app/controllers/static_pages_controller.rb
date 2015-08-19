@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 	before_action :fillnickname, only: [:home]
   def home
+
     # 검색 했니?
   	if !params[:search].nil?
   	  @lectures=Lecture.search(params[:search_from],

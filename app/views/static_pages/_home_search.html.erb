@@ -53,7 +53,7 @@
 <script>
   function showLecture(lec_num)
   {
-  
+  <% if user_login? %>
       $.fancybox({
         type: 'iframe',
         href: '/lectures/'+lec_num.toString(),
@@ -69,5 +69,8 @@
             'overlayShow'    :    true
 
       });
+   <% else %>
+            window.location="/auth/facebook"
+   <% end %>        
   }
 </script>
