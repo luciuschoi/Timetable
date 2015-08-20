@@ -1,0 +1,158 @@
+<div class="progress" style="width:40%">
+
+	<div class="progress-bar progres-bar-success" id ="first_grade" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_grade" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_grade" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_grade" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+
+</div>  
+	<div id ="submit_button">button</div>
+
+
+<script>
+	// progress bar에 마우스를 올리면 	=>	hover
+	// progress bar에 색을 채운다.
+var grade;
+	// first_grade
+	$('#first_grade').hover(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#first_grade').on('mouseout');
+
+	});
+
+	$('#first_grade').mouseout(function(){
+		$('#first_grade').attr('aria-valuenow', '0');
+	});
+
+	$('#first_grade').click(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '0');
+		$('#third_grade').attr('aria-valuenow', '0');
+		$('#fourth_grade').attr('aria-valuenow', '0');
+		$('#first_grade').off('mouseout');
+		grade = 25;
+	});
+
+
+	// second_grade
+	$('#second_grade').hover(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+	});
+
+	$('#second_grade').mouseout(function(){
+		$('#first_grade').attr('aria-valuenow', '0');
+		$('#second_grade').attr('aria-valuenow', '0');
+	});
+
+	$('#second_grade').click(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+		$('#third_grade').attr('aria-valuenow', '0');
+		$('#fourth_grade').attr('aria-valuenow', '0');
+
+		$('#first_grade').off('mouseout');
+		$('#second_grade').off('mouseout');
+		grade = 50;
+	});
+
+	// third_grade
+	$('#third_grade').hover(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+		$('#third_grade').attr('aria-valuenow', '100');
+	});
+
+	$('#third_grade').mouseout(function(){
+		$('#first_grade').attr('aria-valuenow', '0');
+		$('#second_grade').attr('aria-valuenow', '0');
+		$('#third_grade').attr('aria-valuenow', '0');
+	});
+
+	$('#third_grade').click(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+		$('#third_grade').attr('aria-valuenow', '100');
+
+		$('#fourth_grade').attr('aria-valuenow', '0');
+		
+		$('#first_grade').off('mouseout');
+		$('#second_grade').off('mouseout');
+		$('#third_grade').off('mouseout');
+		grade = 75;
+	});
+
+	// fourth_grade
+	$('#fourth_grade').hover(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+		$('#third_grade').attr('aria-valuenow', '100');
+		$('#fourth_grade').attr('aria-valuenow', '100');
+	});
+
+	$('#fourth_grade').mouseout(function(){
+		$('#first_grade').attr('aria-valuenow', '0');
+		$('#second_grade').attr('aria-valuenow', '0');
+		$('#third_grade').attr('aria-valuenow', '0');
+		$('#fourth_grade').attr('aria-valuenow', '0');
+	});
+
+
+	$('#fourth_grade').click(function(){
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+		$('#third_grade').attr('aria-valuenow', '100');
+		$('#fourth_grade').attr('aria-valuenow', '100');
+
+		$('#first_grade').off('mouseout');
+		$('#second_grade').off('mouseout');
+		$('#third_grade').off('mouseout');
+		$('#fourth_grade').off('mouseout');
+		grade = 100;
+	});
+
+	$('#submit_button').click(function(event){
+		event.preventDefault();
+
+		$.ajax({
+			url: "/valuations/?grade="+grade,
+			type: "post",
+			data: {'grade':grade},
+			success: function(){
+				alert('saved successfully');
+			},
+			error:function(){
+				alert('error')
+			}
+
+		});
+	});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

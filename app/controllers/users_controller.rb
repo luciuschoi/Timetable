@@ -4,13 +4,16 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
   
   def index
-    @users = User.paginate(page: params[:page])
-  end
+    if current_user.admin?
+      @users = User.paginate(page: params[:page])
+    else
+      redirect_to root_url
+    end
+  end  
 
   def edit 
   	@user = User.find_by(id: params[:id])
   end
-
 
   def update
   	@user=User.find(params[:id])
@@ -26,9 +29,13 @@ class UsersController < ApplicationController
     	end
   end
 
+<<<<<<< HEAD
+  private 
+=======
 
   
 private 
+>>>>>>> fc9d876a2b8397e2d91b2d483699d2fd542305fb
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
@@ -39,8 +46,9 @@ private
       unless current_user?(@user) 
           flash[:danger]="Invalid access!"
           redirect_to root_path
-        end
+      end
     end
+
     def nick_params
     	params.require(:user).permit(:nickname)
     end

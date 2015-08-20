@@ -1,5 +1,7 @@
 class ValuationsController < ApplicationController
 	def create
+		
+
 		@lecture = Lecture.find(params[:lecture_id])
 
 		# 해당 강의에 대해 현재 유저가 평가 한적 있는지 검사

@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
-	before_action :fillnickname, only: [:home]
+   before_action :fillnickname, only: [:home]
+
   def home
 
     # 검색 했니?
@@ -14,7 +15,15 @@ class StaticPagesController < ApplicationController
   	else
       @lectures=Lecture.order_by_comments.group_by_id
   	end
+
   end
+
+  def rank
+    
+  end
+
+
+     
 
 
   def forcingwritting
@@ -31,6 +40,7 @@ class StaticPagesController < ApplicationController
 
     render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
   end
+
 
 
   def user_login?
@@ -51,10 +61,10 @@ class StaticPagesController < ApplicationController
 
 
   def fillnickname 
-  	if logged_in_user? && current_user.nickname.nil?
-  		flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
-  		redirect_to edit_user_url(current_user)
-  	end
+     if logged_in_user? && current_user.nickname.nil?
+        flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
+        redirect_to edit_user_url(current_user)
+     end
   end
 
   def home_admin
@@ -64,6 +74,7 @@ class StaticPagesController < ApplicationController
       redirect_to root_url
     end
   end
+
   
   
 end
