@@ -1,7 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf')}
 
+
+/* fancybox */
 .fancybox{
   display:none;
 }
@@ -256,12 +257,16 @@ aside {
 }
 
 #uptachi_form{
-  float:right;
+ margin: 1em;
+  margin-left: 20%;
+  float:left;
   display:inline-block;
 }
 
 #hatachi_form{
-  float:left;
+float:left;
+ margin-right: 25%;
+  margin: 1em;
   display:inline-block;
 }
 .hatachi{

@@ -15,12 +15,19 @@ class UsersController < ApplicationController
   def update
   	@user=User.find(params[:id])
   	if @user.update_attributes(nick_params)
-  		redirect_to root_path
+        if @user.valuations.count > 2
+  		      redirect_to root_path
+        else
+            redirect_to :controller => 'static_pages', :action => 'forcingwritting'
+        end    
   	else 
-  		flash.now[:danger]=@user.errors.full_messages
-  		render 'edit'
-  	end
+    		flash.now[:danger]=@user.errors.full_messages
+    		render 'edit'
+    	end
   end
+
+
+  
 private 
 
     def admin_user

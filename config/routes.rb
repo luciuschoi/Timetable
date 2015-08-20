@@ -4,7 +4,8 @@ Rails.application.routes.draw do
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
 root 'static_pages#home'
-
+ get 'forcinglogin' => 'static_pages#forcinglogin'
+ get 'forcingwritting' =>'static_pages#forcingwritting'
 #if Rails.env.production?
    get '404', :to => 'application#page_not_found'
 #end

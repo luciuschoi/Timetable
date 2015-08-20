@@ -46,6 +46,22 @@ class Lecture < ActiveRecord::Base
   def lec_hatachi
     self.hatachi += 1
   end
+
+  def lec_grade(k)
+    self.acc_grade += k
+  end
+  def lec_workload(k)
+    self.acc_workload +=k
+  end
+  def lec_level(k)
+    self.acc_level +=k
+  end
+  def lec_achievement(k)
+    self.acc_achievement +=k
+  end
+  def lec_total(k)
+    self.acc_total +=k
+  end
  
 
 def self.search(search_from, search)  

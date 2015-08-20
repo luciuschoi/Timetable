@@ -17,8 +17,20 @@ class StaticPagesController < ApplicationController
   end
 
 
+  def forcingwritting
+    if !params[:search].nil?
+      @lectures=Lecture.search(params[:search_from],
+                                params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    
+    end
 
-   
+
+  end
+
+  def forcinglogin
+
+    render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
+  end
 
 
   def user_login?
