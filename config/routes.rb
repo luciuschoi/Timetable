@@ -6,7 +6,8 @@ Rails.application.routes.draw do
  get 'rank' => 'static_pages#rank'
  
 root 'static_pages#home'
-
+ get 'forcinglogin' => 'static_pages#forcinglogin'
+ get 'forcingwritting' =>'static_pages#forcingwritting'
 #if Rails.env.production?
    get '404', :to => 'application#page_not_found'
 #end

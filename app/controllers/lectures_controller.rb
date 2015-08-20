@@ -4,7 +4,8 @@ class LecturesController < ApplicationController
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
-
+	before_action :forcingwritting, only: [:show, :timetable]
+	
 	require 'roo'
 
 
@@ -16,7 +17,7 @@ class LecturesController < ApplicationController
 		#@comment = current_user.comments.build
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
 		@lectures=Lecture.order_by_comments.group_by_id
-		render(:layout => "layouts/showinglecture")
+		render(:layout => "layouts/showinglecture") # 헤더 파일 포함 안함 ..
 	end
 
 	def edit
@@ -78,7 +79,15 @@ class LecturesController < ApplicationController
 
 
 
-   private
+private
+	
+
+   def forcingwritting
+   	if logged_in_user? && current_user.valuations.count<3
+   		redirect_to :controller => 'static_pages', :action => 'forcingwritting'
+   	end
+
+   end
 
 
    def lecture_params

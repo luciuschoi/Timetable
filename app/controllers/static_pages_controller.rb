@@ -22,10 +22,27 @@ class StaticPagesController < ApplicationController
     
   end
 
-  def search
-    @lectures = Lecture.where('major = ?', params[:lecture_name])
-  end
+
      
+
+
+  def forcingwritting
+    if !params[:search].nil?
+      @lectures=Lecture.search(params[:search_from],
+                                params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    
+    end
+
+
+  end
+
+  def forcinglogin
+
+    render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
+  end
+
+
+
   def user_login?
       if(session[:user_id].nil?&&session[:user_name].nil?)
           false
@@ -33,6 +50,15 @@ class StaticPagesController < ApplicationController
           true
      end
   end
+
+
+
+  def search
+    @lectures = Lecture.where('major = ?', params[:lecture_name])
+
+    render '_home_user'    
+  end
+
 
   def fillnickname 
      if logged_in_user? && current_user.nickname.nil?
@@ -49,13 +75,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def home_admin
-    if current_user.admin?
-      @lectures=Lecture.paginate(:page => params[:page], :per_page => 20 )
-    else
-      redirect_to root_url
-    end
-  end
   
   
 end

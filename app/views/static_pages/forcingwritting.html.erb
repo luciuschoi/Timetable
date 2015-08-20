@@ -1,0 +1,62 @@
+	 <div id="form2">
+    <%= form_tag forcingwritting_path, :method => 'get' do %>
+ 
+      <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>
+     <%= text_field_tag :search, params[:search], placeholder: :"빈칸 = 모든과목 검색" %>
+          <%= submit_tag "찾아줘!", :subejct => nil %>
+       
+      <% end %>
+     </div>
+
+     <br><br>
+
+	
+		  <div class="table-responsive">
+		        <table class="table nogap">
+		         <thead>
+		      
+		         <tr class> 
+
+		           <th>개설학과</th>
+		           <th>교수명</th>
+		           <th>강의명</th>
+		           <th>up</th>
+		           <th>down</th>
+		           
+		         </tr>	
+		         </thead>
+	 <%if !params[:search].nil?%>	         
+		    	 <tbody>     
+				<% @lectures.each do |lec| %>
+			
+		    <tr class="lovelyrow" onclick="" >
+		    <td id="tb_unspot"><%= lec.major%></td> <td id="tb_unspot"><%=lec.professor%> </td>
+		    <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
+		    <td> <%= lec.uptachi %> </td>
+		    <td> <%= lec.hatachi %> </td>
+				</tr>
+
+		   	   <% end %>
+		   	   	</tbody>
+	 <% end %>	   	   	
+		   	   	</table>
+		   	   	</div>
+		   	   	</div>
+		 	 
+
+		  	</div> 
+		 
+			<div class="col-md-2"></div >	 
+
+		   
+
+		</div>    
+	 <%if !params[:search].nil?%>	
+		<div class="row">
+			<div class="col-md-2"></div>   
+			<div class="col-md-8" align="center">
+			<%= will_paginate @lectures %>
+			</div>
+			<div class="col-md-2"></div>
+			</div>
+    <% end %>	
