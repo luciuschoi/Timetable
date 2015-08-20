@@ -29,14 +29,7 @@ class UsersController < ApplicationController
     	end
   end
 
-<<<<<<< HEAD
   private 
-=======
-
-  
-private 
->>>>>>> fc9d876a2b8397e2d91b2d483699d2fd542305fb
-
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
