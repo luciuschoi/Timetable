@@ -1,6 +1,6 @@
                 <div>
-                    <div>
-                     <p>아 뭐듣지 ?!</p>
+                    <div style="text-align:center; font-family:'oswald,'Malgun gothic';">
+                     <p style="font-weight:bold;font-size:30px;">아 뭐듣지 ?!</p>
 
 
                   안녕하세요. 저희 아뭐듣지.com은 세종대 학우분들이<br>
@@ -8,10 +8,10 @@
                   도움이 되고자 강의에 대한 평가를 공유하는 웹 사이트입니다!<br>
                   정보 많이 얻어 가시고, 꿀 팁도 공유해주세요!<br>
 
-                  세종대 학우 <%=User.count%>+30명과 함께 하고 있습니다.<br>
-                  <%=Comment.count%>+20개의 강의평가가 있습니다.<br>
+                  세종대 학우 <%=User.count+30%>명과 함께 하고 있습니다.<br>
+                  <%=Comment.count+20%>개의 강의평가가 있습니다.<br>
 
-                  <%=link_to "Facebook으로 1초만에 가입하기","http://192.168.0.200:3003/auth/facebook", target: "_parent" %>
+                  <%=link_to "Facebook으로 1초만에 가입하기","http://192.168.0.200:3003/auth/facebook", target: "_parent", class: "btn btn-primary"%>
                     </div>
                   </div>
 
