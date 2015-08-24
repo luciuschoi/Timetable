@@ -18,6 +18,28 @@
 
 
 </div>  
+	
+
+<div class="progress" style="width:40%">
+
+	<div class="progress-bar progres-bar-success" id ="first_workload" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_workload" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_workload" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_workload" aria-valuemax="25" style="width: 25%;">
+	    <span class="sr-only">0% Complete</span>
+	</div>
+
+
+</div>  
 	<div id ="submit_button">button</div>
 
 
@@ -25,6 +47,7 @@
 	// progress bar에 마우스를 올리면 	=>	hover
 	// progress bar에 색을 채운다.
 var grade;
+var workload;
 	// first_grade
 	$('#first_grade').hover(function(){
 		$('#first_grade').attr('aria-valuenow', '100');
@@ -123,13 +146,112 @@ var grade;
 		grade = 100;
 	});
 
+		// first_workload
+	$('#first_workload').hover(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#first_workload').on('mouseout');
+
+	});
+
+	$('#first_workload').mouseout(function(){
+		$('#first_workload').attr('aria-valuenow', '0');
+	});
+
+	$('#first_workload').click(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '0');
+		$('#third_workload').attr('aria-valuenow', '0');
+		$('#fourth_workload').attr('aria-valuenow', '0');
+		$('#first_workload').off('mouseout');
+		workload = 25;
+	});
+
+
+	// second_workload
+	$('#second_workload').hover(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '100');
+	});
+
+	$('#second_workload').mouseout(function(){
+		$('#first_workload').attr('aria-valuenow', '0');
+		$('#second_workload').attr('aria-valuenow', '0');
+	});
+
+	$('#second_workload').click(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '100');
+		$('#third_workload').attr('aria-valuenow', '0');
+		$('#fourth_workload').attr('aria-valuenow', '0');
+
+		$('#first_workload').off('mouseout');
+		$('#second_workload').off('mouseout');
+		workload = 50;
+	});
+
+	// third_workload
+	$('#third_workload').hover(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '100');
+		$('#third_workload').attr('aria-valuenow', '100');
+	});
+
+	$('#third_workload').mouseout(function(){
+		$('#first_workload').attr('aria-valuenow', '0');
+		$('#second_workload').attr('aria-valuenow', '0');
+		$('#third_workload').attr('aria-valuenow', '0');
+	});
+
+	$('#third_workload').click(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '100');
+		$('#third_workload').attr('aria-valuenow', '100');
+
+		$('#fourth_workload').attr('aria-valuenow', '0');
+		
+		$('#first_workload').off('mouseout');
+		$('#second_workload').off('mouseout');
+		$('#third_workload').off('mouseout');
+		workload = 75;
+	});
+
+	// fourth_workload
+	$('#fourth_workload').hover(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '100');
+		$('#third_workload').attr('aria-valuenow', '100');
+		$('#fourth_workload').attr('aria-valuenow', '100');
+	});
+
+	$('#fourth_workload').mouseout(function(){
+		$('#first_workload').attr('aria-valuenow', '0');
+		$('#second_workload').attr('aria-valuenow', '0');
+		$('#third_workload').attr('aria-valuenow', '0');
+		$('#fourth_workload').attr('aria-valuenow', '0');
+	});
+
+
+	$('#fourth_workload').click(function(){
+		$('#first_workload').attr('aria-valuenow', '100');
+		$('#second_workload').attr('aria-valuenow', '100');
+		$('#third_workload').attr('aria-valuenow', '100');
+		$('#fourth_workload').attr('aria-valuenow', '100');
+
+		$('#first_workload').off('mouseout');
+		$('#second_workload').off('mouseout');
+		$('#third_workload').off('mouseout');
+		$('#fourth_workload').off('mouseout');
+		workload = 100;
+	});
 	$('#submit_button').click(function(event){
 		event.preventDefault();
-
+		<%if !current_user.valuations.find_by(lecture_id: params[:id]).nil?%>
+		  alert('이미 평가를 하였습니다.')
+		<%else %>
 		$.ajax({
-			url: "/valuations/?grade="+grade,
+			url: "/valuations",
 			type: "post",
-			data: {'grade':grade},
+			data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload},
 			success: function(){
 				alert('saved successfully');
 			},
@@ -138,6 +260,21 @@ var grade;
 			}
 
 		});
+		$.ajax({
+			url: "/comments",
+			type: "post",
+			data: {'lecture_id':<%=params[:id]%>,
+					 comment:{'content':$("#lecture_comment").val()}
+					},
+			success: function(){
+				alert('saved successfully');
+			},
+			error:function(){
+				alert('error')
+			}		
+
+		});
+		<%end%> 
 	});
 
 

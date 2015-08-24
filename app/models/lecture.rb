@@ -47,22 +47,46 @@ class Lecture < ActiveRecord::Base
     self.hatachi += 1
   end
 
-  def lec_grade(k)
-    self.acc_grade += k
+  def lec_valuation(counts, g,w)
+    
+    if self.acc_grade.nil?
+
+        grade =  g.to_i
+        workload = w.to_i
+        #self.acc_workload *=count
+        #self.acc_level *=count
+        #self.acc_achievement *=count
+        #self.acc_achievement *=count
+
+        #self.acc_grade += g
+        #self.acc_workload += w
+        #self.acc_achievement +=a
+        #self.acc_level +=l
+        #self.acc_total +=t
+        counts+=1;
+        self.acc_grade = grade/counts;
+        self.acc_workload = workload/counts;
+    else
+        grade = self.acc_grade * counts + g.to_i
+        workload =self.acc_grade * counts + w.to_i
+        #self.acc_workload *=count
+        #self.acc_level *=count
+        #self.acc_achievement *=count
+        #self.acc_achievement *=count
+
+        #self.acc_grade += g
+        #self.acc_workload += w
+        #self.acc_achievement +=a
+        #self.acc_level +=l
+        #self.acc_total +=t
+        counts+=1;
+        self.acc_grade = grade/counts
+        self.acc_workload = workload/counts
+        #self.acc_workload /=count
+
+    end   
   end
-  def lec_workload(k)
-    self.acc_workload +=k
-  end
-  def lec_level(k)
-    self.acc_level +=k
-  end
-  def lec_achievement(k)
-    self.acc_achievement +=k
-  end
-  def lec_total(k)
-    self.acc_total +=k
-  end
- 
+
 
 def self.search(search_from, search)  
      if search  
