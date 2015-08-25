@@ -30,6 +30,7 @@ class StaticPagesController < ApplicationController
     if !params[:search].nil?
       @lectures=Lecture.search(params[:search_from],
                                 params[:search]).paginate(:page => params[:page], :per_page => 10 )
+   
     
     end
 

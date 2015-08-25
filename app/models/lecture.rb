@@ -47,12 +47,15 @@ class Lecture < ActiveRecord::Base
     self.hatachi += 1
   end
 
-  def lec_valuation(counts, g,w)
+  def lec_valuation(counts, g,w,a,l,t)
     
     if self.acc_grade.nil?
 
         grade =  g.to_i
         workload = w.to_i
+        achievement = a.to_i
+        level = l.to_i
+        total = t.to_i
         #self.acc_workload *=count
         #self.acc_level *=count
         #self.acc_achievement *=count
@@ -66,9 +69,17 @@ class Lecture < ActiveRecord::Base
         counts+=1;
         self.acc_grade = grade/counts;
         self.acc_workload = workload/counts;
+        self.acc_achievement = achievement/counts;
+        self.acc_level = level/counts;
+        self.acc_total = total/counts; 
+
     else
         grade = self.acc_grade * counts + g.to_i
-        workload =self.acc_grade * counts + w.to_i
+        workload =self.acc_workload * counts + w.to_i
+        achievement =self.acc_achievement * counts + a.to_i
+        level = self.acc_level * counts + l.to_i
+        total = self.acc_total * counts + t.to_i
+
         #self.acc_workload *=count
         #self.acc_level *=count
         #self.acc_achievement *=count
@@ -82,6 +93,9 @@ class Lecture < ActiveRecord::Base
         counts+=1;
         self.acc_grade = grade/counts
         self.acc_workload = workload/counts
+        self.acc_achievement = achievement/counts
+        self.acc_level = level/counts
+        self.acc_total = total/counts 
         #self.acc_workload /=count
 
     end   

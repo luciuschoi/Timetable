@@ -20,6 +20,7 @@ match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do
   collection { post :import }
   member { get :timetable }
+  member { get :writtingform }
 end
 
 

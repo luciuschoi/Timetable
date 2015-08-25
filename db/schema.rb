@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20150820070634) do
     t.integer  "uptachi",         default: 0
     t.integer  "hatachi",         default: 0
     t.string   "lecturetime"
-    t.integer  "acc_grade"
-    t.integer  "acc_workload"
-    t.integer  "acc_level"
-    t.integer  "acc_achievement"
-    t.integer  "acc_total"
+    t.integer  "acc_grade",       default: 0
+    t.integer  "acc_workload",    default: 0
+    t.integer  "acc_level",       default: 0
+    t.integer  "acc_achievement", default: 0
+    t.integer  "acc_total",       default: 0
   end
 
   create_table "users", force: :cascade do |t|

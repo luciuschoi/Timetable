@@ -1,6 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
- @import url(http://fonts.googleapis.com/css?family=Oswald);
+
 
 /* fancybox */
 .fancybox{
@@ -44,6 +44,12 @@ h1{
   float: right;
 
 
+}
+#form2{
+  width:100%;   
+  text-align:center; 
+  margin-right:auto;
+  margin:0 auto;
 }
 .row_padding_reduction{
   padding-top:10px;
@@ -222,7 +228,10 @@ table.nogap{
   border : 0;
 }
 
-
+.progress{
+  width : 40%;
+  display:block-inline;
+}
 
 
 

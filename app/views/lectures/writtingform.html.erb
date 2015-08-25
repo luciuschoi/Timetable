@@ -1,0 +1,113 @@
+<div class="container-fluid">
+
+<div class = "row">
+	<div class="col-md-3"></div>
+
+	<div class="col-md-6">
+			<h2 class="inline-blk"> <%= @lecture.subject %> </h2> <span><%= @lecture.major%></span>
+		
+			<p class="lead">
+				<%= @lecture.professor %></p>
+
+		</div><!-- /.col-md-8 -->
+
+		<div class="col-md-3"></div>
+	</div>
+
+	<div class ="row">
+
+
+		<%= render 'static_pages/progress_bar' %>
+		<div class="col-md-3"></div>
+
+	</div>
+
+	<div class ="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+		
+					강의평을 남겨주세요	 
+					 <textarea class="message" rows='3' cols='70' maxlength="200"></textarea>
+				          <span id="showremain"></span>
+
+		
+
+		</div>
+			
+		<div class="col-md-3"></div>
+
+	</div>
+
+	<div class="row">
+	 	<div class="col-md-3"></div>
+	 	<div class="col-md-6"> 
+
+		<button type="submit" class="btn btn-primary" id ="submit_button">평가하기</button>
+
+		</div>
+		<div class="col-md-3"></div>
+	
+</div>
+
+<script>
+$(document).ready(function() {
+	var text_length=0;
+    var text_max = 200;
+
+    document.getElementById('showremain').style.color="red"
+    $('#showremain').html('0'+'/'+text_max);
+
+    $('.message').keyup(function() {
+        text_length = $('.message').val().length;
+        var text_remaining = text_max - text_length;
+        $('#showremain').html(text_length.toString()+'/'+text_max.toString() );
+    /*글자가 40자 이상시 파란색*/
+    if (text_length>39)
+        {
+        	document.getElementById('showremain').style.color="blue"
+        }
+    /*글자가 40자 미만시 빨간색*/    
+    else
+        {
+        	document.getElementById('showremain').style.color="red"
+        }
+        
+    });
+});
+
+
+
+$('#submit_button').click(function(event){
+		event.preventDefault();
+		<%if !current_user.valuations.find_by(lecture_id: params[:id]).nil?%>
+		  alert('이미 평가를 하였습니다.')
+		<%else %>
+		$.ajax({
+			url: "/valuations",
+			type: "post",
+			data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'total':total},
+			success: function(){
+				alert('saved successfully');
+			},
+			error:function(){
+				alert('error')
+			}
+
+		});
+		$.ajax({
+			url: "/comments",
+			type: "post",
+			data: {'lecture_id':<%=params[:id]%>,
+					 comment:{'content':$(".message").val()}
+					},
+			success: function(){
+				alert('saved successfully');
+			},
+			error:function(){
+				alert('error')
+			}		
+
+		});
+		<%end%> 
+	});
+</script>
