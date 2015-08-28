@@ -1,10 +1,8 @@
-
 class LecturesController < ApplicationController
 
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
-	#before_action :forcingwritting, only: [:show, :timetable]
 	
 	require 'roo'
 
@@ -56,23 +54,12 @@ class LecturesController < ApplicationController
 
 		Lecture.import(params[:file])
 		redirect_to root_url, notice: "decorations imported."
-
-  end
-
-
-
-
   end
    def writtingform
    		@lecture = Lecture.find_by(id: params[:id])
    end
 
-
-
-  respond_to do |format|
-   format.js
-       format.html # timetable.html.erb
-     end
+  def timetable
 
    if params[:search].nil?
     @lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
@@ -125,5 +112,3 @@ private
 end
 
 end
-
-

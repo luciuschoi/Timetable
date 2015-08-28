@@ -14,6 +14,7 @@
 }
 body{
   font-family: Nanum_Gothic;
+  background-color : #F5F5F5;
 }
 
 div{
@@ -235,8 +236,8 @@ table.nogap{
 }
 
 .progress{
+  
   width : 40%;
-  display:block-inline;
 }
 
 
@@ -382,10 +383,76 @@ center;      vertical-align: middle;     font-size:15px;
 #border-none{
   border-color:white;
 }
+.user_valuation_box {
+  padding-top : 15px;
 
+  .valuation_contents {
+    background-color : white;
+    padding-top : 15px;
+    padding-bottom : 15px;
+  }
+}
 
+.row_pd_top {
+  padding-top:5px;
+}
 
+.user_section{
+  border-bottom : 1px solid $gray-lighter;
+  padding-bottom : 10px;
+  margin-bottom : 15px;
+  .nickname_attr {
+    font-weight : bold;
+    display : inline;
+  }
+  .nickname_mgn {
+    padding-left: 5px;
+    color : #AAA;
+    font-weight: 160;
+  }
+}
 
+.valuation_star {
+  span {
+    float:left;
+    height : 25px;
+    width : 25px;
+    background : url("unactivated_star.png");
+    display : block;
+    background-repeat: no-repeat;
+  }
+  .active{
+    float:left;
+    width : 25px;
+    height : 25px;
+    background : url("activated_star.png");
+    display : block;
+    background-repeat: no-repeat;
+  }
+}
 
+.valuation_item {
+  
+  float:left;
+  padding-right:15px;
+  width : 55px;
+  .grade{
+    text-align:right;
+    width : 45px;
+  }
+}
+
+.total{
+  height : 40px;
+  vertical-align: middle;
+  .total_text{
+    text-align: right;
+    padding-top :5px;
+  }
+}
+
+.show_comment{
+  float : none;
+}
 
 

@@ -23,25 +23,10 @@ class User < ActiveRecord::Base
     valuations.create(lecture_id: lec.id, down: what_valuated)
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-  def evaluated_valuation(lec,g,w)
-    valuations.create(lecture_id: lec.id, grade: g, workload: w)
-=======
-  def evaluated_valuation(lec,g,w,a,l,t)
+  def evaluated_valuation(lec,g,w,a,l,t,c)
     valuations.create(lecture_id: lec.id, grade: g, workload: w, achievement: a, 
-      level: l, total: t)
->>>>>>> b1508a1e4710a0c5f31627e415ce3b430513f12d
-    #valuations.create(lecture_id: lec.id, grade: g, workload: w,
-    # level: l, achievement: a, total: t)
+      level: l, total: t, content: c)
+
   end
  
-  
-
-<<<<<<< HEAD
->>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
-=======
->>>>>>> b1508a1e4710a0c5f31627e415ce3b430513f12d
 end

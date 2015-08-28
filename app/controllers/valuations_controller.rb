@@ -9,7 +9,7 @@ class ValuationsController < ApplicationController
 			@lecture.lec_valuation(@lecture.valuations.count, params[:grade],params[:workload],params[:achievement],
 			params[:level],params[:total])  #해당 강의 grade 별점 누적 
 			current_user.evaluated_valuation(@lecture,params[:grade],params[:workload],params[:achievement],
-			params[:level],params[:total])       
+			params[:level],params[:total], params[:content])       
 
 
 
