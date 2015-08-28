@@ -3,7 +3,7 @@
 	 많은 학우들에게 도움이 되기 위해 <br>
 	 강의평가 4회 이상 부탁드립니다.</p>
 
-	 <h2>강의 평가 4번 남았어요 ! </h2>
+	 <h2>강의 평가 <%=4-current_user.valuations.count%>번 남았어요 ! </h2>
     <%= form_tag forcingwritting_path, :method => 'get' do %>
  
       <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>

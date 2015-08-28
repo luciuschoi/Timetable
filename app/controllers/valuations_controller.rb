@@ -8,9 +8,9 @@ class ValuationsController < ApplicationController
 		
 		    @lecture= Lecture.find(params[:lecture_id])
 			@lecture.lec_valuation(@lecture.valuations.count, params[:grade],params[:workload],params[:achievement],
-			params[:level],params[:total])  #해당 강의 grade 별점 누적 
+			params[:level],params[:homework])  #해당 강의 grade 별점 누적 
 			current_user.evaluated_valuation(@lecture,params[:grade],params[:workload],params[:achievement],
-			params[:level],params[:total])       
+			params[:level],params[:homework],params[:comment])       
 
 
 
@@ -18,7 +18,7 @@ class ValuationsController < ApplicationController
 			@lecture.save!
 
 		
-
+			
 
     end
 

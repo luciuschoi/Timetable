@@ -54,7 +54,7 @@
   function showLecture(lec_num)
   {
       <% if user_login? %>
-        <% if current_user.valuations.count>2 %>
+        <% if current_user.valuations.count>3 %>
           $.fancybox({
             type: 'iframe',
             href: '/lectures/'+lec_num.toString(),

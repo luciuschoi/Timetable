@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820070634) do
+ActiveRecord::Schema.define(version: 20150828054417) do
 
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
@@ -48,12 +48,13 @@ ActiveRecord::Schema.define(version: 20150820070634) do
     t.datetime "updated_at",                  null: false
     t.integer  "uptachi",         default: 0
     t.integer  "hatachi",         default: 0
+    t.integer  "acc_total",       default: 0
     t.string   "lecturetime"
     t.integer  "acc_grade",       default: 0
     t.integer  "acc_workload",    default: 0
     t.integer  "acc_level",       default: 0
     t.integer  "acc_achievement", default: 0
-    t.integer  "acc_total",       default: 0
+    t.integer  "acc_homework",    default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,11 +77,13 @@ ActiveRecord::Schema.define(version: 20150820070634) do
     t.datetime "updated_at",              null: false
     t.integer  "up",          default: 0
     t.integer  "down",        default: 0
+    t.integer  "total"
     t.integer  "grade"
     t.integer  "workload"
     t.integer  "level"
     t.integer  "achievement"
-    t.integer  "total"
+    t.integer  "homework"
+    t.text     "comment"
   end
 
 end

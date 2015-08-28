@@ -76,7 +76,7 @@
       <% @lectures.each do |lec| %>
       <%if lec.comments.any? %>  
       <%if !(lec.comments.first.timestamp_today?) && !(lec.comments.first.timestamp_yesterday?) %>   
-      <tr class="lovelyrow" >
+      <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)">
         <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
 
 
