@@ -1,57 +1,4 @@
-<br><br>
-  <div class="table-responsive">
-        <table class="table nogap">
-         <thead>
-      
-         <tr class> 
-
-           <th>개설학과</th>
-           <th>교수명</th>
-           <th>강의명</th>
-           <th>up</th>
-           <th>down</th>
-           
-         </tr>
-         </thead>
-    	 <tbody>     
-		<% @lectures.each do |lec| %>
-	
-    <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
-    <td id="tb_unspot"><%= lec.major%></td> <td id="tb_unspot"><%=lec.professor%> </td>
-    <td id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %><font color='red'>[<%= lec.comments.count %>]</font></td>
-    <td> <%= lec.uptachi %> </td>
-    <td> <%= lec.hatachi %> </td>
-		</tr>
-
-   	   <% end %>
-   	   	</tbody>
-   	   	</table>
-   	   	</div>
-   	   	</div>
- 	 
-
-  	</div> 
- 
-	<div class="col-md-2"></div >	 
-
-   
-
-</div>    
-
-<div class="row">
-	<div class="col-md-2"></div>   
-	<div class="col-md-8" align="center">
-	<%= will_paginate @lectures %>
-	</div>
-	<div class="col-md-2"></div>
-	</div>
-
-
-
-
-  
-<script>
-  function showLecture(lec_num)
+ function showLecture(lec_num)
   {
       <% if user_login? %>
         <% if current_user.valuations.count>2 %>
@@ -91,4 +38,3 @@
           });
        <% end %>        
   }
-</script>

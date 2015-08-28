@@ -1,13 +1,11 @@
- class LecturesController < ApplicationController
+
+class LecturesController < ApplicationController
 
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
-<<<<<<< HEAD
-=======
 	#before_action :forcingwritting, only: [:show, :timetable]
 	
->>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 	require 'roo'
 
 
@@ -19,6 +17,7 @@
 		#@comment = current_user.comments.build
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
 		@lectures=Lecture.order_by_comments.group_by_id
+		render(:layout => "layouts/showinglecture") # 헤더 파일 포함 안함 ..
 	end
 
 	def edit
@@ -28,6 +27,7 @@
 
 	def new
 		@lecture = Lecture.new
+
 	end
 
 	def create
@@ -56,71 +56,74 @@
 
 		Lecture.import(params[:file])
 		redirect_to root_url, notice: "decorations imported."
-<<<<<<< HEAD
-=======
+
   end
 
 
 
->>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 
-    end
+  end
+   def writtingform
+   		@lecture = Lecture.find_by(id: params[:id])
+   end
 
 
-<<<<<<< HEAD
-    def timetable
-=======
+
   respond_to do |format|
    format.js
        format.html # timetable.html.erb
      end
->>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 
+   if params[:search].nil?
+    @lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
+     #@lectures=Lecture.paginate(:per_page =>20, :page => params[:page])
+   else
+    @lectures=Lecture.search(params[:search_from],params[:search]).paginate(:page => params[:page], :per_page => 10 )
+  end
 
-    	if params[:search].nil?
-  		@lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
-  	#@lectures=Lecture.paginate(:per_page =>20, :page => params[:page])
- 	 	else
-  		@lectures=Lecture.search(params[:search_from],params[:search]).paginate(:page => params[:page], :per_page => 10 )
-  	    end
+  respond_to do |format|
+  	 format.js
+       format.html # timetable.html.erb
+     end
 
-  	    respond_to do |format|
-  	    format.js
-	    format.html # timetable.html.erb
-	  
-		end
+   end 
 
-  
-    end 
-
-
-  
 
 
 private
+	
 
-   def lecture_params
-      params.require(:lecture).permit(:subject, :professor, :major, :lecturetime)
+   def forcingwritting
+   	if logged_in_user? && current_user.valuations.count<3
+   		redirect_to :controller => 'static_pages', :action => 'forcingwritting'
+   	end
+
    end
 
 
-   def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
-    def fillnickname 
+   def lecture_params
+    params.require(:lecture).permit(:subject, :professor, :major, :lecturetime)
+  end
 
-	  	if logged_in_user? && current_user.nickname.nil?
-	  		flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
-	  		redirect_to edit_user_url(current_user)
-	  	end
-  	end
-  	def correct_user 
 
-        if logged_in_user? && current_user.nickname.nil?
-           flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
-           redirect_to edit_user_url(current_user)
-        end
-     end
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+  def fillnickname 
+
+    if logged_in_user? && current_user.nickname.nil?
+     flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
+     redirect_to edit_user_url(current_user)
+   end
+ end
+ def correct_user 
+
+  if logged_in_user? && current_user.nickname.nil?
+   flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
+   redirect_to edit_user_url(current_user)
+ end
+end
 
 end
+
 

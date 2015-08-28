@@ -1,18 +1,14 @@
+
 <br><br>
 
 <div class="table-responsive">
   <table class="table nogap">
     <thead>
-
       <tr class> 
-
-
         <th >오늘</th>
-
       </tr>
     </thead>
     <tbody>   
-
       <% @lectures.each do |lec| %>
       <!-- 1 강의 댓글이 있니 ? -->
         <%if lec.comments.any? %>    
@@ -31,12 +27,8 @@
 
   <table class="table nogap">
     <thead>
-
       <tr class> 
-
-
         <th>어제</th>
-
       </tr>
     </thead>
     <tbody>   
@@ -44,7 +36,7 @@
       <% @lectures.each do |lec| %>
       <%if lec.comments.any? %>  
       <%if lec.comments.first.timestamp_yesterday? %>    
-      <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+      <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
         <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
 
 
@@ -84,7 +76,7 @@
       <% @lectures.each do |lec| %>
       <%if lec.comments.any? %>  
       <%if !(lec.comments.first.timestamp_today?) && !(lec.comments.first.timestamp_yesterday?) %>   
-      <tr class="lovelyrow" onclick="location.href='<%=lecture_url(lec)%>'" >
+      <tr class="lovelyrow" >
         <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
 
 
@@ -122,17 +114,19 @@
 
 
 
+
+
 </div>    
 
 <div class="row">
   <div class="col-md-2"></div>   
   <div class="col-md-8" align="center">
-<<<<<<< HEAD
+
 
   </div>
   <div class="col-md-2"></div>
 </div>
-=======
+
 	</div>
 	<div class="col-md-2"></div>
 	</div>
@@ -168,8 +162,9 @@
             href: '/forcinglogin',
               'scrolling' : 'yes',
                 'padding' : 20,
-                'width'   :600,
-                'height'  :300,
+
+                'width'   :1200,
+                'height'  :600,
                 'transitionIn'    :    'none',
                 'transitionOut'    :    'none',
                 'speedIn'        :    400,
@@ -181,4 +176,4 @@
        <% end %>        
   }
 </script>
->>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
+

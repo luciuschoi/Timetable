@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	 has_many :comments, dependent: :destroy
 	 has_many :valuations, dependent: :destroy
    has_many :comment_valuations, dependent: :destroy
-   validates :nickname, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
+   validates :nickname, presence: true, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
 
 
 	def self.from_omniauth(auth)
@@ -24,15 +24,24 @@ class User < ActiveRecord::Base
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
   def evaluated_valuation(lec,g,w)
     valuations.create(lecture_id: lec.id, grade: g, workload: w)
+=======
+  def evaluated_valuation(lec,g,w,a,l,t)
+    valuations.create(lecture_id: lec.id, grade: g, workload: w, achievement: a, 
+      level: l, total: t)
+>>>>>>> b1508a1e4710a0c5f31627e415ce3b430513f12d
     #valuations.create(lecture_id: lec.id, grade: g, workload: w,
     # level: l, achievement: a, total: t)
   end
  
   
 
+<<<<<<< HEAD
 >>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
+=======
+>>>>>>> b1508a1e4710a0c5f31627e415ce3b430513f12d
 end

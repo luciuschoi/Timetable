@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html >
+<head >
  <meta http-equiv="contentType" type="text/html" charset="euc-kr" />
-  <title>아뭐듣지</title>
+  <title >아뭐듣지</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-   <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-      </script>
 
-    <![endif]-->
 </head>
-<body>
+
+<body onload="$('.fancybox').trigger('click');">
+ 
     <%= render 'layouts/header' %>
+    
 <!-- /.row --> 
      <!-- flash 메세지 출력 -->  
      <% flash.each do |message_type, message| %>
@@ -23,7 +22,9 @@
 
 <%= yield %>
 <aside>
-<%=link_to "Feedback", "http://goo.gl/forms/CWP0XnBEqJ", class: "btn btn-danger" %>
+<%=link_to("FeedBack","http://goo.gl/forms/CWP0XnBEqJ" ,class: "btn btn-danger" )%>
+
+
 </aside>
 <div class="row">
   <div class="col-md-3"></div>
@@ -41,7 +42,6 @@
 
 
 
-<%= debug(params) if Rails.env.development? %>
 </body>
 
 </html>
