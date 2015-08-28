@@ -105,8 +105,8 @@ $('#submit_button').click(function(event){
 							$.ajax({
 								url: "/valuations",
 								type: "post",
-								data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'homework':homework,
-								'comment':$(".message").val()},
+								data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'homework':homework, 'total':total
+								'content':$(".message").val()},
 								success: function(){
 									<%if current_user.valuations.count<3 %>
 									alert('평가 완료!!');

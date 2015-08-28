@@ -1,21 +1,63 @@
-<tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)">
-  <td width= "50px", id="tb_unspot"><%=lec.professor%> </td>
+<div class = "row user_valuation_box"> 
+	<div class = "col-md-8 valuation_contents">
+		<div class = "user_section">
+			<h4 class = "nickname_attr"> <%= v.user.nickname %></h4> <span class = "nickname_mgn"> 님의 평가</span>
+		</div>
 
+		<!-- border-bottom 아래 -->
+		<div class = "row row_pd_top">
+			<div class = "col-md-4">
+				<h4><%= v.lecture.subject %></h4>
+					<%= v.lecture.professor %>
+			</div>
 
-  <td width="140px", id="tb_spot"><%= lec.subject%><%=image_tag("comment.png", alt: "댓글그림", height: "20px") %>
-  <font color='red'>[<%= lec.comments.count %>]</font>
-  </td>
-    <!-- 업/다운 이미지 적용? -->
-    <%if !Valuation.find_by(lecture_id: lec.id, user_id: lec.comments.first.user_id).nil? %>
-          <%if Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).up ==1 %>
-            <td width="500px",align="left"> <%=image_tag("thumbs-up.png", alt: "업손가락", height: "20px") %><%=truncate(lec.comments.first.content, length: 50) %>
-            </td>
-          <%elsif Valuation.find_by(lecture_id: lec.id,user_id: lec.comments.first.user_id).down ==1 %>
-            <td width="500px",align="left"> <%=image_tag("thumbs-down.png", alt: "다운손가락", height: "20px") %><%=truncate(lec.comments.first.content, length: 50) %>
-            </td>
-          <%end%>
-    <!-- 업 다운 이미지 적용 X -->
-    <% else %>
-      <td width="500px"> <%=truncate(lec.comments.first.content, length: 50) %> </td>   
-    <% end %>             
-</tr>
+			<div class = "col-md-8">
+				<!-- grade : 학점 -->
+				<div>
+					<div class = "valuation_item grade">
+						학점
+					</div>
+					<%= render 'shared/show_progress_bar', :var => v.grade%>
+				</div>
+				<!-- workload : 공부량 -->
+				<div>
+					<div class = "valuation_item grade">
+						공부량
+					</div>
+					<%= render 'shared/show_progress_bar', :var => v.workload%>
+				</div>
+				<!-- level : 난이도 -->
+				<div>
+					<div class = "valuation_item grade">
+						난이도 
+					</div>
+					<%= render 'shared/show_progress_bar', :var => v.level%>
+				</div>
+				<!-- achievement : 성취감 -->
+				<div>
+					<div class = "valuation_item grade">					
+						성취감
+					</div>
+					<%= render 'shared/show_progress_bar', :var => v.achievement%>
+				</div>
+				<!-- total : 총평 -->
+				<div class = "total">
+					<div class = "valuation_item">
+						총평 
+					</div>
+					<%= render 'shared/show_star', :var => v.total %>
+				</div>
+
+				<div>
+					<div>					
+						의견
+					</div>
+					<div>
+						<%= truncate v.content, length: 20%>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -13,8 +13,9 @@ class StaticPagesController < ApplicationController
       lectures_of_major = Lecture.where('major = ?', @lecture_name)
       @lectures = lectures_of_major.order_by_comments.group_by_id
   	else
-      @lectures=Lecture.order_by_comments.group_by_id
+      @valuations=Valuation.all.limit(10)
   	end
+
 
   end
 
@@ -30,7 +31,7 @@ class StaticPagesController < ApplicationController
     if !params[:search].nil?
       @lectures=Lecture.search(params[:search_from],
                                 params[:search]).paginate(:page => params[:page], :per_page => 10 )
-   
+
     
     end
 
@@ -40,6 +41,7 @@ class StaticPagesController < ApplicationController
   def forcinglogin
 
     render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
+
   end
 
 

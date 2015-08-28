@@ -23,13 +23,13 @@ class User < ActiveRecord::Base
     valuations.create(lecture_id: lec.id, down: what_valuated)
   end
 
-  def evaluated_valuation(lec,g,w,a,l,h,c)
+
+  def evaluated_valuation(lec,g,w,a,l,h,t,c)
     valuations.create(lecture_id: lec.id, grade: g, workload: w, achievement: a, 
-      level: l, homework: h, comment: c)
-    #valuations.create(lecture_id: lec.id, grade: g, workload: w,
+      level: l, homework: h, total: t, content: c)
+   #valuations.create(lecture_id: lec.id, grade: g, workload: w,
     # level: l, achievement: a, homework: h, comment: c)
+
   end
  
-  
-
 end
