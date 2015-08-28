@@ -3,6 +3,11 @@
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
+<<<<<<< HEAD
+=======
+	#before_action :forcingwritting, only: [:show, :timetable]
+	
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 	require 'roo'
 
 
@@ -51,11 +56,25 @@
 
 		Lecture.import(params[:file])
 		redirect_to root_url, notice: "decorations imported."
+<<<<<<< HEAD
+=======
+  end
+
+
+
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 
     end
 
 
+<<<<<<< HEAD
     def timetable
+=======
+  respond_to do |format|
+   format.js
+       format.html # timetable.html.erb
+     end
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 
 
     	if params[:search].nil?

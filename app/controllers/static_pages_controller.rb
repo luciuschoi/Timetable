@@ -13,6 +13,33 @@ class StaticPagesController < ApplicationController
   	else
       @lectures=Lecture.order_by_comments.group_by_id
   	end
+<<<<<<< HEAD
+=======
+
+  end
+
+  def rank
+    
+  end
+
+
+     
+
+
+  def forcingwritting
+    if !params[:search].nil?
+      @lectures=Lecture.search(params[:search_from],
+                                params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    
+    end
+
+
+  end
+
+  def forcinglogin
+
+    render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
   end
 
   def search

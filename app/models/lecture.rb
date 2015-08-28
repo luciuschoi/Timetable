@@ -46,7 +46,51 @@ class Lecture < ActiveRecord::Base
   def lec_hatachi
     self.hatachi += 1
   end
+<<<<<<< HEAD
  
+=======
+
+  def lec_valuation(counts, g,w)
+    
+    if self.acc_grade.nil?
+
+        grade =  g.to_i
+        workload = w.to_i
+        #self.acc_workload *=count
+        #self.acc_level *=count
+        #self.acc_achievement *=count
+        #self.acc_achievement *=count
+
+        #self.acc_grade += g
+        #self.acc_workload += w
+        #self.acc_achievement +=a
+        #self.acc_level +=l
+        #self.acc_total +=t
+        counts+=1;
+        self.acc_grade = grade/counts;
+        self.acc_workload = workload/counts;
+    else
+        grade = self.acc_grade * counts + g.to_i
+        workload =self.acc_grade * counts + w.to_i
+        #self.acc_workload *=count
+        #self.acc_level *=count
+        #self.acc_achievement *=count
+        #self.acc_achievement *=count
+
+        #self.acc_grade += g
+        #self.acc_workload += w
+        #self.acc_achievement +=a
+        #self.acc_level +=l
+        #self.acc_total +=t
+        counts+=1;
+        self.acc_grade = grade/counts
+        self.acc_workload = workload/counts
+        #self.acc_workload /=count
+
+    end   
+  end
+
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 
 def self.search(search_from, search)  
      if search  

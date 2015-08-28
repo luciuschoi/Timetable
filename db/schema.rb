@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150802124716) do
     t.integer  "uptachi",     default: 0
     t.integer  "hatachi",     default: 0
     t.string   "lecturetime"
+<<<<<<< HEAD
+=======
+    t.integer  "acc_grade"
+    t.integer  "acc_workload"
+    t.integer  "acc_level"
+    t.integer  "acc_achievement"
+    t.integer  "acc_total"
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
   end
 
   create_table "users", force: :cascade do |t|

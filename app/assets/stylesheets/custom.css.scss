@@ -1,7 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+<<<<<<< HEAD:app/assets/stylesheets/custom.css.scss
 
 @font-face{font-family:'Nanum_Gothic'; src:url('/assets/nanum_gothic.ttf')}
+=======
+ @import url(http://fonts.googleapis.com/css?family=Oswald);
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지:app/assets/stylesheets/custom.scss
 
 body{
   font-family: Nanum_Gothic;

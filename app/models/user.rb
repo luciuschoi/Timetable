@@ -23,4 +23,16 @@ class User < ActiveRecord::Base
     valuations.create(lecture_id: lec.id, down: what_valuated)
   end
 
+<<<<<<< HEAD
+=======
+
+  def evaluated_valuation(lec,g,w)
+    valuations.create(lecture_id: lec.id, grade: g, workload: w)
+    #valuations.create(lecture_id: lec.id, grade: g, workload: w,
+    # level: l, achievement: a, total: t)
+  end
+ 
+  
+
+>>>>>>> parent of 675b053... 0825 강제강의평가페이지+ 강제세부강의평가페이지
 end
