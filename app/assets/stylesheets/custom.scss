@@ -242,9 +242,11 @@ table.nogap{
 
 .progress{
   
-  width : 40%;
+  width : 80%;
+  align : left;
+  display : inline-block;
+  margin-left : 50px;
 }
-
 
 
 /* side bar */
@@ -440,7 +442,7 @@ center;      vertical-align: middle;     font-size:15px;
   
   float:left;
   padding-right:15px;
-  width : 55px;
+  width : 65px;
   .grade{
     text-align:right;
     width : 45px;

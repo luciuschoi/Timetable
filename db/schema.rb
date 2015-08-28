@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20150826060334) do
+ActiveRecord::Schema.define(version: 20150828054417) do
 
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
@@ -45,19 +44,17 @@ ActiveRecord::Schema.define(version: 20150826060334) do
     t.string   "subject"
     t.string   "professor"
     t.string   "major"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "uptachi",             default: 0
-    t.integer  "hatachi",             default: 0
-    t.float    "avg_hardness",        default: 0.0
-    t.float    "avg_amount_of_study", default: 0.0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "uptachi",         default: 0
+    t.integer  "hatachi",         default: 0
     t.string   "lecturetime"
-    t.integer  "acc_grade",           default: 0
-    t.integer  "acc_workload",        default: 0
-    t.integer  "acc_level",           default: 0
-    t.integer  "acc_achievement",     default: 0
-    t.integer  "acc_total",           default: 0
-
+    t.integer  "acc_grade",       default: 0
+    t.integer  "acc_workload",    default: 0
+    t.integer  "acc_level",       default: 0
+    t.integer  "acc_achievement", default: 0
+    t.integer  "acc_homework",    default: 0
+    t.integer  "acc_total",       default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,19 +73,17 @@ ActiveRecord::Schema.define(version: 20150826060334) do
   create_table "valuations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lecture_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "up",              default: 0
-    t.integer  "down",            default: 0
-    t.integer  "amount_of_study"
-    t.integer  "hardness"
-    t.integer  "grade",           default: 0
-    t.integer  "workload",        default: 0
-    t.integer  "level",           default: 0
-    t.integer  "achievement",     default: 0
-    t.integer  "total",           default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "up",          default: 0
+    t.integer  "down",        default: 0
+    t.integer  "grade"
+    t.integer  "workload"
+    t.integer  "level"
+    t.integer  "achievement"
+    t.integer  "homework"
+    t.integer  "total"
     t.text     "content"
-
   end
 
 end

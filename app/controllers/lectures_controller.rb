@@ -3,7 +3,7 @@ class LecturesController < ApplicationController
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
-	
+	#before_action :forcingwritting, only: [:show, :timetable]
 	require 'roo'
 
 
@@ -81,7 +81,7 @@ private
 	
 
    def forcingwritting
-   	if logged_in_user? && current_user.valuations.count<3
+   	if logged_in_user? && current_user.valuations.count<4
    		redirect_to :controller => 'static_pages', :action => 'forcingwritting'
    	end
 

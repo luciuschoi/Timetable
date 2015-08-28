@@ -1,5 +1,5 @@
 class AddCommentToValuations < ActiveRecord::Migration
   def change
-    add_column :valuations, :comment, :text
+    add_column :valuations, :content, :text
   end
 end

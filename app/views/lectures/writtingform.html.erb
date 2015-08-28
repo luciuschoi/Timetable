@@ -20,32 +20,6 @@
 	
 	
 
-	<div class ="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-		
-					강의평을 남겨주세요(40자 이상)
-					 <textarea class="message" rows='3' cols='70' maxlength="200"></textarea>
-				          <span id="showremain"></span>
-
-		
-
-		</div>
-			
-		<div class="col-md-3"></div>
-
-	</div>
-
-	<div class="row">
-	 	<div class="col-md-3"></div>
-	 	<div class="col-md-6"> 
-
-		<button type="submit" class="btn btn-primary" id ="submit_button">평가하기</button>
-
-		</div>
-		<div class="col-md-3"></div>
-	
-</div>
 
 <script>
 $(document).ready(function() {
@@ -74,58 +48,13 @@ $(document).ready(function() {
         }
         
     });
-
+/*
     $('.message').click(function() {
     	this.value="강의 방식은 "
     })
+*/
 });
 
 
 
-$('#submit_button').click(function(event){
-		event.preventDefault();
-		$('#submit_button').html('전송중...')
-		this.disabled=true;
-
-		//this.disabled=true;
-	
-		<%if !current_user.valuations.find_by(lecture_id: params[:id]).nil?%>
-			    alert('이미 평가를 하였습니다.')
-			   $('#submit_button').html('평가하기')
-			    this.disabled=false;
-		<%else %>
-				if(grade==0 || workload==0 || achievement==0 || level==0 || homework ==0 )
-				{ 
-								alert('모든 항목에 대해서 체크해주세요');
-								 $('#submit_button').html('평가하기')
-			    				 this.disabled=false;
-				}
-				else
-				{
-							$.ajax({
-								url: "/valuations",
-								type: "post",
-								data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'homework':homework, 'total':total
-								'content':$(".message").val()},
-								success: function(){
-									<%if current_user.valuations.count<3 %>
-									alert('평가 완료!!');
-									window.location ="/forcingwritting"
-									<%else%>
-									alert('감사합니다. 강의평가 모두 완료되었습니다.')
-									window.location ="/"
-									<%end%>
-								},
-								/*
-								error:function(){
-									alert('error')
-								}
-								*/
-
-							});
-
-				}
-		<%end%> 
-
-	});
 </script>
