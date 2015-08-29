@@ -14,8 +14,9 @@ class LecturesController < ApplicationController
 		@AnotherSubjects = Lecture.where("professor = ?", @lecture.professor)
 		#@comment = current_user.comments.build
 		@comments = Comment.where("lecture_id = ?", @lecture.id).order('created_at DESC')
+		@valuations_content = Valuation.where("lecture_id= ?",@lecture.id).order('created_at DESC').select("content, user_id, created_at")
 		@lectures=Lecture.order_by_comments.group_by_id
-		render(:layout => "layouts/showinglecture") # 헤더 파일 포함 안함 ..
+		#render(:layout => "layouts/showinglecture") # 헤더 파일 포함 안함 ..
 	end
 
 	def edit
@@ -69,7 +70,7 @@ class LecturesController < ApplicationController
   end
 
   respond_to do |format|
-  	 format.js
+  	   format.js
        format.html # timetable.html.erb
      end
 

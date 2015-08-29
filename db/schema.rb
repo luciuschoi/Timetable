@@ -44,17 +44,17 @@ ActiveRecord::Schema.define(version: 20150828054417) do
     t.string   "subject"
     t.string   "professor"
     t.string   "major"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "uptachi",         default: 0
     t.integer  "hatachi",         default: 0
     t.string   "lecturetime"
-    t.integer  "acc_grade",       default: 0
-    t.integer  "acc_workload",    default: 0
-    t.integer  "acc_level",       default: 0
-    t.integer  "acc_achievement", default: 0
-    t.integer  "acc_homework",    default: 0
-    t.integer  "acc_total",       default: 0
+    t.float    "acc_grade",       default: 0.0
+    t.float    "acc_workload",    default: 0.0
+    t.float    "acc_level",       default: 0.0
+    t.float    "acc_achievement", default: 0.0
+    t.float    "acc_homework",    default: 0.0
+    t.float    "acc_total",       default: 0.0
   end
 
   create_table "users", force: :cascade do |t|

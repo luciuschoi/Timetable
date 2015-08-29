@@ -59,12 +59,12 @@ class Lecture < ActiveRecord::Base
         homework = h.to_i
         total = t.to_i
         counts+=1;
-        self.acc_grade = grade/counts;
-        self.acc_workload = workload/counts;
-        self.acc_achievement = achievement/counts;
-        self.acc_level = level/counts;
-        self.acc_homework = homework/counts; 
-        self.acc_total = total/counts;
+        self.acc_grade = grade/counts/10;
+        self.acc_workload = workload/counts/10;
+        self.acc_achievement = achievement/counts/10;
+        self.acc_level = level/counts/10;
+        self.acc_homework = homework/counts/10; 
+        self.acc_total = total/counts/10;
 
     else
         grade = self.acc_grade * counts + g.to_i
@@ -74,13 +74,12 @@ class Lecture < ActiveRecord::Base
         homework = self.acc_homework * counts + h.to_i
         total = t.to_i
         counts+=1;
-        self.acc_grade = grade/counts
-        self.acc_workload = workload/counts
-
-        self.acc_achievement = achievement/counts
-        self.acc_level = level/counts
-        self.acc_homework = homework/counts 
-        self.acc_total = total/counts 
+        self.acc_grade = grade/counts/10
+        self.acc_workload = workload/counts/10
+        self.acc_achievement = achievement/counts/10
+        self.acc_level = level/counts/10
+        self.acc_homework = homework/counts/10
+        self.acc_total = total/counts/10
 
     end   
   end

@@ -16,7 +16,10 @@ class StaticPagesController < ApplicationController
       @valuations=Valuation.all.limit(10)
   	end
 
-
+    respond_to do |format|
+       format.js
+       format.html # home.html.erb
+     end
   end
 
   def rank

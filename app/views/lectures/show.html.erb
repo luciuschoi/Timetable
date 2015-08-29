@@ -9,19 +9,84 @@
 			<p class="lead">
 				<%= @lecture.professor %></p>
 
-		</div><!-- /.col-md-8 -->
+	</div><!-- /.col-md-6 -->
 
-		<div class="col-md-3"></div>
-	</div>
+	<div class="col-md-3"></div>
+</div>
 
 	<div class ="row">
 		<div class="col-md-3"></div>
+		<!-- grade : 학점 -->
+				<div class="col-md-6">
+					<div class = "valuation_item grade">
+						학점
+					</div>
+					<%= render 'shared/show_progress_bar', :var => @lecture.acc_grade%>
+				</div>
 
-		<%= render 'lectures/xtachi' %> 
-		<%= render 'static_pages/progress_bar' %>
+	</div>			
+
+	<div class ="row">
+		<div class="col-md-3"></div>
+				<!-- workload : 공부량 -->
+				<div class="col-md-6">
+					<div class = "valuation_item grade">
+						공부량
+					</div>
+					<%= render 'shared/show_progress_bar', :var => @lecture.acc_workload%>
+			
+				</div>
+
+	</div>
+	
+	<div class= "row">		
+		<div class="col-md-3"></div>	
+				<!-- level : 난이도 -->
+				<div class="col-md-6">	
+					<div class = "valuation_item grade">
+						난이도 
+					</div>
+					<%= render 'shared/show_progress_bar', :var => @lecture.acc_level%>
+				
+				</div>
+
+	</div>
+	
+	<div class= "row">			
+		<div class="col-md-3"></div>
+				<!-- achievement : 성취감 -->
+				<div class="col-md-6">
+					<div class = "valuation_item grade">					
+						성취감
+					</div>
+					<%= render 'shared/show_progress_bar', :var => @lecture.acc_achievement%>
+				</div>	
+				
+
+	</div>	
+
+
+	<div class= "row">		
+		<div class="col-md-3"></div>
+				<!-- total : 총평 -->
+				<div class = "col-md-6">
+					<div class = "valuation_item">
+						총평 
+					</div>
+					<%= render 'shared/show_star', :var => @lecture.acc_total %>
+				</div>
+	</div>
+
+
+
+	
 		<div class="col-md-3"></div>
 
 	</div>
+
+	<%= render 'static_pages/progress_bar' %>
+
+
 
 	<div class ="row">
 		<div class="col-md-3"></div>
@@ -29,9 +94,9 @@
 			<div class="comment-box">
 
 				<ol class= "comments">
-					<%= render @comments %>
+					<%= render @valuations_content %>
 				</ol>
-				<%= render 'shared/comment_form' %>
+	
 			</div>
 		</div>
 		<div class="col-md-3"></div>

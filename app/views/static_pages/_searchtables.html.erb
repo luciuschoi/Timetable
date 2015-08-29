@@ -1,0 +1,28 @@
+  <table class="table nogap">
+         <thead>
+      
+         <tr class> 
+
+           <th>교수명</th>
+           <th>강의명</th>
+           <th>평점</th>
+           
+         </tr>
+         </thead>
+    	 <tbody>     
+		<% @lectures.each do |lec| %>
+	
+    <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
+    <td id="tb_unspot"><%=lec.professor%> </td>
+    <td id="tb_spot" width="30%"><%= lec.subject%></font></td>
+    <td text-align="left"> <font color='red'> <%= lec.acc_total %> </font> <%= render 'shared/show_star',:var=> lec.acc_total%> </td>
+
+		</tr>
+
+   	   <% end %>
+   	   	</tbody>
+   	   	</table>
+     <div align='center'>   
+   	   <%= will_paginate @lectures %>
+     </div>
+ 
