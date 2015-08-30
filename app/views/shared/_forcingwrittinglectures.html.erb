@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-md-3"></div>
+		<div class="col-md-6">
+		  <div class="table-responsive">
+		        <table class="table nogap table-striped table-hover">
+		         <thead>
+		      
+		         <tr class> 
+
+
+		           <th></th>
+		           <th></th>
+		           <th></th>
+		         </tr>	
+		         </thead>
+					 <%if !params[:search].nil?%>	         
+		    	 <tbody>     
+				<% @lectures.each do |lec| %>
+			
+		    <tr class="lovelyrow" onclick="location.href='<%=writtingform_lecture_url(lec)%>'" >
+				    <td id="tb_unspot" width="20%"><%=lec.professor%> </td>
+				    <td id="tb_spot" width="30%"><%= lec.subject%></td>
+					<td id="tb_unspot" witdh="40%"><font color='red'><%=lec.acc_total%></font>
+					<%= render 'shared/show_star',:var=> lec.acc_total%></td>
+			</tr>
+
+		   	   <% end %>
+		   	   	</tbody>
+	 <% end %>	   	   	
+		   	   	</table>
+		   	   	</div>
+		   	   	</div>
+		 	 
+
+		  	</div> 
+		 
+			<div class="col-md-2"></div >	 
+
+		   
+
+		</div>    
+	 <%if !params[:search].nil?%>	
+		<div class="row">
+			<div class="col-md-2"></div>   
+			<div class="col-md-8" align="center">
+			<%= will_paginate @lectures %>
+			</div>
+			<div class="col-md-2"></div>
+			</div>
+    <% end %>	
+
+        </div>
+    <div class="col-md-3"></div>   
+</div>

@@ -19,6 +19,7 @@
 //= require_tree ./
 
 
+  
 $(function() {
 $("#lecturetables").on("click", ".pagination a", function(){
     $.getScript(this.href);
@@ -121,7 +122,7 @@ $("#lecturetables").on("click", ".pagination a", function(){
   FB.logout(function(response) {
         // Person is now logged out
       });
-    });
+  //  });
      
 $(function () {
   $('#lecturetables .pagination a').live('click', function () {

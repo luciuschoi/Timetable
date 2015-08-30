@@ -4,7 +4,7 @@
 	 많은 학우들에게 도움이 되기 위해 <br>
 	 강의평가 4회 이상 부탁드립니다.</p>
 
-	 <h2>강의 평가 4번 남았어요 ! </h2>
+	 <h2>강의 평가 <%=4-current_user.valuations.count%>번 남았어요 ! </h2>
     <%= form_tag forcingwritting_path, :method => 'get' do %>
  
       <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>
@@ -15,65 +15,14 @@
      </div>
 
      <br><br>
-
-<div class="row">
-	<div class="col-md-3"></div>
-		<div class="col-md-6">
-		  <div class="table-responsive">
-		        <table class="table nogap table-striped table-hover">
-		         <thead>
-		      
-		         <tr class> 
-
-
-		           <th></th>
-		           <th></th>
-		           <th></th>
-		         </tr>	
-		         </thead>
-					 <%if !params[:search].nil?%>	         
-		    	 <tbody>     
-				<% @lectures.each do |lec| %>
-			
-		    <tr class="lovelyrow" onclick="gotowrittingform(<%=lec.id%>)" >
-				    <td id="tb_unspot" width="20%"><%=lec.professor%> </td>
-				    <td id="tb_spot" width="30%"><%= lec.subject%></td>
-					<td id="tb_unspot" witdh="10%"><font color='red'><%=lec.acc_total%></font></td>
-			</tr>
-
-		   	   <% end %>
-		   	   	</tbody>
-	 <% end %>	   	   	
-		   	   	</table>
-		   	   	</div>
-		   	   	</div>
-		 	 
-
-		  	</div> 
-		 
-			<div class="col-md-2"></div >	 
-
-		   
-
-		</div>    
-	 <%if !params[:search].nil?%>	
-		<div class="row">
-			<div class="col-md-2"></div>   
-			<div class="col-md-8" align="center">
-			<%= will_paginate @lectures %>
-			</div>
-			<div class="col-md-2"></div>
-			</div>
-    <% end %>	
-
-        </div>
-    <div class="col-md-3"></div>   
-</div>
+     <div class="sort_paginate_ajax" id="forcingwrittinglectures">
+		     <%= render 'shared/forcingwrittinglectures' %>
+     </div>
 
 <script>
 	function gotowrittingform(lec_num)
 	{
-		window.location = "http://192.168.0.200:3003/lectures/"+lec_num.toString()+"/writtingform" ;
+		window.location = "/lectures/"+lec_num.toString()+"/writtingform" ;
 
 	}
 

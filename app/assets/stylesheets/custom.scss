@@ -32,6 +32,11 @@ div{
 }
 
 
+
+#grade_text{
+  display: block;
+  
+}
 .row{
   padding-top: 30px;
 }
@@ -237,9 +242,15 @@ table.nogap{
 
 .progress{
   height : 10px;
-  width : 40%;
+  width : 80%;
+  align : left;
+  display : inline-block;
+  margin-left : 50px;
 }
-
+#acc_progress{
+  margin:0;
+  width : 30%;
+}
 
 
 /* side bar */
@@ -413,12 +424,14 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .valuation_star {
+  height : 40px;
+  width : 60%;
   span {
     float:left;
     height : 25px;
     width : 25px;
     background : url("unactivated_star.png");
-    display : block;
+    display : inline;
     background-repeat: no-repeat;
   }
   .active{
@@ -426,7 +439,7 @@ center;      vertical-align: middle;     font-size:15px;
     width : 25px;
     height : 25px;
     background : url("activated_star.png");
-    display : block;
+    display : inline;
     background-repeat: no-repeat;
   }
 }
@@ -435,7 +448,7 @@ center;      vertical-align: middle;     font-size:15px;
   
   float:left;
   padding-right:15px;
-  width : 55px;
+  width : 65px;
   .grade{
     text-align:right;
     width : 45px;
@@ -454,5 +467,89 @@ center;      vertical-align: middle;     font-size:15px;
 .show_comment{
   float : none;
 }
+
+
+/* 강제 강의평가 박스 */
+.writtingform_box
+{
+  background: white;
+  border:1px solid;
+  padding-top: 0px;
+  padding-left:0px;
+  padding-bottom: 20px;
+  width: 40%;
+}
+
+.message{
+  display : block;
+  width: 100%;
+}
+
+#homework_text{
+  display :inline;
+}
+
+
+/*search_box */
+.search_box
+{
+  background:white;
+  margin :10px;
+}
+
+
+
+
+/* 세부강의 */
+.detail_lecture_row{
+  padding-top :0px;
+  
+  .detail_lecture_box{
+    background-color: white;
+  }
+  .professor_section{
+    border-bottom: 1px solid $gray-lighter;
+  }
+  .lecture_valuation{
+    padding-top:20px;
+  }
+
+}
+.total_star {
+  width:50%;
+  height:50px;
+  .total_text{
+    float:left;
+    margin-right:20px;
+  }
+  .total_point{
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

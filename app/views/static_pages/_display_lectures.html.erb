@@ -17,35 +17,46 @@
 					<div class = "valuation_item grade">
 						학점
 					</div>
-					<%= render 'shared/show_progress_bar', :var => v.grade%>
+					<div class="progress" >
+						<%= render 'shared/show_progress_bar', :var => v.grade%>
+					</div>
 				</div>
 				<!-- workload : 공부량 -->
 				<div>
 					<div class = "valuation_item grade">
 						공부량
 					</div>
-					<%= render 'shared/show_progress_bar', :var => v.workload%>
+					<div class="progress" >
+						<%= render 'shared/show_progress_bar', :var => v.workload%>
+					</div>
 				</div>
 				<!-- level : 난이도 -->
 				<div>
 					<div class = "valuation_item grade">
 						난이도 
 					</div>
-					<%= render 'shared/show_progress_bar', :var => v.level%>
+					<div class="progress" >
+						<%= render 'shared/show_progress_bar', :var => v.level%>
+					</div>
 				</div>
 				<!-- achievement : 성취감 -->
 				<div>
 					<div class = "valuation_item grade">					
 						성취감
 					</div>
-					<%= render 'shared/show_progress_bar', :var => v.achievement%>
+					<div class="progress" >
+						<%= render 'shared/show_progress_bar', :var => v.achievement%>
+					</div>
 				</div>
 				<!-- total : 총평 -->
 				<div class = "total">
 					<div class = "valuation_item">
 						총평 
 					</div>
-					<%= render 'shared/show_star', :var => v.total %>
+					<!-- show_star의 재사용성을 위해 div .valuation_star 끄집어냄 -->
+					<div class = "valuation_star">
+						<%= render 'shared/show_star', :var => v.total %>
+					</div>
 				</div>
 
 				<div>
