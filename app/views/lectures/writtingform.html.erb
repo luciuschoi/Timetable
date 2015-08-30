@@ -1,25 +1,54 @@
-<div class="container-fluid writtingform_box">
-
-<div class = "row ">
-	<div class="col-md-3"></div>
-
-		<div class="col-md-6">
-
-			<h2 class="inline-blk"> <%= @lecture.subject %> </h2> <span><%= @lecture.major%></span>
-		
-			<p class="lead">
-				<%= @lecture.professor %></p>
-
-		</div><!-- /.col-md-8 -->
-
-	<div class="col-md-3"></div>
-	</div>
-
-	
-
-	<%= render 'static_pages/progress_bar' %>
+<div class = "row row_padding_zero">
+    <div class = "col-md-9 col-md-offset-2">
+        <div class = "row row_padding_zero">
+            <div class="col-md-8 writtingform_box">
+                <div style = "background : white;">
+                <h3> 아뭐듣지! </h3>
+                <p>
+                    아뭐듣지는 학우 여러분께 보다 많은 강의평가를 제공하기 위한 서비스입니다.
+                </p>
+                <p>
+                    강의평가 4개 이상 작성해주셔야, 다른 학우들의 강의 평가를 열람할 수 있습니다.
+                </p>
+                <p>
+                    학우 여러분의 솔직하고, 성실한 평가만이 강의를 개선할 수 있습니다.
+                </p>
+                
+            </div>
+        </div>
+    </div>
 </div>
-	
+
+
+<div class = "row row_padding_zero">
+<div class = "col-md-9 col-md-offset-2">
+        <div class = "row">
+    		<div class="col-md-8 writtingform_box"  style = "padding-bottom:25px;">
+
+    			<h2 class="inline-blk"> 
+                    <%= @lecture.subject %> 
+                </h2> 
+                <span><%= @lecture.professor %></span>
+    		
+    			
+                
+                <div class = "row">
+                    <div class = "col-md-2">
+                        강의평가
+                    </div>
+                    <div class = "col-md-10">
+                        <%= render 'static_pages/progress_bar' %>
+                    </div>
+                    
+    		</div><!-- /.col-md-8 -->
+        </div>
+
+        	
+
+        
+</div>
+</div>
+
 
 
 <script>

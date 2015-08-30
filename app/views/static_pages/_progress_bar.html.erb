@@ -1,12 +1,12 @@
 
 <%= render 'shared/progress_bars' %>
 
-<div class ="row">
-	<div class="col-md-3"></div>
+<div class ="row ">
 	<div class="col-md-6">
 	
 				강의평을 남겨주세요(40자 이상)
-				 <textarea class="message" rows='3' cols='70' maxlength="500"></textarea>
+				 <textarea class="message" rows='7' cols='200' maxlength="500"
+				 placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요! 그리고 생각보다 40자는 짧습니다^~^"></textarea>
 			          <span id="showremain"></span>
 
 	
@@ -599,7 +599,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 
 				$('#first_total').attr('src',"<%= image_path "activated_star.png", :id => "first_total" %>");
 				$('#first_total').on('mouseout');
-				$('#total_text').text('1');
+				$('#total_text').text('최악이에요');
 			
 
 	});
@@ -619,7 +619,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#first_total').off('mouseout');
 
 
-		total=20;
+		total=1;
 	});
 
 	// second_total
@@ -627,7 +627,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 				$('#first_total').attr('src',"<%= image_path "activated_star.png", :id => "first_total" %>");
 				$('#second_total').attr('src',"<%= image_path "activated_star.png", :id => "second_total" %>");
 				$('#second_total').on('mouseout');
-				$('#total_text').text('2');
+				$('#total_text').text('별로에요');
 			
 
 	});
@@ -648,7 +648,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#first_total').off('mouseout');
 		$('#second_total').off('mouseout');
 		
-		total=40;
+		total=2;
 	});
 
 	// third_total
@@ -657,7 +657,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 				$('#second_total').attr('src',"<%= image_path "activated_star.png", :id => "second_total" %>");
 				$('#third_total').attr('src',"<%= image_path "activated_star.png", :id => "third_total" %>");
 				$('#third_total').on('mouseout');
-				$('#total_text').text('3');
+				$('#total_text').text('보통이요');
 			
 
 	});
@@ -679,7 +679,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#first_total').off('mouseout');
 		$('#second_total').off('mouseout');
 		$('#third_total').off('mouseout')
-		total=60;
+		total=3;
 	});
 
 
@@ -691,7 +691,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 				$('#third_total').attr('src',"<%= image_path "activated_star.png", :id => "third_total" %>");
 				$('#fourth_total').attr('src',"<%= image_path "activated_star.png", :id => "fourth_total" %>");
 				$('#fourth_total').on('mouseout');
-				$('#total_text').text('4');
+				$('#total_text').text('좋아요');
 			
 
 	});
@@ -715,7 +715,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_total').off('mouseout');
 		$('#third_total').off('mouseout');
 		$('#fourth_total').off('mouseout');
-		total=80;
+		total=4;
 	});
 
 
@@ -728,7 +728,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 				$('#fourth_total').attr('src',"<%= image_path "activated_star.png", :id => "fourth_total" %>");
 				$('#fifth_total').attr('src',"<%= image_path "activated_star.png", :id => "fourth_total" %>");
 				$('#fourth_total').on('mouseout');
-				$('#total_text').text('5');
+				$('#total_text').text('너무 좋아요!');
 			
 
 	});
@@ -754,7 +754,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#third_total').off('mouseout');
 		$('#fourth_total').off('mouseout');
 		$('#fifth_total').off('mouseout');
-		total=100;
+		total=5;
 	});
 
 

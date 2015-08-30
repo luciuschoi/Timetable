@@ -1,17 +1,24 @@
+<a href = "<%= lecture_path(v.lecture)%>" style = "color : black">
 <div class = "row user_valuation_box"> 
 	<div class = "col-md-8 valuation_contents">
 		<div class = "user_section">
-			<h4 class = "nickname_attr"> <%= v.user.nickname %></h4> <span class = "nickname_mgn"> 님의 평가</span>
+			<h4 class = "nickname_attr"><%= v.lecture.subject %> </h4> <span class = "nickname_mgn"><%= v.lecture.professor %> 교수님</span>
 		</div>
 
 		<!-- border-bottom 아래 --> 
 		<div class = "row row_pd_top">
-			<div class = "col-md-4">
-				<h4><%= v.lecture.subject %></h4>
-					<%= v.lecture.professor %>
+			<div class = "col-md-6">
+				<div style = "height : 40px">
+					<h4 style = "width : 150px; display: inline;"><%= v.user.nickname %>님의 평가</h4> 
+					<div style = "width : 150px; display: inline; margin-left:5px"><%= v.timestamp_division %></div>
+				</div>
+
+				<div>
+					<%= truncate v.content, length: 50%>
+				</div>	
 			</div>
 
-			<div class = "col-md-8">
+			<div class = "col-md-5">
 				<!-- grade : 학점 -->
 				<div>
 					<div class = "valuation_item grade">
@@ -59,16 +66,9 @@
 					</div>
 				</div>
 
-				<div>
-					<div>					
-						의견
-					</div>
-					<div>
-						<%= truncate v.content, length: 20%>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 
 	</div>
-</div>
+</div></a>

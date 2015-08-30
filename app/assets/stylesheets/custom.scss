@@ -34,9 +34,31 @@ div{
 
 
 #grade_text{
-  display: block;
-  
+  display: inline;
+  margin-left:10px;
 }
+
+#workload_text{
+  display: inline;
+  margin-left:10px;
+}
+#achievement_text{
+  display: inline;
+  margin-left:10px;
+}
+#level_text{
+  display: inline;
+  margin-left:10px;
+}
+#homework_text{
+  display: inline;
+  margin-left:10px;
+}
+#total_text{
+  display: inline;
+  margin-left:10px; 
+}
+
 .row{
   padding-top: 30px;
 }
@@ -242,10 +264,13 @@ table.nogap{
 
 .progress{
   height : 10px;
-  width : 80%;
-  align : left;
-  display : inline-block;
+  width : 60%;
   margin-left : 50px;
+}
+#evaluate_progress{
+  margin-left:0;
+  margin-top:5px;
+  float:left;
 }
 #acc_progress{
   margin:0;
@@ -425,7 +450,7 @@ center;      vertical-align: middle;     font-size:15px;
 
 .valuation_star {
   height : 40px;
-  width : 60%;
+  width : 100%;
   span {
     float:left;
     height : 25px;
@@ -473,20 +498,17 @@ center;      vertical-align: middle;     font-size:15px;
 .writtingform_box
 {
   background: white;
-  border:1px solid;
-  padding-top: 0px;
-  padding-left:0px;
-  padding-bottom: 20px;
-  width: 40%;
+  border:1px solid $gray-lighter;
 }
 
 .message{
   display : block;
-  width: 100%;
+  width: 500px;
 }
 
-#homework_text{
-  display :inline;
+
+.row_padding_zero{
+  padding-top:0;
 }
 
 

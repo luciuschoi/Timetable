@@ -6,9 +6,7 @@
 <% end %>
 
 <div class="row" id="recent">
-
-	<div class="col-md-2"></div>   
-	<div class="col-md-8"  align="left">
+	<div class="col-md-8 col-md-offset-2"  align="left">
 
     <!-- 학과 선택 dropdown -->
     <div class="btn-group">
@@ -40,18 +38,25 @@
 
   <%= render 'home_daemoon'%>
   
-  <div id="lecturelist">
-    <% if params[:search] %> 
-      
-      <%= render 'home_search' %>
+  
 
-    <% else %>
-      <%= render 'home_user' %>
-    <%end%>
+  </div> <!-- col-md-8 -->
+</div>  <!-- row -->
+
+
+<div class = "row">
+  <div class = "col-md-9 col-md-offset-2">
+    <div id="lecturelist">
+      <% if params[:search] %> 
+        
+        <%= render 'home_search' %>
+
+      <% else %>
+        <%= render 'home_user' %>
+      <%end%>
+    </div>
   </div>
-
-
-
+</div>
 
 
 <script>

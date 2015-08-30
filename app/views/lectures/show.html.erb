@@ -6,7 +6,7 @@
 		<div class="col-md-6 detail_lecture_box">
 			
 			<div class = "professor_section">
-				<h2 class="inline-blk"> <%= @lecture.subject %> </h2> <span><%= @lecture.professor %></span>
+				<h3 class="inline-blk"> <%= @lecture.subject %> </h3> <span><%= @lecture.professor %> 교수님</span>
 			</div>
 
 			<!-- 1번째 줄 -->
@@ -29,16 +29,16 @@
 					<!-- </div> -->
 				</div>
 
-				<div style = "width : 50%; float : left">
-					<span>
+				<div style = "width : 60%; display:inline">
+					<div style = "float:left; margin-right : 10px; ">
 						난이도
-					</span>
-					<div class = "progress" id = "acc_progress">
+					</div>
+					<div class = "progress" id = "acc_progress" style = "float:left">
 						<%= render 'shared/show_progress_bar', :var => @lecture.acc_level%>
 					</div>
-					<span>
+					<div style = "display:inline; margin-left:10px;">
 						<%= @lecture.acc_level %>
-					</span>
+					</div>
 				</div>
 
 			</div> 			
@@ -48,27 +48,27 @@
 			<!-- 2번째 줄 -->
 			<div class = "lecture_valuation" style = "height : 50px">
 				<div style = "width : 50%; float :left; display : inline">
-					<span>
+					<div style = "float:left; margin-right : 10px; ">
 						학점
-					</span>
-					<div class = "progress" id = "acc_progress">
+					</div>
+					<div class = "progress" id = "acc_progress" style = "float:left">
 						<%= render 'shared/show_progress_bar', :var => @lecture.acc_grade%>
 					</div>
-					<span>
+					<div style = "display:inline; margin-left:10px;">
 						<%= @lecture.acc_grade %>
-					</span>
+					</div>
 				</div>
 
-				<div  style = "width : 50%; float:left; display : inline">
-					<span>
-						공부량
-					</span>
-					<div class = "progress" id = "acc_progress">
+				<div  style = "width : 60%; display : inline">
+					<div style = "float:left; margin-right : 10px; ">
+						공부양
+					</div>
+					<div class = "progress" id = "acc_progress" style = "float:left">
 						<%= render 'shared/show_progress_bar', :var => @lecture.acc_workload%>
 					</div>
-					<span>
+					<div style = "display:inline; margin-left:10px;">
 						<%= @lecture.acc_workload %>
-					</span>
+					</div>
 				</div>
 
 			</div>
@@ -76,28 +76,28 @@
 
 
 			<div class = "lecture_valuation" style = "height : 50px">
-				<div style = "width : 50%; float :left; display : inline">
-					<span>
+				<div style = "width : 50%; float :left;">
+					<div style = "float:left; margin-right : 10px; ">
 						과제양
-					</span>
-					<div class = "progress" id = "acc_progress">
+					</div>
+					<div class = "progress" id = "acc_progress" style = "float:left">
 						<%= render 'shared/show_progress_bar', :var => @lecture.acc_homework%>
 					</div>
-					<span>
+					<div style = "display:inline; margin-left:10px;">
 						<%= @lecture.acc_homework %>
-					</span>
+					</div>
 				</div>
 
-				<div  style = "width : 50%; float:left; display : inline">
-					<span>
+				<div  style = "width : 60%; display : inline">
+					<div style = "float:left; margin-right : 10px; ">
 						성취감
-					</span>
-					<div class = "progress" id = "acc_progress">
+					</div>
+					<div class = "progress" id = "acc_progress" style = "float:left">
 						<%= render 'shared/show_progress_bar', :var => @lecture.acc_achievement%>
 					</div>
-					<span>
+					<div style = "display:inline; margin-left:10px;">
 						<%= @lecture.acc_achievement %>
-					</span>
+					</div>
 				</div>
 
 			</div>
@@ -115,91 +115,33 @@
 </div>
 
 
-	<div class ="row">
-		<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<div class = "valuation_item grade">
-						학점
-					</div>
-					<%= render 'shared/show_progress_bar', :var => @lecture.acc_grade%>
-				</div>
-
-	</div>			
-
-	<div class ="row">
-		<div class="col-md-3"></div>
-				<!-- workload : 공부량 -->
-				<div class="col-md-6">
-					<div class = "valuation_item grade">
-						공부량
-					</div>
-					<%= render 'shared/show_progress_bar', :var => @lecture.acc_workload%>
-			
-				</div>
-
-	</div>
-	
-	<div class= "row">		
-		<div class="col-md-3"></div>	
-				<!-- level : 난이도 -->
-				<div class="col-md-6">	
-					
-				
-				</div>
-
-	</div>
-	
-	<div class= "row">			
-		<div class="col-md-3"></div>
-				<!-- achievement : 성취감 -->
-				<div class="col-md-6">
-					<div class = "valuation_item grade">					
-						성취감
-					</div>
-					<%= render 'shared/show_progress_bar', :var => @lecture.acc_achievement%>
-				</div>	
-				
-
-	</div>	
-
-
-	<div class= "row">		
-		<div class="col-md-3"></div>
-				<!-- total : 총평 -->
-				<div class = "col-md-6">
-					<div class = "valuation_item">
-						총평 
-					</div>
-					<%= render 'shared/show_star', :var => @lecture.acc_total %>
-				</div>
-	</div>
 
 
 
-	
-		<div class="col-md-3"></div>
-
-	</div>
-
-	<%= render 'static_pages/progress_bar' %>
 
 
 
-	<div class ="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6 border-box" id ="comments_border_top">
-			<div class="comment-box">
 
-				<ol class= "comments">
-					<%= render @valuations_content %>
-				</ol>
-	
-			</div>
+
+
+
+
+
+
+
+
+
+
+  <% @lecture.valuations.each do |v| %>
+	<div class = "row">
+		
+		
+		<div class = "col-md-9 col-md-offset-3">
+    		<%= render 'static_pages/display_lectures', :v => v %>
 		</div>
-		<div class="col-md-3"></div>
+    	
+    </div>
+    
+  <% end %> 
 
-	</div>
 
-
-
-</div>

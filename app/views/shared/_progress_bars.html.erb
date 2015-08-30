@@ -1,182 +1,175 @@
-<div class="row">
-<div class="col-md-3"></div>
-<div class="col-md-6">
+<div class="row" style = "padding-top:0;">
+
+<div class="col-md-6" style = "width : 90%">
 	<div class="valuation_item grade">
 	학점
 	</div>
-	<div class="progress" >
+	<div class="progress" id = "evaluate_progress">
 
-			<div class="progress-bar progres-bar-success" id ="first_grade" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-success evaluate_progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" id ="first_grade" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_grade" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_grade" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_grade" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_grade" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_grade" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_grade" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 	</div>
-</div>
-<div class="col-md-3">  
 	<div id="grade_text"></div>
 </div>
+
+
+
 </div>
-<div class="row">	
-<div class="col-md-3"></div>
-	<div class="col-md-6">
+<div class="row row_padding_reduction">	
+
+	<div class="col-md-6" style = "width : 90%">
 		<div class="valuation_item grade">
 		공부량
 		</div>
-		<div class="progress" >
+		<div class="progress" id = "evaluate_progress">
 
-				<div class="progress-bar progres-bar-success" id ="first_workload" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-info" id ="first_workload" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
-				<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_workload" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_workload" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
-				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_workload" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_workload" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
-				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_workload" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_workload" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
 
 		</div>  
+	
+		<div id="workload_text"></div>
 	</div>
-<div class="col-md-3">  
-	<div id="workload_text"></div>
-</div>
 
 </div>
 
-<div class="row">
-<div class="col-md-3"></div>
-	<div class="col-md-6">
+<div class="row row_padding_reduction">
+
+	<div class="col-md-6" style = "width : 90%">
 		<div class="valuation_item grade">
 		성취감
 		</div>
-		<div class="progress" >
+		<div class="progress" id = "evaluate_progress">
 
-			<div class="progress-bar progres-bar-success" id ="first_achievement" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-warning" id ="first_achievement" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_achievement" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_achievement" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_achievement" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_achievement" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_achievement" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_achievement" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
 
-		</div>  
+		</div> 
+		<div id="achievement_text"></div> 
 	</div>	
-<div class="col-md-3">  
-	<div id="achievement_text"></div>
+
+
 </div>
 
-</div>
 
+<div class="row row_padding_reduction">
 
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6">
+	<div class="col-md-6" style = "width : 90%">
 		<div class="valuation_item grade">
 		난이도
 		</div>
-		<div class="progress" >
+		<div class="progress" id = "evaluate_progress">
 
-			<div class="progress-bar progres-bar-success" id ="first_level" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-danger" id ="first_level" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_level" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_level" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_level" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_level" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
-			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_level" aria-valuemax="25" style="width: 25%;">
+			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_level" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 			    <span class="sr-only">0% Complete</span>
 			</div>
 
 
 		</div>  
-	</div>
-<div class="col-md-3">  
 	<div id="level_text"></div>
+
+	</div>
 </div>
 
-</div>
 
+<div class="row row_padding_reduction">
 
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6">
+	<div class="col-md-6" style = "width : 90%">
 		<div class="valuation_item grade">
 	    과제량
 	    </div>
 
-			<div class="progress" >
+			<div class="progress" id = "evaluate_progress" >
 
 
-				<div class="progress-bar progres-bar-success" id ="first_homework" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-success" id ="first_homework" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
-				<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_homework" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "second_homework" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
-				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_homework" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "third_homework" aria-valuemax="25" style="width: 25%; border-right:2px solid white">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
-				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_homework" aria-valuemax="25" style="width: 25%;">
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" id = "fourth_homework" aria-valuemax="25" style="width: 25%;">
 				    <span class="sr-only">0% Complete</span>
 				</div>
 
 
 			</div>  
-	</div>
-	<div class="col-md-3">  
 		<div id="homework_text"></div>
 	</div>
-
 </div>
 	
 
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6">
+<div class="row row_padding_reduction">
+
+	<div class="col-md-6" style = "width : 90%">
 		<div class="valuation_item grade">
 	     총평
 	     </div>
-			<%= image_tag("unactivated_star.png", size: "30x20", id: "first_total") %>
-			<%= image_tag("unactivated_star.png", size: "30x20", id: "second_total") %>
-			<%= image_tag("unactivated_star.png", size: "30x20", id: "third_total") %>
-			<%= image_tag("unactivated_star.png", size: "30x20", id: "fourth_total") %>
-			<%= image_tag("unactivated_star.png", size: "30x20", id: "fifth_total") %>
-	</div>
-	<div class="col-md-3">  
+			<%= image_tag("unactivated_star.png", size: "30x30", id: "first_total") %>
+			<%= image_tag("unactivated_star.png", size: "30x30", id: "second_total") %>
+			<%= image_tag("unactivated_star.png", size: "30x30", id: "third_total") %>
+			<%= image_tag("unactivated_star.png", size: "30x30", id: "fourth_total") %>
+			<%= image_tag("unactivated_star.png", size: "30x30", id: "fifth_total") %>
+
 		<div id="total_text"></div>
 	</div>
 
