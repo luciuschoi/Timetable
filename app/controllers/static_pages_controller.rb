@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
       lectures_of_major = Lecture.where('major = ?', @lecture_name)
       @lectures = lectures_of_major.order_by_comments.group_by_id
   	else
-      @valuations=Valuation.all.limit(10)
+      @valuations=Valuation.order("created_at DESC").limit(10)
   	end
 
 
