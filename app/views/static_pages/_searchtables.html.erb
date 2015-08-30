@@ -15,7 +15,7 @@
     <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
     <td id="tb_unspot"><%=lec.professor%> </td>
     <td id="tb_spot" width="30%"><%= lec.subject%></font></td>
-    <td text-align="left"> <font color='red'> <%= lec.acc_total %> </font> <%= render 'shared/show_star',:var=> lec.acc_total%> </td>
+    <td text-align="left"> <div id="div_total"><font color='red'> <%= lec.acc_total %> </font> </div><%= render 'shared/show_average_star',:var=> lec.acc_total%> </td>
 
 		</tr>
 
