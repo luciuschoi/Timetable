@@ -102,7 +102,11 @@
 
 			</div>
 
-			<%= link_to '평가하기',  writtingform_lecture_path(@lecture), class: "btn"%>
+			<% if current_user.valuations.find_by(lecture_id: @lecture.id) %>
+				<div class = "btn"> 평가 하셨습니다. </div>
+			<% else %>
+				<%= link_to '평가하기',  writtingform_lecture_path(@lecture), class: "btn"%>
+			<% end %>
 
 		</div><!-- /.col-md-6 -->
 
