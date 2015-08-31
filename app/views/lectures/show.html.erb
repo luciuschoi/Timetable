@@ -22,7 +22,7 @@
 					</div>
 
 					<span>
-						<%= @lecture.acc_total%>
+						<%= @lecture.acc_total.round(2)%>
 					</span>
 					<!-- <div class = "valuation_item grade"> -->
 						
@@ -34,10 +34,10 @@
 						난이도
 					</div>
 					<div class = "progress" id = "acc_progress" style = "float:left">
-						<%= render 'shared/show_progress_bar', :var => @lecture.acc_level%>
+						<%= render 'shared/show_average_bar', :var => @lecture.acc_level%>
 					</div>
 					<div style = "display:inline; margin-left:10px;">
-						<%= @lecture.acc_level %>
+						<%= @lecture.acc_level.round(2) %>
 					</div>
 				</div>
 
@@ -52,10 +52,10 @@
 						학점
 					</div>
 					<div class = "progress" id = "acc_progress" style = "float:left">
-						<%= render 'shared/show_progress_bar', :var => @lecture.acc_grade%>
+						<%= render 'shared/show_average_bar', :var => @lecture.acc_grade%>
 					</div>
 					<div style = "display:inline; margin-left:10px;">
-						<%= @lecture.acc_grade %>
+						<%= @lecture.acc_grade.round(2) %>
 					</div>
 				</div>
 
@@ -64,10 +64,10 @@
 						공부양
 					</div>
 					<div class = "progress" id = "acc_progress" style = "float:left">
-						<%= render 'shared/show_progress_bar', :var => @lecture.acc_workload%>
+						<%= render 'shared/show_average_bar', :var => @lecture.acc_workload%>
 					</div>
 					<div style = "display:inline; margin-left:10px;">
-						<%= @lecture.acc_workload %>
+						<%= @lecture.acc_workload.round(2) %>
 					</div>
 				</div>
 
@@ -81,10 +81,10 @@
 						과제양
 					</div>
 					<div class = "progress" id = "acc_progress" style = "float:left">
-						<%= render 'shared/show_progress_bar', :var => @lecture.acc_homework%>
+						<%= render 'shared/show_average_bar', :var => @lecture.acc_homework%>
 					</div>
 					<div style = "display:inline; margin-left:10px;">
-						<%= @lecture.acc_homework %>
+						<%= @lecture.acc_homework.round(2) %>
 					</div>
 				</div>
 
@@ -93,10 +93,10 @@
 						성취감
 					</div>
 					<div class = "progress" id = "acc_progress" style = "float:left">
-						<%= render 'shared/show_progress_bar', :var => @lecture.acc_achievement%>
+						<%= render 'shared/show_average_bar', :var => @lecture.acc_achievement%>
 					</div>
 					<div style = "display:inline; margin-left:10px;">
-						<%= @lecture.acc_achievement %>
+						<%= @lecture.acc_achievement.round(2) %>
 					</div>
 				</div>
 
@@ -113,11 +113,6 @@
 		
 	</div>
 </div>
-
-
-
-
-
 
 
 
