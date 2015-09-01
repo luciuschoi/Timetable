@@ -64,7 +64,7 @@ class Lecture < ActiveRecord::Base
         self.acc_achievement = achievement/counts/20;
         self.acc_level = level/counts/20;
         self.acc_homework = homework/counts/20; 
-        self.acc_total = total/counts/20;
+        self.acc_total = total/counts;
 
     else
         grade = self.acc_grade * counts + g.to_i/20
@@ -72,7 +72,7 @@ class Lecture < ActiveRecord::Base
         achievement =self.acc_achievement * counts + a.to_i/20
         level = self.acc_level * counts + l.to_i/20
         homework = self.acc_homework * counts + h.to_i/20
-        total = self.acc_total*counts + t.to_i/20
+        total = self.acc_total*counts + t.to_i
         counts+=1;
         self.acc_grade = grade/counts
         self.acc_workload = workload/counts

@@ -1,32 +1,42 @@
-<% if var <= 20 %>
+<% if var <= 1 %>
+	<div class = "valuation_star">
 		<span class = "active"></span>
 		<span class></span>
 		<span class></span>
 		<span class></span>
 		<span class></span>
+	</div>
+<% elsif var <= 2 %>
+	<div class = "valuation_star">
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class></span>
+		<span class></span>
+		<span class></span>
+	</div>
+<% elsif var <= 3 %>
+	<div class = "valuation_star">
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class></span>
+		<span class></span>
+	</div>
+<% elsif var <= 4 %>
+	<div class = "valuation_star">
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class></span>
+	</div>
+<% elsif var <= 5 %>
+	<div class = "valuation_star">
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class = "active"></span>
+		<span class = "active"></span>
+	</div>
 
-<% elsif var <= 40 %>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class></span>
-		<span class></span>
-		<span class></span>
-<% elsif var <= 60 %>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class></span>
-		<span class></span>
-<% elsif var <= 80 %>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class></span>
-<% elsif var <= 100 %>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class = "active"></span>
-		<span class = "active"></span>
 <% end %>
