@@ -19,8 +19,8 @@
 	    				<tr class="lovelyrow" onclick="location.href='<%=writtingform_lecture_url(lec)%>'" >
 			    		<td id="tb_unspot" width="20%"><%=lec.professor%> </td>
 			    		<td id="tb_spot" width="30%"><%= lec.subject%></td>
-						<td id="tb_unspot" witdh="40%" ><div id="div_total"><font color='red'><%=lec.acc_total%></font></div>
-						<%= render 'shared/show_average_star',:var=> lec.acc_total%></td>
+						<td id="tb_unspot" witdh="40%" ><div id="div_total"><font color='red'><%=lec.acc_total  %></font></div>
+						   <%= render 'shared/show_average_star',:var=> lec.acc_total%></td>
 						</tr>
 
 	   	   			<% end %>

@@ -129,7 +129,7 @@ h1{
 
 /*
 tr.lovelyrow{
-  background-color: #F6E3CE;
+ vertical-align:middle
 }
 */
 
@@ -178,9 +178,11 @@ table.nogap{
   height : 50px;
 }
 #tb_unspot{
+ vertical-align:middle;
  color: gray;
  }
 #tb_spot{
+ vertical-align:middle;
   font-weight:bold;
 }
 
@@ -266,16 +268,17 @@ table.nogap{
   height : 10px;
   width : 60%;
   margin-left : 50px;
+  cursor : pointer;
+}
+.progress-bar{
+  border-right:2px solid white
 }
 #evaluate_progress{
   margin-left:0;
   margin-top:5px;
   float:left;
 }
-#acc_progress{
-  margin:0;
-  width : 30%;
-}
+
 
 
 /* side bar */
@@ -426,6 +429,7 @@ center;      vertical-align: middle;     font-size:15px;
     background-color : white;
     padding-top : 15px;
     padding-bottom : 15px;
+    cursor : pointer;
   }
 }
 
@@ -449,9 +453,11 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .valuation_star {
+  margin-top: 5px;
   height : 40px;
   width : 100%;
   span {
+    margin-right:10px;
     float:left;
     height : 25px;
     width : 25px;
@@ -531,6 +537,7 @@ center;      vertical-align: middle;     font-size:15px;
   }
   .professor_section{
     border-bottom: 1px solid $gray-lighter;
+    margin-bottom:20px;
   }
   .lecture_valuation{
     padding-top:20px;
@@ -540,12 +547,42 @@ center;      vertical-align: middle;     font-size:15px;
 .total_star {
   width:50%;
   height:50px;
+  display:inline;
+  float:left;
   .total_text{
     float:left;
     margin-right:20px;
   }
-  .total_point{
+  .left{
+    float:left; 
+    margin-right : 10px; 
+    margin-top:10px;
+  }
+  .right{
+    margin-left:10px;
+    float:right;
+    width: 80px; 
+    text-align:left; 
+    margin-top:10px;
+  }
+}
 
+.valuation_section{
+  width : 50%; float:left; display:inline; height : 50px;
+  .left{
+    float:left; 
+    margin-right : 10px; 
+    margin-top:10px;
+  }
+  .right{
+    float:right;
+    width: 80px; 
+    text-align:left; 
+    margin-top:10px;
+  }
+  #acc_progress{
+    width : 60%;
+    margin-top:15px;
   }
 }
 

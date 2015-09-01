@@ -1,6 +1,5 @@
-<a href = "<%= lecture_path(v.lecture)%>" style = "color : black">
 <div class = "row user_valuation_box"> 
-	<div class = "col-md-8 valuation_contents">
+	<div class = "col-md-8 valuation_contents" onclick="showLecture(<%=v.lecture.id%>)" onmouseover="valuation_mouseover(this)" >
 		<div class = "user_section">
 			<h4 class = "nickname_attr"><%= v.lecture.subject %> </h4> <span class = "nickname_mgn"><%= v.lecture.professor %> 교수님</span>
 		</div>
@@ -25,7 +24,8 @@
 						학점
 					</div>
 					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.grade%>
+						<%= render 'shared/show_progress_bar', :var => v.grade,
+							color: "info"%>
 					</div>
 				</div>
 				<!-- workload : 공부량 -->
@@ -33,8 +33,9 @@
 					<div class = "valuation_item grade">
 						공부양
 					</div>
-					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.workload%>
+					<div class="progress">
+						<%= render 'shared/show_progress_bar', :var => v.workload,
+							color: "success"%>
 					</div>
 				</div>
 				<!-- level : 난이도 -->
@@ -43,7 +44,8 @@
 						난이도 
 					</div>
 					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.level%>
+						<%= render 'shared/show_progress_bar', :var => v.level,
+							color: "warning"%>
 					</div>
 				</div>
 				<!-- achievement : 성취감 -->
@@ -52,9 +54,19 @@
 						성취감
 					</div>
 					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.achievement%>
+						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "danger"%>
 					</div>
 				</div>
+
+				<div>
+					<div class = "valuation_item grade">					
+						성취감
+					</div>
+					<div class="progress" >
+						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "danger"%>
+					</div>
+				</div>
+
 				<!-- total : 총평 -->
 				<div class = "total">
 					<div class = "valuation_item">
@@ -62,7 +74,7 @@
 					</div>
 					<!-- show_star의 재사용성을 위해 div .valuation_star 끄집어냄 -->
 					<div class = "valuation_star">
-						<%= render 'shared/show_star', :var => v.total %>
+						<%= render 'shared/show_star', :var => v.total, color: "info" %>
 					</div>
 				</div>
 
@@ -71,4 +83,40 @@
 		</div>
 
 	</div>
-</div></a>
+</div>
+
+<script>
+	function showLecture(lec_num)
+  {
+      <% if user_login? %>
+        <% if current_user.valuations.count>3 %>
+          window.location="/lectures/"+lec_num.toString()
+         <% else %>
+         window.location="<%=forcingwritting_url%>"
+         <% end %>  
+       <% else %>
+          $.fancybox({
+            type: 'iframe',
+            href: '/forcinglogin',
+              'scrolling' : 'yes',
+                'padding' : 20,
+                'width'   :400,
+                'height'  :300,
+                'transitionIn'    :    'none',
+                'transitionOut'    :    'none',
+                'speedIn'        :    400,
+                'speedOut'        :    200,
+                'autoDimensions'  : false,
+                'overlayShow'    :    true
+
+          });
+       <% end %>        
+  }
+
+  	function valuation_mouseover(valuation_content)
+  	{
+
+  	}
+
+
+</script>
