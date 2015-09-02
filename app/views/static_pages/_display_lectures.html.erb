@@ -1,12 +1,12 @@
 <div class = "row user_valuation_box"> 
-	<div class = "col-md-8 valuation_contents" onclick="showLecture(<%=v.lecture.id%>)" onmouseover="valuation_mouseover(this)" >
+	<div class = "col-xs-8 valuation_contents" onclick="showLecture(<%=v.lecture.id%>)" onmouseover="valuation_mouseover(this)" >
 		<div class = "user_section">
 			<h4 class = "nickname_attr"><%= v.lecture.subject %> </h4> <span class = "nickname_mgn"><%= v.lecture.professor %> 교수님</span>
 		</div>
 
 		<!-- border-bottom 아래 --> 
 		<div class = "row row_pd_top">
-			<div class = "col-md-6">
+			<div class = "col-xs-6">
 				<div style = "height : 40px">
 					<h4 style = "width : 150px; display: inline;"><%= v.user.nickname %>님의 평가</h4> 
 					<div style = "width : 150px; display: inline; margin-left:5px"><%= v.timestamp_division %></div>
@@ -17,25 +17,23 @@
 				</div>	
 			</div>
 
-			<div class = "col-md-5">
+			<div class = "col-xs-5">
 				<!-- grade : 학점 -->
 				<div>
 					<div class = "valuation_item grade">
 						학점
 					</div>
 					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.grade,
-							color: "info"%>
+						<%= render 'shared/show_progress_bar', :var => v.grade%>
 					</div>
 				</div>
 				<!-- workload : 공부량 -->
 				<div>
 					<div class = "valuation_item grade">
-						공부양
+						공부량
 					</div>
-					<div class="progress">
-						<%= render 'shared/show_progress_bar', :var => v.workload,
-							color: "success"%>
+					<div class="progress" >
+						<%= render 'shared/show_progress_bar', :var => v.workload%>
 					</div>
 				</div>
 				<!-- level : 난이도 -->
@@ -44,8 +42,7 @@
 						난이도 
 					</div>
 					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.level,
-							color: "warning"%>
+						<%= render 'shared/show_progress_bar', :var => v.level%>
 					</div>
 				</div>
 				<!-- achievement : 성취감 -->
@@ -54,19 +51,9 @@
 						성취감
 					</div>
 					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "danger"%>
+						<%= render 'shared/show_progress_bar', :var => v.achievement%>
 					</div>
 				</div>
-
-				<div>
-					<div class = "valuation_item grade">					
-						성취감
-					</div>
-					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "danger"%>
-					</div>
-				</div>
-
 				<!-- total : 총평 -->
 				<div class = "total">
 					<div class = "valuation_item">
@@ -74,7 +61,7 @@
 					</div>
 					<!-- show_star의 재사용성을 위해 div .valuation_star 끄집어냄 -->
 					<div class = "valuation_star">
-						<%= render 'shared/show_star', :var => v.total, color: "info" %>
+						<%= render 'shared/show_star', :var => v.total %>
 					</div>
 				</div>
 
@@ -98,7 +85,7 @@
           $.fancybox({
             type: 'iframe',
             href: '/forcinglogin',
-              'scrolling' : 'yes',
+              'scrolling' : 'no',
                 'padding' : 20,
                 'width'   :400,
                 'height'  :300,

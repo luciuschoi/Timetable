@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
-
+   before_action :login_check, only:[:forcingwritting]
   def home
 
     # 검색 했니?
@@ -81,6 +81,11 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  
+  def login_check
+    unless user_login?
+        redirect_to root_url
+    end
+
+  end
   
 end
