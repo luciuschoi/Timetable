@@ -433,8 +433,17 @@ center;      vertical-align: middle;     font-size:15px;
     padding-top : 15px;
     padding-bottom : 15px;
     cursor : pointer;
+  }  
+  .timestamp{
+    color:#AAA;
+  }
+  .name_sentence {
+    font-weight:150;
+    color:#999;
   }
 }
+
+
 
 .row_pd_top {
   padding-top:5px;
@@ -481,6 +490,8 @@ center;      vertical-align: middle;     font-size:15px;
 .valuation_item {
   float:left;
   width : 25%;
+  color : #AAA;
+  font-weight:160;
   .grade{
     text-align:right;
   }

@@ -19,19 +19,7 @@ class StaticPagesController < ApplicationController
   	else
       @valuations=Valuation.order("created_at DESC").limit(10)
   	end
-
-#    respond_to do |format|
-#       format.js
-#       format.html # home.html.erb
-#    end
   end
-
-  def rank
-    
-  end
-
-
-     
 
 
   def forcingwritting
