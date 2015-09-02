@@ -1,5 +1,5 @@
 
-<div class = "row user_valuation_box row_padding_zero"> 
+<div class = "row user_valuation_box"> 
 	<div class = "col-md-8 valuation_contents" onclick="showLecture(<%=v.lecture.id%>)" onmouseover="valuation_mouseover(this)" >
 		
 		<%if current_page? controller: 'static_pages', action:'home' %>
@@ -22,7 +22,7 @@
 					<!-- 만약 현재페이지가 staticpages#home  -->
 					<% if current_page? controller: 'static_pages', action: 'home'%>
 						<%= truncate v.content, length: 50%>.. 
-						<%= link_to "자세히 보기", lecture_path(v.lecture.id) %>
+						<a onclick="showLecture(<%=v.lecture.id%>)">자세히보기</a>
 					<% else %>	
 						<%= v.content %>
 					<% end %>
