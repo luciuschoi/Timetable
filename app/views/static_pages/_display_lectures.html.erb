@@ -1,60 +1,76 @@
-<div class = "row user_valuation_box"> 
+<div class = "row user_valuation_box row_padding_zero"> 
 	<div class = "col-md-8 valuation_contents" onclick="showLecture(<%=v.lecture.id%>)" onmouseover="valuation_mouseover(this)" >
-		<div class = "user_section">
-			<h4 class = "nickname_attr"><%= v.lecture.subject %> </h4> <span class = "nickname_mgn"><%= v.lecture.professor %> 교수님</span>
-		</div>
+		
+		<%if current_page? controller: 'static_pages', action:'home' %>
+
+			<div class = "user_section">
+				<h4 class = "nickname_attr"><%= v.lecture.subject %> </h4> <span class = "nickname_mgn"><%= v.lecture.professor %> 교수님</span>
+			</div>
+
+		<% end %>
 
 		<!-- border-bottom 아래 --> 
 		<div class = "row row_pd_top">
 			<div class = "col-md-6">
 				<div style = "height : 40px">
-					<h4 style = "width : 150px; display: inline;"><%= v.user.nickname %>님의 평가</h4> 
+					<h4 style = "width : 150px; display: inline; font-weight:bold;"><%= v.user.nickname %></h4> 님의 평가
 					<div style = "width : 150px; display: inline; margin-left:5px"><%= v.timestamp_division %></div>
 				</div>
 
 				<div>
-					<%= truncate v.content, length: 50%>
+					<!-- 만약 현재페이지가 staticpages#home  -->
+					<% if current_page? controller: 'static_pages', action: 'home'%>
+						<%= truncate v.content, length: 50%>.. 
+						<%= link_to "자세히 보기", lecture_path(v.lecture.id) %>
+					<% else %>	
+						<%= v.content %>
+					<% end %>
+					<!-- truncate 보여주기 -->
+
+					<!-- 만약 현재페이지가 lectures#show -->
+					<!-- 다 보여주기 -->
+					
 				</div>	
 			</div>
 
-			<div class = "col-md-5">
+			<div class = "col-xs-5">
 				<!-- grade : 학점 -->
-				<div>
-					<div class = "valuation_item grade">
-						학점
+				<div style = "width : 100%" id = "level">
+					<div class = "valuation_item grade" >
+						난이도
 					</div>
-					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.grade,
+					<div class="progress level" id = "home_progress">
+						<%= render 'shared/show_progress_bar', :var => v.level,
 							color: "info"%>
 					</div>
 				</div>
 				<!-- workload : 공부량 -->
 				<div>
 					<div class = "valuation_item grade">
-						공부양
+						학점
 					</div>
-					<div class="progress">
-						<%= render 'shared/show_progress_bar', :var => v.workload,
+					<div class="progress" id = "home_progress">
+						<%= render 'shared/show_progress_bar', :var => v.grade,
 							color: "success"%>
 					</div>
 				</div>
 				<!-- level : 난이도 -->
 				<div>
 					<div class = "valuation_item grade">
-						난이도 
+						공부양 
 					</div>
-					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.level,
+					<div class="progress" id = "home_progress" >
+						<%= render 'shared/show_progress_bar', :var => v.workload,
 							color: "warning"%>
 					</div>
 				</div>
 				<!-- achievement : 성취감 -->
 				<div>
 					<div class = "valuation_item grade">					
-						성취감
+						과제양
 					</div>
-					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "danger"%>
+					<div class="progress" id = "home_progress" >
+						<%= render 'shared/show_progress_bar', :var => v.homework, color: "danger"%>
 					</div>
 				</div>
 
@@ -62,8 +78,8 @@
 					<div class = "valuation_item grade">					
 						성취감
 					</div>
-					<div class="progress" >
-						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "danger"%>
+					<div class="progress" id = "home_progress" >
+						<%= render 'shared/show_progress_bar', :var => v.achievement, color: "info"%>
 					</div>
 				</div>
 
@@ -74,7 +90,7 @@
 					</div>
 					<!-- show_star의 재사용성을 위해 div .valuation_star 끄집어냄 -->
 					<div class = "valuation_star">
-						<%= render 'shared/show_star', :var => v.total, color: "info" %>
+						<%= render 'shared/show_star', :var => v.total %>
 					</div>
 				</div>
 
@@ -108,7 +124,6 @@
                 'speedOut'        :    200,
                 'autoDimensions'  : false,
                 'overlayShow'    :    true
-
           });
        <% end %>        
   }

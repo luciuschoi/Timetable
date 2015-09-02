@@ -270,6 +270,9 @@ table.nogap{
   margin-left : 50px;
   cursor : pointer;
 }
+
+
+
 .progress-bar{
   border-right:2px solid white
 }
@@ -457,17 +460,17 @@ center;      vertical-align: middle;     font-size:15px;
   height : 40px;
   width : 100%;
   span {
-    margin-right:10px;
+    /*margin-right:10px;*/
     float:left;
     height : 25px;
-    width : 25px;
+    width : 12%;
     background : url("unactivated_star.png");
     display : inline;
     background-repeat: no-repeat;
   }
   .active{
     float:left;
-    width : 25px;
+    width : 12%;
     height : 25px;
     background : url("activated_star.png");
     display : inline;
@@ -476,13 +479,10 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .valuation_item {
-  
   float:left;
-  padding-right:15px;
-  width : 65px;
+  width : 25%;
   .grade{
     text-align:right;
-    width : 45px;
   }
 }
 
@@ -531,8 +531,9 @@ center;      vertical-align: middle;     font-size:15px;
 /* 세부강의 */
 .detail_lecture_row{
   padding-top :0px;
-  
+
   .detail_lecture_box{
+    padding-bottom: 20px;
     background-color: white;
   }
   .professor_section{
@@ -554,29 +555,35 @@ center;      vertical-align: middle;     font-size:15px;
     margin-right:20px;
   }
   .left{
+    width:13%;
     float:left; 
     margin-right : 10px; 
     margin-top:10px;
   }
   .right{
-    margin-left:10px;
+    font-size:18px;
     float:right;
-    width: 80px; 
+    width: 20%; 
     text-align:left; 
     margin-top:10px;
   }
 }
 
 .valuation_section{
-  width : 50%; float:left; display:inline; height : 50px;
+  width : 50%;
+  float:left; 
+  display:inline; 
+  height : 50px;
+
   .left{
     float:left; 
     margin-right : 10px; 
     margin-top:10px;
   }
   .right{
+    font-size: 18px;
     float:right;
-    width: 80px; 
+    width: 20%; 
     text-align:left; 
     margin-top:10px;
   }

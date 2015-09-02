@@ -2,6 +2,8 @@ class Valuation < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :lecture
 
+  	scope :join_major, -> { joins(:lecture)}
+
 	def timestamp_division
 		difference = Time.zone.now - created_at
 		# 0 ~ 59초전

@@ -9,17 +9,21 @@ class StaticPagesController < ApplicationController
                                 params[:search]).paginate(:page => params[:page], :per_page => 10 )
     # 검색 안하고 학과 선택했니 ?
     elsif !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
-      @lecture_name = params[:lecture_name]
-      lectures_of_major = Lecture.where('major = ?', @lecture_name)
-      @lectures = lectures_of_major.order_by_comments.group_by_id
+      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name])
+
+      respond_to do |format|
+        format.js
+        format.html #{redirect_to @valuations}
+      end
+
   	else
       @valuations=Valuation.order("created_at DESC").limit(10)
   	end
 
-    respond_to do |format|
-       format.js
-       format.html # home.html.erb
-     end
+#    respond_to do |format|
+#       format.js
+#       format.html # home.html.erb
+#    end
   end
 
   def rank

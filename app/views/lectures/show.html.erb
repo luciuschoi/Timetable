@@ -12,17 +12,18 @@
 
 			<!-- 1번째 줄 -->
 
+
 				<div class = "total_star" style = "float:left">
-					<div class = "left" style = "padding-right:10px;">
-						총평
+					<div class = "left">
+						 총평
 					</div> 
 					
 					<div class = "right">
-						<%= @lecture.acc_total.round(2)%>
+						<span><%= @lecture.acc_total.round(2)%></span>
 					</div>
 
 					<div class = "valuation_star" >
-						<%= render 'shared/show_average_star', :var => @lecture.acc_total %>
+						<%= render 'shared/show_star', :var => @lecture.acc_total %>
 					</div>
 
 				</div>
@@ -110,12 +111,15 @@
 				</div>
 
 
-
-			<% if current_user.valuations.find_by(lecture_id: @lecture.id) %>
-				<div class = "btn"> 평가 하셨습니다. </div>
-			<% else %>
-				<%= link_to '평가하기',  writtingform_lecture_path(@lecture), class: "btn"%>
-			<% end %>
+			<div style = "text-align : center">
+				<% if current_user.valuations.find_by(lecture_id: @lecture.id) %>
+					<div class = "btn btn-success"> 평가 하셨습니다. </div>
+				<% else %>
+					<div>
+						<%= link_to '평가하기',  writtingform_lecture_path(@lecture), class: "btn btn-danger"%>
+					</div>
+				<% end %>
+			</div>
 
 		</div><!-- /.col-md-6 -->
 
@@ -134,10 +138,19 @@
 
 
 
+	<div class = "row row_pd_top">
+		<div class = "col-md-9 col-md-offset-3">
+			<h3> 이 강의에 대한 평가들 </h3>
+		</div>
+	</div>
 
-
-  <% @lecture.valuations.each do |v| %>
-	<div class = "row">
+  <% @valuations.each do |v| %>
+	<div class = "row row_pd_top"  style = "
+    padding-top: 0px;
+    height: 220px;
+    margin-left: 0px;
+    margin-right: 0px;
+">
 		
 		
 		<div class = "col-md-9 col-md-offset-3">
