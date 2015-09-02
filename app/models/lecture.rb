@@ -1,18 +1,21 @@
 class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
+
   validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
-  #has_many :comments, -> { order("comments.created_at DESC") }, dependent: :destroy
+
   has_many :comments 
-  scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
-  scope :group_by_id, ->  { group(:lecture_id)}
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
 
+  scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
+  scope :group_by_id, ->  { group(:lecture_id)}
+
   require 'rubygems'
   require 'roo'
+
 
   def Lecture.accessible_attributes
     ["subject", "professor", "major","lecturetime"]
@@ -39,19 +42,9 @@ class Lecture < ActiveRecord::Base
     end
   end
 
-  def lec_uptachi
-    self.uptachi += 1
-  end
-
-  def lec_hatachi
-    self.hatachi += 1
-  end
-
   def lec_valuation(counts,g,w,a,l,h,t)
 
-    
     if self.acc_grade.nil?
-
         grade =  g.to_i
         workload = w.to_i
         achievement = a.to_i
@@ -80,28 +73,27 @@ class Lecture < ActiveRecord::Base
         self.acc_level = level/counts
         self.acc_homework = homework/counts
         self.acc_total = total/counts
-
     end   
   end
 
 
 
-def self.search(search_from, search)  
-     if search  
+  def self.search(search_from, search)  
+    if search  
       if(search_from=='강의')
-      where('subject LIKE ?', "%#{search}%")  
-    elsif(search_from=='교수')
-      where('professor LIKE ?', "%#{search}%")
-    elsif(search_from=='개설학과')
-      where('major LIKE ?', "%#{search}%")
-    elsif(search_from=='강의시간')
-      where('lecturetime LIKE ?', "%#{search}%")
-    
+        where('subject LIKE ?', "%#{search}%")  
+      elsif(search_from=='교수')
+        where('professor LIKE ?', "%#{search}%")
+      elsif(search_from=='개설학과')
+        where('major LIKE ?', "%#{search}%")
+      elsif(search_from=='강의시간')
+        where('lecturetime LIKE ?', "%#{search}%")
+
       end
-     else  
-     scoped
-     end  
-   end  
+    else  
+      scoped
+    end  
+  end  
 
 
 

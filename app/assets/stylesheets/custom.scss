@@ -272,6 +272,14 @@ table.nogap{
   margin-left : 50px;
   cursor : pointer;
 }
+
+
+
+
+.progress-bar{
+  border-right:2px solid white
+}
+
 #evaluate_progress{
   margin-left:0;
   margin-top:5px;
@@ -458,10 +466,12 @@ center;      vertical-align: middle;     font-size:15px;
   height : 40px;
   width : 100%;
   span {
-    margin-right:1px;
+
+    /*margin-right:10px;*/
     float:left;
-    height : 100%;
-    width : 13%;
+    height : 25px;
+    width : 12%;
+
     background : url("unactivated_star.png");
     display : inline;
     background-repeat: no-repeat;
@@ -469,8 +479,10 @@ center;      vertical-align: middle;     font-size:15px;
   .active{
     margin-right:1px;
     float:left;
-    width : 13%;
-    height : 100%;
+
+    width : 12%;
+    height : 25px;
+
     background : url("activated_star.png");
     display : inline;
     background-repeat: no-repeat;
@@ -478,13 +490,10 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .valuation_item {
-  
   float:left;
-  padding-right:15px;
-  width : 65px;
+  width : 25%;
   .grade{
     text-align:right;
-    width : 45px;
   }
 }
 
@@ -533,8 +542,9 @@ center;      vertical-align: middle;     font-size:15px;
 /* 세부강의 */
 .detail_lecture_row{
   padding-top :0px;
-  
+
   .detail_lecture_box{
+    padding-bottom: 20px;
     background-color: white;
   }
   .professor_section{
@@ -552,7 +562,43 @@ center;      vertical-align: middle;     font-size:15px;
     float:left;
     margin-right:20px;
   }
-  .total_point{
+
+  .left{
+    width:13%;
+    float:left; 
+    margin-right : 10px; 
+    margin-top:10px;
+  }
+  .right{
+    font-size:18px;
+    float:right;
+    width: 20%; 
+    text-align:left; 
+    margin-top:10px;
+  }
+}
+
+.valuation_section{
+  width : 50%;
+  float:left; 
+  display:inline; 
+  height : 50px;
+
+  .left{
+    float:left; 
+    margin-right : 10px; 
+    margin-top:10px;
+  }
+  .right{
+    font-size: 18px;
+    float:right;
+    width: 20%; 
+    text-align:left; 
+    margin-top:10px;
+  }
+  #acc_progress{
+    width : 60%;
+    margin-top:15px;
 
   }
 }
