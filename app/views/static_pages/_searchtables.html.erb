@@ -13,9 +13,9 @@
 		<% @lectures.each do |lec| %>
 	
     <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
-    <td id="tb_unspot"><%=lec.professor%> </td>
+    <td id="tb_unspot" width="10%"><%=lec.professor%> </td>
     <td id="tb_spot" width="30%"><%= lec.subject%></font></td>
-    <td text-align="left"> <div id="div_total"><font color='red'> <%= lec.acc_total %> </font> </div><%= render 'shared/show_average_star',:var=> lec.acc_total%> </td>
+    <td text-align="left" width="20%"> <div id="div_total"><font color='red'> <%= lec.acc_total %> </font> </div><%= render 'shared/show_average_star',:var=> lec.acc_total%> </td>
 
 		</tr>
 
