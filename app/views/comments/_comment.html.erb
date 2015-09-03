@@ -1,16 +1,16 @@
 
 <% if comment %>
 <div class ="row">
-	<div class ="col-xs-2 zero-padding-right">
+	<div class ="col-md-2 zero-padding-right">
 		<span class = "user"> <%= comment.user.nickname %> </span>
 	</div>
-	<div class ="col-xs-10 zero-padding-left" id = "comment-<%=comment.id%>">
+	<div class ="col-md-10 zero-padding-left" id = "comment-<%=comment.id%>">
 		<span class = "comment"> <%= comment.content %> </span>
 	</div>
 </div>
 
 <div class ="row row_padding_reduction">
-	<div class="col-xs-2">
+	<div class="col-md-2">
 		<% if current_user?(comment.user) %>
 		<%= link_to '편집', edit_comment_path(comment.id), remote: true, class: 'comment_edit_btn' %>
 		<%= link_to '삭제', comment_path(comment.id), method: :delete, remote: true, data:
@@ -19,7 +19,7 @@
 
 	</div>
 
-	<div class="col-xs-9 zero-padding-left">
+	<div class="col-md-9 zero-padding-left">
 
 		<li id="<%=comment.id%>-comment_valuation" style ="padding:0px">
 			<% unless logged_in_user? %>

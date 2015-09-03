@@ -6,16 +6,13 @@
 	 강의평가 4회 이상 부탁드립니다.</p>
 
 	 <h2>강의 평가 <%=4-current_user.valuations.count%>번 남았어요 ! </h2>
-   <div align="center">
-
-       <div  id="form1">
-                  <%= form_tag forcingwritting_path, :method => 'get', :class =>'form-inline' do %>
-                    <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe, :class => 'form-control  form-group',:style => "max-width:20%"%>
-                    <%= text_field_tag :search, params[:search], placeholder: :"빈칸은 모든과목검색",:class => 'form-control  form-group' ,:style => "width:50%"%>
-                    <%= submit_tag "찾아줘!", :subejct => nil, :class => 'btn btn-default' %>
-                  <% end %>
-      </div>
-  </div>    
+    <%= form_tag forcingwritting_path, :method => 'get' do %>
+ 
+      <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe%>
+     <%= text_field_tag :search, params[:search], placeholder: :"빈 칸 입력시, 모든 과목을 검색합니다.", size: 65%>
+          <%= submit_tag "찾아줘!", :subejct => nil%>
+       
+      <% end %>
      </div>
 
      <br><br>

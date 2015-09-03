@@ -74,12 +74,10 @@ h1{
 }
 
 #form1{
-  display:inline;
-}
+  display: inline;
+  float: right;
 
-.form-control
-{
-  
+
 }
 #form2{
   width:100%;   
@@ -274,23 +272,16 @@ table.nogap{
 }
 
 
-#writting_form{
-  width :12%;
-}
 
 .progress-bar{
   border-right:2px solid white
 }
-
 #evaluate_progress{
   margin-left:0;
   margin-top:5px;
   float:left;
 }
-#acc_progress{
-  margin:0;
-  width : 30%;
-}
+
 
 
 /* side bar */
@@ -474,26 +465,22 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .valuation_star {
+  margin-top: 5px;
   height : 40px;
   width : 100%;
   span {
-
     /*margin-right:10px;*/
     float:left;
     height : 25px;
     width : 12%;
-
     background : url("unactivated_star.png");
     display : inline;
     background-repeat: no-repeat;
   }
   .active{
-    margin-right:1px;
     float:left;
-
     width : 12%;
     height : 25px;
-
     background : url("activated_star.png");
     display : inline;
     background-repeat: no-repeat;
@@ -562,6 +549,7 @@ center;      vertical-align: middle;     font-size:15px;
   }
   .professor_section{
     border-bottom: 1px solid $gray-lighter;
+    margin-bottom:20px;
   }
   .lecture_valuation{
     padding-top:20px;
@@ -571,11 +559,12 @@ center;      vertical-align: middle;     font-size:15px;
 .total_star {
   width:50%;
   height:50px;
+  display:inline;
+  float:left;
   .total_text{
     float:left;
     margin-right:20px;
   }
-
   .left{
     width:13%;
     float:left; 
@@ -612,7 +601,6 @@ center;      vertical-align: middle;     font-size:15px;
   #acc_progress{
     width : 60%;
     margin-top:15px;
-
   }
 }
 
