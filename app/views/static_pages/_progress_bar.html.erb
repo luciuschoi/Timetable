@@ -2,7 +2,8 @@
 <%= render 'shared/progress_bars' %>
 
 <div class ="row ">
-	<div class="col-md-6">
+
+	<div class="col-xs-6">
 	
 				강의평을 남겨주세요(40자 이상)
 				 <textarea class="message" rows='7' cols='200' maxlength="500"
@@ -13,20 +14,20 @@
 
 	</div>
 		
-	<div class="col-md-3"></div>
+	<div class="col-xs-3"></div>
 
 </div>
 
 <div class="row">
-	 	<div class="col-md-3"></div>
-	 	<div class="col-md-6"> 
+	
+	 	<div class="col-xs-6"> 
 
 			<div>
 				<button type="submit" class="btn btn-primary" id ="submit_button">평가하기</button>
 			</div>
 
 	    </div>
-		<div class="col-md-3"></div>
+		<div class="col-xs-3"></div>
 	
 </div>
 
@@ -108,10 +109,16 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 
 	// third_grade
 	$('#third_grade').hover(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#grade_text').text('보통');
+				if(grade_clicked)
+				{
+				return;
+				}
+				else{
+						$('#first_grade').attr('aria-valuenow', '100');
+						$('#second_grade').attr('aria-valuenow', '100');
+						$('#third_grade').attr('aria-valuenow', '100');
+						$('#grade_text').text('보통');
+					}
 	});
 
 	$('#third_grade').mouseout(function(){
