@@ -1,27 +1,62 @@
-    <%= link_to "Show mah Fancybox!", "#hello", class: "fancybox" %>
+<%= link_to "Show mah Fancybox!", "#hello", class: "fancybox" %>
 
-                  <div style="display:none">
-                    <div id="hello" style="text-align:center">
-                    <br><br>
-                     <p>아 뭐듣지 ?!</p>
+  <div style="display:none">
+    <div id="hello">
+      <div class = "row">
+        <div class = "col-sm-2 col-sm-offset-1">
+          <span style ="font-size:18px;">아 뭐듣지 </span>
+        </div>
+      </div>
 
+      <div class = "row" style = "margin-top:80px;">
+        
+        <div class = "col-sm-4 col-sm-offset-2">
+          <h1 style = "font-size:95px;">
+            <%=User.count+130%></h1>
+          <span style = "font-size:20px;">
+            명
+          </span>
+          <p style = "font-size:18px;">
+            학우가
+          </p>
+        </div>
 
+        <div class = "col-sm-4">
+          <h1 style = "font-size:95px;">
+            <%=Comment.count+120%></h1>
+          <span style = "font-size:20px">
+          개
+          </span>
+          <p style = "font-size:18px;">
+            강의평가를 공유하고
+            <br> 있습니다.</br>
+          </p>
+        </div>
 
-                  안녕하세요. 저희 아뭐듣지.com은 세종대 학우분들이<br>
-                  한 학기의 시작, 수강신청을 할 때<br>
-                  도움이 되고자 강의에 대한 평가를 공유하는 웹 사이트입니다!<br>
-                  정보 많이 얻어 가시고, 꿀 팁도 공유해주세요!<br>
+      </div> <!-- row -->
 
-                  세종대 학우 <%=User.count+30%>명과 함께 하고 있습니다.<br>
-                  <%=Comment.count+20%>개의 강의평가가 있습니다.<br>
+      <div class = "daemoon_login_text" style = "
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+        border-top-width: 1px;">
+        더 많은 강의평가를 보려면 로그인이 필요합니다 !
+      </div>
 
-                  <%=link_to "Facebook으로 1초만에 가입하기","/auth/facebook", target: "_parent", class: "btn btn-primary"%>
+      <div class = "row" style = "margin-left : auto; 
+      margin-right: auto ">      
+        <div class = "col-sm-4 col-sm-offset-4">              
+          <%=link_to "Facebook으로 1초만에 가입하기","/auth/facebook", target: "_parent", class: "btn btn-primary"%>
+        </div>
+      </div>
+  
+    </div>
+  </div>
 
-                    </div>
-                  </div>
-            
-                
-
+ 
 
 
 
@@ -29,15 +64,17 @@
 
     $(document).ready(function() {
       var visited = $.cookie('visited');
-      if ( visited =='yes')
-           { return false;}
-      else { 
-          $.cookie('visited','yes', { expires: 0.5}); //반나절 뒤에 쿠키삭제됨.
+      //if ( visited =='yes')
+      //    { 
+      //      return false;
+      //    }
+      //else { 
+          $.cookie('visited','no'); //반나절 뒤에 쿠키삭제됨.
           $("a.fancybox").fancybox({
-            'scrolling' : 'yes',
+
             'padding' : 20,
-            'width'   :600,
-            'height'  :300,
+            'width'   :800,
+            'height'  :550,
             'transitionIn'    :    'none',
             'transitionOut'    :    'none',
             'speedIn'        :    400,
@@ -45,7 +82,7 @@
             'autoDimensions'  : false,
             'overlayShow'    :    true
           });
-          }
-});
+      //}
+    });
 
     </script>
