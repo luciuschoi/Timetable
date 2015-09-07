@@ -1,14 +1,5 @@
 
- <div align="center">
-
-       <div  id="form1">
-                  <%= form_tag root_path, :method => 'get', :class =>'form-inline' do %>
-                    <%= select_tag "search_from", "<option>강의</option><option>교수</option><option>개설학과</option>".html_safe, :class => 'form-control  form-group',:style => "max-width:10%"%>
-                    <%= text_field_tag :search, params[:search], placeholder: :"빈칸은 모든과목검색",:class => 'form-control  form-group' ,:style => "width:50%"%>
-                    <%= submit_tag "찾아줘!", :subejct => nil, :class => 'btn btn-default' %>
-                  <% end %>
-      </div>
-  </div>    
+ 
 
 <div class="row" id="recent">
 	<div class="col-md-8 col-md-offset-2"  align="left">
@@ -44,21 +35,28 @@
 
 
 <div class = "row">
-  <div class = "col-md-9 col-md-offset-2">
-    <div id="lecturelist">
+ 
+  
       <% if params[:search] %> 
-        <%= render 'home_search' %>
+        <div id="lecturelist">
+            <%= render 'home_search' %>
+        </div>
       <% else %>
-        <%= render 'home_user' %>
+      <div class = "col-xs-9 col-xs-offset-2"> 
+            <div id="valuationlist">
+              <%= render 'home_user' %>
+            </div>
+      </div>  
       <% end %>
-    </div>
-  </div>
+
+
 </div>
 
 
 
 
 <script>
+
    //pagination using ajax
   $(function() {
     $("#searchtables").on("click", ".pagination a", function(){
@@ -66,6 +64,15 @@
         return false;
       });
   });
+   //pagination using ajax
+  $(function() {
+    $("#valuationlists").on("click", ".pagination a", function(){
+        $.getScript(this.href);
+        return false;
+      });
+  });
+ 
+ 
 
   <% if !@lecture_name.nil? %>
     $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>')

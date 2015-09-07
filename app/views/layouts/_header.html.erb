@@ -30,10 +30,18 @@
                 <%= link_to '최근평가', root_path%>
               </li>
             <% end %>
-
+              <li class="nav navbar-nav navbar-form">
+              <%= form_tag root_path, :method => 'get', :class =>'form-inline' do %>
+                    <%= text_field_tag :search, params[:search], placeholder: :"과목,교수님,전공 검색" ,:class => 'form-control  form-group' ,:style => "width:150%;;"%>
+              
+                  <% end %>
+              </li>
            
           </ul>
           
+
+          
+
 
           <ul class="nav navbar-nav navbar-right">   
             <% if current_user %>

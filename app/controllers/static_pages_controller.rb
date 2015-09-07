@@ -5,8 +5,7 @@ class StaticPagesController < ApplicationController
 
     # 검색 했니?
   	if !params[:search].nil?
-  	  @lectures=Lecture.search(params[:search_from],
-                                params[:search]).paginate(:page => params[:page], :per_page => 10 )
+  	  @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
     # 검색 안하고 학과 선택했니 ?
     elsif !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name])
@@ -17,7 +16,7 @@ class StaticPagesController < ApplicationController
       end
 
   	else
-      @valuations=Valuation.order("created_at DESC").limit(10)
+      @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
   	end
   end
 
@@ -26,7 +25,8 @@ class StaticPagesController < ApplicationController
     if !params[:search].nil?
       @lectures=Lecture.search(params[:search_from],
                                 params[:search]).paginate(:page => params[:page], :per_page => 10 )
-
+    else 
+      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
     
     end
 
