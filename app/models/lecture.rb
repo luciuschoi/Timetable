@@ -43,7 +43,7 @@ class Lecture < ActiveRecord::Base
   end
 
   def lec_valuation(counts,g,w,a,l,h,t)
-
+    
     if self.acc_grade.nil?
         grade =  g.to_i
         workload = w.to_i

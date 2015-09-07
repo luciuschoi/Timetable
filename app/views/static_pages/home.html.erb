@@ -13,32 +13,11 @@
 <div class="row" id="recent">
 	<div class="col-md-8 col-md-offset-2"  align="left">
 
+    <%= render 'dropdown_btns'%>
     <!-- 학과 선택 dropdown -->
-    <div class="btn-group">
-        <button class="btn btn-default btn-lg dropdown-toggle" id = "border-none" data-toggle="dropdown">
-          모든학과 <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li><%= link_to '모든학과', root_path(:lecture_name => '모든학과') %></li>
-          <li><%= link_to '컴퓨터공학과', root_path(:lecture_name => '컴퓨터공학과'), remote: true %></li>
-          <li><%= link_to '전자공학과', root_path(:lecture_name => '전자공학과') %></li>
-          <li><%= link_to '광전자공학과', root_path(:lecture_name => '광전자공학과') %></li>
-          <li><%= link_to '디지털콘텐츠학과', root_path(:lecture_name => '디지털콘텐츠학과') %></li>
-          <li><%= link_to '정보보호학과', root_path(:lecture_name => '정보보호학과') %></li>
-          <li role="separator" class="divider"></li>
-          <li><%= link_to '자유교양', root_path(:lecture_name => '교양학부') %></li>
-        </ul>
-    </div>
-    <!-- 학과 선택 dropdown -->
-
+    
+    <%= render 'home_daemoon'%>
   
-
-
-
-  <%= render 'home_daemoon'%>
-  
-  
-
   </div> <!-- col-md-8 -->
 </div>  <!-- row -->
 

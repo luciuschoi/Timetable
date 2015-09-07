@@ -1,0 +1,79 @@
+<div class="btn-group">
+  <button class="btn btn-default btn-lg dropdown-toggle" id = "border-none" data-toggle="dropdown">
+    학과 선택 <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="
+  height : 400%; overflow:scroll;">
+    <li><%= link_to '모든학과', root_path(:lecture_name => '모든학과') %></li>
+    <li><%= link_to '컴퓨터공학과', root_path(:lecture_name => '컴퓨터공학과') %></li>
+    <li><%= link_to '전자공학과', root_path(:lecture_name => '전자공학과') %></li>
+    <li><%= link_to '광전자공학과', root_path(:lecture_name => '광전자공학과') %></li>
+    <li><%= link_to '디지털콘텐츠학과', root_path(:lecture_name => '디지털콘텐츠학과') %></li>
+    <li><%= link_to '정보보호학과', root_path(:lecture_name => '정보보호학과') %></li>
+
+    <li role="separator" class="divider"></li>
+
+    <li> <%= link_to '국어국문학과', root_path(:lecture_name => '국어국문학과') %> </li>
+    <li> <%= link_to '국제학부', root_path(:lecture_name => '국제학부') %> </li>
+    <li> <%= link_to '영어영문학과', root_path(:lecture_name => '영어영문학과') %> </li>
+    <li> <%= link_to '일어영문학과', root_path(:lecture_name => '일어영문학과') %> </li>
+    <li> <%= link_to '역사학과', root_path(:lecture_name => '역사학과') %> </li>
+    <li> <%= link_to '교육학과', root_path(:lecture_name => '교육학과') %> </li>
+
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '경제통상학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '행정학과', root_path(:lecture_name => '행정학과') %> </li>
+    <li> <%= link_to '신문방송학과', root_path(:lecture_name => '신문방송학과') %> </li>
+    <li> <%= link_to '중국통상학과', root_path(:lecture_name => '중국통상학과') %> </li>
+
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '경영학부', root_path(:lecture_name => '경영학과') %> </li>
+    <li> <%= link_to '호텔경영학과', root_path(:lecture_name => '호텔경영학과') %> </li>
+
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '관광경영학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '외식경영학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '호텔외식관광프렌차이즈경영학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '호텔외식비즈니스학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '수학학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '응용통계학학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '물리학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '천문우주학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '화학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '바이오융합학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '분자생물학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '바이오자원학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '건축공학학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '건축학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '건설환경공학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '환경에너지융합학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '공간정보학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '에너지자원학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '기계공학학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '항공우주공학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '신소재공학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '나노공학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '원자력공학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '국방시스템학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '항공시스템학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '회화과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '산업디자인학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '패션디자인학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '음악학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '체육학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '무용학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '만화애니메이션학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '영화예술학과', root_path(:lecture_name => '경제통상학과') %> </li>
+    <li> <%= link_to '항장뷰티산업학과', root_path(:lecture_name => '경제통상학과') %> </li>
+
+
+    <li role="separator" class="divider"></li>
+    <li><%= link_to '자유교양', root_path(:lecture_name => '교양학부') %></li>
+  </ul>
+</div>
