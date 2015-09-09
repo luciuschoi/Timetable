@@ -4,6 +4,7 @@ Rails.application.routes.draw do
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
  get 'rank' => 'static_pages#rank'
+ get 'login_form' => 'static_pages#login_form'
  
 root 'static_pages#home'
  get 'forcinglogin' => 'static_pages#forcinglogin'

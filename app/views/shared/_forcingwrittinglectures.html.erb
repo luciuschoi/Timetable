@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-9 col-md-offset-2">
+	<div class="col-xs-9 col-xs-offset-2">
 	  	<div class="table-responsive">
 	        <table class="table nogap table-striped table-hover">
 	         	<thead>
@@ -12,30 +12,30 @@
 	           <th></th>
 		        </tr>	
 		        </thead>
-				<%if !params[:search].nil?%>	         
+				         
 	    	 		<tbody>     
 					<% @lectures.each do |lec| %>
 		
 	    				<tr class="lovelyrow" onclick="location.href='<%=writtingform_lecture_url(lec)%>'" >
 			    		<td id="tb_unspot" width="20%"><%=lec.professor%> </td>
 			    		<td id="tb_spot" width="30%"><%= lec.subject%></td>
-						<td id="tb_unspot" witdh="40%" ><div id="div_total"><font color='red'><%=lec.acc_total  %></font></div>
+						<td id="tb_unspot" witdh="40%" ><div id="div_total"><%=lec.acc_total  %></div>
 						   <%= render 'shared/show_average_star',:var=> lec.acc_total%></td>
 						</tr>
 
 	   	   			<% end %>
 	   	   			</tbody>
- 				<% end %>	   	   	
+ 				   	   	
 	   	   	</table>
 	   	</div>
 	</div>	 
 </div> 
 		 
-	<%if !params[:search].nil?%>	
+
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" align="center">
+			<div class="col-xs-8 col-xs-offset-2" align="center">
 				<%= will_paginate @lectures %>
 			</div>
 		</div>
-    <% end %>	
+  
 </div>

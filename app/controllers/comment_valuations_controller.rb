@@ -23,13 +23,6 @@ class CommentValuationsController < ApplicationController
 			format.js
 		end
 
-
-#		redirect_to lecture_path(params[:lecture_id])
-
-		# @좋아요 생성
-		# @좋아요.수치+1
-		# 좋아요.save
-		# 리다이렉팅 @lecture
 	end
 
 	def destroy
