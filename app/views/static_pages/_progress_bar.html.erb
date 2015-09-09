@@ -2,31 +2,37 @@
 <%= render 'shared/progress_bars' %>
 
 <div class ="row ">
-	<div class="col-md-6">
+	<div class="col-xs-6">
 	
 				강의평을 남겨주세요(40자 이상)
-				 <textarea class="message" rows='7' cols='200' maxlength="500"
-				 placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요! 그리고 생각보다 40자는 짧습니다^~^"></textarea>
-			          <span id="showremain"></span>
+				 <textarea class="message" rows='7' cols='200' maxlength="500" style="width:150%"
+				 placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요! 그리고 생각보다 40자는  정말 짧습니다^~^"> </textarea>
+			       
 
 	
 
 	</div>
 		
-	<div class="col-md-3"></div>
+	<div class="col-xs-3"></div>
 
 </div>
 
+<div class"row">
+	<div class="col-xs-9">
+   		<span id="showremain"></span>
+   	</div>
+</div>  		
+
 <div class="row">
-	 	<div class="col-md-3"></div>
-	 	<div class="col-md-6"> 
+	 
+	 	<div class="col-xs-6"> 
 
 			<div>
 				<button type="submit" class="btn btn-primary" id ="submit_button">평가하기</button>
 			</div>
 
 	    </div>
-		<div class="col-md-3"></div>
+		<div class="col-xs-3"></div>
 	
 </div>
 
@@ -935,9 +941,9 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 $('#submit_button').click(function(event){
 
 
-	if($(this).is(":disabled"))
+	if($('.message').val().length<40)
 	{
-		alert('40자이상 입력해주세요!');
+		alert('강의평을 40자이상 입력해주세요!');
 	}
 	else 
 	{
@@ -945,45 +951,46 @@ $('#submit_button').click(function(event){
 		$('#submit_button').html('전송중...')
 		this.disabled=true;
 
-		//this.disabled=true;
-	
-		<%if !current_user.valuations.find_by(lecture_id: params[:id]).nil?%>
-			    alert('이미 평가를 하였습니다.')
-			   $('#submit_button').html('평가하기')
-			    this.disabled=false;
-		<%else %>
-				if(grade==0 || workload==0 || achievement==0 || level==0 || homework ==0 ||total ==0)
-				{ 
-					alert('모든 항목에 대해서 체크해주세요');
-					 $('#submit_button').html('평가하기')
-    				 this.disabled=false;
-				}
-				else
-				{
-					$.ajax({
-						url: "/valuations",
-						type: "post",
-						data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'homework':homework, 'total':total,
-						'content':$(".message").val()},
-						success: function(){
-							<%if current_user.valuations.count<3 %>
-							alert('평가 완료!!');
-							window.location ="/forcingwritting"
-							<%else%>
-							alert('감사합니다. 강의평가 모두 완료되었습니다.')
-							window.location ="/"
-							<%end%>
-						},
-						
-						error:function(){
-							alert('error')
-						}
-						
 
-					});
+			//this.disabled=true;
+		
+			<%if !current_user.valuations.find_by(lecture_id: params[:id]).nil?%>
+				    alert('이미 평가를 하였습니다.')
+				   $('#submit_button').html('평가하기')
+				    this.disabled=false;
+			<% else %>
+					if(grade==0 || workload==0 || achievement==0 || level==0 || homework ==0 ||total ==0)
+					{ 
+									alert('모든 평가 항목에 대해서 체크해주세요');
+									 $('#submit_button').html('평가하기')
+				    				 this.disabled=false;
+					}
+					else
+					{
+						$.ajax({
+							url: "/valuations",
+							type: "post",
+							data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'homework':homework, 'total':total,
+							'content':$(".message").val()},
+							success: function(){
+								<%if current_user.valuations.count<2 %>
+									alert('평가 완료!!');
+									window.location ="/forcingwritting"
+								<%else%>
+									alert('감사합니다. 강의평가 모두 완료되었습니다.')
+									window.location ="/"
+								<%end%>
+							},
+							
+							error:function(){
+								alert('error')
+							}
+							
 
-				}
-		<%end%> 
+						});
+					}
+			<%end%> 
+
 	}
 	});
 

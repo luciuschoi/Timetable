@@ -1,2 +1,7 @@
-
-
+<% unless params[:search].nil?%>
+	$('#lecturelist').html('<%= escape_javascript(render("searchtables")) %>');
+	$('.pagination a').attr('data-remote', 'true');
+<% else %>
+	$('#valuationlist').html('<%= escape_javascript(render("home_user")) %>')
+	$('.pagination a').attr('data-remote', 'true');
+<% end %> 

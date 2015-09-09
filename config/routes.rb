@@ -6,6 +6,8 @@ Rails.application.routes.draw do
  get 'rank' => 'static_pages#rank'
  get 'notice' => 'static_pages#notice'
 
+ get 'login_form' => 'static_pages#login_form'
+ 
 root 'static_pages#home'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'

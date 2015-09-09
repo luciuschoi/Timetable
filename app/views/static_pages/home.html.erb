@@ -18,16 +18,19 @@
           실제 수강생들의 후기를 공유함으로써 해결하려합니다. 
           </p>
           
-            <a class="btn btn-sm btn-primary" href="<%= notice_url%>" role="button" style = "font-size:14px;"> 자세히 보기 </a>
+
+           
+
           </p>
     </div> 
   </div>
 </div>
 
+
 <div class="row" id="recent">
 	<div class="col-md-8 col-md-offset-2"  align="left">
 
-    <%= render 'dropdown_btns'%>
+    <!--%= render 'dropdown_btns'%>-->
     <!-- 학과 선택 dropdown -->
     
     <%= render 'home_daemoon'%>
@@ -37,22 +40,30 @@
 
 
 <div class = "row">
-  <div class = "col-md-9 col-md-offset-2">
-    <div id="lecturelist">
+ 
+  
       <% if params[:search] %> 
-        <%= render 'home_search' %>
+        <div id="lecturelist">
+            <%= render 'home_search' %>
+        </div>
       <% else %>
-        <h3>최근 강의평가</h3>
-        <%= render 'home_user' %>
+
+      <div class = "col-xs-9 col-xs-offset-2"> 
+            <div id="valuationlist">
+                      <h3>최근 강의평가</h3>
+              <%= render 'home_user' %>
+            </div>
+      </div>  
       <% end %>
-    </div>
-  </div>
+
+
 </div>
 
 
 
 
 <script>
+
    //pagination using ajax
   $(function() {
     $("#searchtables").on("click", ".pagination a", function(){
@@ -60,6 +71,15 @@
         return false;
       });
   });
+   //pagination using ajax
+  $(function() {
+    $("#valuationlists").on("click", ".pagination a", function(){
+        $.getScript(this.href);
+        return false;
+      });
+  });
+ 
+ 
 
   <% if !@lecture_name.nil? %>
     $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>')
