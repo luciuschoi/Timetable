@@ -8,7 +8,8 @@ class StaticPagesController < ApplicationController
   	  @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
     # 검색 안하고 학과 선택했니 ?
     elsif !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
-      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name])
+      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
+      paginate(:page => params[:page], :per_page =>10)
 
       respond_to do |format|
         format.js
@@ -20,11 +21,14 @@ class StaticPagesController < ApplicationController
   	end
   end
 
+  def login_form
+
+  end
+
 
   def forcingwritting
     if !params[:search].nil?
-      @lectures=Lecture.search(params[:search_from],
-                                params[:search]).paginate(:page => params[:page], :per_page => 10 )
+      @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
     else 
       @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
     

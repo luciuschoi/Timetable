@@ -64,12 +64,12 @@
 
     $(document).ready(function() {
       var visited = $.cookie('visited');
-      //if ( visited =='yes')
-      //    { 
-      //      return false;
-      //    }
-      //else { 
-          $.cookie('visited','no'); //반나절 뒤에 쿠키삭제됨.
+      if ( visited =='yes')
+          { 
+            return false;
+          }
+      else { 
+          $.cookie('visited','yes'); //반나절 뒤에 쿠키삭제됨.
           $("a.fancybox").fancybox({
 
             'padding' : 20,
@@ -82,7 +82,7 @@
             'autoDimensions'  : false,
             'overlayShow'    :    true
           });
-      //}
+      }
     });
 
     </script>
