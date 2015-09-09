@@ -27,12 +27,14 @@
 				<div>
 					<!-- 만약 현재페이지가 staticpages#home  -->
 					<% if current_page? controller: 'static_pages', action: 'home'%>
-						<%= truncate v.content, length: 50%>.. 
+
+						<%= simple_format(truncate v.content, length: 50)%>.. 
+
 
 						<a onclick="showLecture(<%=v.lecture.id%>)">자세히 보기</a>					
 
 					<% else %>	
-						<%= v.content %>
+						<%= simple_format(v.content) %>
 					<% end %>
 					<!-- truncate 보여주기 -->
 
@@ -137,7 +139,8 @@
 	function showLecture(lec_num)
   {
 
-      <% if user_login? %>
+
+      <% if is_logged_in? %>
         <% if current_user.valuations.count>=3 %>
           window.location="/lectures/"+lec_num.toString()
          <% else %>

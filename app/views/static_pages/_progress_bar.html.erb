@@ -957,7 +957,7 @@ $('#submit_button').click(function(event){
 				    alert('이미 평가를 하였습니다.')
 				   $('#submit_button').html('평가하기')
 				    this.disabled=false;
-			<%else %>
+			<% else %>
 					if(grade==0 || workload==0 || achievement==0 || level==0 || homework ==0 ||total ==0)
 					{ 
 									alert('모든 평가 항목에 대해서 체크해주세요');
@@ -990,7 +990,10 @@ $('#submit_button').click(function(event){
 					}
 			<%end%> 
 
+
+	}
 	});
+
 
 </script>
 
