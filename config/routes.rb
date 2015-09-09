@@ -11,13 +11,18 @@ Rails.application.routes.draw do
 root 'static_pages#home'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
-#if Rails.env.production?
-   get '404', :to => 'application#page_not_found'
-#end
+
+get 'signup'  => 'users#new'
+
+ get    'login'   => 'sessions#new'
+ post   'login'   => 'sessions#create'
+ delete 'logout'  => 'sessions#destroy'
 
 #resources :lectures
-resources :users, only: [:index, :edit, :update]
-match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+resources :users
+
+
+match 'auth/:provider/callback', to: 'sessions#create_by_facebook', via: [:get, :post]
 match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do

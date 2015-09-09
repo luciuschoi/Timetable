@@ -137,7 +137,7 @@
 	function showLecture(lec_num)
   {
 
-      <% if user_login? %>
+      <% if is_logged_in? %>
         <% if current_user.valuations.count>=3 %>
           window.location="/lectures/"+lec_num.toString()
          <% else %>

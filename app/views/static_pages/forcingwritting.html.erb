@@ -13,8 +13,8 @@
        			<div  id="form1">
               <%= form_tag forcingwritting_path, :method => 'get', :class =>'form-inline' do %>
                 
-                <%= text_field_tag :search, params[:search], placeholder: :"과목,교수님명을 입력해주세요.",:class => 'form-control  form-group' ,:style => "width:50%"%>
-                <%= submit_tag "찾아줘!", :subejct => nil, :class => 'btn btn-default' %>
+                <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력하고 enter를 누르세요.",:class => 'form-control  form-group' ,:style => "width:50%"%>
+                
               <% end %>
 
       			</div>
