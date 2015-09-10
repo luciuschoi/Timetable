@@ -32,7 +32,8 @@ class UsersController < ApplicationController
 
   def update
   	@user=User.find(params[:id])
-  	if @user.update_attributes(nick_params)
+    
+   	if @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
   		      redirect_to root_path
         else
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
   	else 
     		flash.now[:danger]=@user.errors.full_messages
     		render 'edit'
-    	end
+    end
   end
 
 
