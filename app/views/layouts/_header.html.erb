@@ -26,14 +26,24 @@
                 <%= link_to '최근평가', root_path%>
               </li>
               <li>
+               <%if user_login? %>
                 <%= link_to '평가하기', forcingwritting_path %>
+               <%else %>
+                <%= link_to '평가하기', root_path, :onclick => 'alert("로그인 먼저 부탁드립니다.")'%>
+                <%end%>
+
               </li>
             <% else %>
               <li>
                 <%= link_to '최근평가', root_path%>
               </li>
               <li class = "active">
+                <%if user_login? %>
                 <%= link_to '평가하기', forcingwritting_path %>
+               <%else %>
+                <%= link_to '평가하기', root_path, :onclick => 'alert("로그인 먼저 부탁드립니다.")'%>
+                <%end %>
+
               </li>
             <% end %>
 

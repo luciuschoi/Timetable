@@ -32,6 +32,9 @@ class SessionsController < ApplicationController
 
 def destroy
     log_out
+    current_user=nil;
+    session[:user_id] = nil; 
+    session[:user_name] = nil;
     redirect_to root_url
   end
 

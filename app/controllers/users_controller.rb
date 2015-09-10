@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
-
   before_action :admin_user, only: :destroy
   
   def new
@@ -32,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
   	@user=User.find(params[:id])
-  	if @user.update_attributes(nick_params)
+  	if @user.update_attribute(:nickname, params[:nickname])
         if @user.valuations.count > 2
   		      redirect_to root_path
         else
