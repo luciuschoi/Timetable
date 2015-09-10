@@ -951,7 +951,6 @@ $('#submit_button').click(function(event){
 		$('#submit_button').html('전송중...')
 		this.disabled=true;
 
-
 			//this.disabled=true;
 		
 			<%if !current_user.valuations.find_by(lecture_id: params[:id]).nil?%>
@@ -991,8 +990,10 @@ $('#submit_button').click(function(event){
 					}
 			<%end%> 
 
+
 	}
 	});
+
 
 </script>
 
