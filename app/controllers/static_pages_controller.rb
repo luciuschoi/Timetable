@@ -31,7 +31,6 @@ class StaticPagesController < ApplicationController
       @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
     else 
       @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
-    
     end
   end
 
@@ -40,20 +39,17 @@ class StaticPagesController < ApplicationController
   end
 
 
-
   def user_login?
-      if(session[:user_id].nil?&&session[:user_name].nil?)
-          false
-      else 
-          true
-     end
+    if session[:user_id].nil? && session[:user_name].nil?
+        false
+    else 
+        true
+    end
   end
-
 
 
   def search
     @lectures = Lecture.where('major = ?', params[:lecture_name])
-
     render '_home_user'    
   end
 

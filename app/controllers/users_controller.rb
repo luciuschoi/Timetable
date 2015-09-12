@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   def update
   	@user=User.find(params[:id])
    	if @user.update_attribute(:nickname, params[:user][:nickname])
+        # 평가 2번이상 했으면 서비스 이용 가능(root_path)
         if @user.valuations.count > 2
   		      redirect_to root_path
         else
