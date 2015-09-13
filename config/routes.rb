@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
  get 'login_form' => 'static_pages#login_form'
  
-root 'static_pages#home'
+ root 'static_pages#home'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
 
@@ -33,7 +33,7 @@ resources :lectures do
 end
 
 
-resources :valuations, only: [:create, :destroy]
+resources :valuations, only: [:create, :destroy, :edit, :update]
 resources :comments, only: [:create, :destroy, :edit, :update]
 resources :comment_valuations, only: [:create, :destroy]
 

@@ -7,14 +7,16 @@
 
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 
+/*  */
+
 
 /* fancybox */
 .fancybox{
   display:none;
 }
 body{
-  font-family: Nanum_Gothic;
-  background-color : #F5F5F5;
+  /*font-family: Nanum_Gothic;*/
+  background-color : white;
 }
 
 div{
@@ -129,18 +131,7 @@ h1{
   margin-top: 45px;
   @include box_sizing; 
 }
-/*
-#lecture_list:hover {
-  background-color: yellow;
-  line: false;
-}
-*/
 
-/*
-tr.lovelyrow{
- vertical-align:middle
-}
-*/
 
 tr.lovelyrow:hover{
   background-color: #CEF6EC;
@@ -150,6 +141,40 @@ tr.lovelyrow:hover{
 
 table.nogap{
   border-collapse: collapse;
+}
+
+.navbar{
+  padding-top:5px;
+  padding-bottom:5px;
+
+  .container{
+    margin-left:20px;
+  }
+
+  .navbar-brand{
+    font-size:25px;
+    color:black;
+    font-weight:bold;
+  }
+  border-bottom: 1px solid #e8e8e8;
+  a{
+    color : gray;
+    font-weight:120;
+  }
+  a .activate{
+    color : black;
+  }
+  .navbar-nav a:hover{
+    color : black;
+    font-size:14.5px;
+    font-weight:bold;
+    background-color: white;
+  }
+  .navbar-nav .activate{
+    color : black;
+    font-size:14.5px;
+    font-weight : bold;
+  }
 }
 
 .nav.navbar-nav.navbar-right
@@ -166,10 +191,8 @@ table.nogap{
 }
 
 #navbar_hello_color{
-  color : white;
-  a{
-    color : white;
-  }
+  color : gray;
+  
 }
 
 #navbar_logout{
@@ -454,6 +477,13 @@ center;      vertical-align: middle;     font-size:15px;
     font-weight:150;
     color:#999;
   }
+  .edit_section{
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align:right;
+    margin-top : 15px;
+    border-bottom : 1px solid $gray-lighter;;
+  }
 }
 
 
@@ -463,9 +493,9 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .user_section{
-  border-bottom : 1px solid $gray-lighter;
+  border-bottom : 1.8px solid $gray-lighter;
   padding-bottom : 10px;
-  margin-bottom : 15px;
+  margin-bottom : 30px;
   .nickname_attr {
     font-weight : bold;
     display : inline;
@@ -475,6 +505,7 @@ center;      vertical-align: middle;     font-size:15px;
     color : #AAA;
     font-weight: 160;
   }
+
 }
 
 .valuation_star {

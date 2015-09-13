@@ -10,8 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to root_path
+      redirect_to :controller => 'static_pages', :action => 'forcingwritting'
     else
       render 'new'
     end
@@ -31,8 +30,7 @@ class UsersController < ApplicationController
 
   def update
   	@user=User.find(params[:id])
-   	if @user.update_attribute(:nickname, params[:user][:nickname])
-        # 평가 2번이상 했으면 서비스 이용 가능(root_path)
+  	if @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
   		      redirect_to root_path
         else

@@ -56,6 +56,7 @@ class LecturesController < ApplicationController
 			@lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
 		else
 			@lectures=Lecture.search(params[:search_from],params[:search]).paginate(:page => params[:page], :per_page => 10 )
+		end
 	end
 
 

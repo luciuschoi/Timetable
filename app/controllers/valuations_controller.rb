@@ -13,6 +13,10 @@ class ValuationsController < ApplicationController
 										params[:total],params[:content])       
 		@lecture.save!
     end
+
+    def edit
+    	
+    end
 end
 
 
