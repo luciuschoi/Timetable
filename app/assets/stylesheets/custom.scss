@@ -389,8 +389,8 @@ float:left;
 
  }
  #timetable_th{
-   border: 1px solid;
-
+   
+    border: 1px solid;
     text-align: center;
      vertical-align: middle;
      width: 150;
@@ -851,4 +851,11 @@ input {
   border-left: 8px solid transparent;
   border-right: 8px solid #982b29;
   content: "";
+}
+
+.tr_style{
+  border-top: 7px inset;
+}
+.th_style{
+  border-bottom: 7px inset;
 }
