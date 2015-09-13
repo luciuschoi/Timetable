@@ -15,8 +15,12 @@
           <% else %>
             <a class="navbar-brand" href="/" id="header">아뭐듣지</a>
           <% end %>
+
         </div>
 
+
+
+        
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -33,7 +37,13 @@
 
            
           </ul>
-          
+
+          <div class="nav navbar-nav navbar-form">
+              <%= form_tag root_path, :method => 'get', :class =>'form-inline' do %>
+                    <%= text_field_tag :search, params[:search], placeholder: :"과목검색" ,:class => 'form-control  form-group' ,:style => "width:65%;margin-left:280px;"%>
+              
+                  <% end %>
+          </div>
 
           <ul class="nav navbar-nav navbar-right">   
             <% if current_user %>
@@ -58,4 +68,6 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
+
+
     </nav>

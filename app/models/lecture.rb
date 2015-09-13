@@ -78,21 +78,9 @@ class Lecture < ActiveRecord::Base
 
 
 
-  def self.search(search_from, search)  
-    if search  
-      if(search_from=='강의')
-        where('subject LIKE ?', "%#{search}%")  
-      elsif(search_from=='교수')
-        where('professor LIKE ?', "%#{search}%")
-      elsif(search_from=='개설학과')
-        where('major LIKE ?', "%#{search}%")
-      elsif(search_from=='강의시간')
-        where('lecturetime LIKE ?', "%#{search}%")
-
-      end
-    else  
-      scoped
-    end  
+  def self.search(search)  
+     
+      where(['professor LIKE ? OR major LIKE ? OR subject Like ?', "%#{search}%", "%#{search}%", "%#{search}%"])
   end  
 
 
