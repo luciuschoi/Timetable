@@ -29,6 +29,7 @@ class StaticPagesController < ApplicationController
   def forcingwritting
     if !params[:search].nil?
       @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+
     else 
       @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
     end

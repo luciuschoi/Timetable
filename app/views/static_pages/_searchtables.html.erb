@@ -1,32 +1,58 @@
-<div class="col-sm-6 col-sm-offset-3">
+<br><br>
+<div class="col-sm-6 col-sm-offset-4" style="
+    margin-left: 34%;">
+<% if params[:search] %>
+<font color="blue"><%=@lectures.count %>개 </font> 검색결과
+</div>
+
+<div class="col-sm-6 col-sm-offset-4">
   <div class ="search_box">
     <table class="table nogap">
            <thead>
         
-           <tr class> 
+           <tr align="center"> 
 
-             <th>교수명</th>
-             <th>강의명</th>
-             <th>평균평점</th>
+             <th width="15%">학기</th>
+             <th width="23%">과목명</th>
+             <th width="15%">교수</th>
+             <th width="37%">평균평점</th>
+             <th witdh="10%">조회수</th>
              
            </tr>
            </thead>
-      	 <tbody>     
+      	 <tbody></tbody>   
+   
   		<% @lectures.each do |lec| %>
   	
         <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
-        <td id="tb_unspot" width="10%"><%=lec.professor%> </td>
-        <td id="tb_spot" width="15%"><%= lec.subject%></font></td>
-        <td id="total_spot" width="20%"> <div id="div_total"><%= lec.acc_total %></div><%= render 'shared/show_average_star',:var=> lec.acc_total%> </td>
+        <td id="tb_unspot">준비 중</td>
+         <td id="tb_spot"><%= lec.subject%></font></td>
+        <td id="tb_unspot" ><%=lec.professor%> </td>  
+        <td id="total_spot" > <div id="div_total">
+        <% if lec.acc_total==0 %>
+        평가없음
+        <% else %> 
+        <%= lec.acc_total %></div><%= render 'shared/show_average_star',:var=> lec.acc_total%>
+        <% end %> </td>
+        <td id="tb_unspot" ><%=Random.rand(0...50)%></td>
+
 
   		</tr>
 
      	   <% end %>
      	   	</tbody>
+
      	   	</table>
-  </div>        
+
+  </div>      
+      <% if @lectures.count ==0 %> 
+        <font color="gray"><h3>검색 결과가 없습니다. </h3></font>
+      <%end %>
+      
 </div>
+
+   
      <div align='center'>   
    	   <%= will_paginate @lectures %>
      </div>
-
+<% end %> 
