@@ -80,8 +80,8 @@ class Lecture < ActiveRecord::Base
 
   def self.search(search)  
       unless search.nil?
-      where(['professor LIKE ? OR major LIKE ? OR subject Like ?', 
-        "#{search}%", "#{search}%", "#{search}%"])
+      where(['professor LIKE ? OR subject Like ?', 
+        "#{search}%", "#{search}%"])
     end
 
   end  

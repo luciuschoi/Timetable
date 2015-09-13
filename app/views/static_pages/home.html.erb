@@ -1,7 +1,7 @@
 <div class= "container">
   <div class = "col-xs-8 col-xs-offset-1">
     <div class="jumbotron" style = "padding-top :10px;
-                                    padding-bottom : 10px;
+                                    padding-bottom : 5px;
                                     padding-left : 15px;
                                     padding-right : 15px;">
           <h3>공지사항</h3>
@@ -28,35 +28,26 @@
 </div>
 
 
-<div class="row" id="recent">
-	<div class="col-md-8 col-md-offset-2"  align="left">
 
-    <!--%= render 'dropdown_btns'%>-->
-    <!-- 학과 선택 dropdown -->
-    
     <%= render 'home_daemoon'%>
   
-  </div> <!-- col-md-8 -->
-</div>  <!-- row -->
 
-
+<aside>
+<div id='cssmenu'>
+<ul>
+<li><a href="#">이용가이드</a></li>
+<li><a href="#">피드백 주기</a></li>
+</ul>
+</div>
+</aside>
 <div class = "row">
  
   
-      <% if params[:search] %> 
+     
         <div id="lecturelist">
             <%= render 'home_search' %>
         </div>
-      <% else %>
-
-      <div class = "col-xs-9 col-xs-offset-2"> 
-            <div id="valuationlist">
-                      <h3>최근 강의평가</h3>
-              <%= render 'home_user' %>
-            </div>
-      </div>  
-      <% end %>
-
+     
 
 </div>
 
