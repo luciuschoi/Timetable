@@ -1,33 +1,11 @@
 
-<div class= "container">
-  <div class = "col-xs-8 col-xs-offset-1">
-    <div class="jumbotron" style = "padding-top :10px;
-                                    padding-bottom : 5px;
-                                    padding-left : 15px;
-                                    padding-right : 15px;">
-          <h3>공지사항</h3>
-          <p style = "font-size : 16px;">안녕하세요 아뭐듣지 운영진입니다!
-          </p>
-          <p style = "font-size : 16px;">
-          아뭐듣지는 학생들이 수강신청시 겪는 어려움 및 강의 질 개선을 위해 만들었습니다.
-          </p>
-          <p style = "font-size : 16px;">      
-          학생들이 수강신청을 할 때 겪는 어려움은
-          “강의계획서로는 부족한 강의에 대한 정보”입니다.</p>
-          
-          <p style = "font-size : 16px;">이러한 문제를
-          실제 수강생들의 후기를 공유함으로써 해결하려합니다. 
-          </p>
-    </div> 
-  </div>
-</div>
-
-  </div>
-<% end %>
 
 
 
-    <%= render 'dropdown_btns'%>
+
+
+
+    <!-- %= render 'dropdown_btns'%> -->
     <!-- 학과 선택 dropdown -->
     
 
@@ -35,22 +13,18 @@
   
 
 <aside>
-<div id='cssmenu'>
-<ul>
-<li><a href="#">이용가이드</a></li>
-<li><a href="#">피드백 주기</a></li>
-</ul>
-</div>
+  <div id='cssmenu'>
+    <ul>
+      <li><a href="#">이용가이드</a></li>
+      <li><a href="#">피드백 주기</a></li>
+    </ul>
+  </div>
 </aside>
-<div class = "row">
- 
-  
-     
-        <div id="lecturelist">
-            <%= render 'home_search' %>
-        </div>
-     
 
+<div class = "row">
+  <div id="lecturelist">
+      <%= render 'home_search' %>
+  </div>
 </div>
 
 
@@ -76,11 +50,10 @@
  
 
   <% if !@lecture_name.nil? %>
-    $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>')
+    $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>');
   <% end %>
 
   $(function(){
-
     $(".dropdown-menu").on('click', 'li a', function(){
       $("#border-none:first-child").text($(this).text());
       $("#border-none:first-child").val($(this).text());
