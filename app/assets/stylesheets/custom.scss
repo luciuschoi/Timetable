@@ -153,13 +153,17 @@ table.nogap{
   border-collapse: collapse;
 }
 
+.nav.navbar-nav.navbar-right
+{
+  margin-right: 10%;
+}
 
 #navbar_margin_top{
   margin-top:15px;
 }
 #navbar_padding_lr{
-  padding-left:130px;
-  padding-right:130px;
+  padding-left:0%;
+  padding-right:0%;
 }
 
 #navbar_hello_color{
@@ -478,6 +482,7 @@ center;      vertical-align: middle;     font-size:15px;
   margin-top: 5px;
   height : 40px;
   width : 100%;
+  display:inline;
   span {
     /*margin-right:10px;*/
     float:left;
@@ -659,7 +664,9 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 
-
+#total_spot{
+  vertical-align:middle;
+}
 
 
 
@@ -675,6 +682,54 @@ center;      vertical-align: middle;     font-size:15px;
 #div_total
 {
   margin-top: 3px;
-  float:left
+
+  float:left;
+  
+
 }
 
+#showremain{
+position:absolute;
+right:0px;
+}
+
+
+/* form */
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.fb_btn{
+  margin-top:15px;
+  width : 100%;
+}
+.email_btn{
+  margin-top:15px;
+  width : 100%;
+}
+.btn_wd_100{
+  font-size:18px;
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}

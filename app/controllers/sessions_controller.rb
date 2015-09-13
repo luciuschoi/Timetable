@@ -1,6 +1,22 @@
 class SessionsController < ApplicationController
 
-	def create
+  def new
+
+  end
+
+  def create
+    user = User.find_by(email: params[:session][:email])
+    if user && user.authenticate(params[:session][:password])
+      log_in user
+      redirect_to root_path
+
+    else
+      flash[:danger] = 'Invalid email/password combination' # Not quite right!
+      render 'new'
+    end
+  end
+
+	def create_by_facebook
 	    user = User.from_omniauth(env["omniauth.auth"])
         session[:user_id] = user.id 
         session[:user_name] = user.name
@@ -13,13 +29,16 @@ class SessionsController < ApplicationController
       
   end
 
-  def destroy
-  
-    session[:user_id] = nil
-    session[:user_name] = nil
 
-    redirect_to root_path
+def destroy
+    log_out
+    current_user=nil;
+    session[:user_id] = nil; 
+    session[:user_name] = nil;
+    redirect_to root_url
   end
+
+
 
 private
   def user_params

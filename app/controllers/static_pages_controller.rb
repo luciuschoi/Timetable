@@ -8,7 +8,8 @@ class StaticPagesController < ApplicationController
   	  @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
     # 검색 안하고 학과 선택했니 ?
     elsif !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
-      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name])
+      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
+      paginate(:page => params[:page], :per_page =>10)
 
       respond_to do |format|
         format.js
@@ -16,8 +17,12 @@ class StaticPagesController < ApplicationController
       end
 
   	else
-      @valuations=Valuation.order("created_at DESC").limit(10)
+      @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
   	end
+  end
+
+  def login_form
+
   end
 
 
@@ -25,16 +30,14 @@ class StaticPagesController < ApplicationController
     if !params[:search].nil?
       @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
 
-    
+    else 
+      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
+
     end
-
-
   end
 
   def forcinglogin
-
     render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
-
   end
 
 

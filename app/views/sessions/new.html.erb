@@ -1,0 +1,24 @@
+<% provide(:title, "Log in") %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div style = "margin-bottom:15px;">
+      <h1 style = "text-align:center;">Log in</h1>
+    </div>
+
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :"아이디" %>
+      <%= f.text_field :email, class: 'form-control' %>
+
+      <%= f.label :"비밀번호 " %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn" %>
+
+    <% end %>
+      <%=link_to "Facebook으로 1초만에 로그인하기","/auth/facebook", class: "btn btn-primary fb_btn "%>
+
+      <%= link_to "아뭐듣지 10초만에 가입하기", signup_path, class: "btn btn-success email_btn" %>
+  </div>
+</div>

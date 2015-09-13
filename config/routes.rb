@@ -4,17 +4,26 @@ Rails.application.routes.draw do
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
  get 'rank' => 'static_pages#rank'
+
+ get 'notice' => 'static_pages#notice'
+
+ get 'login_form' => 'static_pages#login_form'
  
 root 'static_pages#home'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
-#if Rails.env.production?
-   get '404', :to => 'application#page_not_found'
-#end
+
+  get 'signup'  => 'users#new'
+
+ get    'login'   => 'sessions#new'
+ post   'login'   => 'sessions#create'
+ delete 'logout'  => 'sessions#destroy'
 
 #resources :lectures
-resources :users, only: [:index, :edit, :update]
-match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+resources :users
+
+
+match 'auth/:provider/callback', :controller => 'sessions', action: 'create_by_facebook', via: [:get, :post]
 match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do
