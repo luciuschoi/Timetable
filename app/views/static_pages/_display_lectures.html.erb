@@ -27,7 +27,9 @@
 				<div>
 					<!-- 만약 현재페이지가 staticpages#home  -->
 					<% if current_page? controller: 'static_pages', action: 'home'%>
+
 						<%= simple_format(truncate v.content, length: 50)%>.. 
+
 
 						<a onclick="showLecture(<%=v.lecture.id%>)">자세히 보기</a>					
 
@@ -136,6 +138,7 @@
 
 	function showLecture(lec_num)
   {
+
 
       <% if user_login? %>
         <% if current_user.valuations.count>=3 %>
