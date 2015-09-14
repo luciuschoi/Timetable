@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
    validates :email, presence: true, length: {maximum: 155}, 
                     uniqueness: true
-   
+
    validates :password, presence: true, length: { minimum: 6 }
    has_secure_password
 
@@ -25,12 +25,6 @@ class User < ActiveRecord::Base
     valuations.create(lecture_id: lec.id, grade: g, workload: w, achievement: a, 
       level: l, homework: h, total: t, content: c)
 
-  end
-
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
   end
  
 end

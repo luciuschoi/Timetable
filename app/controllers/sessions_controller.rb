@@ -13,24 +13,23 @@ class SessionsController < ApplicationController
     else
       flash[:danger] = 'Invalid email/password combination' # Not quite right!
       render 'new'
+      end
+  end
+
+  def create_by_facebook
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id 
+    session[:user_name] = user.name
+
+    if user.nickname.nil?
+      redirect_to :controller => 'users', :action => 'edit', :id => user.id
+    else
+      redirect_to root_path
     end
+
   end
 
-	def create_by_facebook
-	    user = User.from_omniauth(env["omniauth.auth"])
-        session[:user_id] = user.id 
-        session[:user_name] = user.name
-
-        if user.nickname.nil?
-          redirect_to :controller => 'users', :action => 'edit', :id => user.id
-        else
-          redirect_to root_path
-        end
-      
-  end
-
-
-def destroy
+  def destroy
     log_out
     current_user=nil;
     session[:user_id] = nil; 
@@ -40,9 +39,8 @@ def destroy
 
 
 
-private
-  def user_params
-  	params.require(:user).permit(:provider, :uid, :name, :oauth_token, :oauth_expires_at)
-  	  end
-
-end
+  private
+    def user_params
+      params.require(:user).permit(:provider, :uid, :name, :oauth_token, :oauth_expires_at)
+    end
+  end

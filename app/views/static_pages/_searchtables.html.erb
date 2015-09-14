@@ -1,22 +1,22 @@
 <br><br>
-<div class="col-sm-6 col-sm-offset-4" style="
-    margin-left: 34%;">
-<% if params[:search] %>
-<font color="blue"><%=@lectures.count %>개 </font> 검색결과
-</div>
+<div class = "row">
+  <div class="col-sm-4 col-sm-offset-2" style="
+      margin-left: 34%;">
+  <% if params[:search] %>
+  </div>
 
-<div class="col-sm-6 col-sm-offset-4">
-  <div class ="search_box">
-    <table class="table nogap">
-           <thead>
-        
-           <tr align="center" class="tr_style">
+  <div class="col-sm-6 col-sm-offset-3">
+    <font color="blue"><%=@lectures.count %>개 </font> 검색결과
+    <div class ="search_box">
+      <table class="table nogap">
+             <thead>
+           <tr align="center" class = "tr_style">
 
-             <th width="15%" style="border-bottom: 7px inset;">학기</th>
-             <th width="23%" style="border-bottom: 7px inset;">과목명</th>
-             <th width="15%" style="border-bottom: 7px inset;">교수</th>
-             <th width="37%" style="border-bottom: 7px inset;">평균평점</th>
-             <th witdh="10%" style="border-bottom: 7px inset;">조회수</th>
+             <th width="15%" class = "text_gray">학기</th>
+             <th width="23%" class = "text_gray">과목명</th>
+             <th width="15%" class = "text_gray">교수</th>
+             <th width="37%" class = "text_gray">평균평점</th>
+             <th witdh="10%" class = "text_gray">조회수</th>
              
            </tr>
            </thead>
@@ -30,9 +30,9 @@
         <td id="tb_unspot" ><%=lec.professor%> </td>  
         <td id="total_spot" > <div id="div_total">
         <% if lec.acc_total==0 %>
-        평가없음
+          평가없음
         <% else %> 
-        <%= lec.acc_total %></div><%= render 'shared/show_average_star',:var=> lec.acc_total%>
+          <%= lec.acc_total %></div><%= render 'shared/show_average_star',:var=> lec.acc_total%>
         <% end %> </td>
         <td id="tb_unspot" ><%=Random.rand(0...50)%></td>
 
