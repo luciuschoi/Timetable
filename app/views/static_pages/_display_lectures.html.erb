@@ -5,7 +5,7 @@
 	<div class = "col-xs-8 valuation_contents" >
 
 
-		<%if current_page? controller: 'static_pages', action:'home' %>
+		<%if current_page? controller: 'static_pages', action:'newsfeed' %>
 
 			<div class = "user_section">
 				<h3 class = "nickname_attr" style = "font-size:22px;"><%= v.lecture.subject %> </h3> <span class = "nickname_mgn"><%= v.lecture.professor %> 교수님</span>
@@ -19,14 +19,15 @@
 
 				<div class = "row_half_star">
 
-					<h4 style = "width : 150px; display: inline; font-weight:bold;"><%= v.user.nickname %></h4> 
+					<span style = "width : 150px; display: inline; color : #57ad68;
+                      font-weight:120"><%= v.user.nickname %></span> 
 					<span class = "name_sentence">님의 평가</span>
-			~		<div class = "timestamp" style = "width : 150px; display: inline; margin-left:5px"><%= v.timestamp_division %></div>
+					<div class = "timestamp" style = "width : 150px; display: inline; margin-left:5px"><%= v.timestamp_division %></div>
 				</div>
 
 				<div>
 					<!-- 만약 현재페이지가 staticpages#home  -->
-					<% if current_page? controller: 'static_pages', action: 'home'%>
+					<% if current_page? controller: 'static_pages', action: 'newsfeed'%>
 
 
 						<%= simple_format(truncate v.content, length: 50)%>.. 

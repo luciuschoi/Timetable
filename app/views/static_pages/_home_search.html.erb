@@ -2,21 +2,23 @@
 <div class = "row"> 
     <div class="col-sm-6 col-sm-offset-4" style="display:inline;" id ="form1">
      <%= form_tag root_path, :method => 'get', :class =>'form-inline' do %>
-                        <%= text_field_tag :search, params[:search], placeholder: :"강의명, 교수명을 입력하고 엔터로 검색하기." ,:class => 'form-control  form-group' ,:style => "width:50%;margin-left:2.3%;"%>
-                        <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-default', :style =>"width:15%;" %>
+        <%= text_field_tag :search, params[:search], placeholder: :"강의명, 교수명을 입력하고 엔터로 검색하기." ,:class => 'form-control  form-group' ,:style => "width:50%;margin-left:2.3%;"%>
+        <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-default', :style =>"width:15%;" %>
      <% end %>
     </div>
     <div class="col-sm-2"></div>
 </div>  
-  <div class="col-sm-6 col-sm-offset-2" style="
-    margin-left: 34%;">
-      자주 찾는 검색어 : 알고리즘, 경영학원론, 마케팅론, 노영덕, 박기호</div>
 
-  <div class="table-responsive sort_paginate_ajax" id="searchtables">
-      <%= render 'searchtables' %>
- 	 
+<div class="col-sm-6 col-sm-offset-2 text_gray" style="
+  margin-left: 34%;">
+    자주 찾는 검색어 : 알고리즘, 경영학원론, 마케팅론, 노영덕, 박기호
+</div>
 
-  </div> 
+<div class="table-responsive sort_paginate_ajax" id="searchtables">
+    <%= render 'searchtables' %>
+	 
+
+</div> 
 
 	
    

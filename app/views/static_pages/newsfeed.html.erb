@@ -1,26 +1,38 @@
-<%= render 'home_daemoon'%>
-  
 
-<aside>
-  <div id='cssmenu'>
-    <ul>
-      <li><a href="#">이용가이드</a></li>
-      <li><a href="http://goo.gl/forms/CWP0XnBEqJ">feedback</a></li>
-    </ul>
-  </div>
-</aside>
+ 
+
+<div class="row" id="recent">
+	<div class="col-md-8 col-md-offset-2"  align="left">
+
+    <!-- 학과 선택 dropdown -->
+    
+    <%= render 'home_daemoon'%>
+  
+  </div> <!-- col-md-8 -->
+</div>  <!-- row -->
+
 
 <div class = "row">
-  <div id="lecturelist">
-      <%= render 'home_search' %>
+  <div class = "col-xs-6 col-xs-offset-2">
+    <div class = "jumbotron" style = "margin-bottom :0;
+                                      padding : 10px;">
+      <h3>최근 강의평가</h3>
+      <%= render 'dropdown_btns'%>
+    </div>
   </div>
+
+  <div class = "col-xs-9 col-xs-offset-2"> 
+    
+    <div id="valuationlist">
+      <%= render 'home_user' %>
+    </div>
+  </div>  
 </div>
 
 
 
 
 <script>
-
    //pagination using ajax
   $(function() {
     $("#searchtables").on("click", ".pagination a", function(){
@@ -37,17 +49,13 @@
   });
  
  
-
   <% if !@lecture_name.nil? %>
-    $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>');
+    $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>')
   <% end %>
-
   $(function(){
     $(".dropdown-menu").on('click', 'li a', function(){
       $("#border-none:first-child").text($(this).text());
       $("#border-none:first-child").val($(this).text());
   });
-
 });
-
 </script>

@@ -2,23 +2,23 @@ class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
 
   def home
+    if params[:search]
+  	   @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    end
+  end
 
-    # 검색 했니?
-  	if !params[:search].nil?
-  	  @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
-    # 검색 안하고 학과 선택했니 ?
-    elsif !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
+  def newsfeed
+    if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
       paginate(:page => params[:page], :per_page =>10)
-
+      
       respond_to do |format|
         format.js
         format.html #{redirect_to @valuations}
       end
-
-  	else
+    else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
-  	end
+    end
   end
 
   def login_form

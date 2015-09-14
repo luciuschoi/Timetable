@@ -7,9 +7,8 @@ class User < ActiveRecord::Base
    validates :email, presence: true, length: {maximum: 155}, 
                     uniqueness: true
 
-   
    validates :password, presence: true, length: { minimum: 6 }
-   
+   has_secure_password
 
 
 	def self.from_omniauth(auth)
