@@ -1,11 +1,11 @@
 <div class="btn-group">
-  <button class="btn btn-default btn-lg dropdown-toggle" id = "border-none" data-toggle="dropdown">
+  <button class="btn btn-default btn-lg dropdown-toggle major-btn" id = "border-none" data-toggle="dropdown">
     학과 선택 <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="
   height : 400%; overflow:scroll;">
-    <li><%= link_to '모든학과', newsfeed_path(:lecture_name => '모든학과') %></li>
-    <li><%= link_to '컴퓨터공학과', newsfeed_path(:lecture_name => '컴퓨터공학과') %></li>
+    <li><%= link_to '모든학과', newsfeed_path(:lecture_name => '모든학과'), remote: true %></li>
+    <li><%= link_to '컴퓨터공학과', newsfeed_path(:lecture_name => '컴퓨터공학과'), remote: true %></li>
     <li><%= link_to '전자공학과', newsfeed_path(:lecture_name => '전자공학과') %></li>
     <li><%= link_to '광전자공학과', newsfeed_path(:lecture_name => '광전자공학과') %></li>
     <li><%= link_to '디지털콘텐츠학과', newsfeed_path(:lecture_name => '디지털콘텐츠학과') %></li>

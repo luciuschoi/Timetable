@@ -11,10 +11,10 @@ class StaticPagesController < ApplicationController
     if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
       paginate(:page => params[:page], :per_page =>10)
-      
+
       respond_to do |format|
         format.js
-        format.html #{redirect_to @valuations}
+        format.html {redirect_to newsfeed_path}
       end
     else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
