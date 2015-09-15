@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
-
+   before_action :gohome, only: [:daemoon]
   def home
     if params[:search]
   	   @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
@@ -19,11 +19,21 @@ class StaticPagesController < ApplicationController
     else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
     end
+  end 
+
+  def menual
+    @menual_num
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+
   end
 
   def login_form
 
   end
+
+  def daemoon
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+  end 
 
 
   def forcingwritting
@@ -36,17 +46,11 @@ class StaticPagesController < ApplicationController
   end
 
   def forcinglogin
-    render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
 
-  def user_login?
-    if session[:user_id].nil? && session[:user_name].nil?
-        false
-    else 
-        true
-    end
-  end
+
 
 
   def search
@@ -54,6 +58,7 @@ class StaticPagesController < ApplicationController
     render '_home_user'    
   end
 
+ private 
 
   def fillnickname 
      if logged_in_user? && current_user.nickname.nil?
@@ -69,7 +74,19 @@ class StaticPagesController < ApplicationController
       redirect_to root_url
     end
   end
+  def user_login?
+    if session[:user_id].nil? && session[:user_name].nil?
+        false
+    else 
+        true
+    end
+  end
 
+  def gohome
+    if user_login?
+      redirect_to home_path
+    end
+  end
   
   
 end

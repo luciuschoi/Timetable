@@ -5,12 +5,12 @@ Rails.application.routes.draw do
  get 'lecture_search' => 'static_pages#search'
  get 'newsfeed' => 'static_pages#newsfeed'
  get 'rank' => 'static_pages#rank'
-
+ get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
 
  get 'login_form' => 'static_pages#login_form'
- 
- root 'static_pages#home'
+ get 'home' => 'static_pages#home'
+ root 'static_pages#daemoon'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
 

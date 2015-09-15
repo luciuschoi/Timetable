@@ -4,13 +4,14 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to :controller => 'static_pages', :action => 'forcingwritting'
+      redirect_to :controller => 'static_pages', :action => 'menual'
     else
       render 'new'
     end
@@ -32,9 +33,9 @@ class UsersController < ApplicationController
   	@user=User.find(params[:id])
   	if @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
-  		      redirect_to root_path
+  		      redirect_to home_path
         else
-            redirect_to :controller => 'static_pages', :action => 'forcingwritting'
+            redirect_to :controller => 'static_pages', :action => 'menual'
         end    
   	else 
     		flash.now[:danger]=@user.errors.full_messages
