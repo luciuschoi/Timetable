@@ -1,7 +1,7 @@
 
 <div class = "row"> 
     <div class="col-xs-6 col-xs-offset-4" style="display:inline;" id ="form1">
-     <%= form_tag root_path, :method => 'get', :class =>'form-inline' do %>
+     <%= form_tag home_path, :method => 'get', :class =>'form-inline' do %>
         <%= text_field_tag :search, params[:search], placeholder: :"강의명, 교수명을 입력하고 엔터로 검색하기." ,:class => 'form-control  form-group' ,:style => "width:50%;margin-left:2.3%;"%>
         <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-default', :style =>"width:15%;" %>
      <% end %>
@@ -31,7 +31,7 @@
 function showLecture(lec_num)
   {
       <% if user_login? %>
-        <% if current_user.valuations.count>=3 %>
+        <% if current_user.valuations.count>=2 %>
           window.location="/lectures/"+lec_num.toString()
          <% else %>
          window.location="<%=forcingwritting_url%>"
