@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to :controller => 'static_pages', :action => 'menual'
+      redirect_to :controller => 'static_pages', :action => 'forcingwritting'
     else
       render 'new'
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         if @user.valuations.count > 2
   		      redirect_to home_path
         else
-            redirect_to :controller => 'static_pages', :action => 'menual'
+            redirect_to :controller => 'static_pages', :action => 'forcingwritting'
         end    
   	else 
     		flash.now[:danger]=@user.errors.full_messages
