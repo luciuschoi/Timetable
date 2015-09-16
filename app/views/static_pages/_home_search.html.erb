@@ -1,12 +1,27 @@
-<br><br>
 
-  <div class="table-responsive sort_paginate_ajax" id="searchtables">
-      <%= render 'searchtables' %>
- 	 
+<div class = "row"> 
+    <div class="col-sm-6 col-sm-offset-3" style="display:inline;" id ="form1">
+     <%= form_tag root_path, :method => 'get', :class =>'form-inline',
+          :style => 'text-align:center;' do %>
+        <%= text_field_tag :search, params[:search], placeholder: :"강의명, 교수명을 입력하고 엔터로 검색하기." ,:class => 'form-control  form-group' ,:style => "width:40%;"%>
+        <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:10%;" %>
+     <% end %>
+    </div>
+    <div class="col-sm-2"></div>
+</div>  
 
-  </div> 
+  <div class="col-sm-6 col-sm-offset-4" style="
+    margin-left: 34%;">
+      자주 찾는 검색어 : 서양고전강독, 경영학원론, 노용덕, 박기호</div>
 
-	
+
+<div class="table-responsive sort_paginate_ajax" id="searchtables">
+    <%= render 'searchtables' %>
+    
+
+</div> 
+
+   
    
 
 
@@ -42,4 +57,3 @@ function showLecture(lec_num)
   }
 
 </script>
-

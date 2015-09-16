@@ -7,6 +7,11 @@
 
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 
+/*  */
+
+.container{
+  width:85%;
+}
 
 /* fancybox */
 .fancybox{
@@ -14,15 +19,14 @@
 }
 body{
   font-family: Nanum_Gothic;
-  background-color : #F5F5F5;
+  background-color : white;
 }
 
 div{
   li{
     padding-left : 0px;
-  }
+  } 
 }
-
 
 
 
@@ -129,18 +133,7 @@ h1{
   margin-top: 45px;
   @include box_sizing; 
 }
-/*
-#lecture_list:hover {
-  background-color: yellow;
-  line: false;
-}
-*/
 
-/*
-tr.lovelyrow{
- vertical-align:middle
-}
-*/
 
 tr.lovelyrow:hover{
   background-color: #CEF6EC;
@@ -150,6 +143,40 @@ tr.lovelyrow:hover{
 
 table.nogap{
   border-collapse: collapse;
+}
+
+.navbar{
+  padding-top:5px;
+  padding-bottom:5px;
+
+  .container{
+    margin-left:20px;
+  }
+
+  .navbar-brand{
+    font-size:25px;
+    color:black;
+    font-weight:bold;
+  }
+  border-bottom: 1px solid #e8e8e8;
+  a{
+    color : gray;
+    font-weight:120;
+  }
+  a .activate{
+    color : black;
+  }
+  .navbar-nav a:hover{
+    color : black;
+    font-size:14.5px;
+    font-weight:bold;
+    background-color: white;
+  }
+  .navbar-nav .activate{
+    color : black;
+    font-size:14.5px;
+    font-weight : bold;
+  }
 }
 
 .nav.navbar-nav.navbar-right
@@ -166,10 +193,8 @@ table.nogap{
 }
 
 #navbar_hello_color{
-  color : white;
-  a{
-    color : white;
-  }
+  color : gray;
+  
 }
 
 #navbar_logout{
@@ -388,8 +413,8 @@ float:left;
 
  }
  #timetable_th{
-   border: 1px solid;
-
+   
+    border: 1px solid;
     text-align: center;
      vertical-align: middle;
      width: 150;
@@ -415,7 +440,7 @@ center;      vertical-align: middle;     font-size:15px;
    margin-right: auto;
 }
 #lecturelist{
-   max-width: 100%;
+   /*max-width: 100%;*/
    margin-left: auto;
    margin-right: auto;
 }
@@ -446,6 +471,8 @@ center;      vertical-align: middle;     font-size:15px;
     padding-top : 15px;
     padding-bottom : 15px;
     cursor : pointer;
+    border-bottom : 1.0px solid black;
+    margin-bottom:20px;
   }  
   .timestamp{
     color:#AAA;
@@ -453,6 +480,12 @@ center;      vertical-align: middle;     font-size:15px;
   .name_sentence {
     font-weight:150;
     color:#999;
+  }
+  .edit_section{
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align:right;
+    margin-top : 15px;
   }
 }
 
@@ -463,7 +496,7 @@ center;      vertical-align: middle;     font-size:15px;
 }
 
 .user_section{
-  border-bottom : 1px solid $gray-lighter;
+  border-bottom : 1.8px solid $gray-lighter;
   padding-bottom : 10px;
   margin-bottom : 15px;
   .nickname_attr {
@@ -475,25 +508,26 @@ center;      vertical-align: middle;     font-size:15px;
     color : #AAA;
     font-weight: 160;
   }
+
 }
 
 .valuation_star {
   margin-top: 5px;
   height : 40px;
   width : 100%;
-  display:inline;
+  /*display:inline;*/
   span {
     /*margin-right:10px;*/
     float:left;
     height : 25px;
-    width : 12%;
+    width : 10%;
     background : url("unactivated_star.png");
     display : inline;
     background-repeat: no-repeat;
   }
   .active{
     float:left;
-    width : 12%;
+    width : 10%;
     height : 25px;
     background : url("activated_star.png");
     display : inline;
@@ -505,9 +539,10 @@ center;      vertical-align: middle;     font-size:15px;
   display : inline;
   height: 35px;
   float:left;
+
   .left {
     float:left;
-    width : 15%;
+    width : 18%;
     color : #AAA;
     font-weight:140;
   }
@@ -525,7 +560,7 @@ center;      vertical-align: middle;     font-size:15px;
   }
   .total_subject{
     margin-top:10px;
-    font-size:15px;
+    /*font-size:15px;*/
   }
   #total{
     font-size:15px;
@@ -569,9 +604,13 @@ center;      vertical-align: middle;     font-size:15px;
 {
   background:white;
   margin :10px;
+
+
 }
 
-
+.text_gray{
+  color:gray;
+}
 
 
 /* 세부강의 */
@@ -581,9 +620,10 @@ center;      vertical-align: middle;     font-size:15px;
   .detail_lecture_box{
     padding-bottom: 20px;
     background-color: white;
+    border-bottom : 2px solid $gray-lighter;
   }
   .professor_section{
-    border-bottom: 1px solid $gray-lighter;
+    border-bottom: 2px solid $gray-lighter;
     margin-bottom:20px;
   }
   .lecture_valuation{
@@ -664,6 +704,32 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 #total_spot{
+  #div_total{
+    margin-top:13px;
+  }
+  .valuation_star {
+  margin-top: 5px;
+  height : 40px;
+  width : 100%;
+  /*display:inline;*/
+  span {
+    /*margin-right:10px;*/
+    float:left;
+    height : 25px;
+    width : 15%;
+    background : url("unactivated_star.png");
+    display : inline;
+    background-repeat: no-repeat;
+  }
+  .active{
+    float:left;
+    width : 15%;
+    height : 25px;
+    background : url("activated_star.png");
+    display : inline;
+    background-repeat: no-repeat;
+  }
+}
   vertical-align:middle;
 }
 
@@ -681,6 +747,7 @@ center;      vertical-align: middle;     font-size:15px;
 #div_total
 {
   margin-top: 3px;
+
   float:left;
   
 
@@ -702,6 +769,7 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+
 }
 
 #error_explanation {
@@ -729,4 +797,130 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+
+
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#cssmenu {
+  width: 180px;
+  z-index: 10;
+}
+#cssmenu ul {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background: #ffffff;
+  background: -moz-linear-gradient(bottom, #f0f0f0, #ffffff);
+  background: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
+  background: -o-linear-gradient(bottom, #f0f0f0, #ffffff);
+  background: -ms-linear-gradient(bottom, #f0f0f0, #ffffff);
+  background: linear-gradient(to top, #f0f0f0, #ffffff);
+}
+#cssmenu ul li {
+  display: block;
+  border-bottom: 1px solid #cccccc;
+}
+#cssmenu ul li.active {
+  border-bottom: 0;
+}
+#cssmenu ul li:last-child {
+  border-bottom: 0;
+}
+#cssmenu ul li a {
+  display: block;
+  padding: 14px 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #444444;
+}
+#cssmenu ul li.active {
+  left: -8px;
+  width: 194px;
+  padding: 2px;
+  background: #ce4c4a;
+  background: -moz-linear-gradient(bottom, #c43735, #d56462);
+  background: -webkit-linear-gradient(bottom, #c43735, #d56462);
+  background: -o-linear-gradient(bottom, #c43735, #d56462);
+  background: -ms-linear-gradient(bottom, #c43735, #d56462);
+  background: linear-gradient(to top, #c43735, #d56462);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+#cssmenu ul li.active > a {
+  padding: 12px 12px 12px 16px;
+  border-left: 1px dashed #de8886;
+  border-top: 1px dashed #de8886;
+  border-bottom: 1px dashed #de8886;
+  color: #ffffff;
+  text-shadow: 0 1px 1px #8c2726;
+}
+#cssmenu ul li.active:after {
+  position: absolute;
+  right: -16px;
+  top: 7px;
+  width: 31.526911934581186px;
+  height: 31.526911934581186px;
+  background: #ce4c4a;
+  background: -moz-linear-gradient(-45deg, #c43735, #d56462);
+  background: -webkit-linear-gradient(-45deg, #c43735, #d56462);
+  background: -o-linear-gradient(-45deg, #c43735, #d56462);
+  background: -ms-linear-gradient(-45deg, #c43735, #d56462);
+  background: linear-gradient(-45deg, #c43735, #d56462);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  content: "";
+}
+#cssmenu ul li.active:before {
+  position: absolute;
+  right: -12px;
+  top: 9px;
+  z-index: 10;
+  width: 28.526911934581186px;
+  height: 28.526911934581186px;
+  border-right: 1px dashed #e9afae;
+  border-top: 1px dashed #e9afae;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  content: "";
+}
+#cssmenu ul li.active a:after {
+  position: absolute;
+  bottom: -7px;
+  left: -11px;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 8px solid transparent;
+  border-right: 8px solid #982b29;
+  content: "";
+}
+
+.tr_style{
+  border-top: 3px solid $gray-lighter;
+}
+.th_style{
+  border-bottom: 2px ;
 }

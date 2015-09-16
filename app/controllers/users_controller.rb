@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   	else 
     		flash.now[:danger]=@user.errors.full_messages
     		render 'edit'
-    	end
+    end
   end
 
 

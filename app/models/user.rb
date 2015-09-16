@@ -6,17 +6,19 @@ class User < ActiveRecord::Base
 
    validates :email, presence: true, length: {maximum: 155}, 
                     uniqueness: true
-   
+
    validates :password, presence: true, length: { minimum: 6 }
    has_secure_password
 
 
-	def self.from_omniauth(auth)
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider 
       user.uid      = auth.uid
       user.name     = auth.info.name
       user.token    = auth.token
+      user.email = "#{user.uid}@facebook.com"
+      user.password = "qwoieqwiurqrqwpqwruqefoqeofqqfqfqieqr"
       user.save
     end
   end
@@ -25,12 +27,6 @@ class User < ActiveRecord::Base
     valuations.create(lecture_id: lec.id, grade: g, workload: w, achievement: a, 
       level: l, homework: h, total: t, content: c)
 
-  end
-
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
   end
  
 end

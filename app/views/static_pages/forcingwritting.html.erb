@@ -11,12 +11,14 @@
        <div align="center">
 
        			<div  id="form1">
+
               <%= form_tag forcingwritting_path, :method => 'get', :class =>'form-inline' do %>
                 
 
                 <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력하고 enter를 누르세요.",:class => 'form-control  form-group' ,:style => "width:50%"%>
                 
               <% end %>
+
 
       			</div>
  	    </div>    
@@ -32,7 +34,6 @@
 	function gotowrittingform(lec_num)
 	{
 		window.location = "/lectures/"+lec_num.toString()+"/writtingform" ;
-
 	}
 
 </script>

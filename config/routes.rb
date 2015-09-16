@@ -3,13 +3,14 @@ Rails.application.routes.draw do
  # get 'users/new'
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
+ get 'newsfeed' => 'static_pages#newsfeed'
  get 'rank' => 'static_pages#rank'
 
  get 'notice' => 'static_pages#notice'
 
  get 'login_form' => 'static_pages#login_form'
  
-root 'static_pages#home'
+ root 'static_pages#home'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
 
@@ -33,7 +34,7 @@ resources :lectures do
 end
 
 
-resources :valuations, only: [:create, :destroy]
+resources :valuations, only: [:create, :destroy, :edit, :update]
 resources :comments, only: [:create, :destroy, :edit, :update]
 resources :comment_valuations, only: [:create, :destroy]
 
