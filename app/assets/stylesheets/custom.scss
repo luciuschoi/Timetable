@@ -1,6 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+aside{
+  display:inline;
+  margin-right:12%;
+}
+#notice{
+  
+  border:3px solid #eeeeee;
+  width: 150%; 
+  p{
+    padding:10%;
+  }
+}
 
 
 @font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
@@ -581,7 +593,7 @@ center;      vertical-align: middle;     font-size:15px;
 .writtingform_box
 {
   background: white;
-  border:1px solid $gray-lighter;
+  border: 3px solid $gray-lighter;
 }
 
 .message{
