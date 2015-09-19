@@ -2,7 +2,9 @@
  style = "margin-top:10px;"> 
 
 
-	<div class = "col-xs-8 valuation_contents" >
+
+	<div class = "col-sm-8 valuation_contents" >
+
 
 
 		<%if current_page? controller: 'static_pages', action:'newsfeed' %>
@@ -15,7 +17,9 @@
 
 		<!-- border-bottom 아래 --> 
 		<div class = "row row_pd_top" onclick="showLecture(<%=v.lecture.id%>)" onmouseover="valuation_mouseover(this)" >
-			<div class = "col-xs-6">
+
+			<div class = "col-sm-6" >
+
 
 				<div class = "row_half_star">
 
@@ -47,7 +51,7 @@
 				</div>	
 			</div>
 
-			<div class = "col-xs-6 lec_<%= v.lecture.id %>">
+			<div class = "col-sm-6 lec_<%= v.lecture.id %>" style = "padding-left:0">
 				
 				<div class = "valuation_box">
 					<div class = "left">
@@ -136,7 +140,7 @@
 
     <div class = "edit_section">
        <% if current_user == v.user %>
-          <span><%= link_to "수정"%> <%= link_to "삭제"%></span> 
+          <span><%= link_to "수정"%> <%= link_to "삭제", v, method: :delete, data: { confirm: "지우시겠습니까?"}%></span> 
        <% end %>
     </div>
 	</div>
@@ -149,7 +153,8 @@
 
 
       <% if user_login? %>
-        <% if current_user.valuations.count>=3 %>
+
+        <% if current_user.valuations.count>=2 %>
           window.location="/lectures/"+lec_num.toString()
          <% else %>
          window.location="<%=forcingwritting_url%>"

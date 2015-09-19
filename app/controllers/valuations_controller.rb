@@ -17,6 +17,12 @@ class ValuationsController < ApplicationController
     def edit
     	
     end
+
+    def destroy
+    	@valuation = Valuation.find_by(id: params[:id])
+    	@valuation.destroy
+    	redirect_to root_url
+    end
 end
 
 

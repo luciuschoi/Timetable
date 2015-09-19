@@ -2,16 +2,20 @@ class SessionsController < ApplicationController
 
   def new
 
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+
+
   end
 
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to root_path
+
+      redirect_to home_path
 
     else
-      flash[:danger] = 'Invalid email/password combination' # Not quite right!
+      flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
       render 'new'
       end
   end
@@ -24,10 +28,15 @@ class SessionsController < ApplicationController
     if user.nickname.nil?
       redirect_to :controller => 'users', :action => 'edit', :id => user.id
     else
-      redirect_to root_path
+      redirect_to home_path
     end
 
+
   end
+ 
+
+
+
 
   def destroy
     log_out
