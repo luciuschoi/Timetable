@@ -1,33 +1,55 @@
-<br><br>
-
-<div class = "container">
-  <div class = "row">
-    <div class="col-sm-4 col-sm-offset-2" style="margin-left: 34%;">
-      <% if params[:search] %>
+<%unless @lectures.nil?%> 
+<%if current_page? controller: 'static_pages', action:'home' %>
+    <div class = "row">
+      <div class = "col-sm-2 col-sm-offset-2">
+        <div class= "dropdown_box">
+          <h4><B>학과별로 보기</B></h4>
+          <%= render 'dropdown_btns_home'%>
+        </div>
       </div>
+    </div> 
+<%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
+     <div class = "row">
+      <div class = "col-sm-2 col-sm-offset-2">
+        <div class= "dropdown_box">
+          <h4><B>학과별로 보기</B></h4>
+          <%= render 'static_pages/dropdown_btns_forcing'%>
+        </div>
+      </div>
+    </div>      
+<%end%>
 
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class = "table-responsive" style = "font-size:13px">
+
+    
+      <div class="col-sm-8 col-sm-offset-2">
+      <div class = "table-responsive" style = "margin-top:10px;">
       <font color="blue"><%=@lectures.count %>개 </font> 검색결과
       <div class ="search_box">
-        <table class="table nogap">
+        <table class="table nogap" style= "font-size:1em;">
                <thead>
              <tr align="center" class = "tr_style">
 
-               <th width="10%" class = "text_gray">학기</th>
-               <th width="25%" class = "text_gray">과목명</th>
-               <th width="15%" class = "text_gray">교수</th>
-               <th width="40%" class = "text_gray">평균평점</th>
-               <th witdh="5%" class = "text_gray">조회수</th>
-               
+    
+               <th width="24%" class = "text_gray">과목명</th>
+               <th width="20%" class = "text_gray">교수</th>
+               <th width="35%" class = "text_gray">평균평점</th>
+               <th witdh="30%" class = "text_gray" style="padding-left=-10;">평가</th>
+              <%if current_page? controller: 'static_pages', action:'home' %>
+                 <th witdh="10%" class = "text_gray" style="width: 26px;">열람하기</th>
+              <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
+                 <th witdh="10%" class = "text_gray" style="width: 26px;">평가하기</th>
+              <%end%>
              </tr>
              </thead>
-        	 <tbody></tbody>   
+           <tbody></tbody>   
      
-    		<% @lectures.each do |lec| %>
-    	
-          <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
-          <td id="tb_unspot">준비중</td>
+        <% @lectures.each do |lec| %>
+           <%if current_page? controller: 'static_pages', action:'home' %>
+                <tr class="lovelyrow" onclick="showLecture(<%=lec.id%>)" >
+            <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
+                <tr class="lovelyrow" onclick="window.location='<%=writtingform_lecture_url(lec)%>'">
+            <%end%>     
+
            <td id="tb_spot"><%= lec.subject%></font></td>
           <td id="tb_unspot" ><%=lec.professor%> </td>  
           <td id="total_spot" >
@@ -41,26 +63,31 @@
               <% end %> 
           </td>
           
-          <td id="tb_unspot" ><%=Random.rand(0...50)%></td>
+          <td id="tb_unspot" ><%=lec.valuations.count%></td>
+          <%if current_page? controller: 'static_pages', action:'home' %>
+                 <td witdh="10%" class = "btn btn_look">열람하기</th>
+          <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
+                 <td witdh="10%" class = "btn btn_valuation">평가하기</th>
+          <%end%>
 
+        </tr>
 
-    		</tr>
+           <% end %>
+            </tbody>
 
-       	   <% end %>
-       	   	</tbody>
-
-       	   	</table>
+            </table>
 
     </div>      
         <% if @lectures.count ==0 %> 
           <font color="gray"><h3>검색 결과가 없습니다. </h3></font>
         <%end %>
         
-  </div>
+ 
 
      
        <div align='center'>   
-     	   <%= will_paginate @lectures %>
+         <%= will_paginate @lectures %>
        </div>
-  <% end %> 
-</div>
+
+
+<%end%> 

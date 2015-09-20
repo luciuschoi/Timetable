@@ -3,6 +3,7 @@ class LecturesController < ApplicationController
 	before_action :admin_user, only: [:destroy, :edit, :create, :update, :new, :import]
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
+	before_action :godaemoon, only:[:show]
 	#before_action :forcingwritting, only: [:show, :timetable]
 	require 'roo'
 
@@ -94,5 +95,18 @@ class LecturesController < ApplicationController
 				redirect_to edit_user_url(current_user)
 			end
 		end
+		def user_login?
+		    if session[:user_id].nil? && session[:user_name].nil?
+		        false
+		    else 
+		        true
+		    end
+		end
+
+	    def godaemoon
+		    unless user_login?
+		      redirect_to root_path
+		    end
+	    end
 
 end

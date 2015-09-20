@@ -3,14 +3,24 @@ class StaticPagesController < ApplicationController
    before_action :gohome, only: [:daemoon]
   def home
     if params[:search]
-  	   @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
-    end
+
+      if !params[:major].nil? && !params[:major].include?('모든학과')
+
+      @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+           
+      else 
+       @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+      end 
+    elsif !params[:major].nil? && !params[:major].include?('모든학과')
+      @lectures = Lecture.where(:major =>params[:major]).
+      order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+    end      
   end
 
   def newsfeed
     if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
-      order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
+      order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
 
       respond_to do |format|
         format.js
@@ -39,11 +49,21 @@ class StaticPagesController < ApplicationController
 
 
   def forcingwritting
-    if !params[:search].nil?
-      @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    if params[:search]
 
+      if !params[:major].nil? && !params[:major].include?('모든학과')
+
+      @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+           
+      else 
+       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+      end 
+    elsif !params[:major].nil? && !params[:major].include?('모든학과')
+      @lectures = Lecture.where(:major =>params[:major]).
+      order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
     else 
-      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
+     # @lectures=Lecture.all.order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+       @lectures=Lecture.search('asgreagjergoierjiogjerigjeriogj').order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
     end
   end
 
