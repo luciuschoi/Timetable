@@ -21,12 +21,13 @@ class SessionsController < ApplicationController
   end
 
   def create_by_facebook
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id 
-    session[:user_name] = user.name
+    @user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = @user.id 
+    session[:user_name] = @user.name
 
-    if user.nickname.nil?
-      redirect_to :controller => 'users', :action => 'edit', :id => user.id
+    if @user.nickname.nil?
+      redirect_to edit_user_path(@user)
+      #redirect_to :controller => 'users', :action => 'edit', :id => user.id
     else
       redirect_to home_path
     end

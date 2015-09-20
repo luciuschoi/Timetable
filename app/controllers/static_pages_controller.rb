@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
       @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
            
       else 
-       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+       @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).
@@ -75,7 +75,8 @@ class StaticPagesController < ApplicationController
       @lectures = Lecture.where(:major =>params[:major]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
     else 
-      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
+     # @lectures=Lecture.all.order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+       @lectures=Lecture.search('asgreagjergoierjiogjerigjeriogj').order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
     end
   end
 

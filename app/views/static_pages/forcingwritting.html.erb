@@ -12,14 +12,20 @@
        <div align="center">
 
             <div  id="form1">
-
+           <%if current_page? controller: 'static_pages', action:'forcingwritting' %>     
               <%= form_tag forcingwritting_path, :method => 'get', :class =>'form-inline' do %>
-                
-
+                <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력하세요.",:class => 'form-control  form-group' ,:style => "width:50%"%>
+                <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
+                    
+               <%end%>   
+           <%elsif current_page? controller: 'static_pages', action:'home' %>    
+              <%= form_tag home_path, :method => 'get', :class =>'form-inline' do %>
                 <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력하고 enter를 누르세요.",:class => 'form-control  form-group' ,:style => "width:50%"%>
                 <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
-              <% end %>
-          
+               <%end%> 
+           <%end%>  
+
+       
 
             </div>
       </div>
@@ -30,11 +36,11 @@
 
 </div>
    <br>
-    <div id="forcinglecturelist">
+  
       <div id="searchtables">
         <%= render 'static_pages/searchtables' %>
       </div>
-    </div>
+ 
   
 
 
