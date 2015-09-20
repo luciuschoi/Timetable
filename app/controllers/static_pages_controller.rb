@@ -21,6 +21,17 @@ class StaticPagesController < ApplicationController
     if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+      
+      @major_name = params[:lecture_name]
+      @count_of_today = 0
+      
+      @valuations.each do |v|
+
+        difference = Time.zone.now - v.created_at 
+        if difference < 3600 && difference > 0
+          @count_of_today += 1
+        end
+      end
 
       respond_to do |format|
         format.js
@@ -28,6 +39,14 @@ class StaticPagesController < ApplicationController
       end
     else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
+      @count_of_today = 0
+
+      @valuations.each do |v|
+        difference = Time.zone.now - v.created_at 
+        if difference < 3600 && difference > 0
+          @count_of_today += 1 
+        end
+      end
     end
 
   end 
@@ -35,12 +54,6 @@ class StaticPagesController < ApplicationController
   def menual
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
-
-
-  end
-
-  def login_form
-
   end
 
   def daemoon
@@ -67,13 +80,16 @@ class StaticPagesController < ApplicationController
   end
 
   def forcinglogin
-
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
-
-
-
+  def home_admin
+    if current_user.admin?
+      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
+    else
+      redirect_to root_url
+    end
+  end
 
   def search
     @lectures = Lecture.where('major = ?', params[:lecture_name])
@@ -89,13 +105,6 @@ class StaticPagesController < ApplicationController
      end
   end
 
-  def home_admin
-    if current_user.admin?
-      @lectures=Lecture.paginate(:page => params[:page], :per_page => 20 )
-    else
-      redirect_to root_url
-    end
-  end
   def user_login?
     if session[:user_id].nil? && session[:user_name].nil?
         false

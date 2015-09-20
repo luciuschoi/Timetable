@@ -1,18 +1,18 @@
 <%unless @lectures.nil?%> 
 <%if current_page? controller: 'static_pages', action:'home' %>
     <div class = "row">
-      <div class = "col-sm-2 col-sm-offset-3">
+      <div class = "col-sm-5 col-sm-offset-3" style = "padding-top : 15px">
         <div class= "dropdown_box">
-          <h3>학과별로 보기</h3>
+          <h3 style = "display : inline">전공별 검색</h3>
           <%= render 'dropdown_btns_home'%>
         </div>
       </div>
     </div> 
 <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
      <div class = "row">
-      <div class = "col-sm-2 col-sm-offset-2">
+      <div class = "col-sm-5 col-sm-offset-3"  style = "padding-top : 15px">
         <div class= "dropdown_box">
-          <h3>학과별로 보기</h3>
+          <h3 style = "display : inline">전공별 검색</h3>
           <%= render 'static_pages/dropdown_btns_forcing'%>
         </div>
       </div>
