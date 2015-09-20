@@ -6,6 +6,7 @@
   height : 400%; overflow:scroll;">
     <li><%= link_to '모든학과', newsfeed_path(:lecture_name => '모든학과'), remote: true %></li>
     <li><%= link_to '컴퓨터공학과', newsfeed_path(:lecture_name => '컴퓨터공학과'), remote: true %></li>
+
     <li><%= link_to '전자공학과', newsfeed_path(:lecture_name => '전자공학과'), remote: true  %></li>
     <li><%= link_to '광전자공학과', newsfeed_path(:lecture_name => '광전자공학과'), remote: true  %></li>
     <li><%= link_to '디지털콘텐츠학과', newsfeed_path(:lecture_name => '디지털콘텐츠학과'), remote: true  %></li>
@@ -75,5 +76,6 @@
 
     <li role="separator" class="divider"></li>
     <li><%= link_to '자유교양', newsfeed_path(:lecture_name => '교양학부'), remote: true  %></li>
+
   </ul>
 </div>

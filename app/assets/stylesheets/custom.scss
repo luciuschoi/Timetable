@@ -1,7 +1,37 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+aside{
+  display:inline;
+  margin-right:12%;
+}
+#notice{
+  
+  border:3px solid #eeeeee;
+  width: 150%; 
+  p{
+    padding:10%;
+  }
+}
 
+#forcinglecturelist{
+   max-width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.btn_look{
+   background-color:#93DAFF;
+  color:white;
+  font-weight:bold;
+  
+}
+
+.btn_valuation{
+   background-color:#E6749D;
+   color:white;
+   font-weight:bold;
+}
 
 @font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
 
@@ -9,9 +39,6 @@
 
 /*  */
 
-.container{
-  width:85%;
-}
 
 /* fancybox */
 .fancybox{
@@ -87,9 +114,9 @@ h1{
 }
 
 #form1{
-  display: inline;
+  display: block;
   float: center;
-
+ 
 
 }
 #form2{
@@ -97,7 +124,10 @@ h1{
   text-align:center; 
   margin-right:auto;
   margin:0 auto;
+  border-bottom: 3px solid #8FCEFF;
+  padding-bottom: 5%;
 }
+
 .row_padding_reduction{
   padding-top:10px;
 }
@@ -440,7 +470,7 @@ center;      vertical-align: middle;     font-size:15px;
    margin-right: auto;
 }
 #lecturelist{
-   /*max-width: 100%;*/
+   max-width: 100%;
    margin-left: auto;
    margin-right: auto;
 }
@@ -515,19 +545,19 @@ center;      vertical-align: middle;     font-size:15px;
   margin-top: 5px;
   height : 40px;
   width : 100%;
-  /*display:inline;*/
+  display:inline;
   span {
     /*margin-right:10px;*/
     float:left;
     height : 25px;
-    width : 10%;
+    width : 26px;
     background : url("unactivated_star.png");
     display : inline;
     background-repeat: no-repeat;
   }
   .active{
     float:left;
-    width : 10%;
+    width : 26px;
     height : 25px;
     background : url("activated_star.png");
     display : inline;
@@ -539,10 +569,9 @@ center;      vertical-align: middle;     font-size:15px;
   display : inline;
   height: 35px;
   float:left;
-
   .left {
     float:left;
-    width : 18%;
+    width : 15%;
     color : #AAA;
     font-weight:140;
   }
@@ -560,7 +589,7 @@ center;      vertical-align: middle;     font-size:15px;
   }
   .total_subject{
     margin-top:10px;
-    /*font-size:15px;*/
+    font-size:15px;
   }
   #total{
     font-size:15px;
@@ -585,7 +614,7 @@ center;      vertical-align: middle;     font-size:15px;
 .writtingform_box
 {
   background: white;
-  border:1px solid $gray-lighter;
+  border: 3px solid $gray-lighter;
 }
 
 .message{
@@ -610,6 +639,8 @@ center;      vertical-align: middle;     font-size:15px;
 
 .text_gray{
   color:gray;
+  padding-left:0px;
+  padding-right:0px;
 }
 
 
@@ -704,32 +735,6 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 #total_spot{
-  #div_total{
-    margin-top:13px;
-  }
-  .valuation_star {
-  margin-top: 5px;
-  height : 40px;
-  width : 100%;
-  /*display:inline;*/
-  span {
-    /*margin-right:10px;*/
-    float:left;
-    height : 25px;
-    width : 15%;
-    background : url("unactivated_star.png");
-    display : inline;
-    background-repeat: no-repeat;
-  }
-  .active{
-    float:left;
-    width : 15%;
-    height : 25px;
-    background : url("activated_star.png");
-    display : inline;
-    background-repeat: no-repeat;
-  }
-}
   vertical-align:middle;
 }
 
@@ -785,6 +790,10 @@ input {
   width : 100%;
 }
 .email_btn{
+  margin-top:15px;
+  width : 100%;
+}
+.login_btn{
   margin-top:15px;
   width : 100%;
 }

@@ -1,16 +1,26 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
-
+   before_action :gohome, only: [:daemoon]
   def home
     if params[:search]
-  	   @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
-    end
+
+      if !params[:major].nil? && !params[:major].include?('모든학과')
+
+      @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+           
+      else 
+       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+      end 
+    elsif !params[:major].nil? && !params[:major].include?('모든학과')
+      @lectures = Lecture.where(:major =>params[:major]).
+      order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+    end      
   end
 
   def newsfeed
     if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
-      order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
+      order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
 
       respond_to do |format|
         format.js
@@ -19,34 +29,50 @@ class StaticPagesController < ApplicationController
     else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
     end
+
+  end 
+
+  def menual
+    @menual_num
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+
+
   end
 
   def login_form
 
   end
 
+  def daemoon
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+  end 
+
 
   def forcingwritting
-    if !params[:search].nil?
-      @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    if params[:search]
 
+      if !params[:major].nil? && !params[:major].include?('모든학과')
+
+      @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+           
+      else 
+       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+      end 
+    elsif !params[:major].nil? && !params[:major].include?('모든학과')
+      @lectures = Lecture.where(:major =>params[:major]).
+      order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
     else 
       @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
     end
   end
 
   def forcinglogin
-    render(:layout => "layouts/showinglecture") #헤더파일 포함 안함 !
+
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
 
-  def user_login?
-    if session[:user_id].nil? && session[:user_name].nil?
-        false
-    else 
-        true
-    end
-  end
+
 
 
   def search
@@ -54,6 +80,7 @@ class StaticPagesController < ApplicationController
     render '_home_user'    
   end
 
+ private 
 
   def fillnickname 
      if logged_in_user? && current_user.nickname.nil?
@@ -69,7 +96,19 @@ class StaticPagesController < ApplicationController
       redirect_to root_url
     end
   end
+  def user_login?
+    if session[:user_id].nil? && session[:user_name].nil?
+        false
+    else 
+        true
+    end
+  end
 
+  def gohome
+    if user_login?
+      redirect_to home_path
+    end
+  end
   
   
 end

@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+
   end
 
   def create
@@ -32,7 +35,7 @@ class UsersController < ApplicationController
   	@user=User.find(params[:id])
   	if @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
-  		      redirect_to root_path
+  		      redirect_to home_path
         else
             redirect_to :controller => 'static_pages', :action => 'forcingwritting'
         end    
