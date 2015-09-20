@@ -21,7 +21,6 @@ class StaticPagesController < ApplicationController
     if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
       @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
-      
       @major_name = params[:lecture_name]
       @count_of_today = 0
       
@@ -48,7 +47,6 @@ class StaticPagesController < ApplicationController
         end
       end
     end
-
   end 
 
   def menual
@@ -106,6 +104,13 @@ class StaticPagesController < ApplicationController
      end
   end
 
+  def user_login?
+    if session[:user_id].nil? && session[:user_name].nil?
+        false
+    else 
+        true
+    end
+  end
   def user_login?
     if session[:user_id].nil? && session[:user_name].nil?
         false
