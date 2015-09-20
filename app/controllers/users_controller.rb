@@ -4,9 +4,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
-
   end
 
   def create
@@ -33,14 +31,15 @@ class UsersController < ApplicationController
 
   def update
   	@user=User.find(params[:id])
-  	if @user.update_attribute(:nickname, params[:user][:nickname])
+  	if !params[:user][:ninkname].nil?
+        @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
   		      redirect_to home_path
         else
             redirect_to :controller => 'static_pages', :action => 'forcingwritting'
         end    
   	else 
-    		flash.now[:danger]=@user.errors.full_messages
+    		flash.now[:danger]="닉네임을 빈칸으로 설정할 수 없습니다."
     		render 'edit'
     end
   end

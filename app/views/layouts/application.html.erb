@@ -13,6 +13,14 @@
  
     <%= render 'layouts/header' %>
     
+    <aside>
+      <div id='cssmenu'>
+        <ul>
+          <li><a href="#">이용가이드</a></li>
+          <li><%=link_to "Feedback","http://goo.gl/forms/CWP0XnBEqJ",target: '_blank'%></li>
+        </ul>
+      </div>
+    </aside>
 <!-- /.row --> 
      <!-- flash 메세지 출력 -->  
      <% flash.each do |message_type, message| %>
