@@ -3,3 +3,8 @@ $('.major-btn').html('<%= params[:lecture_name]%>');
 
 $('#valuationlist').html('<%= escape_javascript(render("home_user")) %>')
 $('.pagination a').attr('data-remote', 'true');
+
+$('#v_total_count').html('<%= @valuations.count %>');
+$('#v_today_count').html('<%= @count_of_today %>');
+$('#major_name').html('<%= @major_name %>의 최근평가');
+

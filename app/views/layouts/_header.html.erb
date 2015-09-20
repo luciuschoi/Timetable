@@ -1,6 +1,5 @@
 
     <nav class="navbar" role="navigation" >
-      <div class="container" id = "navbar_padding_lr">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -11,9 +10,19 @@
 
           <!-- QQQQ -->
           <% if current_user && current_user.nickname.nil?%>
-            <a class="navbar-brand" href="#" id="header">아뭐듣지</a>
+            
+            <a class="navbar-brand" href="#" id="header">
+              <%= image_tag "logo3.png", size: "30x30"%> 아뭐듣지
+            </a>
           <% else %>
+<<<<<<< HEAD
             <a class="navbar-brand" href="/home" id="header">아뭐듣지</a>
+=======
+
+            <a class="navbar-brand" href="/home" id="header">
+              <%= image_tag "logo3.png", size: "30x30"%> 아뭐듣지
+            </a>
+>>>>>>> 83b37d1c7cfb6381e4c74417f675628b5df66fb1
           <% end %>
 
         </div>
@@ -59,7 +68,7 @@
             <% if current_user %>
 
                 <% unless current_user.nickname.nil? %>
-                  <div id = "navbar_margin_top">
+                  <div id = "navbar_margin_top" style = "margin-right:30px">
                     <li> <span id = "navbar_hello_color">
                     <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   <a href="/signout"
                     id = "navbar_hello_color">logout </a></span>
@@ -69,7 +78,7 @@
                 <% end %>
 
             <% else %>
-              <div id ="navbar_margin_top">
+              <div id ="navbar_margin_top" style = "margin-right:30px">
                 <li> 
                   <a href = "<%= login_path%>" id = "navbar_hello_color">로그인</a>
                 </li>
@@ -77,7 +86,6 @@
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
 
 
     </nav>

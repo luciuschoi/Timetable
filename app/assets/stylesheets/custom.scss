@@ -4,6 +4,7 @@
 aside{
   display:inline;
   margin-right:5%;
+<<<<<<< HEAD
 
 }
 #notice{
@@ -28,6 +29,32 @@ aside{
   
 }
 
+=======
+
+}
+#notice{
+  
+  border:3px solid #eeeeee;
+  width: 150%; 
+  p{
+    padding:10%;
+  }
+}
+
+#forcinglecturelist{
+   max-width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.btn_look{
+   background-color:#93DAFF;
+  color:white;
+  font-weight:bold;
+  
+}
+
+>>>>>>> 83b37d1c7cfb6381e4c74417f675628b5df66fb1
 .btn_valuation{
    background-color:#E6749D;
    color:white;
@@ -934,3 +961,27 @@ input {
 .th_style{
   border-bottom: 2px ;
 }
+
+
+/* daemoon */
+.logo_bg{
+  float:left;
+  height : 25px;
+  width : 26px;
+  background : url("logo3.png");
+  display : inline;
+  background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
