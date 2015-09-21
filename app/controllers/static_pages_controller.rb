@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
       @valuations.each do |v|
 
         difference = Time.zone.now - v.created_at 
-        if difference < 3600 && difference > 0
+        if difference < 86400 && difference > 0
           @count_of_today += 1
         end
       end
@@ -42,7 +42,7 @@ class StaticPagesController < ApplicationController
 
       @valuations.each do |v|
         difference = Time.zone.now - v.created_at 
-        if difference < 3600 && difference > 0
+        if difference < 86400 && difference > 0
           @count_of_today += 1 
         end
       end
