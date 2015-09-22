@@ -18,10 +18,10 @@ class StaticPagesController < ApplicationController
   end
 
   def newsfeed
-    if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
-      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
+    if !params[:major].nil? && !params[:major].include?('모든학과')
+      @valuations = Valuation.join_major.where("major = ?", params[:major]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
-      @major_name = params[:lecture_name]
+      @major_name = params[:major]
       @count_of_today = 0
       
       @valuations.each do |v|
@@ -39,7 +39,7 @@ class StaticPagesController < ApplicationController
     else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
       @count_of_today = 0
-
+      @major_name = '전체학과'
       @valuations.each do |v|
         difference = Time.zone.now - v.created_at 
         if difference < 86400 && difference > 0
