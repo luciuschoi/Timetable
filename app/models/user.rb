@@ -7,11 +7,17 @@ class User < ActiveRecord::Base
    validates :email, presence: true, length: {maximum: 155}, 
                     uniqueness: true
 
+
    validates :password, presence: true, length: { minimum: 6 }
    has_secure_password
 
 
-	def self.from_omniauth(auth)
+
+   validates :password, presence: true, length: { minimum: 6 }
+   has_secure_password
+
+
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider 
       user.uid      = auth.uid
