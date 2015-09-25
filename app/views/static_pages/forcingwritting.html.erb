@@ -1,12 +1,17 @@
 <div class="container-fluid forcingwritting_box">
    <div id="form2">
 
-   <p>아뭐듣지는 학우들에게 실제 강의 후기를 들려줍니다. <br>
+   <p>
    많은 학우들에게 도움이 되기 위해 <br>
    강의평가 2회 이상 부탁드립니다.</p>
 
-   <h2>강의 평가 <%=2-current_user.valuations.count%>번 남았어요 ! 
-   </h2>
+   <h4>강의 평가 
+      <span>
+        <h3 style = "display:inline"><%=2-current_user.valuations.count%>번
+        </h3>
+      </span>
+      작성 후, 이용할 수 있어요! 
+   </h4>
 
  
        <div align="center">
@@ -29,24 +34,26 @@
 
             </div>
       </div>
-      <div> <b style="padding-right: 18%;"> 1,2학기 모든학과 과목이 등록되어 있습니다.</b></div>
+      <div style="margin-top : 10px;"> 
+        <b> 총 4218개의 강의가 등록되어있습니다.</b>
+      </div>
   </div>
 
 
 </div>
    <br>
-      <div class = "row">
-      <div class = "col-sm-2 col-sm-offset-2">
-        <div class= "dropdown_box">
-          <h4><B>학과별로 보기</B></h4>
-          <%= render 'static_pages/dropdown_btns_forcing'%>
-        </div>
-      </div>
-    </div>      
-  
-      <div id="searchtables">
-        <%= render 'static_pages/searchtables' %>
-      </div>
+
+<div class = "row">
+  <div class = "col-sm-2 col-sm-offset-2">
+    <div class= "dropdown_box">
+      <%= render 'static_pages/dropdown_btns_forcing'%>
+    </div>
+  </div>
+</div>      
+
+<div id="searchtables">
+  <%= render 'static_pages/searchtables' %>
+</div>
  
   
 
