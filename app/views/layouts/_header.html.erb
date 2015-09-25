@@ -1,5 +1,6 @@
 
     <nav class="navbar" role="navigation" >
+      <div class="container" id = "navbar_padding_lr">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -10,14 +11,9 @@
 
           <!-- QQQQ -->
           <% if current_user && current_user.nickname.nil?%>
-            
-            <a class="navbar-brand" href="#" id="header">
-              <%= image_tag "logo3.png", size: "30x30"%> 아뭐듣지
-            </a>
+            <a class="navbar-brand" href="#" id="header">아뭐듣지</a>
           <% else %>
-            <a class="navbar-brand" href="/home" id="header">
-              <%= image_tag "logo3.png", size: "30x30"%> 아뭐듣지
-            </a>
+            <a class="navbar-brand" href="/home" id="header">아뭐듣지</a>
           <% end %>
 
         </div>
@@ -46,13 +42,14 @@
               </li>
 
             <% end %>
-
+<!--
               <li class="nav navbar-nav navbar-form">
               <%= form_tag home_path, :method => 'get', :class =>'form-inline' do %>
                     <%= text_field_tag :search, params[:search], placeholder: :"과목,교수님명을 입력해주세요." ,:class => 'form-control  form-group' ,:style => "width:150%;;"%>
               
               <% end %>
               </li>
+-->              
           </ul>
 
       
@@ -63,7 +60,7 @@
             <% if current_user %>
 
                 <% unless current_user.nickname.nil? %>
-                  <div id = "navbar_margin_top" style = "margin-right:30px">
+                  <div id = "navbar_margin_top">
                     <li> <span id = "navbar_hello_color">
                     <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   <a href="/signout"
                     id = "navbar_hello_color">logout </a></span>
@@ -73,7 +70,7 @@
                 <% end %>
 
             <% else %>
-              <div id ="navbar_margin_top" style = "margin-right:30px">
+              <div id ="navbar_margin_top">
                 <li> 
                   <a href = "<%= login_path%>" id = "navbar_hello_color">로그인</a>
                 </li>
@@ -81,6 +78,7 @@
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->
+      </div>
 
 
     </nav>
