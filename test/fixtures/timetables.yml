@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
-  lecture_id: 
+  day: MyString
+  begin_time: MyString
+  end_time: MyString
+  table_num: 
 
 two:
-  user_id: 
-  lecture_id: 
+  day: MyString
+  begin_time: MyString
+  end_time: MyString
+  table_num: 
