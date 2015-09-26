@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	 has_many :valuations, dependent: :destroy
    has_many :comment_valuations, dependent: :destroy
    validates :nickname, presence: true, :length => { :minimum => 1, :maximum => 10 }, :uniqueness => true, :allow_nil => true 
-
+   has_many :timetables, dependent: :destroy
    validates :email, presence: true, length: {maximum: 155}, 
                     uniqueness: true
 

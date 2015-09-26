@@ -9,7 +9,7 @@ class Lecture < ActiveRecord::Base
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
-
+  belongs_to :timetable
   scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
   scope :group_by_id, ->  { group(:lecture_id)}
 
