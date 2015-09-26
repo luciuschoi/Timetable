@@ -3,7 +3,11 @@
 
 aside{
   display:inline;
-  margin-right:12%;
+
+  margin-right:5%;
+
+
+
 }
 #notice{
   
@@ -14,6 +18,26 @@ aside{
   }
 }
 
+
+#forcinglecturelist{
+   max-width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.btn_look{
+   background-color:#93DAFF;
+  color:white;
+  font-weight:bold;
+  
+}
+
+
+.btn_valuation{
+   background-color:#E6749D;
+   color:white;
+   font-weight:bold;
+}
 
 @font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
 
@@ -110,6 +134,7 @@ h1{
   border-bottom: 3px solid #8FCEFF;
   padding-bottom: 5%;
 }
+
 .row_padding_reduction{
   padding-top:10px;
 }
@@ -654,6 +679,8 @@ center;      vertical-align: middle;     font-size:15px;
 
 .text_gray{
   color:gray;
+  padding-left:0px;
+  padding-right:0px;
 }
 
 
@@ -946,3 +973,27 @@ input {
 .th_style{
   border-bottom: 2px ;
 }
+
+
+/* daemoon */
+.logo_bg{
+  float:left;
+  height : 25px;
+  width : 26px;
+  background : url("logo3.png");
+  display : inline;
+  background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

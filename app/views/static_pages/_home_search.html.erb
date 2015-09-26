@@ -1,11 +1,13 @@
 
 <div class = "row"> 
 
-    <div class="col-sm-6 col-sm-offset-3" style="display:inline;" id ="form1">
+
+    <div class="col-sm-8 col-sm-offset-2" style="display:inline;">
      <%= form_tag home_path, :method => 'get', :class =>'form-inline',
           :style => 'text-align:center;' do %>
-        <%= text_field_tag :search, params[:search], placeholder: :"강의명, 교수명을 입력하고 엔터로 검색하기." ,:class => 'form-control  form-group' ,:style => "width:40%;"%>
-        <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:10%;" %>
+        <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!" ,:class => 'form-control  form-group' ,:style => "width:40%;"%>
+        <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
+
      <% end %>
     </div>
     <div class="col-sm-2"></div>
@@ -13,13 +15,16 @@
 </div>  
 
   <div class="col-sm-6 col-sm-offset-4" style="
-    margin-left: 34%;">
+    margin-left: 30.5%;">
       자주 찾는 검색어 : 서양고전강독, 경영학원론, 노용덕, 박기호</div>
 
-    <div class = "row">
-      <div class = "col-sm-2 col-sm-offset-3">
+  <div class="col-sm-8 col-sm-offset-2" style="border-bottom: 3px solid #8FCEFF;margin-top:3%;"></div>
+
+  <div class = "row">
+      <div class = "col-sm-2 col-sm-offset-2">
         <div class= "dropdown_box">
-          <h3>학과별로 보기</h3>
+          <h4><B>학과별로 보기</B></h4>
+
           <%= render 'dropdown_btns_home'%>
         </div>
       </div>
@@ -45,9 +50,11 @@ function showLecture(lec_num)
          <% else %>
          window.location="<%=forcingwritting_url%>"
          <% end %>  
-        <% else %>
+
+       <% else %>
           window.location="<%=root_url%>"
-       <% end %>        
+      <% end %>        
+
   }
 
 </script>

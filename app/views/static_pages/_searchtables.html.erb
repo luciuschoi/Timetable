@@ -1,27 +1,26 @@
 <%unless @lectures.nil?%> 
 
 
-
-
-
     
-      <div class="col-xs-8 col-xs-offset-2">
-      <div class = "table-responsive" style = "margin-top:-10px;">
+      <div class="col-sm-8 col-sm-offset-2">
+      <div class = "table-responsive" style = "margin-top:10px;">
+
       <font color="blue"><%=@lectures.count %>개 </font> 검색결과
       <div class ="search_box">
         <table class="table nogap" style= "font-size:1em;">
                <thead>
              <tr align="center" class = "tr_style">
 
-              
+
                <th width="24%" class = "text_gray">과목명</th>
-               <th width="18%" class = "text_gray">교수</th>
-               <th width="27%" class = "text_gray">평균평점</th>
+               <th width="20%" class = "text_gray">교수</th>
+               <th width="35%" class = "text_gray">평균평점</th>
                <th witdh="30%" class = "text_gray" style="padding-left=-10;">평가</th>
               <%if current_page? controller: 'static_pages', action:'home' %>
-                 <th witdh="10%" class = "text_gray">열람하기</th>
+                 <th witdh="10%" class = "text_gray" style="width: 26px;">열람하기</th>
               <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
-                 <th witdh="10%" class = "text_gray">평가하기</th>
+                 <th witdh="10%" class = "text_gray" style="width: 26px;">평가하기</th>
+
               <%end%>
              </tr>
              </thead>
@@ -33,7 +32,7 @@
             <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
                 <tr class="lovelyrow" onclick="window.location='<%=writtingform_lecture_url(lec)%>'">
             <%end%>     
-         
+
            <td id="tb_spot"><%= lec.subject%></font></td>
           <td id="tb_unspot" ><%=lec.professor%> </td>  
           <td id="total_spot" >
@@ -49,9 +48,11 @@
           
           <td id="tb_unspot" ><%=lec.valuations.count%></td>
           <%if current_page? controller: 'static_pages', action:'home' %>
-                 <td witdh="5%" class = "btn btn_look">열람하기</th>
+
+                 <td witdh="10%" class = "btn btn_look">열람하기</th>
           <%elsif current_page? controller: 'static_pages', action:'forcingwritting'%>
-                 <td witdh="5%" class = "btn btn_valuation">평가하기</th>
+                 <td witdh="10%" class = "btn btn_valuation">평가하기</th>
+
           <%end%>
 
         </tr>

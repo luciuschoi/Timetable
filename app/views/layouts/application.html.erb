@@ -3,6 +3,9 @@
 <head >
 <%= favicon_link_tag 'favicon.ico' %>
  <meta http-equiv="contentType" type="text/html" charset="euc-kr" />
+  <%= favicon_link_tag 'favicon.ico'%>
+  <%= favicon_link_tag 'favicon.ico', rel: 'apple-touch-icon', type: 'image/png'%>
+
   <title >아뭐듣지</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -15,6 +18,14 @@
  
     <%= render 'layouts/header' %>
     
+    <aside>
+      <div id='cssmenu'>
+        <ul>
+          <li><a href="#">이용가이드</a></li>
+          <li><%=link_to "Feedback","http://goo.gl/forms/CWP0XnBEqJ",target: '_blank'%></li>
+        </ul>
+      </div>
+    </aside>
 <!-- /.row --> 
      <!-- flash 메세지 출력 -->  
      <% flash.each do |message_type, message| %>

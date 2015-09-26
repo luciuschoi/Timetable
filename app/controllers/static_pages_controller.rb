@@ -10,7 +10,9 @@ class StaticPagesController < ApplicationController
       @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
            
       else 
-  	   @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+
+       @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).
@@ -19,9 +21,21 @@ class StaticPagesController < ApplicationController
   end
 
   def newsfeed
-    if !params[:lecture_name].nil? && !params[:lecture_name].include?('모든학과')
-      @valuations = Valuation.join_major.where("major = ?", params[:lecture_name]).
+
+    if !params[:major].nil? && !params[:major].include?('모든학과')
+      @valuations = Valuation.join_major.where("major = ?", params[:major]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+      @major_name = params[:major]
+      @count_of_today = 0
+      
+      @valuations.each do |v|
+
+        difference = Time.zone.now - v.created_at 
+        if difference < 86400 && difference > 0
+          @count_of_today += 1
+        end
+      end
+
 
       respond_to do |format|
         format.js
@@ -29,6 +43,14 @@ class StaticPagesController < ApplicationController
       end
     else
       @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
+      @count_of_today = 0
+      @major_name = '전체학과'
+      @valuations.each do |v|
+        difference = Time.zone.now - v.created_at 
+        if difference < 86400 && difference > 0
+          @count_of_today += 1 
+        end
+      end
     end
 
   end 
@@ -37,10 +59,6 @@ class StaticPagesController < ApplicationController
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
 
-
-  end
-
-  def login_form
 
   end
 
@@ -54,6 +72,7 @@ class StaticPagesController < ApplicationController
 
       if !params[:major].nil? && !params[:major].include?('모든학과')
 
+
       @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
            
       else 
@@ -63,7 +82,10 @@ class StaticPagesController < ApplicationController
       @lectures = Lecture.where(:major =>params[:major]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
     else 
-      @lectures=Lecture.search('asgreagjergoierjiogjerigjeriogj').order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+
+     # @lectures=Lecture.all.order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+       @lectures=Lecture.search('asgreagjergoierjiogjerigjeriogj').order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+
     end
   end
 
@@ -72,13 +94,12 @@ class StaticPagesController < ApplicationController
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
-
- def home_admin
-     
-      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 20 )
-
-
-      
+  def home_admin
+    if current_user.admin?
+      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10 )
+    else
+      redirect_to root_url
+    end
   end
 
 
@@ -102,7 +123,14 @@ class StaticPagesController < ApplicationController
      end
   end
 
- 
+  def user_login?
+    if session[:user_id].nil? && session[:user_name].nil?
+        false
+    else 
+        true
+    end
+  end
+
   def user_login?
     if session[:user_id].nil? && session[:user_name].nil?
         false

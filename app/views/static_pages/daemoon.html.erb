@@ -1,6 +1,9 @@
  <div class = "row">
         <div class = "col-sm-2 col-sm-offset-1">
-          <span style ="font-size:18px;"><h1>아뭐듣지 </h1></span>
+
+          <%= image_tag "logo3.png", size: "45x45"%>
+          <%= image_tag "logo2.png", size: "100x34"%>
+
         </div>
       </div>
 
@@ -13,7 +16,7 @@
             명
           </span>
           <p style = "font-size:18px;">
-            학우가
+            세종대 학우가
           </p>
         </div>
 
@@ -51,10 +54,6 @@
               class: "btn btn-success email_btn" %>
           </div>
                       
-          <div>
-            <%=link_to "Facebook으로 1초만에 로그인하기","/auth/facebook", target: "_parent", class: "btn btn-primary fb_btn"%>
-          </div>
-
           <div>
             <%=link_to "아뭐듣지 아이디로 로그인하기", login_path, target: "_parent", class: "btn btn-info login_btn"%>
           </div>
