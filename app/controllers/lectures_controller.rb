@@ -31,7 +31,7 @@ class LecturesController < ApplicationController
 	def update
 		@lecture = Lecture.find_by(id: params[:id])
 		if @lecture.update_attributes(lecture_params)
-			redirect_to root_url
+			redirect_to home_admin_url
 		else
 			render 'edit'
 		end
@@ -56,7 +56,7 @@ class LecturesController < ApplicationController
 		if params[:search].nil?
 			@lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
 		else
-			@lectures=Lecture.search(params[:search_from],params[:search]).paginate(:page => params[:page], :per_page => 10 )
+			@lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
 		end
 	end
 

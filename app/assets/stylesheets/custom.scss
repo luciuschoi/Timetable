@@ -458,9 +458,22 @@ float:left;
      width: 150;
      font-size:15px;
 
- } #timetable_td_time{     height: 50px;     width: 80px;     text-align:
-center;      vertical-align: middle;     font-size:15px;
-
+ }
+ #timetable_th_time{
+    height: 50px;    
+    width: 80px;     
+    text-align:center;      
+    vertical-align: middle;     
+    font-size:15px;
+    border-bottom:1px solid;
+ } 
+ #timetable_td_time{     
+    height: 50px;     
+    width: 80px;    
+    text-align:center;
+    vertical-align: middle;     
+    font-size:15px;
+    border-bottom:1px solid;
    
 }
 #timetable_tr{

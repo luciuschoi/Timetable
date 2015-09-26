@@ -4,7 +4,7 @@ class CreateTimetables < ActiveRecord::Migration
       t.string :day
       t.string :begin_time
       t.string :end_time
-      t.int :table_num
+      t.integer :table_num
 
       t.timestamps null: false
     end

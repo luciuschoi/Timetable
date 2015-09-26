@@ -1,3 +1,23 @@
 // Place all the styles related to the lectures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+
+#time_table
+{
+	display: table;
+	background: lightblue;
+	border:solid #000 !important;
+	border-width: 0 0 1px !important;
+	border-top: hidden !important;
+	border-bottom: hidden !important;
+}
+
+#timetable_td_time
+{
+
+	
+}
