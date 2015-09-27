@@ -2,7 +2,7 @@
    <div class="row">
         <div class="col-md-3">
           <div id="form1">
-    <%= form_tag timetable_lecture_path, :method => 'get', remote: true do %>
+    <%= form_tag timetable_user_path, :method => 'get', remote: true do %>
      
      <%= text_field_tag :search, params[:search], placeholder: :"강의명 혹은 학과명을 입력해주세요." %>
          <%= submit_tag "찾아줘!", :subejct => nil %>
@@ -10,7 +10,7 @@
     <% end %>
         </div>
         	 <div class="table-responsive sort_paginate_ajax" id="lecturetables">
-        	<%=render 'lecturetables'%>
+        	<%=render 'shared/lecturetables'%>
 
           
     		</div>	
@@ -3655,8 +3655,8 @@ function doCsv() {
     	var timetable = document.getElementById('time_table');
     	var rowLen = searchtable.rows.length -1;
         var lecture_time = table_row.cells[2].firstChild.data;
-        var lecture_subject = table_row.cells[1].firstChild.data;
-        var lecture_professor= table_row.cells[0].firstChild.data;
+        var lecture_subject = table_row.cells[0].firstChild.data;
+        var lecture_professor= table_row.cells[1].firstChild.data;
         var digitCheck =/\d/;
   
         var noloop = 0;
@@ -3693,9 +3693,9 @@ function doCsv() {
    		
         if (digitCheck.test( lecture_time.substr(1,1)))
         {  
-		        var lecture_time_s1 = lecture_time.substr(0,2);
-		        var lecture_time_s2 = lecture_time.substr(1,5);
-		        var lecture_time_s3 = lecture_time.substr(7,5);
+		        var lecture_time_s1 = lecture_time.substr(0,2);  //요일 
+		        var lecture_time_s2 = lecture_time.substr(1,5);  //begin 타임 
+		        var lecture_time_s3 = lecture_time.substr(7,5);  //end 타임 
 				
 
 				var lecture_time_minute1 = lecture_time.substr(10,2);
@@ -3815,6 +3815,29 @@ function doCsv() {
 			   		   					}
 
 			   		   				}
+
+			   		   					$.ajax({
+											url:'/timetables',
+											type: "post",
+											data: {'day':lecture_time_s1, 
+											'begin_time':lecture_time_s2, 
+											'end_time':lecture_time_s3, 
+											'table_num': '1',
+											 'user_id': <%=params[:id]%>, 
+											 'lecture_subject':lecture_subject,
+											 'lecture_professor':lecture_professor},
+											success: function(){
+														alert('담기 성공!!');
+												//			window.location ="/forcingwritting"
+													
+											},
+										
+											error:function(){
+													alert('error')
+												}
+							
+
+											});
 			   		   					func_count++;
 			   		   					break; //for (var i=1; i<timetable.rows.length;i++) 
 

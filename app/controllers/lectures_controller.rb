@@ -52,13 +52,6 @@ class LecturesController < ApplicationController
 		@lecture = Lecture.find_by(id: params[:id])
 	end
 
-	def timetable
-		if params[:search].nil?
-			@lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
-		else
-			@lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
-		end
-	end
 
 
 	private

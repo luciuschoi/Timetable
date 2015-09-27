@@ -21,9 +21,10 @@ Rails.application.routes.draw do
  get    'login'   => 'sessions#new'
  post   'login'   => 'sessions#create'
  delete 'logout'  => 'sessions#destroy'
-
 #resources :lectures
-resources :users
+resources :users do
+   member { get :timetable }
+end 
 
 
 match 'auth/:provider/callback', :controller => 'sessions', action: 'create_by_facebook', via: [:get, :post]
@@ -31,11 +32,11 @@ match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do
   collection { post :import }
-  member { get :timetable }
+  
   member { get :writtingform }
 end
 
-
+resources :timetables, only: [:create, :destroy, :edit, :update]
 resources :valuations, only: [:create, :destroy, :edit, :update]
 resources :comments, only: [:create, :destroy, :edit, :update]
 resources :comment_valuations, only: [:create, :destroy]

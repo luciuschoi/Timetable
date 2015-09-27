@@ -1,7 +1,7 @@
 class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
-
+  attr_accessor :id
   validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
@@ -42,6 +42,9 @@ class Lecture < ActiveRecord::Base
     end
   end
 
+  def id
+      return self.id
+  end
   def lec_valuation(counts,g,w,a,l,h,t)
     
     if self.acc_grade.nil?
