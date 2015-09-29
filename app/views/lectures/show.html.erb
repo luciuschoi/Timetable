@@ -1,10 +1,8 @@
 
-<div class="container-fluid">
 
-	<div class = "row detail_lecture_row">
-		<div class="col-xs-3 "></div>
+	<div class = "detail_lecture_box">
 
-		<div class="col-xs-6 detail_lecture_box">
+		<div class="lec_average_row">
 			
 			<div class = "professor_section">
 				<h2 class="inline-blk"> <%= @lecture.subject %> </h2>
@@ -21,7 +19,7 @@
 			<!-- 1번째 줄 -->
 
 
-				<div class = "total_star" style = "float:left">
+				<div class = "total_star_section" style = "float:left">
 					<div class = "left">
 						 총평
 					</div> 
@@ -133,7 +131,6 @@
 
 		
 	</div>
-</div>
 
 
 
@@ -146,27 +143,22 @@
 
 	
 
-	<div class = "row row_pd_top" style = "margin-top : 60px;">
-		<div class = "col-sm-9 col-sm-offset-3">
-			<h3 class = "text_gray"> 이 강의에 대한 평가들 </h3>
-		</div>
+<div class = "row_pd_top" style = "margin-top : 60px;">
+	
+		<h3 class = "text_gray"> 이 강의에 대한 평가들 </h3>
+	
+</div>
+
+  <% @valuations.each do |v| %>
+	<div class = "row_pd_top"  style = "
+    padding-top: 0px;
+    height: 220px;
+    margin-left: 0px;
+    margin-right: 0px;
+	">
+		<%= render 'static_pages/display_lectures', :v => v %>
 	</div>
 
-	  <% @valuations.each do |v| %>
-		<div class = "row row_pd_top"  style = "
-	    padding-top: 0px;
-	    height: 220px;
-	    margin-left: 0px;
-	    margin-right: 0px;
-		">
-		
-		
-		<div class = "col-xs-9 col-xs-offset-3">
-    		<%= render 'static_pages/display_lectures', :v => v %>
-		</div>
-    	
-    </div>
-    
-  <% end %> 
+<% end %> 
 
 

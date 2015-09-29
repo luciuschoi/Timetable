@@ -8,20 +8,61 @@
 	}	
 }
 
+/* writting_form.html.erb */
+
+.writting_form_box
+{
+	height:4290px;
+	width:1000px;
+	margin-left : auto;
+	margin-right : auto;
+
+	.notice{
+		width :720px;
+		margin : 0 auto;
+	}
+
+	.form_box{
+		width:720px;
+		margin : 0 auto;
+		.v_row{
+			height:45px;
+			.progress{
+				height : 20px;
+				width : 300px;
+				margin-left : 50px;
+				cursor : pointer;
+			}
+		}
+		.v_textarea{
+			margin-top:25px;
+		}
+		.valuation_text_box{
+			width:500px;
+		}
+		#showremain{
+			text-align: right;
+		}
+	}
+}
+
+
 
 
 /* _forcingwritting.html.erb */
 
 .forcing_writting_box
 {
+	width:1000px;
 	margin-left:auto;
 	margin-right:auto;
+
 	background:white;
-	width: 50%;
 	.h_inline{
 		display:inline;
 	}
 	.search_box{
+		width:720px;
 		margin : 10px auto;
 		text-align : center;
 		display: block;
@@ -41,11 +82,13 @@
 	}
 
 	.search_results_box {
+		width:720px;
+		margin:30px auto;
 
 		tr.search_table_row:hover{
 			background-color: #CEF6EC;
 			cursor: pointer;
-			font-weight:1000;
+			font-weight:900;
 		}
 		
 		.text_head{
@@ -72,8 +115,8 @@
 
 		.total_spot span {
 		    /*margin-right:10px;*/
-		    height : 27px;
-		    width : 26px;
+		    width : 27px;
+		    height : 26px;
 		    background : url("unactivated_star.png");
 		    display : inline-block;
 		    background-repeat: no-repeat;
@@ -115,6 +158,35 @@
 	margin-right:20px;
 	margin-top:5px
 }
+
+/* 							*/
+/* staticpages # newsfeed  */
+/* 뉴스피드 뷰 입니다.  */
+/*   */
+
+.valuation_box{
+	.progress{
+		height : 10px;
+		width : 200px;
+		margin-left : 50px;
+		cursor : pointer;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

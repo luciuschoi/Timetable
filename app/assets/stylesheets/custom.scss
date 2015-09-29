@@ -352,12 +352,7 @@ table.nogap{
   border : 0;
 }
 
-.progress{
-  height : 10px;
-  width : 60%;
-  margin-left : 50px;
-  cursor : pointer;
-}
+
 
 
 
@@ -600,13 +595,13 @@ center;      vertical-align: middle;     font-size:15px;
     width:25%;
     text-align: left;
   }
-  .progress{
+  /*.progress{
     margin-top:5px;
     height : 10px;
     width : 50%;
     margin-left : 50px;
     cursor : pointer;
-  }
+  }*/
   .total_subject{
     margin-top:10px;
     font-size:15px;
@@ -654,70 +649,9 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 /* 세부강의 */
-.detail_lecture_row{
-  padding-top :0px;
 
-  .detail_lecture_box{
-    padding-bottom: 20px;
-    background-color: white;
-    border-bottom : 2px solid $gray-lighter;
-  }
-  .professor_section{
-    border-bottom: 2px solid $gray-lighter;
-    margin-bottom:20px;
-  }
-  .lecture_valuation{
-    padding-top:20px;
-  }
 
-}
-.total_star {
-  width:50%;
-  height:50px;
-  display:inline;
-  float:left;
-  .total_text{
-    float:left;
-    margin-right:20px;
-  }
-  .left{
-    width:13%;
-    float:left; 
-    margin-right : 10px; 
-    margin-top:10px;
-  }
-  .right{
-    font-size:18px;
-    float:right;
-    width: 20%; 
-    text-align:left; 
-    margin-top:10px;
-  }
-}
 
-.valuation_section{
-  width : 50%;
-  float:left; 
-  display:inline; 
-  height : 50px;
-
-  .left{
-    float:left; 
-    margin-right : 10px; 
-    margin-top:10px;
-  }
-  .right{
-    font-size: 18px;
-    float:right;
-    width: 20%; 
-    text-align:left; 
-    margin-top:10px;
-  }
-  #acc_progress{
-    width : 60%;
-    margin-top:15px;
-  }
-}
 
 
 /* daemoon */
@@ -752,10 +686,7 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 
-#showremain{
-position:absolute;
-right:0px;
-}
+
 
 
 /* form */
