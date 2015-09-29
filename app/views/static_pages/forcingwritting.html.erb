@@ -41,9 +41,11 @@
     
   </div> <!-- search_box -->
   
-  <div class = "search_results_box" style = "width:720px;margin:30px auto;">
-      <%= render 'static_pages/dropdown_btns_forcing'%>
-      <div id="searchtables">
+  <div class = "search_result_box">
+      <div class = "dropdown_box">
+        <%= render 'static_pages/dropdown_btns_forcing'%>
+      </div>
+      <div class = "result_table" id="searchtables">
         <%= render 'static_pages/searchtables' %>
       </div>
   </div>

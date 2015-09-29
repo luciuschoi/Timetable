@@ -478,12 +478,7 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 }
-#recent
-{
-   max-width: 95%;
-   margin-left: auto;
-   margin-right: auto;
-}
+
 #lecturelist{
    max-width: 100%;
    margin-left: auto;
@@ -508,31 +503,7 @@ center;      vertical-align: middle;     font-size:15px;
 #border-none{
   border-color:white;
 }
-.user_valuation_box {
-  padding-top : 15px;
 
-  .valuation_contents {
-    background-color : white;
-    padding-top : 15px;
-    padding-bottom : 15px;
-    cursor : pointer;
-    border-bottom : 1.0px solid black;
-    margin-bottom:20px;
-  }  
-  .timestamp{
-    color:#AAA;
-  }
-  .name_sentence {
-    font-weight:150;
-    color:#999;
-  }
-  .edit_section{
-    padding-top:10px;
-    padding-bottom:10px;
-    text-align:right;
-    margin-top : 15px;
-  }
-}
 
 
 

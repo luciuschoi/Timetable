@@ -9,7 +9,8 @@
   width:1000px;
   margin : 0 auto;
   padding-top :0px;
-
+	
+	/* 평균 수치 보여주는 row */
 	.lec_average_row{
 	  	width:720px;
 	  	margin:0 auto;
@@ -71,11 +72,78 @@
 				margin-top:15px;
 			}
 		}
-
-
- 	}
+	}	
+		.valuation_contents {
+			background-color : white;
+			padding-top : 15px;
+			padding-bottom : 15px;
+			cursor : pointer;
+			border-bottom : 1.0px solid black;
+			margin-bottom:20px;
+		}  
+		  .timestamp{
+			color:#AAA;
+		}
+		.name_sentence {
+		    font-weight:150;
+		    color:#999;
+		}
+		.edit_section{
+		    padding-top:10px;
+		    padding-bottom:10px;
+		    text-align:right;
+		    margin-top : 15px;
+		}
+ 	
 
   .lecture_valuation{
     padding-top:20px;
   }
+
+  /* 이 강의에 대한 평가'들' row */
+.valuations_row{
+  	width:720px;
+  	margin:0 auto;
+  	
+  	.valuation_text_section{
+  		display:inline-block;
+  		width:300px;
+  		vertical-align: top;
+  		margin-right:40px;
+  	}
+  	.valuation_progress_section{
+  		display:inline-block;
+  		width:350px;
+  	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

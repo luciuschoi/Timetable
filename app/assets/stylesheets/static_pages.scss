@@ -8,6 +8,85 @@
 	}	
 }
 
+/* 						        	  */
+/*      staticpages # home            */
+/*      첫화면(검색창)입니다.			      */
+/*   						  		  */
+.home_box{
+	width:1000px;
+	margin : 10px auto;
+	
+	.search_box{
+		width:720px;
+		margin : 10px auto;
+		text-align : center;
+		display: block;
+		margin-bottom: 10px;
+		border-bottom: 1px solid #EEE;margin-top:3%;
+		padding-bottom : 15px;
+
+		.popular_words{
+			margin-top:5px;
+		}
+	}
+	.search_result_box{
+		width:720px;
+		margin : 30px auto;
+
+		tr.search_table_row:hover{
+			background-color: #CEF6EC;
+			cursor: pointer;
+			font-weight:900;
+		}
+		
+		.text_head{
+				text-align:center;
+				color:gray;
+				padding-left:0px;
+				padding-right:0px;
+		}
+		#div_total
+		{
+  			float:left;
+		}
+
+		.tb_unspot{
+			vertical-align:middle;
+			color: gray;
+		}
+		.table_subject, .total_spot{
+			vertical-align:middle;
+		}
+		.total_spot span {
+		    /*margin-right:10px;*/
+		    width : 27px;
+		    height : 26px;
+		    background : url("unactivated_star.png");
+		    display : inline-block;
+		    background-repeat: no-repeat;
+		    margin-right:-4px;
+  		}
+	    .total_spot .active{
+		    width : 27px;
+		    height : 26px;
+		    background : url("activated_star.png");
+		    display : inline-block;
+		    background-repeat: no-repeat;
+		    margin-right:-4px;
+	    }
+
+	    .total_text{
+	    	float: right;
+		    margin-right : 20px;
+		    margin-top: 3px;
+		    font-size: 16px;
+	    }
+	}
+}
+
+
+
+
 /* writting_form.html.erb */
 
 .writting_form_box
@@ -81,7 +160,7 @@
 		margin:0 auto;
 	}
 
-	.search_results_box {
+	.search_result_box {
 		width:720px;
 		margin:30px auto;
 
@@ -100,9 +179,6 @@
 		#div_total
 		{
   			float:left;
-		}
-		search_table_row{
-			
 		}
 
 		.tb_unspot{
@@ -159,10 +235,84 @@
 	margin-top:5px
 }
 
-/* 							*/
-/* staticpages # newsfeed  */
-/* 뉴스피드 뷰 입니다.  */
-/*   */
+/* 						        	  */
+/*      staticpages # newsfeed        */
+/*      뉴스피드 뷰 입니다. 			      */
+/*   						  		  */
+.newsfeed_box{
+	width:1000px;
+	margin-left : auto;
+	margin-right : auto;
+	
+	.recent_valuations{
+		width:720px;
+		margin-left : auto;
+		margin-right : auto;
+		#recent{
+			margin-left:0;
+			margin-right:0;
+			height:220px;
+			padding-top:60px;
+			border-bottom:2px solid #eeeeee;
+			.jumbotron{
+				margin-bottom :0;
+				padding : 10px;
+				background-color:white;
+				.v_text{
+					display:inline-block;
+					margin-left:30px;
+					font-size:17px
+				}
+
+			}
+		}
+		.valuation_contents{
+			margin-bottom: 30px;
+		}
+	}
+
+	.valuation_subject{
+		margin : 50px 0;
+	}
+
+	.valuation_section{
+			width : 50%;
+			float:left; 
+			display:inline; 
+			height : 50px;
+
+			.left{
+				width:40px;
+				float:left; 
+				margin-right : 5px; 
+				margin-top:15px;
+			}
+			.right{
+				font-size: 18px;
+				float:right;
+				width: 20%; 
+				text-align:left; 
+				margin-top:10px;
+			}
+			#acc_progress{
+				width : 60%;
+				margin-top:15px;
+			}
+		}
+		.valuation_text_section{
+  		display:inline-block;
+  		width:300px;
+  		vertical-align: top;
+  		margin-right:40px;
+  	}
+  	.valuation_progress_section{
+  		display:inline-block;
+  		width:350px;
+  	}
+}
+
+
+
 
 .valuation_box{
 	.progress{
