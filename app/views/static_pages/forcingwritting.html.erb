@@ -1,9 +1,9 @@
-<div class="container-fluid forcing_writting_box">
-  <div class = "forcing_writting_contents">
-    
-  <!-- 첫 가입시 (2번 평가 안했을 때)만 왜 강의평가 2번 해야하는지 보여줌 -->
-  <!-- 1번 평가 후, 가독성 위해 왜 해야하는지 텍스트 제거 -->
-    <% if current_user.valuations.count >= 2 %>
+<div class="forcing_writting_box" style = "width:1000px">
+  <div class = "search_box" style = "width:720px">
+
+    <!-- 첫 가입시 (2번 평가 안했을 때)만 왜 강의평가 2번 해야하는지 보여줌 -->
+    <!-- 1번 평가 후, 가독성 위해 왜 해야하는지 텍스트 제거 -->
+    <% if current_user.valuations.count == 0 %>
       <p>
        많은 학우들에게 도움이 되기 위해 <br>
        강의평가 2회 이상 부탁드립니다.
@@ -18,37 +18,45 @@
       </h4>
     </h4>  
 
-    <div class="search_box">
+
+    <div class="search">
       <%if current_page? controller: 'static_pages', action:'forcingwritting' %>     
         <%= form_tag forcingwritting_path, :method => 'get', :class =>'form-inline' do %>
-          <%= text_field_tag :search, params[:search], placeholder: :"강의명 또는 교수님 이름을 검색하세요",:class => 'form-control  form-group' ,:style => "width:50%"%>
-          <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
+          <%= text_field_tag :search, params[:search], placeholder: :"강의명 또는 교수님 이름을 검색하세요",:class => 'form-control  form-group' ,:style => "width:50%", style: "display:inline;
+                                width:300px;"%>
+          <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:100px;
+                                        display:inline;" %>
               
          <%end%>   
       <%elsif current_page? controller: 'static_pages', action:'home' %>    
         <%= form_tag home_path, :method => 'get', :class =>'form-inline' do %>
-          <%= text_field_tag :search, params[:search], placeholder: :"강의명 또는 교수님 이름을 검색하세요",:class => 'form-control  form-group' ,:style => "width:50%"%>
-          <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
-         <%end%> 
+          <%= text_field_tag :search, params[:search], placeholder: :"강의명 또는 교수님 이름을 검색하세요",:class => 'form-control  form-group' ,style: "display:inline;
+                                width:300px;"%>
+          <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:100px;
+                                        display:inline;"%>
+         <% end%> 
        <%end%>  
     </div>
 
-  </div> 
-
-</div>
-
-
-<div class = "row">
-  <div class = "col-sm-2 col-sm-offset-2">
-    <div class= "dropdown_box">
-      <%= render 'static_pages/dropdown_btns_forcing'%>
-    </div>
+    
+  </div> <!-- search_box -->
+  
+  <div class = "search_result_box">
+      <div class = "dropdown_box">
+        <%= render 'static_pages/dropdown_btns_forcing'%>
+      </div>
+      <div class = "result_table" id="searchtables">
+        <%= render 'static_pages/searchtables' %>
+      </div>
   </div>
-</div>      
+  
+  
 
-<div id="searchtables">
-  <%= render 'static_pages/searchtables' %>
-</div>
+</div> <!-- forcing_writting_box -->
+
+
+
+
  
   
 

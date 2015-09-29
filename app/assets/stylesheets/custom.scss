@@ -1,6 +1,49 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@media (max-width:360px){html{font-size:10px;}}
+@media (min-width:361px) and (max-width:399px){html{font-size:11px;}}
+@media (min-width:400px) and (max-width:439px){html{font-size:12px;}}
+@media (min-width:440px) and (max-width:479px){html{font-size:13px;}}
+@media (min-width:480px) and (max-width:519px){html{font-size:14px;}}
+
+@media (max-width:767px){
+  .mobile{
+    display:block;
+    background:red;
+  }
+}
+
+/* Tablet */
+@media (min-width:768px) and (max-width:1024px){
+  .tablet{
+    display:block;
+    background:green;
+  }
+}
+
+/* Desktop */
+@media (min-width:1025px){
+  .desktop{
+    display:block;
+    background:blue;
+  }
+}
+
+
+@font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
+
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+body{
+  font-family: Nanum_Gothic;
+  background-color : white;
+  font-size:100%;
+}
+
+
+
+
 aside{
   display:inline;
   margin-right:5%;
@@ -35,9 +78,7 @@ aside{
    font-weight:bold;
 }
 
-@font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
 
-@import url(http://fonts.googleapis.com/css?family=Oswald);
 
 /*  */
 
@@ -46,10 +87,7 @@ aside{
 .fancybox{
   display:none;
 }
-body{
-  font-family: Nanum_Gothic;
-  background-color : white;
-}
+
 
 div{
   li{
@@ -234,14 +272,7 @@ table.nogap{
   width : 50%;
   height : 50px;
 }
-#tb_unspot{
- vertical-align:middle;
- color: gray;
- }
-#tb_spot{
- vertical-align:middle;
-  font-weight:bold;
-}
+
 
 
 
@@ -321,12 +352,7 @@ table.nogap{
   border : 0;
 }
 
-.progress{
-  height : 10px;
-  width : 60%;
-  margin-left : 50px;
-  cursor : pointer;
-}
+
 
 
 
@@ -452,12 +478,7 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 }
-#recent
-{
-   max-width: 95%;
-   margin-left: auto;
-   margin-right: auto;
-}
+
 #lecturelist{
    max-width: 100%;
    margin-left: auto;
@@ -482,31 +503,7 @@ center;      vertical-align: middle;     font-size:15px;
 #border-none{
   border-color:white;
 }
-.user_valuation_box {
-  padding-top : 15px;
 
-  .valuation_contents {
-    background-color : white;
-    padding-top : 15px;
-    padding-bottom : 15px;
-    cursor : pointer;
-    border-bottom : 1.0px solid black;
-    margin-bottom:20px;
-  }  
-  .timestamp{
-    color:#AAA;
-  }
-  .name_sentence {
-    font-weight:150;
-    color:#999;
-  }
-  .edit_section{
-    padding-top:10px;
-    padding-bottom:10px;
-    text-align:right;
-    margin-top : 15px;
-  }
-}
 
 
 
@@ -538,7 +535,7 @@ center;      vertical-align: middle;     font-size:15px;
   span {
     /*margin-right:10px;*/
     float:left;
-    height : 25px;
+    height : 27px;
     width : 26px;
     background : url("unactivated_star.png");
     display : inline;
@@ -546,8 +543,8 @@ center;      vertical-align: middle;     font-size:15px;
   }
   .active{
     float:left;
-    width : 26px;
-    height : 25px;
+    width : 27px;
+    height : 26px;
     background : url("activated_star.png");
     display : inline;
     background-repeat: no-repeat;
@@ -569,13 +566,13 @@ center;      vertical-align: middle;     font-size:15px;
     width:25%;
     text-align: left;
   }
-  .progress{
+  /*.progress{
     margin-top:5px;
     height : 10px;
     width : 50%;
     margin-left : 50px;
     cursor : pointer;
-  }
+  }*/
   .total_subject{
     margin-top:10px;
     font-size:15px;
@@ -618,86 +615,14 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 /*search_box */
-.search_box
-{
-  background:white;
-  margin :10px;
 
 
-}
-
-.text_gray{
-  color:gray;
-  padding-left:0px;
-  padding-right:0px;
-}
 
 
 /* 세부강의 */
-.detail_lecture_row{
-  padding-top :0px;
 
-  .detail_lecture_box{
-    padding-bottom: 20px;
-    background-color: white;
-    border-bottom : 2px solid $gray-lighter;
-  }
-  .professor_section{
-    border-bottom: 2px solid $gray-lighter;
-    margin-bottom:20px;
-  }
-  .lecture_valuation{
-    padding-top:20px;
-  }
 
-}
-.total_star {
-  width:50%;
-  height:50px;
-  display:inline;
-  float:left;
-  .total_text{
-    float:left;
-    margin-right:20px;
-  }
-  .left{
-    width:13%;
-    float:left; 
-    margin-right : 10px; 
-    margin-top:10px;
-  }
-  .right{
-    font-size:18px;
-    float:right;
-    width: 20%; 
-    text-align:left; 
-    margin-top:10px;
-  }
-}
 
-.valuation_section{
-  width : 50%;
-  float:left; 
-  display:inline; 
-  height : 50px;
-
-  .left{
-    float:left; 
-    margin-right : 10px; 
-    margin-top:10px;
-  }
-  .right{
-    font-size: 18px;
-    float:right;
-    width: 20%; 
-    text-align:left; 
-    margin-top:10px;
-  }
-  #acc_progress{
-    width : 60%;
-    margin-top:15px;
-  }
-}
 
 
 /* daemoon */
@@ -723,9 +648,6 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 
-#total_spot{
-  vertical-align:middle;
-}
 
 
 
@@ -733,19 +655,9 @@ center;      vertical-align: middle;     font-size:15px;
 
 
 
-#div_total
-{
-  margin-top: 3px;
 
-  float:left;
-  
 
-}
 
-#showremain{
-position:absolute;
-right:0px;
-}
 
 
 /* form */

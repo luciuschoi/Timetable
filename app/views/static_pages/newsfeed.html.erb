@@ -1,62 +1,36 @@
 
  
-<div class = "container" style = "width : 105%;
-                                  padding-right:0px;
-                                  padding-left:0px;
-                                  margin-left: 0px;
-                                  margin-right: 0px
-                                  ">
-  <div class="row" id="recent" style = "
-                                        margin-left:0;
-                                        margin-right:0;
-                                        height:220px;
-                                        padding-top:60px;
-                                        border-bottom:2px solid #eeeeee;
-                                        ">
-    <div class = "col-xs-4 col-xs-offset-2">
-      <div class = "jumbotron" style = "margin-bottom :0;
-                                        padding : 10px;
-                                        background-color:white">
-        <%= render 'dropdown_btns'%>
-        <h5 style = "float:left;
-                     margin-right:25%;
-                     font-size:17px;"> 오늘의 평가 
-          <b id = "v_today_count"><%= @count_of_today %></b>개 
-        </h5>
-        <h5 style = "font-size:17px"> 총 평가
-          <b id = "v_total_count"><%= @valuations.count%></b>개
-        </h5>
-      </div>
-    </div>
-  </div>  <!-- row -->
-</div>
-<!-- test -->
-<!-- test_2 -->
-<div class = "row">
-  <div class = "col-xs-9 col-xs-offset-2"> 
+<div class = "newsfeed_box">
+  <div class = "recent_valuations">
+    <div id="recent">
+        <div class = "jumbotron">
+          <%= render 'dropdown_btns'%>
+          <h5 class = "v_text"> 오늘의 평가 
+            <b id = "v_today_count"><%= @count_of_today %></b>개 
+          </h5>
+          <h5 class = "v_text"> 총 평가
+            <b id = "v_total_count"><%= @valuations.count%></b>개
+          </h5>
+        </div>
+    </div>  <!-- recent -->
+
+  <div class = "valuation_subject"> 
     <% if @major_name.nil? %>
       <span style = "font-size : 20px;" id = "major_name">
       모든학과의 최근평가     
       </span>
     <% else %>
-<!-- ㅁㄴㅇㅁㄴㅇ -->
       <h4><%= @major_name %>의 최근평가</h4>
 
     <% end %>
   </div>
-</div>
 
-<div class = "row">
-  <!-- asdasd -->
-
-  <div class = "col-xs-9 col-xs-offset-2"> 
-    
-    <div id="valuationlist">
-      <%= render 'home_user' %>
-    </div>
-  </div>  
-</div>
-
+  <div class="valuationlist">
+    <%= render 'home_user' %>
+  </div>
+  
+  </div> <!-- recent_valuations -->
+</div>  <!-- newsfeed box -->
 
 
 
