@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
   	@user=User.find(params[:id])
-  	if !params[:user][:ninkname].nil?
+  	if !params[:user][:nickname].nil?
         @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
   		      redirect_to home_path

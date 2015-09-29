@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
- # get 'users/new'
+ root 'static_pages#daemoon'
+
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
  get 'newsfeed' => 'static_pages#newsfeed'
@@ -11,18 +12,16 @@ Rails.application.routes.draw do
 
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
- root 'static_pages#daemoon'
 
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
 
-  get 'signup'  => 'users#new'
+ get 'signup'  => 'users#new'
 
  get    'login'   => 'sessions#new'
  post   'login'   => 'sessions#create'
  delete 'logout'  => 'sessions#destroy'
 
-#resources :lectures
 resources :users
 
 
