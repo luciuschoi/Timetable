@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   end
 
   def timetable
+    if params[:size]
+      @size= params[:size]
+    end
     if params[:search].nil?
       @lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
     else

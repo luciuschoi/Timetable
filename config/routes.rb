@@ -16,11 +16,13 @@ Rails.application.routes.draw do
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
 
+
   get 'signup'  => 'users#new'
 
  get    'login'   => 'sessions#new'
  post   'login'   => 'sessions#create'
  delete 'logout'  => 'sessions#destroy'
+ post 'timetables/make_a_change' => 'timetables#make_a_change'
 #resources :lectures
 resources :users do
    member { get :timetable }

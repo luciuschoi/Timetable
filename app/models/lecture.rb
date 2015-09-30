@@ -42,9 +42,7 @@ class Lecture < ActiveRecord::Base
     end
   end
 
-  def id
-      return self.id
-  end
+  
   def lec_valuation(counts,g,w,a,l,h,t)
     
     if self.acc_grade.nil?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927092942) do
+ActiveRecord::Schema.define(version: 20150930080413) do
 
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(version: 20150927092942) do
     t.datetime "updated_at", null: false
     t.integer  "lecture_id"
     t.integer  "user_id"
+    t.integer  "howoften"
+    t.string   "day2"
+    t.integer  "size"
   end
 
   create_table "users", force: :cascade do |t|

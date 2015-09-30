@@ -18,7 +18,7 @@
 		 </div> 	
 		<div class="col-md-9" >
         			 <div class="table-responsive" id="target" >
-        		<table id="time_table" class="table nogap" bgcolor="white" >
+        		<table id="time_table" class="table nogap" bgcolor="white"  >
          			<thead>
       
        				  <tr id="timetable_tr">
@@ -35,22 +35,22 @@
        				  		<% for j in 1..2 %>
        				     	<% if i<10 %>
        				     		   <% if j%2==1%>	
-			       				   <tr id="timetable_tr" >
+			       				   <tr id="timetable_tr">
 			       				      	 
 					       		   <td ROWSPAN="2" id="timetable_td_time">0<%=i%>:00</td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
 			       				   </tr>
 			       				   <% else %> 
 			       				   <tr id="timetable_tr">
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
 			       				   </tr>
 			       				   <% end %>
 			       				 
@@ -60,19 +60,19 @@
 			       				   <tr id="timetable_tr" >
 			       				      	 
 					       		   <td ROWSPAN="2" id="timetable_td_time"><%=i%>:00</td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
 			       				   </tr>
 			       				   <% else %> 
 			       				   <tr id="timetable_tr" >
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
-			       				   <td id="timetable_td"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)" onmouseover="onMounseInTimetable(this)"></td>
+			       				   <td id="timetable_td" onclick = "TimetableClick(this)on"mouseover="onMounseInTimetable(this)"></td>
 			       				   </tr>
 			       				   <% end %>
 	       				    <%end%>
@@ -94,6 +94,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
+
 var clicked=0; //눌렸는지 여부 
 $('#save_image_locally').click(function() {
 
@@ -111,7 +112,43 @@ $('#save_image_locally').click(function() {
 
 			});
 });
+function TimetableClick(table_row)
+{
+	if(table_row.innerHTML!="")
+	{
+		var answer = confirm(table_row.innerHTML+" 시간표를 지우시겠어요?");
+		if(answer)
+		{
+			var stringsplit =table_row.innerHTML.split('-');
+			var subject=stringsplit[0];
+			var professor=stringsplit[1];
+			$.ajax({
+				url:'/timetables/make_a_change',
+				type:'post',
+				data:{
+					'lecture_subject':subject,
+					'lecture_professor':professor
+					}
+			});
+			
+		
 
+
+
+		}
+		else
+		{
+
+		}
+	}
+}
+function onMounseInTimetable(table_row)
+{
+	if(table_row.innerHTML!="")
+	{
+		table_row.style.cursor='pointer';
+	}
+}
 function OnMouseIn(table_row)
 {
 
@@ -3771,11 +3808,11 @@ function doCsv() {
 			   		   					{
 
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[0].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[0].style.color='white';
 		        								
 
@@ -3791,18 +3828,18 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[0].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[0].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 		        							}
@@ -3815,7 +3852,7 @@ function doCsv() {
 			   		   					}
 
 			   		   				}
-
+	
 			   		   					$.ajax({
 											url:'/timetables',
 											type: "post",
@@ -3825,7 +3862,11 @@ function doCsv() {
 											'table_num': '1',
 											 'user_id': <%=params[:id]%>, 
 											 'lecture_subject':lecture_subject,
-											 'lecture_professor':lecture_professor},
+											 'lecture_professor':lecture_professor,
+											 'howoften':'1',
+											 'size':result
+											},
+											 
 											success: function(){
 														alert('담기 성공!!');
 												//			window.location ="/forcingwritting"
@@ -3908,24 +3949,24 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							}
@@ -3940,17 +3981,17 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 			   		   						
 		        							}
@@ -3963,6 +4004,32 @@ function doCsv() {
 			   		   					}
 
 			   		   				}
+			   		   					$.ajax({
+											url:'/timetables',
+											type: "post",
+											data: {'day':lecture_time_s1, 
+											'begin_time':lecture_time_s2, 
+											'end_time':lecture_time_s3, 
+											'table_num': '1',
+											 'user_id': <%=params[:id]%>, 
+											 'lecture_subject':lecture_subject,
+											 'lecture_professor':lecture_professor,
+											 'howoften':'1',
+											  'size':result
+											},
+											
+											success: function(){
+														alert('담기 성공!!');
+												//			window.location ="/forcingwritting"
+													
+											},
+										
+											error:function(){
+													alert('error')
+												}
+							
+
+											});
 			   		   					func_count++;
 			   		   					break; //for (var i=1; i<timetable.rows.length;i++) 
 
@@ -4038,11 +4105,11 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[1].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[1].style.color='white';
 		        						
 
@@ -4058,18 +4125,18 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[1].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[1].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   					
 		        							}
@@ -4082,6 +4149,33 @@ function doCsv() {
 			   		   					}
 
 			   		   				}
+			   		   					$.ajax({
+											url:'/timetables',
+											type: "post",
+											data: {'day':lecture_time_s1, 
+											'begin_time':lecture_time_s2, 
+											'end_time':lecture_time_s3, 
+											'table_num': '1',
+											 'user_id': <%=params[:id]%>, 
+											 'lecture_subject':lecture_subject,
+											 'lecture_professor':lecture_professor,
+											 'howoften':'1',
+											  'size':result
+											},
+											
+											success: function(){
+														alert('담기 성공!!');
+												//			window.location ="/forcingwritting"
+													
+											},
+										
+											error:function(){
+													alert('error')
+												}
+							
+
+
+											});
 			   		   					func_count++;
 			   		   					break; //for (var i=1; i<timetable.rows.length;i++) 
 
@@ -4151,24 +4245,24 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[2].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[2].style.color='white';
 
 			   		   							}
@@ -4183,17 +4277,17 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[2].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 		        							}
@@ -4279,11 +4373,11 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[2].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[2].style.color='white';
 		        						
 
@@ -4299,18 +4393,18 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[2].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[2].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 		        							}
@@ -4322,7 +4416,33 @@ function doCsv() {
 
 			   		   					}
 
-			   		   				}
+			   		   				}	
+			   		   					$.ajax({
+											url:'/timetables',
+											type: "post",
+											data: {'day':lecture_time_s1, 
+											'begin_time':lecture_time_s2, 
+											'end_time':lecture_time_s3, 
+											'table_num': '1',
+											 'user_id': <%=params[:id]%>, 
+											 'lecture_subject':lecture_subject,
+											 'lecture_professor':lecture_professor,
+											 'howoften':'1',
+											  'size':result
+											},
+											
+											success: function(){
+														alert('담기 성공!!');
+												//			window.location ="/forcingwritting"
+													
+											},
+										
+											error:function(){
+													alert('error')
+												}
+							
+
+											});
 			   		   					func_count++;
 			   		   					break; //for (var i=1; i<timetable.rows.length;i++) 
 
@@ -4392,24 +4512,24 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							}
@@ -4424,17 +4544,17 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   						
 		        							}
@@ -4521,11 +4641,11 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[3].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[3].style.color='white';
 		        						
 
@@ -4541,18 +4661,18 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[3].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[3].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 		        							}
@@ -4565,6 +4685,32 @@ function doCsv() {
 			   		   					}
 
 			   		   				}
+			   		   					$.ajax({
+											url:'/timetables',
+											type: "post",
+											data: {'day':lecture_time_s1, 
+											'begin_time':lecture_time_s2, 
+											'end_time':lecture_time_s3, 
+											'table_num': '1',
+											 'user_id': <%=params[:id]%>, 
+											 'lecture_subject':lecture_subject,
+											 'lecture_professor':lecture_professor,
+											 'howoften':'1',
+											  'size':result
+											},
+											
+											success: function(){
+														alert('담기 성공!!');
+												//			window.location ="/forcingwritting"
+													
+											},
+										
+											error:function(){
+													alert('error')
+												}
+							
+
+											});
 			   		   					func_count++;
 			   		   					break; //for (var i=1; i<timetable.rows.length;i++) 
 
@@ -4635,24 +4781,24 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[4].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   							}
 			   		   							else
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[4].style.color='white';
 
 			   		   							}
@@ -4667,17 +4813,17 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[4].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 		        							}
@@ -4764,11 +4910,11 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[4].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[4].style.color='white';
 		        						
 
@@ -4784,18 +4930,18 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[4].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[4].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 		        							}
@@ -4808,6 +4954,31 @@ function doCsv() {
 			   		   					}
 
 			   		   				}
+			   		   					$.ajax({
+											url:'/timetables',
+											type: "post",
+											data: {'day':lecture_time_s1, 
+											'begin_time':lecture_time_s2, 
+											'end_time':lecture_time_s3, 
+											'table_num': '1',
+											 'user_id': <%=params[:id]%>, 
+											 'lecture_subject':lecture_subject,
+											 'lecture_professor':lecture_professor,
+											 'howoften':'1'
+											},
+											
+											success: function(){
+														alert('담기 성공!!');
+												//			window.location ="/forcingwritting"
+													
+											},
+										
+											error:function(){
+													alert('error')
+												}
+							
+
+											});
 			   		   					func_count++;
 			   		   					break; //for (var i=1; i<timetable.rows.length;i++) 
 
@@ -4877,24 +5048,24 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							}
@@ -4909,17 +5080,17 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 		        							}
@@ -5058,19 +5229,19 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[0].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[0].style.color='white';
 		        						        
 		        						        timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[2].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[2].style.color='white';
 
 			   		   						
@@ -5085,29 +5256,29 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[0].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[0].style.color='white';
 
 		        								timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[2].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[2].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 		        								timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 
@@ -5216,37 +5387,37 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 		        								timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 
@@ -5262,27 +5433,27 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   						
 		        							}
@@ -5393,19 +5564,19 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[0].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[0].style.color='white';
 		        						        
 		        						        timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[4].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[4].style.color='white';
 
 			   		   						
@@ -5420,29 +5591,29 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[0].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[0].style.color='white';
 
 		        								timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[4].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[4].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 		        								timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 
@@ -5547,37 +5718,37 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 		        								timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 
@@ -5593,27 +5764,27 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[1].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[0].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[0].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[0].style.color='white';
 		        								timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 		        							}
@@ -5725,19 +5896,19 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[1].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[1].style.color='white';
 		        						        
 		        						        timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[3].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[3].style.color='white';
 
 			   		   						
@@ -5752,29 +5923,29 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[1].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[1].style.color='white';
 
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[3].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[3].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 
@@ -5883,37 +6054,37 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 		        								timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[2].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 		        								timetable.rows[i+j-1].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[4].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[2].style.color='white';
 		        								timetable.rows[i+j-1].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[4].style.color='white';
 
 
@@ -5929,27 +6100,27 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 		        								timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[2].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[1].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[1].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[1].style.color='white';
 		        								timetable.rows[i+j-1].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[4].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 		        							}
@@ -6061,19 +6232,19 @@ function doCsv() {
 			   		   					{
 			   		   						
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[2].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[2].style.color='white';
 		        						        
 		        						        timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[4].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[4].style.color='white';
 
 			   		   						
@@ -6088,29 +6259,29 @@ function doCsv() {
 			   		   						if(j+1!=result)
 			   		   						{
 			   		   							timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[2].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[2].style.color='white';
 
 		        								timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 			   		   							timetable.rows[i+j+1].cells[4].style.backgroundColor = color;
-			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   								timetable.rows[i+j+1].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j+1].cells[4].style.color='white';
 		        							}
 		        							else 
 		        							{
 
 		        								timetable.rows[i+j].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[3].style.color='white';
 		        								timetable.rows[i+j].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[5].style.color='white';
 			   		   						
 
@@ -6215,37 +6386,37 @@ function doCsv() {
 			   		   							if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 			   		   							else if(j!=result)
 			   		   							{
 
 			   		   						    timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 		        								timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 			   		   							else 
 			   		   							{
 			   		   							timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 		        								timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 
@@ -6261,27 +6432,27 @@ function doCsv() {
 			   		   						if(j==0)
 			   		   							{
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 		        								timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   							}
 		        							else 
 		        							{
 												timetable.rows[i+j-1].cells[3].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[3].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[3].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[2].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[2].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[2].style.color='white';
 		        								timetable.rows[i+j-1].cells[5].style.backgroundColor = color;
-			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j-1].cells[5].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j-1].cells[5].style.color='white';
 
 			   		   							timetable.rows[i+j].cells[4].style.backgroundColor = color;
-			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+lecture_professor;
+			   		   							timetable.rows[i+j].cells[4].innerHTML=lecture_subject+"-"+lecture_professor;
 		        								timetable.rows[i+j].cells[4].style.color='white';
 			   		   						
 		        							}
@@ -6325,6 +6496,8 @@ $("#lecturetables").on("click", ".pagination a", function(){
     return false;
   });
 });
+
+
 
 
 </script>
