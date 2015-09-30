@@ -1,0 +1,227 @@
+<div style = "text-align:center; width:500px">
+  <table class="table nogap" style= "font-size:1em;">
+    <thead>
+      <tr align="center" class = "tr_style">
+        <th class = "text_head">과목명</th>
+        <th class = "text_head">교수</th>
+        <th class = "text_head">평균평점</th>
+        <th class = "text_head">시간</th>
+      </tr>
+    </thead>
+    <tbody></tbody>   
+
+    <% @lectures.each do |lec| %>
+	    <tr>	
+			<td class="table_subject">
+				<%= lec.subject%>
+			</td>
+			<td class="tb_unspot" >
+				<%=lec.professor%> 
+			</td>  
+			<td class="total_spot" style = "text-align:center">
+				<% if lec.acc_total==0 %>
+				평가없음
+				<% else %> 
+				<%= render 'shared/show_average_star',:var=> lec.acc_total%>
+				<div class = "total_text">
+				 <%= lec.acc_total.round(1) %>
+				</div>
+				<% end %> 
+			</td>
+			<td class = "lecture_time">
+				<%= lec.lecturetime %>
+			</td>
+		</tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>  
+
+
+<div class="lessons" style = "width:920px">
+	<table class="table table-striped">
+      <thead>
+      	<!-- 7열 -->
+        <tr>
+          <th>시간</th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+          <th>사강</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>09:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>09:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>10:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>10:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>11:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>11:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>12:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>12:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>13:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>13:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>14:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>14:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>15:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>15:30</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>16:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>16:30</th>	
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+		</tbody>
+	</table>
+</div>
+
+
+<script>
+	$("tr").click(function(){
+		var test = $(this).find('.lecture_time').html();
+		console.log(test);
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

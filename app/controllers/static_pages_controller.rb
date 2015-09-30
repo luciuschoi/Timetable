@@ -49,6 +49,11 @@ class StaticPagesController < ApplicationController
     end
   end 
 
+  def rank
+    @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10)
+  end
+    
+
   def menual
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
