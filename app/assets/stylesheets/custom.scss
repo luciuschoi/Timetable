@@ -46,7 +46,9 @@ body{
 
 aside{
   display:inline;
+
   margin-right:5%;
+
 
 
 }
@@ -58,6 +60,7 @@ aside{
     padding:10%;
   }
 }
+
 
 #forcinglecturelist{
    max-width: 80%;
@@ -71,6 +74,7 @@ aside{
   font-weight:bold;
   
 }
+
 
 .btn_valuation{
    background-color:#E6749D;
@@ -153,7 +157,25 @@ h1{
   padding-top: 5px;
 }
 
+<<<<<<< HEAD
 
+=======
+#form1{
+  display: block;
+  float: center;
+
+}
+
+
+#form2{
+  width:100%;   
+  text-align:center; 
+  margin-right:auto;
+  margin:0 auto;
+  border-bottom: 3px solid #8FCEFF;
+  padding-bottom: 5%;
+}
+>>>>>>> 48c5dc5c247b384fb0eeb92fc170717524276179
 
 .row_padding_reduction{
   padding-top:10px;
@@ -447,6 +469,7 @@ float:left;
 
   
 }
+
 #timetable_td{
 
     border: 1px solid;
@@ -455,7 +478,7 @@ float:left;
      vertical-align: middle;
      font-size:9px;
       height:25px;
-
+      background-color:lightblue;
  }
  #timetable_th{
    
@@ -465,9 +488,22 @@ float:left;
      width: 150;
      font-size:15px;
 
- } #timetable_td_time{     height: 50px;     width: 80px;     text-align:
-center;      vertical-align: middle;     font-size:15px;
-
+ }
+ #timetable_th_time{
+    height: 50px;    
+    width: 80px;     
+    text-align:center;      
+    vertical-align: middle;     
+    font-size:15px;
+    border-bottom:1px solid;
+ } 
+ #timetable_td_time{     
+    height: 50px;     
+    width: 80px;    
+    text-align:center;
+    vertical-align: middle;     
+    font-size:15px;
+    border-bottom:1px solid;
    
 }
 #timetable_tr{
@@ -484,8 +520,40 @@ center;      vertical-align: middle;     font-size:15px;
    margin-left: auto;
    margin-right: auto;
 }
+#forcinglecturelist{
+   margin-top:-4%;
+   max-width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+}
+.dropdown_box
+{
+  background:#FFFFFF;
+  padding-left:10%;
+  padding-bottom:10%;
+  padding-right: -1px;
+  margin-right: 0px;
+  width: 200px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  margin-top: 10px;
 
+}
 
+.btn_look{
+
+  background-color:#93DAFF;
+  color:white;
+  font-weight:bold;
+  
+}
+
+.btn_valuation{
+   background-color:#E6749D;
+   color:white;
+   font-weight:bold;
+}
 /* users index */
 .users {
   list-style: none;
