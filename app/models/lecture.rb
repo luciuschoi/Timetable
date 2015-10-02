@@ -1,7 +1,7 @@
 class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
-  attr_accessor :id
+
   validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true

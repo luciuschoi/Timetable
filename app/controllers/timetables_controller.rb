@@ -25,8 +25,6 @@ class TimetablesController < ApplicationController
 		@timetable_to_delete = Timetable.where('lecture_id = ? AND user_id=? ', 
 		lec_id.id, current_user.id).first
 		size=@timetable_to_delete.size;				
-	
 		redirect_to timetable_user_path(current_user.id, size: size)
-
 	end
 end 	

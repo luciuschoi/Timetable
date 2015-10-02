@@ -6,17 +6,9 @@ class StaticPagesController < ApplicationController
     if params[:search]
 
       if !params[:major].nil? && !params[:major].include?('모든학과')
-
         @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
-           
       else 
-<<<<<<< HEAD
-        @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
-=======
-
        @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
-
->>>>>>> 48c5dc5c247b384fb0eeb92fc170717524276179
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).
@@ -33,7 +25,6 @@ class StaticPagesController < ApplicationController
       @count_of_today = 0
       
       @valuations.each do |v|
-
         difference = Time.zone.now - v.created_at 
         if difference < 86400 && difference > 0
           @count_of_today += 1
