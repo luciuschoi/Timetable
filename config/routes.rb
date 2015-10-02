@@ -24,6 +24,7 @@ Rails.application.routes.draw do
  delete 'logout'  => 'sessions#destroy'
  post 'timetables/make_a_change' => 'timetables#make_a_change'
  post 'delete_timetable' => 'timetables#destroy'
+ post 'add_timetable' => 'timetables#create'
 #resources :lectures
 resources :users do
    member { get :timetable }
@@ -39,7 +40,7 @@ resources :lectures do
   member { get :writtingform }
 end
 
-resources :timetables, only: [:create]
+
 resources :valuations, only: [:create, :destroy, :edit, :update]
 resources :comments, only: [:create, :destroy, :edit, :update]
 resources :comment_valuations, only: [:create, :destroy]

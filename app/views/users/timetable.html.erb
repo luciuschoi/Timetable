@@ -29,6 +29,105 @@
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" charset="utf-8">
+/*timetable hover 할 때 */
+
+function painttable(table_row)
+{
+	var searchtable = document.getElementById('search_table');
+	var lecture_time=table_row.cells[2].firstChild.data;
+	var lecture_subject=table_row.cells[0].firstChild.data;
+	var lecture_professor=table_row.cells[1].firstChild.data;
+	/*var a=lecture_time.split('~');*/
+	var digitCheck=/\d/;
+	/*alert(lecture_time.substr(0,2));
+    alert(lecture_time.substr(1,5));
+    alert(lecture_time.substr(7,5));*/
+   /* alert(lecture_time.substr(0,1));
+    alert(lecture_time.substr(1,1)); 
+    alert(lecture_time.substr(2,5));
+    alert(lecture_time.substr(8,5));*/
+	/*요일 하루일 때 페인트테이블 */
+	if(checkhowoften(lecture_time.substr(0,2)))
+	{
+		var day=lecture_time.substr(0,1);
+		var begin_time=lecture_time.substr(1,5);
+		var end_time=lecture_time.substr(7,5);
+		var size=calsize(begin_time,end_time);
+	    /*alert(begin_time.substr(0,2)=="10");*/
+	    /*alert(begin_time.substr(3,2)=="00");*/
+	    $.ajax({
+				url:'/add_timetable',
+				type:'post',
+				data:{
+					'lecture_subject':lecture_subject,'lecture_professor':lecture_professor,
+					'lecture_time':lecture_time,'begin_time':begin_time,
+					'end_time':end_time,'size':size, 'howoften':1, 'day':day
+					},
+				success: function(){
+				window.location="<%=timetable_user_path(current_user.id)%>";
+				},
+				error:function(){
+								alert('error')
+							}
+			});
+	}
+	/*요일 2일 일 때 페인트 테이블 */
+	else 
+	{
+		var day=lecture_time.substr(0,1);
+		var day2=lecture_time.substr(1,1);
+		var begin_time=lecture_time.substr(2,5);
+		var end_time=lecture_time.substr(8,5);
+		var size=calsize(begin_time,end_time);
+		 $.ajax({
+				url:'/add_timetable',
+				type:'post',
+				data:{
+					'lecture_subject':lecture_subject,'lecture_professor':lecture_professor,
+					'lecture_time':lecture_time,'begin_time':begin_time,
+					'end_time':end_time,'size':size, 'howoften':2, 'day':day, 'day2':day2
+					},
+				success: function(){
+				window.location="<%=timetable_user_path(current_user.id)%>";
+				},
+				error:function(){
+								alert('error')
+							}
+			});
+	}
+}
+/* 몇시간 듣는지 사이즈 잽니다. 반환값은 칠할 칸 수  */
+function calsize(begin_time,end_time)
+{
+	var begin_hour=parseInt(begin_time.substr(0,2));
+	var begin_minute=parseInt(begin_time.substr(3,2));
+	var end_hour=parseInt(end_time.substr(0,2));
+	var end_minute=parseInt(end_time.substr(3,2));
+	if(end_minute>begin_minute)
+	{
+		return (end_hour-begin_hour)*2+1
+	}
+	else
+	{
+		return ((end_hour-1)-begin_hour)*2+1
+	}
+}
+/* true 반환시 숫자가 있음=>요일 하루,
+   false 반환시 숫자가 없음 => 요일 2일*/
+function checkhowoften(time)
+{
+	var digitCheck=/\d/;
+	return digitCheck.test(time)
+}
+
+function onMounseInTimetable(table_td)
+{
+	if(table_td.innerHTML!="")
+	{
+		table_td.style.cursor='pointer';
+	}
+}
+
 /*timetable 클릭시*/
 function TimetableClick(table_td)
 {
@@ -36,8 +135,9 @@ function TimetableClick(table_td)
 	{
 		var answer = confirm(table_td.innerHTML+" 시간표를 지우시겠어요?");
 		if(answer)
-		{
-			var subject=table_td.innerHTML
+		{	
+			var splitstring=table_td.innerHTML.split('-')
+			var subject=splitstring[0]
 			
 			$.ajax({
 				url:'/delete_timetable',
@@ -82,13 +182,14 @@ $(document).ready(function()
 		var size= new Array();
 		var howoften = new Array();
 		var subject = new Array();
-
+		var professor = new Array();
 		<% @timetables.each_with_index do |time, i| %>
 		 	begin_time[<%=i%>]="<%=time.begin_time%>";
 		 	day[<%=i%>]="<%=time.day%>";
 		 	size[<%=i%>]=<%=time.size%>;
 		 	howoften[<%=i%>]=<%=time.howoften%>;
 		 	subject[<%=i%>]="<%=Lecture.where(id: time.lecture_id).first.subject%>"
+		 	professor[<%=i%>]="<%=Lecture.where(id: time.lecture_id).first.professor%>"
 		 	<%unless time.day2.nil? %>  /*한주에 2번 수업일 경우에 */
 		 	day2[<%=i%>]="<%=time.day2%>";
 		 	<%end%> 
@@ -156,7 +257,7 @@ $(document).ready(function()
 							{	
 								
 								timetable.rows[i+j].cells[day_n[count]].style.backgroundColor=color[count];
-								timetable.rows[i+j].cells[day_n[count]].innerHTML=subject[count];
+								timetable.rows[i+j].cells[day_n[count]].innerHTML=subject[count]+"-"+professor[count];
 								
 
 							}
@@ -166,9 +267,9 @@ $(document).ready(function()
 							for(j=0;j<size[count];j++)
 							{
 								timetable.rows[i+j].cells[day_n[count]].style.backgroundColor=color[count];
-								timetable.rows[i+j].cells[day_n[count]].innerHTML=subject[count];
+								timetable.rows[i+j].cells[day_n[count]].innerHTML=subject[count]+"-"+professor[count];
 								timetable.rows[i+j].cells[day_n2[count]].style.backgroundColor=color[count];
-								timetable.rows[i+j].cells[day_n2[count]].innerHTML=subject[count];
+								timetable.rows[i+j].cells[day_n2[count]].innerHTML=subject[count]+"-"+professor[count];
 							}
 
 

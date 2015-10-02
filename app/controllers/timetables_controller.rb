@@ -1,22 +1,28 @@
 class TimetablesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	def create 
-
-		@TheLecture= Lecture.where(subject:params[:lecture_subject], professor: params[:lecture_professor]).first
-	
-		lecture_id=@TheLecture.id
-		@timetable=current_user.timetables.build(day: params[:day], begin_time:params[:begin_time],
+		lec = Lecture.where(subject: params[:lecture_subject],
+		 professor: params[:lecture_professor], lecturetime: params[:lecture_time]).first
+		if params[:day2].nil?
+			@timetable=current_user.timetables.build(day: params[:day],begin_time:params[:begin_time],
 			end_time:params[:end_time],table_num:params[:table_num],howoften:params[:howoften],
-			size:params[:size],
-			user_id:current_user.id, lecture_id:lecture_id)
+			size:params[:size], user_id:current_user.id, lecture_id:lec.id, subject: params[:lecture_subject])
+
+		else
+			@timetable=current_user.timetables.build(day: params[:day], day2: params[:day2],begin_time:params[:begin_time],
+			end_time:params[:end_time],table_num:params[:table_num],howoften:params[:howoften], subject: params[:lecture_subject],
+			size:params[:size], user_id:current_user.id, lecture_id:lec.id)
+		end
 		@timetable.save
 		redirect_to timetable_user_path(current_user.id)
+
 	end
 
 	def update
 	end
 	def destroy
 		@Timetable_to_delete=Timetable.where('subject= ? AND user_id= ?',params[:lecture_subject], current_user.id).first 
+	
 		@Timetable_to_delete.destroy
 
 		redirect_to timetable_user_path(current_user.id)
