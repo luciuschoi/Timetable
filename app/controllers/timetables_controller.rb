@@ -13,7 +13,7 @@ class TimetablesController < ApplicationController
 			end_time:params[:end_time],table_num:params[:table_num],howoften:params[:howoften], subject: params[:lecture_subject],
 			size:params[:size], user_id:current_user.id, lecture_id:lec.id)
 		end
-		@timetable.save
+		@timetable.save!
 		redirect_to timetable_user_path(current_user.id)
 
 	end
