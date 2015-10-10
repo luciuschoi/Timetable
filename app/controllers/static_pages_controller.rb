@@ -4,7 +4,6 @@ class StaticPagesController < ApplicationController
    before_action :goforcingwritting, only:[:home, :newsfeed]
   def home
     if params[:search]
-
       if !params[:major].nil? && !params[:major].include?('모든학과')
         @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
       else 
@@ -52,14 +51,13 @@ class StaticPagesController < ApplicationController
 
   def rank
     @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10)
+    @lectures_in_timetable = current_user.timetables
   end
     
 
   def menual
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
-
-
   end
 
   def daemoon

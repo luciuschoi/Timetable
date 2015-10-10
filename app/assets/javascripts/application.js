@@ -29,15 +29,3 @@ $("#lecturetables").on("click", ".pagination a", function(){
 
 
 
-
-
-     
-$(function () {
-  $('#lecturetables .pagination a').live('click', function () {
-    $.getScript(this.href);
-    return false;
-  });
-})
-
-
-

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930080413) do
+ActiveRecord::Schema.define(version: 20151004162006) do
 
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150930080413) do
     t.float    "acc_level",       default: 0.0
     t.float    "acc_achievement", default: 0.0
     t.float    "acc_homework",    default: 0.0
-    t.float    "acc_total",       default: 0.0
+    t.float    "acc_total",       default: 0.0d
   end
 
   create_table "timetables", force: :cascade do |t|
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20150930080413) do
     t.integer  "howoften"
     t.string   "day2"
     t.integer  "size"
+    t.string   "subject"
+    t.string   "days"
   end
 
   create_table "users", force: :cascade do |t|

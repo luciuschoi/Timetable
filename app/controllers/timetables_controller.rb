@@ -1,30 +1,43 @@
 class TimetablesController < ApplicationController
-	skip_before_action :verify_authenticity_token
-	def create 
+	def create
+		@request_lecture = current_user.timetables.build(timetable_params)
+		@request_lecture.save!
 
-		@TheLecture= Lecture.where(subject:params[:lecture_subject], professor: params[:lecture_professor]).first
-		byebug
-		lecture_id=@TheLecture.id
-		@timetable=current_user.timetables.build(day: params[:day], begin_time:params[:begin_time],
-			end_time:params[:end_time],table_num:params[:table_num],howoften:params[:howoften],
-			size:params[:size],
-			user_id:current_user.id, lecture_id:lecture_id)
-		@timetable.save
-		redirect_to timetable_user_path(current_user.id)
+		respond_to do |format|
+			format.js
+			format.html {redirect_to rank_path}
+		end
 	end
 
-	def update
-	end
 	def destroy
-	end
-	def edit
+		@timetable = Timetable.find_by(lecture_id: params[:lecture_id])
+		@timetable.destroy
+
+		respond_to do |format|
+			format.js
+			format.html {redirect_to rank_path}
+		end
 	end
 
-	def make_a_change
-		lec_id = Lecture.where('subject = ? AND professor = ?',params[:lecture_subject],params[:lecture_professor]).first
-		@timetable_to_delete = Timetable.where('lecture_id = ? AND user_id=? ', 
-		lec_id.id, current_user.id).first
-		size=@timetable_to_delete.size;				
-		redirect_to timetable_user_path(current_user.id, size: size)
-	end
+
+	private
+
+    def timetable_params
+    	params.permit(:begin_time, :end_time, {:days => []}, :lecture_id)
+    end
+
+    # def subject_and_professor_name_existed?
+    # 	# 등록한 강의가 1개 이상이니?
+    # 	if self.
+    # end
+
+
+
+
+
+
+
+
+
+
 end 	
