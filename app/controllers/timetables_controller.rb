@@ -9,7 +9,7 @@ class TimetablesController < ApplicationController
 		end
 	end
 
-	def destroy
+	def destroy 
 		@timetable = Timetable.find_by(lecture_id: params[:lecture_id])
 		@timetable.destroy
 
