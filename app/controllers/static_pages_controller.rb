@@ -52,11 +52,10 @@ class StaticPagesController < ApplicationController
   def rank
     if params[:search]
       @lectures = Lecture.search(params[:search])
-      
-      respond_to do |format|
-        format.js
-        format.html {redirect_to rank_path}
-      end
+      # respond_to do |format|
+      #   format.js
+      #   format.html {redirect_to rank_path}
+      # end
     else
       @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10)
     end

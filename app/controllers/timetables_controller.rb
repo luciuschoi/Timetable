@@ -20,15 +20,6 @@ class TimetablesController < ApplicationController
 		end
 	end
 
-	def search_timetable
-		@lectures = Lecture.search(params[:search])
-		# render 'timetables/_searched_lecture_table', :lectures => @lectures
-		# redirect_to rank_path (@lectures)
-		respond_to do |format|
-			format.js
-			format.html {redirect_to rank_path}
-		end
-	end
 
 	private
 
