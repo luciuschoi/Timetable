@@ -50,7 +50,16 @@ class StaticPagesController < ApplicationController
   end 
 
   def rank
-    @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10)
+    if params[:search]
+      @lectures = Lecture.search(params[:search])
+      
+      respond_to do |format|
+        format.js
+        format.html {redirect_to rank_path}
+      end
+    else
+      @lectures=Lecture.all.paginate(:page => params[:page], :per_page => 10)
+    end
     @lectures_in_timetable = current_user.timetables
   end
     
@@ -88,7 +97,6 @@ class StaticPagesController < ApplicationController
   end
 
   def forcinglogin
-
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
