@@ -1,3 +1,18 @@
-// Place all the styles related to the timetable controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.time_cell{
+	padding-bottom: 0;
+    padding-top: 0;
+    padding-right: 0;
+    height: 29px;
+    border-width: 0;
+    background: white;
+}
+.time_text{
+    position: relative;
+    top: -0.7em;
+    text-align: right;
+}
+
+.lessons td {
+    width : 1000px;
+}

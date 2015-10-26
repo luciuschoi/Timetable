@@ -3,19 +3,20 @@
   margin-left:auto;
   margin-right:auto;">
 
-  <div style = "width:720px;
+  <div style = "width:840px;
     margin : 10px auto;">
     <%= render 'timetables/table_form' %>
+    
+    <div class = "search_box" style = "margin : 20px 0">
+      <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
+        :style => 'text-align:center;' do %>
+          <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:40%" %>
+          <%= submit_tag "Search", :name => nil, :class =>'btn btn-success', :style =>"width:15%;" %>
+      <% end %>
+    </div>
 
-    <%= form_tag rank_path, :method => 'get' do %>
-      <div>
-        <%= text_field_tag :search %>
-        <%= submit_tag "Search", :name => nil %>
-      </div>
-    <% end %>
-
-    <div class = "table_search" style = "text-align:center; width:500px">
-      <table class="table nogap" style= "font-size:1em;">
+    <div class = "table_search" style = "text-align:center; width:500px; margin : 0 auto">
+      <table class="table table-striped" style= "font-size:1em;">
         <thead>
           <tr align="center" class = "tr_style">
             <th class = "text_head">과목명</th>
@@ -24,33 +25,36 @@
             <th class = "text_head">시간</th>
           </tr>
         </thead>
-        <tbody></tbody>   
+        <% if @lectures.nil? %>
 
-        <% @lectures.each do |lec| %>
-          <tr class = "lec_<%= lec.id%>"> 
-            <td class="table_subject subject">
-              <%= lec.subject%>
-            </td>
-            <td class="tb_unspot professor">
-              <%=lec.professor%> 
-            </td>  
-            <td class="total_spot" style = "text-align:center">
-              <% if lec.acc_total==0 %>
-              평가없음
-              <% else %> 
-              <%= render 'shared/show_average_star',:var=> lec.acc_total%>
-              <div class = "total_text">
-               <%= lec.acc_total.round(1) %>
-              </div>
-              <% end %> 
-            </td>
-            <td class = "lecture_time"><%= lec.lecturetime %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-      <%= will_paginate @lectures %>
-    </div>  
+        </table>
+        <div> 검색결과가 없습니다.. </div>
+        <% else %>
+          <% @lectures.each do |lec| %>
+            <tr class = "lec_<%= lec.id%>"> 
+              <td class="table_subject subject">
+                <%= lec.subject%>
+              </td>
+              <td class="tb_unspot professor">
+                <%=lec.professor%> 
+              </td>  
+              <td class="total_spot" style = "text-align:center">
+                <% if lec.acc_total==0 %>
+                평가없음
+                <% else %> 
+                <%= render 'shared/show_average_star',:var=> lec.acc_total%>
+                <div class = "total_text">
+                 <%= lec.acc_total.round(1) %>
+                </div>
+                <% end %> 
+              </td>
+              <td class = "lecture_time"><%= lec.lecturetime %></td>
+            </tr>
+          <% end %>
+        </table>
+        <%= will_paginate @lectures %>
+      <% end %>
+    </div>  <!-- 검색 결과 -->
   </div>
 </div>
 
@@ -139,7 +143,7 @@
     var row_num;
 
     rows.each(function(){
-      var row_each_time = $(this).html();
+      var row_each_time = $(this).find('div').html();
       
       if( refined_time[0] == row_each_time ){
         row_num = rows.index(this);
@@ -158,7 +162,7 @@
     var row_num;
 
     rows.each(function(){
-      var row_each_time = $(this).html();
+      var row_each_time = $(this).find('div').html();
       
       if( refined_time[0] == row_each_time ){
         row_num = rows.index(this);
@@ -204,12 +208,12 @@
 
         if(lecture_cell.find('span').length >= 1)  
         {
-          lecture_cell.css('background','green');
+          lecture_cell.css('background','#fff3f2').css('border','1px solid #ec4e2c');
           lecture_cell.addClass('lec_'+lec_id);
         }
         else
         {
-          lecture_cell.css('background','yellow');
+          lecture_cell.css('background','#fffae5');
           lecture_cell.addClass('lec_'+lec_id); 
         }
       }
@@ -222,15 +226,27 @@
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
-      for(i=s_row; i<=e_row; i++)
-      {
-        //var i = s_row;
+      //for(i=s_row; i<=e_row; i++)
+      //{
+        // rowspan용 for문
+        for (i=s_row+1; i<=e_row; i++)
+        {
+          row_num = i+")";
+          time_row = timetable.find('tbody tr:nth-child('+row_num);
+          lecture_cell = time_row.find('td:nth-child('+col_num);
+          $(lecture_cell).css('display', 'none');
+        }
+        var i = s_row;
         row_num = i+")";
         time_row = timetable.find('tbody tr:nth-child('+row_num);
+        
         lecture_cell = time_row.find('td:nth-child('+col_num);
-        //lecture_cell.attr('rowspan', e_row - s_row + 1);
-        lecture_cell.css('background','gray');
+
+        lecture_cell.attr('rowspan', e_row - s_row + 1);
+        lecture_cell.css('background','#f7f7f7');
         lecture_cell.addClass('lec_'+lec_id); 
+
+
 
         if(lecture_cell.find('span').length >= 1)
         {
@@ -241,13 +257,13 @@
         {
           lecture_cell.html(mix_cell_text(lec_id,lec_name,lec_professor));  
         }
-      }
+      //}
     }
   }
 
   function mix_cell_text(lec_id, lec_name, lec_professor)
   {
-    completed_content = "<span class = lec_" + lec_id + ">" + lec_name + " "
+    completed_content = "<span class = lec_" + lec_id + ">" + lec_name + " <br>"
                           + lec_professor + " " + del_btn + "</span>";
 
     return completed_content;
@@ -275,7 +291,7 @@
         }
         else
         {
-          lecture_cell.css('background','gray');
+          lecture_cell.css('background','#f7f7f7');
           lecture_cell.addClass('lec_'+lec_id); 
           lecture_cell.html(mix_cell_text(lec_id,lec_name, lec_professor));
         }
@@ -330,12 +346,13 @@
       // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
       if ( $(this).find('span').length >= 1 ) 
       {
-        $(this).css('background', 'gray'); 
+        $(this).css('background', '#f7f7f7').css('border',' '); 
       }
       else
       {
-        $(this).css('background', '');
+        $(this).css('background', '').css('border',' ');
       }
+
     });
   }
 
@@ -353,6 +370,7 @@
         $(this).css('background', '');
         $(this).html('');
       }
+      $(this).css('border', '0');
       // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
     });
   }

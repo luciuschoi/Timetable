@@ -27,6 +27,9 @@ class TimetablesController < ApplicationController
     	params.permit(:begin_time, :end_time, {:days => []}, :lecture_id)
     end
 
+    def time_validation
+
+    end
     # def subject_and_professor_name_existed?
     # 	# 등록한 강의가 1개 이상이니?
     # 	if self.
