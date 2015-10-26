@@ -1,204 +1,361 @@
 
-<%= form_tag(rank_path, :method => "get", class: "navbar-form", id: "search-form", remote: true) do %>
-    <!-- <div class="input-append"> -->
-      <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Articles" %>
-      <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
-           of using a Rails form helper -->
-      <button class="btn" type="submit">검색해줭</button>
-    <!-- </div> -->
-<% end %>
+<div style = "width:1000px;
+  margin-left:auto;
+  margin-right:auto;">
 
-<div class = "table_search" style = "text-align:center; width:500px">
-  <%= render 'timetables/searched_lecture_table', :lectures => @lectures %>
+  <div style = "width:720px;
+    margin : 10px auto;">
+    <%= render 'timetables/table_form' %>
+
+    <%= form_tag rank_path, :method => 'get' do %>
+      <div>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search", :name => nil %>
+      </div>
+    <% end %>
+
+    <div class = "table_search" style = "text-align:center; width:500px">
+      <table class="table nogap" style= "font-size:1em;">
+        <thead>
+          <tr align="center" class = "tr_style">
+            <th class = "text_head">과목명</th>
+            <th class = "text_head">교수</th>
+            <th class = "text_head">평균평점</th>
+            <th class = "text_head">시간</th>
+          </tr>
+        </thead>
+        <tbody></tbody>   
+
+        <% @lectures.each do |lec| %>
+          <tr class = "lec_<%= lec.id%>"> 
+            <td class="table_subject subject">
+              <%= lec.subject%>
+            </td>
+            <td class="tb_unspot professor">
+              <%=lec.professor%> 
+            </td>  
+            <td class="total_spot" style = "text-align:center">
+              <% if lec.acc_total==0 %>
+              평가없음
+              <% else %> 
+              <%= render 'shared/show_average_star',:var=> lec.acc_total%>
+              <div class = "total_text">
+               <%= lec.acc_total.round(1) %>
+              </div>
+              <% end %> 
+            </td>
+            <td class = "lecture_time"><%= lec.lecturetime %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @lectures %>
+    </div>  
+  </div>
 </div>
-
-<div class="lessons" style = "width:920px">
-	<table class="table table-striped" id = "timetable">
-      <thead>
-      	<!-- 7열 -->
-        <tr class = "t_head">
-          <th>시간</th>
-          <th>월</th>
-          <th>화</th>
-          <th>수</th>
-          <th>목</th>
-          <th>금</th>
-          <th>사강</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr class = "r1">
-          <th>09:00-09:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class = "r2">
-          <th>09:30-10:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>10:00-10:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>10:30-11:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>11:00-11:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>11:30-12:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>12:00-12:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>12:30-13:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>13:00-13:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>13:30-14:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>14:00-14:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>14:30-15:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>15:00-15:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>15:30-16:00</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>16:00-16:30</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>16:30-17:00</th>	
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>17:00-17:30</th>  
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>17:30-18:00</th>  
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-		</tbody>
-	</table>
-</div>
-
 
 <script>
   timetable = $('#timetable');
   del_btn = "<a> X </a>";
 
+
+  // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
+  // 속한 행과 열을 결정한다.
+	$(".table_search tr").click(function(){
+    $(this).off('mouseout');
+    $(this).off('hover');
+		var data = $(this).find('.lecture_time').html();
+		
+    data = split_text(data);
+
+    // d_col | 요일 저장하는 배열 
+    // s_row | 시작시간 
+    // e_row | 종료시간 
+    var d_col = find_day_td(data[0]);
+    var s_row = find_begin_time_row(data[1]);
+    var e_row = find_end_time_row(data[2]);
+    
+    var lec_id = $(this).attr('class').split('_')[1];
+    var lec_name = $(this).find('.subject').html();
+    var lec_professor = $(this).find('.professor').html();
+
+    
+    // DB 저장을 위한 ajax 전송
+    send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
+    click_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+	});
+
+
+  $(".table_search tr").mouseenter(function(){
+    
+    var data = $(this).find('.lecture_time').html();
+        data = split_text(data);
+
+    var d_col = find_day_td(data[0]);
+    var s_row = find_begin_time_row(data[1]);
+    var e_row = find_end_time_row(data[2]);
+        
+    var lec_id = $(this).attr('class').split('_')[1];
+    var lec_name = ""; 
+    var lec_professor = ""; 
+    
+    hover_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+  });
+
+
+  $(".table_search tr").mouseleave(function(){
+    del_class = $(this).attr('class');
+    delete_timetable_cell_background(del_class);
+  });
+
+  // 강의시간을 요일/시작시간/끝시간 배열 3개로 쪼개서 return
+  function split_text(data) 
+  {
+    // replace에서의 day를 1개 요일 vs 2개 요일로 비교해서 값을 따로 줘야한다.
+    // 요일이 1개 ex)화 인경우
+    if (data.length <= 12)
+    {
+      day = data[0];
+    }
+    // 요일이 2개 ex)화목 인 경우
+    else if (data.length <= 13)
+    {
+      day = data[0]+data[1];
+    }
+    else{}
+
+    data = data.replace(day,day+"-");
+    data = data.split('-');   
+    // data[0] 요일, data[1] 시작시간, data[2] 끝시간.
+    return data;
+  }
+
+
+  // timetable에서 강의 시간(행)을 찾습니다.
+  function find_begin_time_row(s_time)
+  { 
+    var rows = timetable.find('tbody th');
+    var refined_time = s_time.split(":");
+    var row_num;
+
+    rows.each(function(){
+      var row_each_time = $(this).html();
+      
+      if( refined_time[0] == row_each_time ){
+        row_num = rows.index(this);
+        return;
+      }
+      else {      }
+    });
+    if (refined_time[1] == '30') return row_num+2;
+    else return row_num+1;
+  }
+
+  function find_end_time_row (e_time)
+  {
+    var rows = timetable.find('tbody th');
+    var refined_time = e_time.split(":");
+    var row_num;
+
+    rows.each(function(){
+      var row_each_time = $(this).html();
+      
+      if( refined_time[0] == row_each_time ){
+        row_num = rows.index(this);
+        return;
+      }
+      else {      }
+    });
+    if (refined_time[1] == '30') return row_num+1;
+    else return row_num;
+  }
+
+  // 요일을 기준으로 몇열에 해당하는지 찾아 열값을 리턴.
+  function find_day_td(day)
+  {
+    t_datas = timetable.find('thead th'); 
+    var td_num = [];
+
+    for (i=0; i<day.length; i++){
+      t_datas.each(function() {
+        td_each_data = $(this).html();
+        
+        if (td_each_data == day[i]){
+          td_num.push(t_datas.index(this)+1);
+        } 
+        else{}
+      });
+    }
+    // nth:child 때문에 열값에 +1을 해야됨.
+    return td_num;
+  }
+
+  // 인자로 받은 시간/요일을 기준으로 background 채웁니다.
+  function hover_fill_cell(s_row, e_row, col, lec_id, lec_name, lec_professor)
+  {
+    for (h=0; h<col.length; h++)
+    {
+      col_num = col[h]+")";
+      for(i=s_row; i<=e_row; i++)
+      {
+        row_num = i+")";
+        time_row = timetable.find('tbody tr:nth-child('+row_num);
+        lecture_cell = time_row.find('td:nth-child('+col_num);
+
+        if(lecture_cell.find('span').length >= 1)  
+        {
+          lecture_cell.css('background','green');
+          lecture_cell.addClass('lec_'+lec_id);
+        }
+        else
+        {
+          lecture_cell.css('background','yellow');
+          lecture_cell.addClass('lec_'+lec_id); 
+        }
+      }
+    }
+  }
+
+  function default_fill_cell(s_row, e_row, col, lec_id, lec_name, lec_professor)
+  {
+    // 클릭(빈셀, 채워진 셀)과 첫 로드 구분
+    for (h=0; h<col.length; h++)
+    {
+      col_num = col[h]+")";
+      for(i=s_row; i<=e_row; i++)
+      {
+        //var i = s_row;
+        row_num = i+")";
+        time_row = timetable.find('tbody tr:nth-child('+row_num);
+        lecture_cell = time_row.find('td:nth-child('+col_num);
+        //lecture_cell.attr('rowspan', e_row - s_row + 1);
+        lecture_cell.css('background','gray');
+        lecture_cell.addClass('lec_'+lec_id); 
+
+        if(lecture_cell.find('span').length >= 1)
+        {
+          existed_text = lecture_cell.html() + "<br>";
+          lecture_cell.html(existed_text + mix_cell_text(lec_id,lec_name, lec_professor));
+        }
+        else
+        {
+          lecture_cell.html(mix_cell_text(lec_id,lec_name,lec_professor));  
+        }
+      }
+    }
+  }
+
+  function mix_cell_text(lec_id, lec_name, lec_professor)
+  {
+    completed_content = "<span class = lec_" + lec_id + ">" + lec_name + " "
+                          + lec_professor + " " + del_btn + "</span>";
+
+    return completed_content;
+  }
+
+  function click_fill_cell(s_row, e_row, col, lec_id, lec_name, lec_professor)
+  {
+    for (h=0; h<col.length; h++){
+      col_num = col[h]+")";
+      for(i=s_row; i<=e_row; i++)
+      {
+        row_num = i+")";
+        time_row = timetable.find('tbody tr:nth-child('+row_num);
+        lecture_cell = time_row.find('td:nth-child('+col_num);
+
+        if(lecture_cell.find('span').length >= 1)  
+        {
+          lecture_cell.css('background','green');
+          lecture_cell.addClass('lec_'+lec_id);
+
+          existed_text = lecture_cell.html() + "<br>";
+
+          lecture_cell.html(existed_text + mix_cell_text(lec_id,lec_name, lec_professor));
+
+        }
+        else
+        {
+          lecture_cell.css('background','gray');
+          lecture_cell.addClass('lec_'+lec_id); 
+          lecture_cell.html(mix_cell_text(lec_id,lec_name, lec_professor));
+        }
+      }
+    }
+  }
+
+  
+  function send_lecture_to_timetable(s_row,e_row,d_col,lec_id) {
+    $.ajax({
+        url:'<%= add_timetable_url %>',
+        type:'post',
+        data:{'begin_time':s_row, 'end_time':e_row, 'days':d_col,
+              'lecture_id':lec_id},
+        success:function()
+        {
+          
+        },
+        error:function()
+        {
+          alert('이미 등록된 강의입니다.');
+        }
+
+    });
+  }
+
+  function del_btn_click() {
+    $('.lessons > .table-striped > tbody > tr > td > span > a').click(function()
+    {
+      // 1 선택한 객체 지우기
+      // 2 선택한 객체와 같은 클래스명(lec_id)을 가진 cell도 똑같이 적용.
+      del_class = $(this).parent().attr('class');
+
+      delete_timetable_cell(del_class);
+
+      del_id = del_class.split('_');
+
+      $.ajax({
+          url:'<%= delete_timetable_url %>',
+          type:'delete',
+          data:{'lecture_id':del_id[1]}
+      });
+    });
+  }
+
+  function delete_timetable_cell_background(del_class_name)
+  {
+    // lec_id 는 지워질 cell의 클래스 이름 
+    del_cell = $('.lessons').find('.'+del_class_name);
+    
+    del_cell.each (function(){
+      // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
+      if ( $(this).find('span').length >= 1 ) 
+      {
+        $(this).css('background', 'gray'); 
+      }
+      else
+      {
+        $(this).css('background', '');
+      }
+    });
+  }
+
+  function delete_timetable_cell(del_class_name){
+    // lec_id 는 지워질 cell의 클래스 이름 
+    del_cell = $('.lessons').find('td.'+del_class_name);
+
+    del_cell.each (function(){
+      if ( $(this).find('span').length > 1 )
+      {
+        $(this).find('span.'+del_class_name).html(''); 
+      }
+      else
+      {
+        $(this).css('background', '');
+        $(this).html('');
+      }
+      // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
+    });
+  }
   // 웹페이지 로드시, 현재 유저가 등록한 강의를 시간표에 보여준다.
   jQuery( document ).ready(function( $ )
   {   
@@ -226,310 +383,11 @@
       lec_professor = "<%= l.professor %>";
 
       // 처음 html 로드시, 사용자가 시간표에 등록한 강의들을 timetable cell에 채우는 함수 
-      $.default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
     <% end %>
-
+    del_btn_click();
     // click event를 document.ready 된 후 적용해야함.
-    //$.del_btn_click();
   }); 
-
-  // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
-  // 속한 행과 열을 결정한다.
-	$(".table_search tr").click(function(){
-    $(this).off('mouseout');
-    $(this).off('hover');
-		var data = $(this).find('.lecture_time').html();
-		
-    data = $.split_text(data);
-
-    // d_col | 요일 저장하는 배열 
-    // s_row | 시작시간 
-    // e_row | 종료시간 
-    var d_col = $.find_day_td(data[0]);
-    var s_row = $.find_begin_time_row(data[1]);
-    var e_row = $.find_end_time_row(data[2]);
-    
-    var lec_id = $(this).attr('class').split('_')[1];
-    var lec_name = $(this).find('.subject').html();
-    var lec_professor = $(this).find('.professor').html();
-
-    
-    // DB 저장을 위한 ajax 전송
-    $.send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
-    $.click_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
-	});
-
-
-  $(".table_search tr").mouseenter(function()
-  {
-    
-    var data = $(this).find('.lecture_time').html();
-        data = $.split_text(data);
-
-    var d_col = $.find_day_td(data[0]);
-    var s_row = $.find_begin_time_row(data[1]);
-    var e_row = $.find_end_time_row(data[2]);
-        
-    var lec_id = $(this).attr('class').split('_')[1];
-    var lec_name = ""; 
-    var lec_professor = ""; 
-    
-    $.hover_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
-  });
-  
-
-  $(".table_search tr").mouseleave(function()
-  {
-    del_class = $(this).attr('class');
-    $.delete_timetable_cell_background(del_class);
-  });
-
-  // 강의시간을 요일/시작시간/끝시간 배열 3개로 쪼개서 return
-  $.split_text = function(data) 
-  {
-    console.log("data : " + data);
-    // replace에서의 day를 1개 요일 vs 2개 요일로 비교해서 값을 따로 줘야한다.
-    // 요일이 1개 ex)화 인경우
-    if (data.length <= 12)
-    {
-      day = data[0];
-    }
-    // 요일이 2개 ex)화목 인 경우
-    else if (data.length <= 13)
-    {
-      day = data[0]+data[1];
-    }
-    else{}
-
-    data = data.replace(day,day+"-");
-    data = data.split('-');   
-    // data[0] 요일, data[1] 시작시간, data[2] 끝시간.
-    return data;
-  };
-
-
-  // timetable에서 강의 시간(행)을 찾습니다.
-  $.find_begin_time_row = function (s_time)
-  { 
-    rows = timetable.find('tbody th');
-
-    var row_num;
-    rows.each(function(){
-      row_each_time = $(this).html().split("-");
-      
-      if( s_time == row_each_time[0] ){
-        row_num = rows.index(this);
-      }
-      else {      }
-    });
-    
-    return row_num+1;
-  };
-
-  $.find_end_time_row = function(e_time)
-  {
-    rows = timetable.find('tbody th');
-
-    var row_num;
-    rows.each(function(){
-      row_each_time = $(this).html().split("-");
-      
-      if( e_time == row_each_time[1] ){
-        row_num = rows.index(this);
-      }
-      else {      }
-    });
-    
-    return row_num+1;
-  };
-
-  // 요일을 기준으로 몇열에 해당하는지 찾아 열값을 리턴.
-  $.find_day_td = function(day)
-  {
-    t_datas = timetable.find('thead th'); 
-    var td_num = [];
-
-    for (i=0; i<day.length; i++){
-      t_datas.each(function() {
-        td_each_data = $(this).html();
-        
-        if (td_each_data == day[i]){
-          td_num.push(t_datas.index(this)+1);
-        } 
-        else{}
-      });
-    }
-    // nth:child 때문에 열값에 +1을 해야됨.
-    return td_num;
-  };
-
-  // 인자로 받은 시간/요일을 기준으로 background 채웁니다.
-  $.hover_fill_cell = function(s_row, e_row, col, lec_id, lec_name, lec_professor)
-  {
-    for (h=0; h<col.length; h++)
-    {
-      col_num = col[h]+")";
-      for(i=s_row; i<=e_row; i++)
-      {
-        row_num = i+")";
-        time_row = timetable.find('tbody tr:nth-child('+row_num);
-        lecture_cell = time_row.find('td:nth-child('+col_num);
-
-        if(lecture_cell.find('span').length >= 1)  
-        {
-          lecture_cell.css('background','green');
-          lecture_cell.addClass('lec_'+lec_id);
-        }
-        else
-        {
-          lecture_cell.css('background','yellow');
-          lecture_cell.addClass('lec_'+lec_id); 
-        }
-      }
-    }
-  };
-
-  $.default_fill_cell = function(s_row, e_row, col, lec_id, lec_name, lec_professor)
-  {
-    // 클릭(빈셀, 채워진 셀)과 첫 로드 구분
-    for (h=0; h<col.length; h++)
-    {
-      col_num = col[h]+")";
-      for(i=s_row; i<=e_row; i++)
-      {
-        row_num = i+")";
-        time_row = timetable.find('tbody tr:nth-child('+row_num);
-        lecture_cell = time_row.find('td:nth-child('+col_num);
-        lecture_cell.css('background','gray');
-        lecture_cell.addClass('lec_'+lec_id); 
-
-        if(lecture_cell.find('span').length >= 1)
-        {
-          existed_text = lecture_cell.html() + "<br>";
-          lecture_cell.html(existed_text + $.mix_cell_text(lec_id,lec_name, lec_professor));
-        }
-        else
-        {
-          lecture_cell.html($.mix_cell_text(lec_id,lec_name,lec_professor));  
-        }
-      }
-    }
-  };
-
-  $.mix_cell_text = function(lec_id, lec_name, lec_professor)
-  {
-    completed_content = "<span class = lec_" + lec_id + ">" + lec_name + " "
-                          + lec_professor + " " + del_btn + "</span>";
-
-    return completed_content;
-  };
-
-  $.click_fill_cell= function(s_row, e_row, col, lec_id, lec_name, lec_professor)
-  {
-    for (h=0; h<col.length; h++){
-      col_num = col[h]+")";
-      for(i=s_row; i<=e_row; i++)
-      {
-        row_num = i+")";
-        time_row = timetable.find('tbody tr:nth-child('+row_num);
-        lecture_cell = time_row.find('td:nth-child('+col_num);
-
-        if(lecture_cell.find('span').length >= 1)  
-        {
-          lecture_cell.css('background','green');
-          lecture_cell.addClass('lec_'+lec_id);
-
-          existed_text = lecture_cell.html() + "<br>";
-
-          lecture_cell.html(existed_text + $.mix_cell_text(lec_id,lec_name, lec_professor));
-
-        }
-        else
-        {
-          lecture_cell.css('background','gray');
-          lecture_cell.addClass('lec_'+lec_id); 
-          lecture_cell.html($.mix_cell_text(lec_id,lec_name, lec_professor));
-        }
-      }
-    }
-  };
-
-  
-  $.send_lecture_to_timetable= function(s_row,e_row,d_col,lec_id) {
-    $.ajax({
-        url:'<%= add_timetable_url %>',
-        type:'post',
-        data:{'begin_time':s_row, 'end_time':e_row, 'days':d_col,
-              'lecture_id':lec_id},
-        success:function()
-        {
-          
-        },
-        error:function()
-        {
-          alert('이미 등록된 강의입니다.');
-        }
-
-    });
-  };
-
-  $.del_btn_click = function()
-  {
-    $('.lessons > .table-striped > tbody > tr > td > span > a').click(function()
-    {
-      // 1 선택한 객체 지우기
-      // 2 선택한 객체와 같은 클래스명(lec_id)을 가진 cell도 똑같이 적용.
-      del_class = $(this).parent().attr('class');
-
-      $.delete_timetable_cell(del_class);
-
-      del_id = del_class.split('_');
-
-      $.ajax({
-          url:'<%= delete_timetable_url %>',
-          type:'delete',
-          data:{'lecture_id':del_id[1]}
-      });
-    });
-  };
-
-  $.delete_timetable_cell_background = function(del_class_name)
-  {
-    // lec_id 는 지워질 cell의 클래스 이름 
-    del_cell = $('.lessons').find('.'+del_class_name);
-    
-    del_cell.each (function(){
-      // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
-      if ( $(this).find('span').length >= 1 ) 
-      {
-        $(this).css('background', 'gray'); 
-      }
-      else
-      {
-        $(this).css('background', '');
-      }
-    });
-  };
-
-  $.delete_timetable_cell = function(del_class_name)
-  {
-    // lec_id 는 지워질 cell의 클래스 이름 
-    del_cell = $('.lessons').find('td.'+del_class_name);
-
-    del_cell.each (function(){
-      if ( $(this).find('span').length > 1 )
-      {
-        $(this).find('span.'+del_class_name).html(''); 
-      }
-      else
-      {
-        $(this).css('background', '');
-        $(this).html('');
-      }
-      // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
-    });
-  };
-
 </script>
 
 

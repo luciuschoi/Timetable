@@ -50,6 +50,7 @@ class StaticPagesController < ApplicationController
   end 
 
   def rank
+
     if params[:search]
       @lectures = Lecture.search(params[:search])
       # respond_to do |format|
