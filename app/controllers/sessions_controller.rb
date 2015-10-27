@@ -8,15 +8,18 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     user = User.find_by(email: params[:session][:email])
+
     if user && user.authenticate(params[:session][:password])
       log_in user
+      current_user
 
       redirect_to home_path
 
     else
-      flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
-      render 'new'
+      flash[:danger] = '아이디 혹은 비밀번호가 잘못 되었습니다.' # Not quite right!
+      redirect_to login_path
       end
   end
 

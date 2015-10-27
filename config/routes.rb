@@ -1,28 +1,36 @@
 Rails.application.routes.draw do
 
- root 'static_pages#daemoon'
-
+ # get 'users/new'
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
  get 'newsfeed' => 'static_pages#newsfeed'
  get 'rank' => 'static_pages#rank'
+ get 'search_timetable' => 'timetables#search_timetable'
 
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
 
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
+ root 'static_pages#daemoon'
 
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
 
- get 'signup'  => 'users#new'
+
+  get 'signup'  => 'users#new'
 
  get    'login'   => 'sessions#new'
  post   'login'   => 'sessions#create'
  delete 'logout'  => 'sessions#destroy'
 
-resources :users
+ post 'timetables/make_a_change' => 'timetables#make_a_change'
+ delete 'delete_timetable' => 'timetables#destroy'
+ post 'add_timetable' => 'timetables#create'
+#resources :lectures
+resources :users do
+   member { get :timetable }
+end 
 
 
 match 'auth/:provider/callback', :controller => 'sessions', action: 'create_by_facebook', via: [:get, :post]
@@ -30,7 +38,7 @@ match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do
   collection { post :import }
-  member { get :timetable }
+  
   member { get :writtingform }
 end
 

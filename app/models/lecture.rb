@@ -2,14 +2,14 @@ class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
 
-  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
+  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor, :lecturetime] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
 
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
-
+  belongs_to :timetable
   scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
   scope :group_by_id, ->  { group(:lecture_id)}
 
@@ -17,9 +17,18 @@ class Lecture < ActiveRecord::Base
   require 'roo'
 
 
-  def Lecture.accessible_attributes
-    ["subject", "professor", "major","lecturetime"]
-  end 
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+  #     #lecture = find_by_id(row["id"]) || new
+  #     lecture.update_attribute("lecturetime", row["lecturetime"] )
+
+  #     lecture.save
+  #   end
+  # end
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -42,6 +51,7 @@ class Lecture < ActiveRecord::Base
     end
   end
 
+  
   def lec_valuation(counts,g,w,a,l,h,t)
     
     if self.acc_grade.nil?
@@ -76,14 +86,11 @@ class Lecture < ActiveRecord::Base
     end   
   end
 
-
-
   def self.search(search)  
-      unless search.nil?
-      where(['professor LIKE ? OR subject Like ?', 
-        "#{search}%", "#{search}%"])
+    unless search.nil?
+    where(['professor LIKE ? OR subject Like ?', 
+      "#{search}%", "#{search}%"])
     end
-
   end  
 
 

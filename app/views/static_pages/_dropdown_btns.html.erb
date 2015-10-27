@@ -4,6 +4,7 @@
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="
   height : 400%; overflow:scroll;">
+
     <li><%= link_to '모든학과', newsfeed_url(:major => '모든학과',:search=> params[:search]), remote: true %></li>
     <li><%= link_to '컴퓨터공학과', newsfeed_url(:major => '컴퓨터공학과',:search=> params[:search]), remote: true %></li>
 
@@ -77,6 +78,7 @@
 
     <li role="separator" class="divider"></li>
     <li><%= link_to '자유교양', newsfeed_url(:major => '교양학부',:search=> params[:search]), remote: true  %></li>
+
 
   </ul>
 </div>

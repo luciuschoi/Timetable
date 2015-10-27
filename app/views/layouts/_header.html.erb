@@ -24,32 +24,32 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" style = "margin-left:80px;">
-
+            <li>
+              <%= link_to '시간표짜기', rank_path%>
+            </li>
             <% if current_page? controller: 'static_pages', action: 'newsfeed'%>
               <li class ="activate">
                 <%= link_to '최근평가', newsfeed_path, class: 'activate'%>
+                
               </li>
               
             <% elsif current_page? controller: 'static_pages', action: 'forcingwritting' %>
               <li>
                 <%= link_to '최근평가', newsfeed_path%>
+                
               </li>
-              
-
+             <% elsif current_page? controller: 'static_pages', action: 'forcingwritting' %> 
+                <%= link_to '최근평가', newsfeed_path%>
+                
             <% else %>
               <li>
                 <%= link_to '최근평가', newsfeed_path%>
+          
+                
               </li>
 
             <% end %>
-<!--
-              <li class="nav navbar-nav navbar-form">
-              <%= form_tag home_path, :method => 'get', :class =>'form-inline' do %>
-                    <%= text_field_tag :search, params[:search], placeholder: :"과목,교수님명을 입력해주세요." ,:class => 'form-control  form-group' ,:style => "width:150%;;"%>
-              
-              <% end %>
-              </li>
--->              
+
           </ul>
 
       
@@ -63,7 +63,7 @@
                   <div id = "navbar_margin_top">
                     <li> <span id = "navbar_hello_color">
                     <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   <a href="/signout"
-                    id = "navbar_hello_color">logout </a></span>
+                    id = "logout">logout </a></span>
                     
                     </li>
                   </div>
