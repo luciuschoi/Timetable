@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
-
+ get 'first_login' => 'static_pages#first_login'
 
   get 'signup'  => 'users#new'
 

@@ -62,7 +62,26 @@
   timetable = $('#timetable');
   del_btn = "<a> X </a>";
 
-
+  function duplicate_lecture(s_row, e_row, col)
+  {
+    var tf_var;
+    for (h=0; h<col.length; h++){
+      col_num = col[h]+")";
+      for(i=s_row; i<=e_row; i++)
+        {
+          row_num = i+")";
+          time_row = timetable.find('tbody tr:nth-child('+row_num);
+          lecture_cell = time_row.find('td:nth-child('+col_num);
+          a = lecture_cell.find('span').html();
+          if(a.length >= 2)    
+          {
+            tf_var = true;
+            break;
+          }
+        }
+    }
+    return tf_var;
+  }
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
 	$(".table_search tr").click(function(){
@@ -83,10 +102,18 @@
     var lec_name = $(this).find('.subject').html();
     var lec_professor = $(this).find('.professor').html();
 
+    var duplicate_var = duplicate_lecture(s_row, e_row, d_col);
     
     // DB 저장을 위한 ajax 전송
-    send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
-    click_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+    if (duplicate_var == true)
+    {
+      alert('중복된 강의시간표 입니다..ㅠㅠ');
+    }
+    else
+    {
+      send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
+      click_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+    }
 	});
 
 
@@ -273,12 +300,20 @@
   {
     for (h=0; h<col.length; h++){
       col_num = col[h]+")";
-      for(i=s_row; i<=e_row; i++)
-      {
+      
+
+        for (i=s_row+1; i<=e_row; i++)
+        {
+          row_num = i+")";
+          time_row = timetable.find('tbody tr:nth-child('+row_num);
+          lecture_cell = time_row.find('td:nth-child('+col_num);
+          $(lecture_cell).css('display', 'none');
+        }
+        var i = s_row;
         row_num = i+")";
         time_row = timetable.find('tbody tr:nth-child('+row_num);
         lecture_cell = time_row.find('td:nth-child('+col_num);
-
+        lecture_cell.attr('rowspan', e_row - s_row + 1);
         if(lecture_cell.find('span').length >= 1)  
         {
           lecture_cell.css('background','green');
@@ -295,7 +330,7 @@
           lecture_cell.addClass('lec_'+lec_id); 
           lecture_cell.html(mix_cell_text(lec_id,lec_name, lec_professor));
         }
-      }
+      
     }
   }
 
@@ -346,11 +381,13 @@
       // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
       if ( $(this).find('span').length >= 1 ) 
       {
-        $(this).css('background', '#f7f7f7').css('border',' '); 
+        $(this).css('background', '#f7f7f7')
+        $(this).css('border','0'); 
       }
       else
       {
-        $(this).css('background', '').css('border',' ');
+        $(this).css('background', '');
+        $(this).css('border','0');
       }
 
     });
@@ -361,9 +398,10 @@
     del_cell = $('.lessons').find('td.'+del_class_name);
 
     del_cell.each (function(){
-      if ( $(this).find('span').length > 1 )
+      if ( $(this).find('span').length >= 1 )
       {
         $(this).find('span.'+del_class_name).html(''); 
+        $(this).css('border','0'); 
       }
       else
       {
