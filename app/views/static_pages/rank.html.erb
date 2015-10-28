@@ -74,7 +74,6 @@
           lecture_cell = time_row.find('td:nth-child('+col_num);
           a = lecture_cell.find('span').html();
           if (a == null) continue;
-
           if(a.length >= 2)    
           {
             tf_var = true;
@@ -116,7 +115,9 @@
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
       click_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
     }
+
   });
+
 
 
   $(".table_search tr").mouseenter(function(){
