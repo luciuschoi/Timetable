@@ -347,7 +347,9 @@
   border-top: 0;
 }
 
-
+.table_search tbody tr:hover, .lessons > .table-striped > tbody > tr > td > span > a{
+  cursor: pointer;
+}
 
 
 

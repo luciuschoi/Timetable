@@ -69,7 +69,7 @@ class StaticPagesController < ApplicationController
   end 
 
   def first_login
-    
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
 
