@@ -60,7 +60,6 @@
 
 <script>
   timetable = $('#timetable');
-  del_btn = "<a> X </a>";
 
   function duplicate_lecture(s_row, e_row, col)
   {
@@ -120,7 +119,7 @@
 
 
 
-  $(".table_search tr").mouseenter(function(){
+  $(".table_search tbody tr").mouseenter(function(){
     
     var data = $(this).find('.lecture_time').html();
         data = split_text(data);
@@ -137,7 +136,7 @@
   });
 
 
-  $(".table_search tr").mouseleave(function(){
+  $(".table_search tbody tr").mouseleave(function(){
     del_class = $(this).attr('class');
     delete_timetable_cell_background(del_class);
   });
@@ -290,9 +289,10 @@
       //}
     }
   }
-
+//onclick = del_btn_click();
   function mix_cell_text(lec_id, lec_name, lec_professor)
   {
+    var  del_btn = "<a > X </a>";
     completed_content = "<span class = lec_" + lec_id + ">" + lec_name + " <br>"
                           + lec_professor + " " + del_btn + "</span>";
 
@@ -355,13 +355,8 @@
 
     });
   }
-
-  function del_btn_click() {
-    $('.lessons > .table-striped > tbody > tr > td > span > a').click(function()
-    {
-      // 1 선택한 객체 지우기
-      // 2 선택한 객체와 같은 클래스명(lec_id)을 가진 cell도 똑같이 적용.
-      del_class = $(this).parent().attr('class');
+  $('body').on('click','.lessons > .table-striped > tbody > tr > td > span > a' ,function(event){
+    del_class = $(this).parent().attr('class');
 
       delete_timetable_cell(del_class);
 
@@ -372,8 +367,25 @@
           type:'delete',
           data:{'lecture_id':del_id[1]}
       });
-    });
-  }
+  })
+  // function del_btn_click() {
+  //   //$('.lessons > .table-striped > tbody > tr > td > span > a')//.click(function()
+  //   //{
+  //     // 1 선택한 객체 지우기
+  //     // 2 선택한 객체와 같은 클래스명(lec_id)을 가진 cell도 똑같이 적용.
+  //     del_class = $(this).parent().attr('class');
+
+  //     delete_timetable_cell(del_class);
+
+  //     del_id = del_class.split('_');
+
+  //     $.ajax({
+  //         url:'<%= delete_timetable_url %>',
+  //         type:'delete',
+  //         data:{'lecture_id':del_id[1]}
+  //     });
+  //   //});
+  // }
 
   function delete_timetable_cell_background(del_class_name)
   {
@@ -404,13 +416,15 @@
       if ( $(this).find('span').length >= 1 )
       {
         $(this).find('span.'+del_class_name).html(''); 
-        $(this).css('border','0'); 
+        $(this).attr('rowspan', '0');
       }
       else
       {
         $(this).css('background', '');
-        $(this).html('');
+        
+        $(this).css('display', 'table-cell');
       }
+      $(this).html('');
       $(this).css('border', '0');
       // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
     });
@@ -444,8 +458,6 @@
       // 처음 html 로드시, 사용자가 시간표에 등록한 강의들을 timetable cell에 채우는 함수 
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
     <% end %>
-    del_btn_click();
-    // click event를 document.ready 된 후 적용해야함.
   }); 
 </script>
 
