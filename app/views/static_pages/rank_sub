@@ -243,9 +243,22 @@
         // span 태그 내에 텍스트가 있다면 = 테이블 셀 내에 강의가 추가되있다면 css 적용
         if(tester == true)  
         {
-          lecture_cell.css('background','#fff3f2').css('outline','1px solid #ec4e2c');
-          lecture_cell.addClass('lec_'+lec_id);
-
+          if (lecture_cell.css('display') == 'none')
+          {
+            lecture_cell.attr('class');
+            var class_arr = lecture_cell.attr('class');
+            var specific_class = class_arr.split(' ');
+            if ( $('td.'+specific_class[0]).css('display') == 'table-cell' ) 
+              { 
+                $('td.'+specific_class[0]).css('background','#fff3f2').css('outline','1px solid #ec4e2c');
+                $('td.'+specific_class[0]).addClass('lec_'+lec_id); 
+              }
+            if ( $('td.'+specific_class[1]).css('display') == 'table-cell' ) 
+            {
+                $('td.'+specific_class[1]).css('background','#fff3f2').css('outline','1px solid #ec4e2c');
+                $('td.'+specific_class[1]).addClass('lec_'+lec_id); 
+            }
+          }
         }
         // 테이블 셀 내부에 강의가 추가되있지 않을 때 css 적용
         else
@@ -322,6 +335,7 @@
           time_row = timetable.find('tbody tr:nth-child('+row_num);
           lecture_cell = time_row.find('td:nth-child('+col_num);
           $(lecture_cell).css('display', 'none');
+          $(lecture_cell).addClass('lec');
         }
         var i = s_row;
         row_num = i+")";
@@ -416,7 +430,7 @@
         $(this).css('background', '');
         $(this).css('outline','0');
       }
-
+      $(this).removeClass(''+del_class_name);
     });
   }
 
@@ -439,6 +453,7 @@
       $(this).html('');
       $(this).css('border', '0');
       $(this).removeClass('lec');
+      $(this).removeClass(''+del_class_name);
       // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
     });
   }
