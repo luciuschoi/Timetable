@@ -6,6 +6,7 @@ Rails.application.routes.draw do
  get 'newsfeed' => 'static_pages#newsfeed'
  get 'rank' => 'static_pages#rank'
  get 'search_timetable' => 'timetables#search_timetable'
+ get 'propose' => 'static_pages#propose'
 
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'

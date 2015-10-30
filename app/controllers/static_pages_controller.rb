@@ -58,6 +58,23 @@ class StaticPagesController < ApplicationController
     @lectures_in_timetable = current_user.timetables
   end
     
+  def propose
+
+    lec = Lecture.where("acc_total between 4 and 5 and major LIKE '컴퓨터공학과'")
+    lec_len = lec.length
+    @lec_arr = []
+    prng = Random.new(1234)
+    
+    for value in 0..2
+      ran_num = prng.rand(0..lec_len)
+      @lec_arr.push(lec[ran_num])
+    end
+
+    respond_to do |format|
+        format.js
+        format.html {redirect_to rank_path}
+    end
+  end
 
   def menual
     @menual_num
@@ -126,14 +143,6 @@ class StaticPagesController < ApplicationController
         flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
         redirect_to edit_user_url(current_user)
      end
-  end
-
-  def user_login?
-    if session[:user_id].nil? && session[:user_name].nil?
-        false
-    else 
-        true
-    end
   end
 
   def user_login?

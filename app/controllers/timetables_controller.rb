@@ -9,7 +9,6 @@ class TimetablesController < ApplicationController
 		end
 	end
 
-
 	def destroy 
 		@timetable = Timetable.find_by(lecture_id: params[:lecture_id])
 		@timetable.destroy
@@ -19,7 +18,6 @@ class TimetablesController < ApplicationController
 			format.html {redirect_to rank_path}
 		end
 	end
-
 
 	private
 
