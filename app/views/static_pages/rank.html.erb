@@ -7,54 +7,22 @@
     margin : 10px auto;">
     <%= render 'timetables/table_form' %>
     
-    <div class = "search_box" style = "margin : 20px 0">
+    <div class = "search_box" style = "margin : 20px 0; text-align :center">
       <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
-        :style => 'text-align:center;' do %>
+        :style => 'text-align:center; display:inline' do %>
           <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:40%" %>
-          <%= submit_tag "Search", :name => nil, :class =>'btn btn-success', :style =>"width:15%;" %>
+          <%= submit_tag "검색", :name => nil, :class =>'btn btn-success', :style =>"width:8%;" %>
       <% end %>
+          <%= link_to '추천 강의', propose_path, remote: true, :class => 'btn btn-danger', :style => "display: inline; width:5%; padding-top:8px; padding-bottom:8px"%>
     </div>
 
     <div class = "table_search" style = "text-align:center; width:500px; margin : 0 auto">
-      <table class="table table-striped" style= "font-size:1em;">
-        <thead>
-          <tr align="center" class = "tr_style">
-            <th class = "text_head">과목명</th>
-            <th class = "text_head">교수</th>
-            <th class = "text_head">평균 강의평가 </th>
-            <th class = "text_head">시간</th>
-          </tr>
-        </thead>
-        <% if @lectures.nil? %>
 
-        </table>
-        <div> 검색결과가 없습니다.. </div>
-        <% else %>
-          <% @lectures.each do |lec| %>
-            <tr class = "lec_<%= lec.id%>"> 
-              <td class="table_subject subject">
-                <%= lec.subject%>
-              </td>
-              <td class="tb_unspot professor">
-                <%=lec.professor%> 
-              </td>  
-              <td class="total_spot" style = "text-align:center">
-                <% if lec.acc_total==0 %>
-                평가없음
-                <% else %> 
-                <%= render 'shared/show_average_star',:var=> lec.acc_total%>
-                <div class = "total_text">
-                 <%= lec.acc_total.round(1) %>
-                </div>
-                <% end %> 
-              </td>
-              <td class = "lecture_time"><%= lec.lecturetime %></td>
-            </tr>
-          <% end %>
-        </table>
-        <%= will_paginate @lectures %>
-      <% end %>
-    </div>  <!-- 검색 결과 -->
+      <%= render 'search_table', :lectures => @lectures %>
+    </div> <!-- 검색 결과 -->
+
+    <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+
   </div>
 </div>
 
@@ -77,13 +45,7 @@
         {
           break;
         }
-        // a = lecture_cell.find('span').html();
-        // if (a == null) continue;
-        // if(a.length >= 2)    
-        // {
-        //   tf_var = true;
-        //   break;
-        // }
+        
       }
       if (tester == true) break;
     }
