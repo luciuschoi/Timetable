@@ -59,13 +59,17 @@ class StaticPagesController < ApplicationController
   end
     
   def propose
+    @decimal_arr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.3, 0.2, 0.5]
+    @decimal_arr.shuffle!
 
-    lec = Lecture.where("acc_total between 4 and 5 and major LIKE '컴퓨터공학과'")
+    lec = Lecture.where("acc_total between 3.5 and 5 and major LIKE '컴퓨터공학과'")
     lec_len = lec.length
     @lec_arr = []
-    prng = Random.new(1234)
+
+    seed_value = [1,2,3,4,5,6,7,8,9,10]
+    prng = Random.new(seed_value.shuffle![0])
     
-    for value in 0..2
+    for value in 0..9
       ran_num = prng.rand(0..lec_len)
       @lec_arr.push(lec[ran_num])
     end
