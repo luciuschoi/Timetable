@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20151004162006) do
     t.float    "acc_level",       default: 0.0
     t.float    "acc_achievement", default: 0.0
     t.float    "acc_homework",    default: 0.0
-    t.float    "acc_total",       default: 0.0d
+    t.float    "acc_total",       default: 0.0
   end
 
   create_table "timetables", force: :cascade do |t|

@@ -1,29 +1,40 @@
 
-<div style = "width:1000px;
+<!--<div style = "width:1000px;
   margin-left:auto;
   margin-right:auto;">
-
-  <div style = "width:840px;
-    margin : 10px auto;">
-    <%= render 'timetables/table_form' %>
-    
-    <div class = "search_box" style = "margin : 20px 0; text-align :center">
-      <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
-        :style => 'text-align:center; display:inline' do %>
-          <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:40%" %>
-          <%= submit_tag "검색", :name => nil, :class =>'btn btn-success', :style =>"width:8%;" %>
-      <% end %>
-          <%= link_to '추천 강의', propose_path, remote: true, :class => 'btn btn-danger', :style => "display: inline; width:5%; padding-top:8px; padding-bottom:8px"%>
-    </div>
-
-    <div class = "table_search" style = "text-align:center; width:500px; margin : 0 auto">
-      <%= render 'search_table', :lectures => @lectures %>
-    </div> <!-- 검색 결과 -->
-
-    <div style = "text-align : center"> 검색결과가 없습니다.. </div>
-
+-->
+  <div style="width:20%;float:left;">
+  <div>ㅁㅁ</div>
   </div>
-</div>
+  <div style="width:50%;float:left;" >
+  <div>
+    <%= render 'timetables/table_form' %>
+  </div>
+  </div>
+
+  <div style="width:30%;float:right;padding-left:2%;">
+    <div class = "search_box" style="width:100%;flaot:right;">
+            <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
+              :style => 'text-align:center; display:inline' do %>
+                <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:50%;margin-bottom:21px;" %>
+                <%= button_tag(type: "submit", class: "btn btn-default", style:"margin-bottom:20px;") do %>
+                <i class="glyphicon glyphicon-search" style="font-size:18px;"></i>
+                <%end%>
+            <% end %>
+               <%= link_to  propose_path,remote: true do %>
+                <i class="glyphicon glyphicon-star" style="font-size:40px;"></i>
+               <%end %>
+        
+        
+     
+       <%= render 'search_table', :lectures => @lectures %>
+         <!-- 검색 결과 -->
+          <% if @lectures.nil? %> 
+          <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+          <%end%> 
+    </div>
+  </div>
+  
 
 <script>
   timetable = $('#timetable');
@@ -68,7 +79,7 @@
     
     var lec_id = $(this).attr('class').split('_')[1];
     var lec_name = $(this).find('.subject').html();
-    var lec_professor = $(this).find('.professor').html();
+    duplicate_var lec_professor = $(this).find('.professor').html();
 
     var duplicate_var = duplicate_lecture(s_row, e_row, d_col);
     
@@ -424,7 +435,7 @@
         d_col.push("<%= lec_in_timetable.days[1] %>");
       }
 
-      <% l = Lecture.find(lec_in_timetable.lecture_id) %>
+      <% l = Lecture.find_by(lec_in_timetable.lecture_id) %>
       lec_id = <%= l.id %>;
       lec_name = "<%= l.subject %>";
       lec_professor = "<%= l.professor %>";
