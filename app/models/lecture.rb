@@ -1,6 +1,7 @@
 class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
+
   
   validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
@@ -17,9 +18,18 @@ class Lecture < ActiveRecord::Base
   require 'roo'
 
 
-  def Lecture.accessible_attributes
-    ["subject", "professor", "major","lecturetime"]
-  end 
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+  #     #lecture = find_by_id(row["id"]) || new
+  #     lecture.update_attribute("lecturetime", row["lecturetime"] )
+
+  #     lecture.save
+  #   end
+  # end
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)

@@ -9,8 +9,10 @@
   <div style="width:50%;float:left;" >
   <div>
     <%= render 'timetables/table_form' %>
+
   </div>
   </div>
+
 
   <div style="width:30%;float:right;padding-left:2%;">
     <div class = "search_box" style="width:100%;flaot:right;">
@@ -63,11 +65,11 @@
   }
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
-	$(".table_search tr").click(function(){
+  $(".table_search tr").click(function(){
     $(this).off('mouseout');
     $(this).off('hover');
-		var data = $(this).find('.lecture_time').html();
-		
+    var data = $(this).find('.lecture_time').html();
+    
     data = split_text(data);
 
     // d_col | 요일 저장하는 배열 
@@ -93,7 +95,9 @@
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
       click_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
     }
-	});
+
+  });
+
 
 
   $(".table_search tbody tr").mouseenter(function(){
