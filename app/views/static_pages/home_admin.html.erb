@@ -1,7 +1,7 @@
 
 	<h4> 강의&nbsp;&nbsp; 교수명 &nbsp;&nbsp; 개설학과 </h4>
 	<% @lectures.each do |lec| %>
-		<%= lec.subject%> <%=lec.professor%> <%= lec.major%> &nbsp;&nbsp;&nbsp;&nbsp;
+		<%= lec.subject%> <%=lec.professor%> <%= lec.major%> &nbsp;&nbsp;&nbsp;&nbsp; <%= lec.place %>
 		<%= lec.lecturetime%>
 		<%= link_to "Show",   lecture_path(lec) %>  &nbsp; <%= link_to "Edit", 
 		edit_lecture_path(lec)%>  &nbsp;
