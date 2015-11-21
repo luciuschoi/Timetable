@@ -380,9 +380,6 @@
   {   
     // s_row | 강의 시작시간
     // e_row | 강의 종료시간
-    var s_row;
-    var e_row;
-    var d_col = [];
 
     var lec_id;
     var lec_name;
@@ -391,9 +388,10 @@
 
     <% @lectures_in_timetable.each do |lec_in_timetable| %>
       
-      s_row = <%= lec_in_timetable.begin_time %>;
-      e_row = <%= lec_in_timetable.end_time %>;
+      var s_row = <%= lec_in_timetable.begin_time %>;
+      var e_row = <%= lec_in_timetable.end_time %>;
       
+      var d_col=[];
       
       // 강의 시간이 하루인 경우
       if (<%= lec_in_timetable.days.length%> <= 1){
