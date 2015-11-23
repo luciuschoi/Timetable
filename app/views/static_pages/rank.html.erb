@@ -93,11 +93,11 @@
 
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
-  $(".table_search tr").click(function(){
+	$(".table_search tr").click(function(){
     $(this).off('mouseout');
     $(this).off('hover');
-    var data = $(this).find('.lecture_time').html();
-    
+		var data = $(this).find('.lecture_time').html();
+		
     data = split_text(data);
 
     // d_col | 요일 저장하는 배열 
@@ -124,9 +124,7 @@
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event_string);
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
     }
-
-  });
-
+	});
 
 
   $(".table_search tbody tr").mouseenter(function(){
@@ -498,7 +496,7 @@
         d_col.push("<%= lec_in_timetable.days[1] %>");
       }
 
-      <% l = Lecture.find_by(lec_in_timetable.lecture_id) %>
+      <% l = Lecture.find(lec_in_timetable.lecture_id) %>
       lec_id = <%= l.id %>;
       lec_name = "<%= l.subject %>";
       lec_professor = "<%= l.professor %>";
