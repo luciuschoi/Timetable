@@ -362,6 +362,38 @@
 
 
 
+.lessons {
+
+	
+	.lec_box
+	{
+		position:relative;
+
+		.lec_place, .lec_professor, .lec_name {
+			width:80%;		
+		}
+		.del_btn {
+			cursor : pointer;
+			top   : 0;
+		}
+		
+
+		a{
+			color : #333333;
+			
+			.info_btn{
+			cursor : pointer;
+			top: 20px;
+			}	
+		}
+
+		.glyphicon {
+			right : 0;
+			position:absolute;
+		}				
+	}
+}
+
 
 
 

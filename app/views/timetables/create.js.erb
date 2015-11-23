@@ -7,6 +7,5 @@
 // 1 DOM객체를 못찾는다.
 // 2 
 
-var a = $('.lec_' + '<%= params[:lecture_id] %>').find('span').html();
-$('.lec_' + '<%= params[:lecture_id] %>').find('span').html(a + '<%= @place %>');
+var a = $('.lec_' + '<%= params[:lecture_id] %>').find('div').find('.lec_place').html('<%= @place %>');
 //$('lec).find('span').html(a + '<%= @place %>');
