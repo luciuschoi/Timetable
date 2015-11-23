@@ -31,6 +31,8 @@
 }
 
 
+
+
 @font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
 
 
@@ -51,7 +53,9 @@ body{
 
 }
 
-
+.navbar{
+  background-color:#009ce6;
+}
 
 
 aside{
@@ -94,7 +98,6 @@ aside{
 
 
 
-/*  */
 
 
 /* fancybox */
@@ -226,16 +229,18 @@ table.nogap{
 
   .navbar-brand{
     font-size:25px;
-    color:black;
+    color:white;
     font-weight:bold;
   }
   border-bottom: 1px solid #e8e8e8;
   a{
-    color : gray;
+    color : white;
     font-weight:120;
   }
-  a .activate{
-    color : black;
+ .activate{
+    background-color:#2db1ee;
+    height:100%;
+    color : white;
   }
   .navbar-nav a:hover{
     color : black;
@@ -244,7 +249,7 @@ table.nogap{
     background-color: white;
   }
   .navbar-nav .activate{
-    color : black;
+    color : white;
     font-size:14.5px;
     font-weight : bold;
   }
