@@ -24,9 +24,15 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" style = "margin-left:80px;">
+          <% if current_page? controller: 'static_pages', action: 'rank'%>
+            <li>
+              <%= link_to '시간표짜기', rank_path, class: 'activate'%>
+            </li>
+          <% else %> 
             <li>
               <%= link_to '시간표짜기', rank_path%>
-            </li>
+            </li>  
+          <% end %> 
             <% if current_page? controller: 'static_pages', action: 'newsfeed'%>
               <li class ="activate">
                 <%= link_to '최근평가', newsfeed_path, class: 'activate'%>
@@ -61,11 +67,22 @@
 
                 <% unless current_user.nickname.nil? %>
                   <div id = "navbar_margin_top">
+
+                    <li class="dropdown">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.nickname%>님 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                            <li><%=link_to "별명 바꾸기", edit_user_path(current_user)%></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/signout">Sign Out</a></li>
+                        </ul>
+                    </li>
+                        <!--
                     <li> <span id = "navbar_hello_color">
                     <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   <a href="/signout"
                     id = "logout">logout </a></span>
+                    </li>-->
                     
-                    </li>
                   </div>
                 <% end %>
 

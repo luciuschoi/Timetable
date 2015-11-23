@@ -8,62 +8,44 @@
           <% lectures.each do |lec| %>
         
           <% if lec.lecturetime.nil? %> 
-              <div class="list-group">
+              <div class="list-group"  style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
                 <h4> <%=lec.subject %> 
-                <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
+             
+                <span style="float:right;"> 
+                  <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
                   <i class="glyphicon glyphicon-user"> </i>
-                </a>
+                  </a>
+                  10
+                </span>
                 </h4>
 
                 <p><%=lec.professor%>/장소 </p>
               </div>
 
+
               
             
           <% elsif lec.lecturetime.count==2 %>
-             <tr class = "lec_<%= lec.id%>"> 
-              <td class="table_subject subject">
-                <%= lec.subject%>
-              </td>
-              <td class="tb_unspot professor">
-                <%=lec.professor%> 
-              </td>  
-              <td class="total_spot" style = "text-align:center">
-                <% if lec.acc_total==0 %>
-                평가없음
-                <% else %> 
-                <%= render 'shared/show_average_star',:var=> lec.acc_total%>
-                <div class = "total_text">
-                 <%= lec.acc_total.round(1) %>
-                </div>
-                <% end %> 
-              </td>
-              <td class = "lecture_time"><%= lec.lecturetime[:first] %></td>
-            </tr>
-             <tr class = "lec_<%= lec.id%>"> 
-              <td class="table_subject subject">
-                <%= lec.subject%>
-              </td>
-              <td class="tb_unspot professor">
-                <%=lec.professor%> 
-              </td>  
-              <td class="total_spot" style = "text-align:center">
-                <% if lec.acc_total==0 %>
-                평가없음
-                <% else %> 
-                <%= render 'shared/show_average_star',:var=> lec.acc_total%>
-                <div class = "total_text">
-                 <%= lec.acc_total.round(1) %>
-                </div>
-                <% end %> 
-              </td>
-              <td class = "lecture_time"><%= lec.lecturetime[:second] %></td>
-            </tr>
 
-            <% end %>
+            <%for i in 0..2%>
+             <div class="list-group" style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
+                <h4> <%=lec.subject %> 
+                <span style="float:right;">
+                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
+                        <i class="glyphicon glyphicon-user"> </i>
+                        </a>
+                        10
+                </span>
+                </h4>
+
+                <p><%=lec.professor%>/장소 </p>
+              </div>
+           
+            <%end%> 
           <% end %>
-        </table>
-        <%= will_paginate lectures %>
+        <% end %>
+     
+        <%= will_paginate lectures, :class=>'paginate'%>
       <% end %>
             <% end %>
 
