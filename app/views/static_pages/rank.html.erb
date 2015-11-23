@@ -1,99 +1,31 @@
 
-<!--<div style = "width:1000px;
+<div style = "width:1000px;
   margin-left:auto;
   margin-right:auto;">
--->
 
-  <div style="width:20%;float:left;">
-      <div>
-        <button id="save_image_locally">
-            시간표 다운로드
-        </button>
-      </div>
-      <div>
-        <a id="kakao-link-btn" href="javascript:;">
-            <%=image_tag "talk.png"%> 
-        </a>
-      </div>
-  </div>
-  <div style="width:50%;float:left;" >
-  <div>
+  <div style = "width:840px;
+    margin : 10px auto;">
     <%= render 'timetables/table_form' %>
-
-  </div>
-  </div>
-
-
-  <div style="width:30%;float:right;padding-left:2%;">
-    <div class = "search_box" style="width:100%;flaot:right;">
-            <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
-              :style => 'text-align:center; display:inline' do %>
-                <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:50%;margin-bottom:21px;" %>
-                <%= button_tag(type: "submit", class: "btn btn-default", style:"margin-bottom:20px;") do %>
-                <i class="glyphicon glyphicon-search" style="font-size:18px;"></i>
-                <%end%>`
-            <% end %>
-               <%= link_to "#" do %>
-                <i class="glyphicon glyphicon-star" style="font-size:40px;"></i>
-               <%end %>
-        
-        
-     
-       <%= render 'search_table', :lectures => @lectures %>
-         <!-- 검색 결과 -->
-          <% if @lectures.nil? %> 
-          <div style = "text-align : center"> 검색결과가 없습니다.. </div>
-          <%end%> 
+    
+    <div class = "search_box" style = "margin : 20px 0; text-align :center">
+      <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
+        :style => 'text-align:center; display:inline' do %>
+          <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:40%" %>
+          <%= submit_tag "검색", :name => nil, :class =>'btn btn-success', :style =>"width:8%;" %>
+      <% end %>
+          <%= link_to '추천 강의', propose_path, remote: true, :class => 'btn btn-danger', :style => "display: inline; width:5%; padding-top:8px; padding-bottom:8px"%>
     </div>
+
+    <div class = "table_search" style = "text-align:center; width:500px; margin : 0 auto">
+      <%= render 'search_table', :lectures => @lectures %>
+    </div> <!-- 검색 결과 -->
+
+    <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+
   </div>
-  
+</div>
 
 <script>
-
-  // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('8af2fccfaf9fe878576de125c4ba83eb');
-
-    // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    Kakao.Link.createTalkLinkButton({
-      container: '#kakao-link-btn',
-      label: '세종대 강의정보공유 사이트 구경오세요.',
-      image: {
-        src: 'http://xn--oy1bw5jn8ijte.com/assets/logo2-bfa40186d9f501f9483243509d751037a6da6190d053cef4cc15f1221d3ed4b1.png', //카카오톡에 보여질 이미지 
-        width: '300',
-        height: '200'
-      },
-      webButton: {
-        text: '아뭐듣지.com',
-        url: 'http://xn--oy1bw5jn8ijte.com' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
-      }
-    });
-
-  $('.glyphicon-star').click(function (){
-      var elements = document.getElementsByClassName('list-group')
-      var pagenation= document.getElementsByClassName('paginate')
-      for (var i = 0; i < elements.length; i++){
-          elements[i].style.display = 'none';
-      }
-      pagenation[0].style.display='none';
-  });
-
-
-//이미지 저장하는 코드 
-  $('#save_image_locally').click(function() {
-      html2canvas($('.target'),
-           {
-             letterRendering:true,
-             logging:true, 
-             background:"white",
-              onrendered: function(canvas) {
-                var a = document.createElement('a');
-                a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-                a.download = '아뭐듣지시간표.jpg';
-                a.click();
-              }
-
-          });
-    });
   timetable = $('#timetable');
 
   function duplicate_lecture(s_row, e_row, col)
