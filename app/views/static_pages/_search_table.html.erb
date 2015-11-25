@@ -1,53 +1,42 @@
 <% if !lectures.nil? %>
+    <% if lectures.nil? %>
+      <div> 검색결과가 없습니다.. </div>
 
-      
-        <% if lectures.nil? %>
+    <% else %>
+        <% lectures.each do |lec| %>
+              <% if lec.lecturetime.nil? %> 
+                <div class="list-group"  style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
+                  <h4> <%=lec.subject %> </h4>
 
-        <div> 검색결과가 없습니다.. </div>
-        <% else %>
-          <% lectures.each do |lec| %>
-        
-          <% if lec.lecturetime.nil? %> 
-              <div class="list-group"  style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
-                <h4> <%=lec.subject %> 
-             
-                <span style="float:right;"> 
-                  <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
-                  <i class="glyphicon glyphicon-user"> </i>
-                  </a>
-                  10
-                </span>
-                </h4>
-
-                <p><%=lec.professor%>/장소 </p>
-              </div>
-
-
-
-              
-            
-          <% else %>
-
-            
-             <div class="list-group" style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
-                <h4> <%=lec.subject %> 
-                <span style="float:right;">
-                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
+                       
+                    <span style="float:right;"> 
+                      <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
                         <i class="glyphicon glyphicon-user"> </i>
-                        </a>
-                        10
-                </span>
-                </h4>
+                      </a>
+                    </span>
 
-                <p><%=lec.place%>/장소 </p>
-              </div>
-           
-          <% end %>
+                  <p><%= lec.professor %> / <%=lec.place%></p>                
+                </div>      
+              <% else %>
+                 <div class="list-group lec_<%= lec.id%>" style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
+                    <h4 class = "subject"> <%=lec.subject %> 
+                      <!-- <span style="float:right;">
+                              <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
+                              <i class="glyphicon glyphicon-user"> </i>
+                              </a>
+                      </span> -->
+                    </h4>
+
+                    <span class = "professor"><%= lec.professor %> / </span>
+                    <span class = "place"> <%=lec.place%> </span>       
+                    <span class = "lecture_time" style = "display:none"><%= lec.lecturetime %></span>             
+                  </div>
+              <% end %>
         <% end %>
-     
-        <%= will_paginate lectures, :class=>'paginate'%>
-      <% end %>
-            <% end %>
+       
+      <%= will_paginate lectures, :class=>'paginate'%>
+    <% end %>
+<% end %>
 
 <script>
 
