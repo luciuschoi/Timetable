@@ -94,11 +94,14 @@
     });
   timetable = $('#timetable');
 
+  // 겹치니 안겹치니?
+  //   1  겹치면     return 겹치는 강의명;
+  //   2  안겹치면    return " ";
   function duplicate_lecture(s_row, e_row, col)
   {
-    var tf_var;
     var col_num;
     var duplicated_lec_name = " ";
+
     for (h=0; h<col.length; h++){
       col_num = col[h]+")";
       for(i=s_row; i<=e_row; i++)
@@ -156,13 +159,13 @@
 
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
-  // $('body').on('click','.lessons > .table-striped > tbody > tr > td > div > .del_btn' ,function(event){
+
 	$('body').on('click', '.search_box .list-group',function(event){
     $(this).off('mouseleave');
     $(this).off('mouseenter');
 		var data = $(this).find('.lecture_time').html();
 		
-    data = split_text(data);
+    data = split_text_for_lectureTime(data);
 
     // d_col | 요일 저장하는 배열 
     // s_row | 시작시간 
@@ -191,10 +194,11 @@
     }
 	});
 
+
   $('body').on('mouseenter', '.search_box .list-group',function(event){
     
     var data = $(this).find('.lecture_time').html();
-        data = split_text(data);
+        data = split_text_for_lectureTime(data);
 
     var d_col = find_day_td(data[0]);
     var s_row = find_begin_time_row(data[1]);
@@ -215,8 +219,9 @@
     delete_timetable_cell_background(del_class);
   });
 
+
   // 강의시간을 요일/시작시간/끝시간 배열 3개로 쪼개서 return
-  function split_text(data) 
+  function split_text_for_lectureTime(data) 
   {
     // replace에서의 day를 1개 요일 vs 2개 요일로 비교해서 값을 따로 줘야한다.
     // 요일이 1개 ex)화 인경우
@@ -314,19 +319,22 @@
         row_num = i+")";
         time_row = timetable.find('tbody tr:nth-child('+row_num);
         lecture_cell = time_row.find('td:nth-child('+col_num);
-        var tester = $(lecture_cell).hasClass('lec');
 
-        if (tester == false)
+        var be_duplicated = $(lecture_cell).hasClass('lec');
+
+        if (be_duplicated == false)
         {
           lecture_cell.css('background','#fffae5');
-          lecture_cell.addClass('lec_'+lec_id); 
+          // lecture_cell.addClass('lec_'+lec_id); 
+          lecture_cell.addClass('not_duplicated');
         }
-        else if (tester == true)
+        else if (be_duplicated == true)
         {
           first_cells = find_timetableLecture_First_cell(extract_lec_id_from_class( $(lecture_cell) )); 
           $(first_cells).each (function(){
             $(this).css('background','#fff3f2').css('outline','1px solid #ec4e2c');
-            $(this).addClass('lec_'+lec_id);
+            // $(this).addClass('lec_'+lec_id);
+            $(this).addClass('duplicated');
           });
         }
       }
@@ -477,6 +485,9 @@
 
     });
   }
+
+
+
   $('body').on('click','.lessons > .table-striped > tbody > tr > td > div > .del_btn' ,function(event){
       
       var del_class = $(this).parent().parent().attr('class').split(' ');
@@ -505,29 +516,22 @@
   function delete_timetable_cell_background(del_class_name)
   {
     // lec_id 는 지워질 cell의 클래스 이름 
-    var del_cell = $('.lessons').find('.'+del_class_name);
-    var class_arr;
+    // var del_cell = $('.lessons').find('.'+del_class_name);
+    var del_cell = $('.lessons').find('.duplicated');
+
     del_cell.each (function(){
         $(this).css('background', '');
         $(this).css('outline','0');
-
-        class_arr = $(this).attr('class');
-        class_arr = class_arr.split(' ');
-
-        // 타임테이블에 담겨진 강의는 기본 class 2개를 가진다.
-        // 1  lec    2  lec_id
-        // 추가 class가 생기는 경우는 검색된 강의 div를 mouseenter할 때인데,
-        // mouseenter event때, 타임테이블의 등록될 시간대에 먼저 색칠해서 보여준다.
-        // 사용자가 색칠 된 시간대를 보고 나서 mouseleave한다.
-        // mouseleave시, 색칠 된 시간대를 원상복구(background 지우기)시켜야 하는데,
-        // 원상복구하기 쉽도록 lec_id를 통해 찾는다.
-        // 이 떄 lec_id는 등록된 강의와 다른 id를 가진 얘면 class는 3개를 가지고
-        // 반대로 동일한 lec_id를 가진 얘면 class는 그대로 2개다. ( 즉, 타임테이블에 등록된 강의를 다시 검색해서 mouseenter한 변태적인 경우.  )
-        if (class_arr.length > 2)
-        {
-          $(this).removeClass(''+del_class_name);  
-        }
+        $(this).removeClass('duplicated');
     });
+
+    del_cell = $('.lessons').find('.not_duplicated');
+    
+    del_cell.each (function(){
+        $(this).css('background', '');
+        $(this).css('outline','0');
+        $(this).removeClass('not_duplicated');
+    });    
   }
 
   function delete_timetable_cell(del_class_name){
