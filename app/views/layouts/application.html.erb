@@ -16,17 +16,16 @@
 
 <body>
  
-    <%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
     
-    <!-- aside forcingwritting에 영향 주므로 일단  -->
-<!-- /.row --> 
-     <!-- flash 메세지 출력 -->  
-     <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-    <div>
+  <!-- flash 메세지 출력 -->  
+  <div class = "alert-container">
+
+  </div>
+
+  <div>
      <%= yield %>
-   </div>
+  </div>
 <aside>
 
 </aside>

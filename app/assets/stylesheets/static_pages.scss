@@ -325,6 +325,15 @@
 
 
 
+
+
+
+/* 						        	  */
+/*      staticpages # rank            */
+/*      시간표 뷰 입니다. 			      */
+/*   						  		  */
+
+
 .table > thead > tr > th, .table > thead > tr > td,
  .table > tbody > tr > th, .table > tbody > tr > td,
   .table > tfoot > tr > th, .table > tfoot > tr > td
@@ -350,6 +359,78 @@
 .table_search tbody tr:hover, .lessons > .table-striped > tbody > tr > td > span > a{
   cursor: pointer;
 }
+
+
+
+.lessons {
+
+	
+	.lec_box
+	{
+		position:relative;
+
+		.lec_place, .lec_professor, .lec_name {
+			width:80%;		
+		}
+		.del_btn {
+			cursor : pointer;
+			top   : 0;
+		}
+		
+
+		a{
+			color : #333333;
+			
+			.info_btn{
+			cursor : pointer;
+			top: 20px;
+			}	
+		}
+
+		.glyphicon {
+			right : 0;
+			position:absolute;
+		}				
+	}
+}
+
+/* 						        	  */
+/*      staticpages # search_table    */
+/*      검색 뷰 입니다. 			      */
+/*   						  		  */
+
+.list-group:hover{
+	cursor:pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

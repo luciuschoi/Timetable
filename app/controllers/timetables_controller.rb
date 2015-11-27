@@ -3,6 +3,10 @@ class TimetablesController < ApplicationController
 		@request_lecture = current_user.timetables.build(timetable_params)
 		@request_lecture.save!
 
+
+		lec = Lecture.find(params[:lecture_id])
+		@place = lec.place
+
 		respond_to do |format|
 			format.js
 			format.html {redirect_to rank_path}

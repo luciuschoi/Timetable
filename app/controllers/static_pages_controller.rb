@@ -57,6 +57,7 @@ class StaticPagesController < ApplicationController
     end
     @lectures_in_timetable = current_user.timetables
   end
+
     
   def propose
     @decimal_arr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.3, 0.2, 0.5]

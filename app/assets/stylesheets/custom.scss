@@ -34,10 +34,22 @@
 
 @font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
 
+
 body{
   font-family: Nanum_Gothic;
   background-color : white;
   font-size:100%;
+
+  .alert-container{
+    position : fixed;
+    top:12px;
+    right:12px;
+    .alert{
+      width:300px;
+      padding: 10px 10px;
+    }
+  }
+
 }
 
 .navbar{
