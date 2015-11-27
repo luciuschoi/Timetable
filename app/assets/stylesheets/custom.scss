@@ -32,7 +32,6 @@
 
 
 
-
 @font-face{font-family:'Nanum_Gothic'; src:url('nanum_gothic.ttf')}
 
 body{
@@ -231,6 +230,7 @@ table.nogap{
     color : white;
   }
   .navbar-nav a:hover{
+  text-decoration:none;
     color : black;
     font-size:14.5px;
     font-weight:bold;

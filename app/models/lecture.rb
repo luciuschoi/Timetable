@@ -3,10 +3,10 @@ class Lecture < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   
-  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
+  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor, :lecturetime] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
-  serialize :lecturetime
+ # serialize :lecturetime
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
@@ -62,11 +62,6 @@ class Lecture < ActiveRecord::Base
 
        end
 
-
-       # if(@lecture.lecturetime[:first]!= row["lecturetime"])
-       #   temp=@lecture.lecturetime[:first]
-       #   @lecture.lecturetime={:first => temp, :second => row["lecturetime"]}
-       # end
 
       @lecture.save
     end

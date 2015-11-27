@@ -50,10 +50,10 @@ class StaticPagesController < ApplicationController
   end 
 
   def rank
-    if params[:search]
-      @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
+    if params[:search]==''||params[:search].nil?
+       @lectures=nil
     else
-      @lectures=nil
+     @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
     end
     @lectures_in_timetable = current_user.timetables
   end

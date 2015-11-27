@@ -4,19 +4,31 @@
   margin-right:auto;">
 -->
 
-  <div style="width:20%;float:left;">
-      <div>
-        <button id="save_image_locally">
-            시간표 다운로드
-        </button>
-      </div>
-      <div>
-        <a id="kakao-link-btn" href="javascript:;">
-            <%=image_tag "talk.png"%> 
-        </a>
-      </div>
+  <div style="width:17%;float:left;margin-left:2%;">
+  <div class="upper-group" style="position: relative;display:inline-block;vertical-align: middle;float:left;display:inline;">
+    <button class="btn btn-default" style="background-color:#095fb5;color:white;min-width:90px;margin-right:0px;border-radius:0;float:left;border:none;">
+      <i class="glyphicon glyphicon-plus"><B> 추가</B></i>
+    </button>
+    <button class="btn btn-default" style="min-width:90px;float:left;background-color:#555555;color:white;border-radius:0;border:none;"><i class="glyphicon glyphicon-plus-sign"> <B>복사 </B></i></button>
   </div>
-  <div style="width:50%;float:left;" >
+  <div class="low-group" style="inline-block;max-width:180px;">
+        <span class="dropdown" style="max-width:90px;margin-left:0px;margin-right: 0px;">
+          <button style="background-color:#009ce6;max-width:90px;border-radius:0;float:left;border:none;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+               <i class="glyphicon glyphicon-share" style="color:white;"><B> 공유</B></i>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#" >페이스북 공유</a></li>
+            <li><a href="#" id="save_image_locally">이미지 저장 </a></li>
+            <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
+          </ul>
+      </span>  
+      <button class="btn btn-default" style="min-width:90px;color:white;background-color:#e00000;border-radius:0;float:left;border:none;"><i class="glyphicon glyphicon-minus-sign"><B> 삭제</B></i></button>
+      
+  </div>
+  </div>
+
+  <div style="width:50%;float:left;margin-top:5%;" >
   <div>
     <%= render 'timetables/table_form' %>
 
@@ -24,28 +36,30 @@
   </div>
 
 
-  <div style="width:30%;float:right;padding-left:2%;">
-    <div class = "search_box" style="width:100%;flaot:right;">
-            <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
-              :style => 'text-align:center; display:inline' do %>
-                <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:50%;margin-bottom:21px;" %>
-                <%= button_tag(type: "submit", class: "btn btn-default", style:"margin-bottom:20px;") do %>
-                <i class="glyphicon glyphicon-search" style="font-size:18px;"></i>
-                <%end%>`
-            <% end %>
-               <%= link_to "#" do %>
-                <i class="glyphicon glyphicon-star" style="font-size:40px;"></i>
-               <%end %>
-        
-        
-     
-       <%= render 'search_table', :lectures => @lectures %>
+  <div style="width:26%;float:right;padding-left:2%;margin-right:2%;">
+      <div class = "search_box" style="width:100%;float:right;">
+              <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
+                :style => 'text-align:center; display:inline' do %>
+                  <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "float:left;border-radius:0;min-width:220px;max-width:440px;margin-bottom:21px;" %>
+                  <%= button_tag(type: "submit", class: "btn btn-default", style:"min-height:34px;border-radius:0;border:none;float:left;margin-bottom:20px;background-color:#2db1ee;font") do %>
+                  <i class="glyphicon glyphicon-search" style="font-size:15px; color:white;"></i>
+                  <%end%>
+              <% end %>
+                 <%= button_tag(class: "btn btn-default", style:"min-height:34px;border-radius:0;border:none;float:left;margin-bottom:20px;background-color:#fc8e0f") do %>
+                  <i class="glyphicon glyphicon-star" style="font-size:15px;color:white;"></i>
+                 <%end %>
+          
+          
+      </div>
+    
+      <%= render 'search_table', :lectures => @lectures %>
          <!-- 검색 결과 -->
           <% if @lectures.nil? %> 
-          <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+                <div> 검색결과가 없습니다.. </div>
           <%end%> 
-    </div>
+ 
   </div>
+
   
 
 <script>
