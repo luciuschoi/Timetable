@@ -4,7 +4,7 @@
   margin-right:auto;">
 -->
 
-  <div style="width:20%;float:left;">
+  <div style="width:15%;float:left;">
       <div>
         <button id="save_image_locally">
             시간표 다운로드
@@ -16,10 +16,11 @@
         </a>
       </div>
   </div>
-  <div style="width:50%;float:left;" >
-  <div>
-    <%= render 'timetables/table_form' %>
-  </div>
+  <div style="width:55%;float:left;" >
+    <div class="lessons" style = "font-size:14px;">
+      <%= render 'timetables/table_form' %>
+    </div>
+   
   </div>
 
 
@@ -30,19 +31,23 @@
                 <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:50%;margin-bottom:21px;" %>
                 <%= button_tag(type: "submit", class: "btn btn-default", style:"margin-bottom:20px;") do %>
                 <i class="glyphicon glyphicon-search" style="font-size:18px;"></i>
-                <%end%>`
+                <%end%>
             <% end %>
                <%= link_to "#" do %>
                 <i class="glyphicon glyphicon-star" style="font-size:40px;"></i>
-               <%end %>
-        
-        
+               <% end %>
      
        <%= render 'search_table', :lectures => @lectures %>
          <!-- 검색 결과 -->
-          <% if @lectures.nil? %> 
+        <% if @lectures.nil? %> 
           <div style = "text-align : center"> 검색결과가 없습니다.. </div>
-          <%end%> 
+        <%end%> 
+    </div>
+  </div>
+
+  <div class = "my_cart_container">
+    <div style = "width : 80%">
+      <%= render 'timetables/my_cart_table' %>
     </div>
   </div>
   
@@ -179,21 +184,22 @@
     var lec_professor = $(this).find('.professor').html();
     lec_professor = lec_professor.split('/')[0];
     var lec_place = $(this).find('.place').html();
+    var lec_isu = $(this).find('.isu').html();
 
     var duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
 
     // DB 저장을 위한 ajax 전송
-    if (duplicated_lec_name != 'false' )
+    if (duplicated_lec_name != 'false')
     {
       alert_branch('duplicate', duplicated_lec_name);
     }
     else
     {
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event.type);
+      make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu);
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
     }
 	});
-
 
   $('body').on('mouseenter', '.search_box .list-group',function(event){
     
@@ -324,7 +330,7 @@
 
         if (be_duplicated == false)
         {
-          lecture_cell.css('background','#fffae5');
+          lecture_cell.css('background','#eeeeee');
           // lecture_cell.addClass('lec_'+lec_id); 
           lecture_cell.addClass('not_duplicated');
         }
@@ -332,7 +338,7 @@
         {
           first_cells = find_timetableLecture_First_cell(extract_lec_id_from_class( $(lecture_cell) )); 
           $(first_cells).each (function(){
-            $(this).css('background','#fff3f2').css('outline','1px solid #ec4e2c');
+            //$(this).css('background','#fff3f2 !important').css('outline','1px solid #ec4e2c');
             // $(this).addClass('lec_'+lec_id);
             $(this).addClass('duplicated');
           });
@@ -369,6 +375,8 @@
     var time_row;
     var lecture_cell;
     // 클릭(빈셀, 채워진 셀)과 첫 로드 구분
+    var c_index = decide_cell_color();
+
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -388,28 +396,84 @@
         
         lecture_cell = time_row.find('td:nth-child('+col_num);
 
+        lecture_cell.addClass('lec_'+lec_id); 
+        lecture_cell.addClass('lec');
+
         lecture_cell.attr('rowspan', e_row - s_row + 1);
-
-
 
         lecture_cell.css('border', '1px solid white');
 
         if (event_string == 'ready')
         {
-          lecture_cell.css('background','#fef1e6'); // 이거 
+          lecture_cell.addClass('c'+c_index);
+          //lecture_cell.css('background','#fef1e6'); // 이거 
         }
         else if (event_string == 'click')
         {
-          lecture_cell.css('background','black');
+          lecture_cell.css('background','#009ce6').css('color', 'white');
+
         }
-
-        lecture_cell.addClass('lec_'+lec_id); 
-        lecture_cell.addClass('lec');
-
-
 
         mix_cell_text(lecture_cell, lec_id,lec_name,lec_professor, lec_place);  
     }
+  }
+
+  // 셀 백그라운드 컬러 배열에서 index 결정
+  function decide_cell_color()
+  {
+    // my_cart_table에서 tbody의 tr 개수 저장
+    // tr 개수 / cell 개수 
+    // return 0,1,2,3,4,5
+    var my_cart_trs = $('.my_cart_container').find('tbody tr');
+    var index = 0;
+
+    for (var i = 0; i < my_cart_trs.length; i++) 
+    {
+      if($(my_cart_trs[i]).hasClass('has'))
+      {
+        index++;
+      }
+    }
+    $(my_cart_trs[index]).addClass('has');
+
+    index = index % 6;
+
+    return index;
+  }
+
+  function make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu)
+  {
+    var t_body = $('#my_cart_table').find('tbody');
+
+    var tr_contents;
+    var td_subject;
+    var td_professor;
+    var td_isu;
+    var td_del_btn;
+    var span_glyphicon;
+
+    tr_contents   = '<tr class = t_contents> </tr>';
+    td_subject    = '<td></td>';
+    td_professor  = '<td class = professor> </td>';
+    td_isu        = '<td class = isu></td>';
+    td_del_btn    = '<td class = del_btn></td>';
+    span_glyphicon= '<span class = glyphicon></span>';
+
+    var td_contents    = [lec_name, lec_professor, lec_isu, span_glyphicon];
+
+    $(t_body).append(tr_contents);
+    var tr_container = $(t_body).find('tr:last-child');
+
+    tr_container.append(td_subject).append(td_professor).append(td_isu).append(td_del_btn);
+    
+    for (var i = 0; i < td_contents.length; i++) 
+    {
+      var temp_td = $(tr_container).find('td')[i];
+      $(temp_td).html(td_contents[i]);
+    }
+    $(tr_container).addClass('lec_'+lec_id);
+    $(tr_container).find('td:last-child span').addClass('glyphicon-remove');
+    
   }
 
   function mix_cell_text(lec_cell, lec_id, lec_name, lec_professor, lec_place)
@@ -438,16 +502,11 @@
     // 2 class 추가
     // 3 value 추가
 
-
     $(lec_cell).prepend(content_box);
     content_box = $(lec_cell).find('div');
     $(content_box).addClass('lec_'+lec_id);
 
     $(content_box).prepend(span_pl).prepend(span_lp).prepend(span_ln);
-
-    // content_box.find('span').each (function(){
-    //   $(this).html() = contents
-    // });
 
     for(var i = 0; i < contents.length; i++)
     {
@@ -488,13 +547,16 @@
 
 
 
-  $('body').on('click','.lessons > .table-striped > tbody > tr > td > div > .del_btn' ,function(event){
-      
-      var del_class = $(this).parent().parent().attr('class').split(' ');
+  $('body').on('click', '.lessons > .table-striped > tbody > tr > td > div > .del_btn' ,dynamic_delete);
+  $('body').on('click', '.my_cart_container #my_cart_table .t_contents .del_btn' ,dynamic_delete);
 
-      delete_timetable_cell(del_class[0]);
+  function dynamic_delete() {
+    var del_class = $(this).parent().attr('class').split(' ');
 
-      var del_id = del_class[0].split('_');
+      delete_timetable_cell(del_class[1]);
+      delete_cart_table_cell(del_class[1]);
+
+      var del_id = del_class[1].split('_');
 
       $.ajax({
           url:'<%= delete_timetable_url %>',
@@ -502,7 +564,6 @@
           data:{'lecture_id':del_id[1]},
           success:function()
           {
-            // <div class="alert alert-%= message_type %>">%= message %></div> 
             alert_branch('del_success');
           },
           error:function()
@@ -510,14 +571,14 @@
             alert('삭제 실패했습니다... 다시 삭제 눌러주세요 ㅠㅠ');
           }
       });
-  })
-
+  }
 
   function delete_timetable_cell_background(del_class_name)
   {
     // lec_id 는 지워질 cell의 클래스 이름 
     // var del_cell = $('.lessons').find('.'+del_class_name);
     var del_cell = $('.lessons').find('.duplicated');
+    var c_index = decide_cell_color();
 
     del_cell.each (function(){
         $(this).css('background', '');
@@ -531,7 +592,15 @@
         $(this).css('background', '');
         $(this).css('outline','0');
         $(this).removeClass('not_duplicated');
+        
+        if ($(this).hasClass('lec'))
+        {
+          $(this).css('color','');
+          $(this).addClass('c'+c_index);
+        }
     });    
+
+
   }
 
   function delete_timetable_cell(del_class_name){
@@ -552,11 +621,20 @@
       $(this).css('background', '');
       $(this).html('');
       $(this).css('border', '0');
-      $(this).removeClass('lec');
-      $(this).removeClass(''+del_class_name);
+      $(this).removeClass();
       // 만약, span태그가 있으면 (=해당 시간에 강의가 등록되있다.) backgroud green
     });
   }
+
+  function delete_cart_table_cell(del_class_name)
+  {
+    var del_cell = $('.my_cart_container').find('tr.'+del_class_name);
+    $(del_cell).remove();
+
+  }
+
+
+
   // 웹페이지 로드시, 현재 유저가 등록한 강의를 시간표에 보여준다.
   jQuery( document ).ready(function( $ )
   {   

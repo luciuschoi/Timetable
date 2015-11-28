@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+$bg_red       : #e5cfcf;
+$bg_orange    : #fef1e6;
+$bg_yellow    : #fefae7;
+$bg_green     : #edf6e9;
+$bg_blue      : #e6f5fc;
+$bg_navy      : #e6eff8;
+
+$ft_red       : #9c0d0d;
+$ft_orange    : #f47700;
+$ft_yellow    : #f7c90d;
+$ft_green     : #48a024;
+$ft_blue      : #009ce6;
+$ft_navy      : #095fb5;
+
+
+
+
 .row_pd_top{
 	.row_half_star{
 		height : 40px;
@@ -362,9 +380,48 @@
 
 
 
+.lessons > #timetable > tbody > tr > td.duplicated
+{
+	background : #e00000 !important;
+	color : white;
+	/*outline : 1px solid #ec4e2c;*/
+	border : 0;
+}
+
 .lessons {
 
-	
+	td {
+		height:32px;
+		.duplicated
+		{
+			background-color : #fff3f2 !important;
+		}
+	}
+	.c0{
+		background-color : $bg_red !important;
+		color : $ft_red; 
+	}	
+	.c1{
+		background-color : $bg_orange !important;
+		color : $ft_orange;
+	}	
+	.c2{
+		background-color : $bg_yellow !important;
+		color : $ft_yellow;
+	}	
+	.c3{
+		background-color : $bg_green !important;
+		color : $ft_green;
+	}
+	.c4{
+		background-color : $bg_blue !important;
+		color : $ft_blue;
+	}
+	.c5{
+		background-color : $bg_navy !important;
+		color : $ft_navy;			
+	}
+
 	.lec_box
 	{
 		position:relative;
@@ -372,6 +429,8 @@
 		.lec_place, .lec_professor, .lec_name {
 			width:80%;		
 		}
+		
+
 		.del_btn {
 			cursor : pointer;
 			top   : 0;
@@ -390,7 +449,7 @@
 		.glyphicon {
 			right : 0;
 			position:absolute;
-		}				
+		}	
 	}
 }
 
@@ -403,11 +462,37 @@
 	cursor:pointer;
 }
 
+.my_cart_container{
 
+	width : 30%; 
+	margin-top : 40px;
+	float:right;
+	padding-left:30px;
+	font-size:90%;
 
+	#my_cart_table {
+		.t_head th{
+			text-align:center;
+		}
+		.t_contents {
+			.professor, , .isu, .del_btn {
+				text-align : center;	
+			}
+			.del_btn {
+				.glyphicon-remove:hover{
+					cursor:pointer;
+				}
+			}
+		}
+	}
+}
 
+.c1{
 
+}
+.c2{
 
+}
 
 
 
