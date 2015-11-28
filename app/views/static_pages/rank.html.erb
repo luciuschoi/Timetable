@@ -3,13 +3,7 @@
   margin-left:auto;
   margin-right:auto;">
 -->
-
-  <div class = "my_cart_container">
-    <div style = "width : 80%">
-      <%= render 'timetables/my_cart_table' %>
-    </div>
-
-  <div style="width:17%;float:left;margin-left:2%;">
+<div style="width:13%;float:left;margin-left:2%;">
   <div class="upper-group" style="position: relative;display:inline-block;vertical-align: middle;float:left;display:inline;">
     <button class="btn btn-default" style="background-color:#095fb5;color:white;min-width:90px;margin-right:0px;border-radius:0;float:left;border:none;">
       <i class="glyphicon glyphicon-plus"><B> 추가</B></i>
@@ -32,17 +26,6 @@
       
   </div>
   </div>
-
-
-  </div>
-
-
-
-
-
-
-
-  
 
   <div style="width:55%;float:left;" >
     <div class="lessons" style = "font-size:14px;">
@@ -72,6 +55,15 @@
         <%end%> 
     </div>
   </div>
+
+
+  <div class = "my_cart_container">
+    <div style = "width : 80%">
+      <%= render 'timetables/my_cart_table' %>
+    </div>
+  </div>
+
+
 
 
 
@@ -355,8 +347,7 @@
 
         if (be_duplicated == false)
         {
-          lecture_cell.css('background','#eeeeee');
-          // lecture_cell.addClass('lec_'+lec_id); 
+          // lecture_cell.css('background','#eeeeee');
           lecture_cell.addClass('not_duplicated');
         }
         else if (be_duplicated == true)
@@ -435,7 +426,7 @@
         }
         else if (event_string == 'click')
         {
-          lecture_cell.css('background','#009ce6').css('color', 'white');
+          lecture_cell.addClass('temporary_fill');
 
         }
 
@@ -600,32 +591,23 @@
 
   function delete_timetable_cell_background(del_class_name)
   {
-    // lec_id 는 지워질 cell의 클래스 이름 
-    // var del_cell = $('.lessons').find('.'+del_class_name);
     var del_cell = $('.lessons').find('.duplicated');
     var c_index = decide_cell_color();
 
     del_cell.each (function(){
-        $(this).css('background', '');
-        $(this).css('outline','0');
         $(this).removeClass('duplicated');
     });
 
     del_cell = $('.lessons').find('.not_duplicated');
     
     del_cell.each (function(){
-        $(this).css('background', '');
-        $(this).css('outline','0');
+        $(this).removeClass('temporary_fill');
         $(this).removeClass('not_duplicated');
-        
         if ($(this).hasClass('lec'))
         {
-          $(this).css('color','');
           $(this).addClass('c'+c_index);
         }
     });    
-
-
   }
 
   function delete_timetable_cell(del_class_name){
@@ -643,7 +625,7 @@
       {
         $(this).css('display', 'table-cell');
       }
-      $(this).css('background', '');
+      $(this).css('background', ' ').css('color', ' ');
       $(this).html('');
       $(this).css('border', '0');
       $(this).removeClass();

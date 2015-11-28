@@ -379,13 +379,24 @@ $ft_navy      : #095fb5;
 }
 
 
-
+/* duplicated 클래스가 캐스캐이딩 기준으로 c클래스의 style의 우선순위보다 높아지기 위함 */
 .lessons > #timetable > tbody > tr > td.duplicated
 {
 	background : #e00000 !important;
 	color : white;
 	/*outline : 1px solid #ec4e2c;*/
 	border : 0;
+}
+
+.lessons > #timetable > tbody > tr > td.temporary_fill
+{
+	background : #009ce6 !important;
+	color : white;
+}
+
+.lessons > #timetable > tbody > tr > td.not_duplicated
+{
+	background : #eeeeee;
 }
 
 .lessons {
@@ -421,7 +432,7 @@ $ft_navy      : #095fb5;
 		background-color : $bg_navy !important;
 		color : $ft_navy;			
 	}
-
+	.lec{}
 	.lec_box
 	{
 		position:relative;
