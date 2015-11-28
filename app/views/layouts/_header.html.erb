@@ -1,11 +1,12 @@
 
-    <nav class="navbar" role="navigation" >
-     
+
+    <nav class="navbar" role="navigation" style="border-radius:0">
+ 
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>home
+            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
 
@@ -62,7 +63,7 @@
           
 
 
-          <ul class="nav navbar-nav navbar-right" style = "margin-right : 0">   
+          <ul class="nav navbar-nav navbar-right" style = "margin-right : 3%;">   
             <% if current_user %>
 
                 <% unless current_user.nickname.nil? %>
@@ -81,7 +82,7 @@
                     <li> <span id = "navbar_hello_color">
                     <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   <a href="/signout"
                     id = "logout">logout </a></span>
-                    </li>-->
+                    -->
                     
                   </div>
                 <% end %>
@@ -95,7 +96,4 @@
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->
-      
-
-
     </nav>

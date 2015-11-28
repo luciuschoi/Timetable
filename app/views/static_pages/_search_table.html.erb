@@ -1,3 +1,36 @@
+<!--      
+        <% if lectures.nil? %>
+        <% else %>
+          <% lectures.each do |lec| %>
+                <% if lec.lecturetime.nil? %> 
+                    <div class="list-group"  style="min-height:71px;min-width:290px;border:1px solid #f5f5f5;margin-bottom:0;">
+                      <h4 class="subject"> <%=lec.subject %> </h4>
+                   
+                      <span style="float:right;"> 
+                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="학생들이 담은 과목입니다."> 
+                        <i class="glyphicon glyphicon-user"> </i>
+                        </a>
+                        10
+                      </span>
+                    
+
+                    <span class = "professor"><%= lec.professor %> / </span>
+                    <span class = "place"> <%=lec.place%> </span>       
+                    <span class = "lecture_time" style = "display:none"><%= lec.lecturetime %></span>
+
+                      <p><%=lec.professor%>/장소 </p>
+                    </div>
+
+                <% else %> 
+
+                      
+                <% end %>
+        <% end %>
+     
+        <%= will_paginate lectures, :class=>'paginate'%>
+      <% end %>
+
+-->
 <% if !lectures.nil? %>
     <% if lectures.nil? %>
       <div> 검색결과가 없습니다.. </div>
@@ -31,6 +64,7 @@
       <%= will_paginate lectures, :class=>'paginate'%>
     <% end %>
 <% end %>
+
 
 <script>
 

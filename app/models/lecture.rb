@@ -3,10 +3,10 @@ class Lecture < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   
-  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
+  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor, :lecturetime] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
-  serialize :lecturetime
+ # serialize :lecturetime
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
@@ -86,9 +86,16 @@ class Lecture < ActiveRecord::Base
        
   #      end
 
-  #     @lecture.save
-  #   end
-  # end
+# <<<<<<< HEAD
+#   #     @lecture.save
+#   #   end
+#   # end
+# =======
+
+#       @lecture.save
+#     end
+#   end
+# >>>>>>> 9b5a6e2483c7703f38701d64f116d0d4035c8524
 
 
   def self.open_spreadsheet(file)
