@@ -17,40 +17,74 @@ class Lecture < ActiveRecord::Base
   require 'rubygems'
   require 'roo'
 
+  # IMPORT 2종류                           #
+  #                                       #
+  # 1  새로운 강의 추가                       #
+  # 2  DB에 있는 강의에 몇가지 COLUMN 업데이트   #
 
+  # 1 기존에 없던 강의 추가 
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     lecture = find_by_id(row["id"]) || new
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major","lecturetime", "place")
+
+  #     lecture.save
+  #   end
+  # end
+
+  # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-        row.to_hash.slice("subject", "professor", "major","lecturetime")
-        @lecture= Lecture.where(subject: row["subject"], professor: row["professor"]).first
-        
-         
-     #첫번째 시도 시 하기 
-      # @lecture.lecturetime = {:first => row["lecturetime"]}
-    # 두번째 시도 시 하기  
+      lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+      #lecture = find_by_id(row["id"]) || new
+      lecture.update_attribute("isu", row["isu"] )
 
-
-      if(@lecture.lecturetime[:second].nil?&& @lecture.lecturetime[:first]!= row["lecturetime"])
-         counts=@lecture.lecturetime.count 
-        counts.times do |i|
-        end
-
-          first=@lecture.lecturetime[:first]
-           @lecture.lecturetime = {:first => first, :second => row["lecturetime"]}
-      
-      elsif(@lecture.lecturetime[:third].nil? && @lecture.lecturetime[:first]!= row["lecturetime"]&&@lecture.lecturetime[:second]!= row["lecturetime"])
-      
-          first=@lecture.lecturetime[:first]
-          second=@lecture.lecturetime[:second]
-          @lecture.lecturetime = {:first => first, :second => second, :third => row["lecturetime"]}
-       
-       end
-
-      @lecture.save
+      lecture.save
     end
   end
+
+
+
+
+
+
+  # 길우꺼
+  # => 
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #       row.to_hash.slice("subject", "professor", "major","lecturetime")
+  #       @lecture= Lecture.where(subject: row["subject"], professor: row["professor"]).first
+        
+         
+  #    #첫번째 시도 시 하기 
+  #     # @lecture.lecturetime = {:first => row["lecturetime"]}
+  #   # 두번째 시도 시 하기  
+
+
+  #     if(@lecture.lecturetime[:second].nil?&& @lecture.lecturetime[:first]!= row["lecturetime"])
+  #        counts=@lecture.lecturetime.count 
+  #       counts.times do |i|
+  #       end
+
+  #         first=@lecture.lecturetime[:first]
+  #          @lecture.lecturetime = {:first => first, :second => row["lecturetime"]}
+      
+  #     elsif(@lecture.lecturetime[:third].nil? && @lecture.lecturetime[:first]!= row["lecturetime"]&&@lecture.lecturetime[:second]!= row["lecturetime"])
+      
+  #         first=@lecture.lecturetime[:first]
+  #         second=@lecture.lecturetime[:second]
+  #         @lecture.lecturetime = {:first => first, :second => second, :third => row["lecturetime"]}
+       
+
 
 
   def self.open_spreadsheet(file)
