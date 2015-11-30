@@ -5,7 +5,7 @@ Rails.application.routes.draw do
  get 'lecture_search' => 'static_pages#search'
  get 'newsfeed' => 'static_pages#newsfeed'
  get 'rank' => 'static_pages#rank'
- get 'search_timetable' => 'timetables#search_timetable'
+ get 'search_timetable' => 'enrollments#search_timetable'
  get 'propose' => 'static_pages#propose'
 
  get 'usage' => 'static_pages#menual'
@@ -25,9 +25,9 @@ Rails.application.routes.draw do
  post   'login'   => 'sessions#create'
  delete 'logout'  => 'sessions#destroy'
 
- post 'timetables/make_a_change' => 'timetables#make_a_change'
- delete 'delete_timetable' => 'timetables#destroy'
- post 'add_timetable' => 'timetables#create'
+ post 'enrollments/make_a_change' => 'enrollments#make_a_change'
+ delete 'delete_enrollment' => 'enrollments#destroy'
+ post 'add_enrollment' => 'enrollments#create'
 #resources :lectures
 resources :users do
    member { get :timetable }

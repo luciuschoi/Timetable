@@ -4,12 +4,12 @@
   margin-right:auto;">
 -->
 <div style="width:13%;float:left;margin-left:2%;">
-  <div class="upper-group" style="position: relative;display:inline-block;vertical-align: middle;float:left;display:inline;">
+  <!-- <div class="upper-group" style="position: relative;display:inline-block;vertical-align: middle;float:left;display:inline;">
     <button class="btn btn-default" style="background-color:#095fb5;color:white;min-width:90px;margin-right:0px;border-radius:0;float:left;border:none;">
       <i class="glyphicon glyphicon-plus"><B> 추가</B></i>
     </button>
     <button class="btn btn-default" style="min-width:90px;float:left;background-color:#555555;color:white;border-radius:0;border:none;"><i class="glyphicon glyphicon-plus-sign"> <B>복사 </B></i></button>
-  </div>
+  </div> -->
   <div class="low-group" style="inline-block;max-width:180px;">
         <span class="dropdown" style="max-width:90px;margin-left:0px;margin-right: 0px;">
           <button style="background-color:#009ce6;max-width:90px;border-radius:0;float:left;border:none;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -22,14 +22,14 @@
             <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
           </ul>
       </span>  
-      <button class="btn btn-default" style="min-width:90px;color:white;background-color:#e00000;border-radius:0;float:left;border:none;"><i class="glyphicon glyphicon-minus-sign"><B> 삭제</B></i></button>
+      <!-- <button class="btn btn-default" style="min-width:90px;color:white;background-color:#e00000;border-radius:0;float:left;border:none;"><i class="glyphicon glyphicon-minus-sign"><B> 삭제</B></i></button> -->
       
   </div>
   </div>
 
   <div style="width:55%;float:left;" >
     <div class="lessons" style = "font-size:14px;">
-      <%= render 'timetables/table_form' %>
+      <%= render 'enrollments/table_form' %>
     </div>
    
   </div>
@@ -59,7 +59,7 @@
 
   <div class = "my_cart_container">
     <div style = "width : 80%">
-      <%= render 'timetables/my_cart_table' %>
+      <%= render 'enrollments/my_cart_table' %>
     </div>
   </div>
 
@@ -545,7 +545,7 @@
   
   function send_lecture_to_timetable(s_row,e_row,d_col,lec_id) {
     $.ajax({
-        url:'<%= add_timetable_url %>',
+        url:'<%= add_enrollment_url %>',
         type:'post',
         data:{'begin_time':s_row, 'end_time':e_row, 'days':d_col,
               'lecture_id':lec_id},
@@ -575,7 +575,7 @@
       var del_id = del_class[1].split('_');
 
       $.ajax({
-          url:'<%= delete_timetable_url %>',
+          url:'<%= delete_enrollment_url %>',
           type:'delete',
           data:{'lecture_id':del_id[1]},
           success:function()

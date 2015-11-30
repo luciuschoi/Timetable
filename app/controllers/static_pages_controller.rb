@@ -60,7 +60,7 @@ class StaticPagesController < ApplicationController
     else
      @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
     end
-    @lectures_in_timetable = current_user.timetables
+    @lectures_in_timetable = current_user.enrollments
   end
 
     

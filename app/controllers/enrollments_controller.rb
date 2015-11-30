@@ -1,6 +1,6 @@
-class TimetablesController < ApplicationController
+class EnrollmentsController < ApplicationController
 	def create
-		@request_lecture = current_user.timetables.build(timetable_params)
+		@request_lecture = current_user.enrollments.build(enrollment_params)
 		@request_lecture.save!
 
 
@@ -14,7 +14,7 @@ class TimetablesController < ApplicationController
 	end
 
 	def destroy 
-		@timetable = Timetable.find_by(lecture_id: params[:lecture_id])
+		@timetable = Enrollment.find_by(lecture_id: params[:lecture_id])
 		@timetable.destroy
 
 		respond_to do |format|
@@ -25,7 +25,7 @@ class TimetablesController < ApplicationController
 
 	private
 
-    def timetable_params
+    def enrollment_params
     	params.permit(:begin_time, :end_time, {:days => []}, :lecture_id)
     end
 
