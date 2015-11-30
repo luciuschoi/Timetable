@@ -182,11 +182,11 @@
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
 
-	$('body').on('click', '.search_box .list-group',function(event){
+  $('body').on('click', '.search_box .list-group',function(event){
     $(this).off('mouseleave');
     $(this).off('mouseenter');
-		var data = $(this).find('.lecture_time').html();
-		
+    var data = $(this).find('.lecture_time').html();
+    
     data = split_text_for_lectureTime(data);
 
     // d_col | 요일 저장하는 배열 
@@ -216,7 +216,7 @@
       make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu);
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id);
     }
-	});
+  });
 
   $('body').on('mouseenter', '.search_box .list-group',function(event){
     

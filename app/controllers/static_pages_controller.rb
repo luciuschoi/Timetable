@@ -5,9 +5,9 @@ class StaticPagesController < ApplicationController
   def home
     if params[:search]
       if !params[:major].nil? && !params[:major].include?('모든학과')
-        @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+        @lectures = Lecture.search_home(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
       else 
-       @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+       @lectures = Lecture.search_home(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).
@@ -50,19 +50,22 @@ class StaticPagesController < ApplicationController
   end 
 
   def rank
+
+  
+    if params[:search]==''||params[:search].nil?
+
 # <<<<<<< HEAD
 #     if params[:search]
 #       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 6)
 # =======
-    if params[:search]==''||params[:search].nil?
-       @lectures=nil
-# >>>>>>> 9b5a6e2483c7703f38701d64f116d0d4035c8524
+
     else
-     @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
+     
+        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
+   
     end
     @lectures_in_timetable = current_user.enrollments
   end
-
     
   def propose
     

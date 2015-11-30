@@ -3,10 +3,10 @@ class Lecture < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   
-  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor, :lecturetime] }
+  validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
- # serialize :lecturetime
+  serialize :lecturetime
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
@@ -84,18 +84,7 @@ class Lecture < ActiveRecord::Base
   #         second=@lecture.lecturetime[:second]
   #         @lecture.lecturetime = {:first => first, :second => second, :third => row["lecturetime"]}
        
-  #      end
 
-# <<<<<<< HEAD
-#   #     @lecture.save
-#   #   end
-#   # end
-# =======
-
-#       @lecture.save
-#     end
-#   end
-# >>>>>>> 9b5a6e2483c7703f38701d64f116d0d4035c8524
 
 
   def self.open_spreadsheet(file)
@@ -143,13 +132,27 @@ class Lecture < ActiveRecord::Base
   end
 
 
+  def self.search_timetable(search)
+    unless search.nil?
+      
+      if (search=="인기강의")
 
-  def self.search(search)  
-      unless search.nil?
+      timetables=Timetable.group(:subject,:professor).select("count(*) as count, subject").order("count DESC")
+      where(['subject Like ?', "#{timetables.subject}%"])
+
+      else
       where(['professor LIKE ? OR subject Like ?', 
         "#{search}%", "#{search}%"])
+      end
     end
 
+  end  
+
+  def self.search_home(search)  
+      unless search.nil?
+         where(['professor LIKE ? OR subject Like ?', 
+        "#{search}%", "#{search}%"]).select('DISTINCT (subject), professor, acc_total, id')
+      end
   end  
 
 
