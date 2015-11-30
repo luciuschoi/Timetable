@@ -5,9 +5,9 @@ class StaticPagesController < ApplicationController
   def home
     if params[:search]
       if !params[:major].nil? && !params[:major].include?('모든학과')
-        @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+        @lectures = Lecture.search_home(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
       else 
-       @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+       @lectures = Lecture.search_home(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).
@@ -50,14 +50,15 @@ class StaticPagesController < ApplicationController
   end 
 
   def rank
+  
     if params[:search]==''||params[:search].nil?
-       @lectures=nil
     else
-     @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
+     
+        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
+   
     end
     @lectures_in_timetable = current_user.timetables
   end
-
     
   def propose
     @decimal_arr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.3, 0.2, 0.5]
