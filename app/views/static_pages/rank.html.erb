@@ -180,7 +180,7 @@
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
 
-  $('body').on('click', '.search_box .list-group',function(event){
+  $('body').on('click', '.list-group',function(event){
     $(this).off('mouseleave');
     $(this).off('mouseenter');
     var data = $(this).find('.lecture_time').html();
