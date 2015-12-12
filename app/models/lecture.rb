@@ -44,6 +44,8 @@ class Lecture < ActiveRecord::Base
       lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
       #lecture = find_by_id(row["id"]) || new
       lecture.update_attribute("isu", row["isu"] )
+      lecture.update_attribute("place", row["place"] )
+      lecture.update_attribute("lecturetime", row["lecturetime"])
 
       lecture.save
     end
