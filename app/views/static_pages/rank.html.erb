@@ -35,19 +35,17 @@
   </div>
 
 
-  <div style="width:30%;float:right;padding-left:2%;">
-    <div class = "search_box" style="width:100%;flaot:right;">
-            <%= form_tag rank_path, :method => 'get', :class =>'form-inline',
-              :style => 'text-align:center; display:inline' do %>
-                <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group', :style => "width:50%;margin-bottom:21px;" %>
-                <%= button_tag(type: "submit", class: "btn btn-default", style:"margin-bottom:20px;") do %>
-                <i class="glyphicon glyphicon-search" style="font-size:18px;"></i>
-                <%end%>
-            <% end %>
-               <%= link_to "#" do %>
-                <i class="glyphicon glyphicon-star" style="font-size:40px;"></i>
-               <% end %>
-     
+  <div class="right-container">
+      <div class = "search_box">
+              <%= form_tag rank_path, :method => 'get', :class =>'form-inline rank-form' do %>
+                  <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group rank-textf',:id=> 'textfield'%>
+                  <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
+                  <i class="glyphicon glyphicon-search"></i>
+                  <%end%>
+              <% end %>
+         
+          
+      </div>
        <%= render 'search_table', :lectures => @lectures %>
          <!-- 검색 결과 -->
         <% if @lectures.nil? %> 
@@ -218,7 +216,7 @@
     }
   });
 
-  $('body').on('mouseenter', '.search_box .list-group',function(event){
+  $('body').on('mouseenter', '.list-group',function(event){
     
     var data = $(this).find('.lecture_time').html();
         data = split_text_for_lectureTime(data);
@@ -236,7 +234,7 @@
   });
 
 
-  $('body').on('mouseleave', '.search_box .list-group',function(event){
+  $('body').on('mouseleave', '.list-group',function(event){
     var del_class = $(this).attr('class');
     del_class = del_class.split(' ')[1];
     delete_timetable_cell_background(del_class);
