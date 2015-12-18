@@ -14,8 +14,10 @@ class EnrollmentsController < ApplicationController
 	end
 
 	def destroy 
-		@timetable = Enrollment.find_by(lecture_id: params[:lecture_id])
-		@timetable.destroy
+		timetable = Timetable.find(params[:timetable_id])
+
+		@lecture = timetable.enrollments.find_by(lecture_id: params[:lecture_id])
+		@lecture.destroy
 
 		respond_to do |format|
 			format.js

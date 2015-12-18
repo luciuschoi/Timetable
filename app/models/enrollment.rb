@@ -4,5 +4,5 @@ class Enrollment < ActiveRecord::Base
 	belongs_to :timetable
 
 	serialize :days, Array
-	validates :lecture_id, :uniqueness => true
+	# validates :lecture_id, :uniqueness => true
 end

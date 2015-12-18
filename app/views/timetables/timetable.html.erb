@@ -566,10 +566,12 @@
 
       var del_id = del_class[1].split('_');
 
+      var timetable_id = $('.lessons').attr('id');
+
       $.ajax({
           url:'<%= delete_enrollment_url %>',
           type:'delete',
-          data:{'lecture_id':del_id[1]},
+          data:{'lecture_id':del_id[1], 'timetable_id':timetable_id},
           success:function()
           {
             alert_branch('del_success');
