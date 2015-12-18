@@ -1,6 +1,6 @@
 class Enrollment < ActiveRecord::Base
 	has_many :lectures
-	belongs_to :user
+	# belongs_to :user
 	belongs_to :timetable
 
 	serialize :days, Array

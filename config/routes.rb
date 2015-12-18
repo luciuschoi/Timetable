@@ -19,7 +19,7 @@ Rails.application.routes.draw do
  get 'forcingwritting' =>'static_pages#forcingwritting'
  get 'first_login' => 'static_pages#first_login'
 
-  get 'signup'  => 'users#new'
+ get 'signup'  => 'users#new'
 
  get    'login'   => 'sessions#new'
  post   'login'   => 'sessions#create'
@@ -28,7 +28,13 @@ Rails.application.routes.draw do
  post 'enrollments/make_a_change' => 'enrollments#make_a_change'
  delete 'delete_enrollment' => 'enrollments#destroy'
  post 'add_enrollment' => 'enrollments#create'
-#resources :lectures
+
+
+get '/timetable/:id', to: 'timetables#timetable', as: 'timetable'
+post 'new_timetable'  => 'timetables#create'
+
+
+
 resources :users do
    member { get :timetable }
 end 

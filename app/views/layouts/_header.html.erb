@@ -27,16 +27,16 @@
           <ul class="nav navbar-nav" style = "margin-left:80px;">
           <% if current_page? controller: 'static_pages', action: 'rank'%>
             <li>
-              <%= link_to '시간표짜기', rank_path, class: 'activate'%>
+              <%= link_to '시간표짜기', timetable_path(@timetable), class: 'activate'%>
             </li>
           <% else %> 
             <li>
-              <%= link_to '시간표짜기', rank_path%>
+              <%= link_to '시간표짜기', timetable_path(@timetable)%>
             </li>  
           <% end %> 
             <% if current_page? controller: 'static_pages', action: 'newsfeed'%>
               <li class ="activate">
-                <%= link_to '최근평가', newsfeed_path, class: 'activate'%>
+                <%= link_to '최근평가', timetable_path(@timetable), class: 'activate'%>
                 
               </li>
               

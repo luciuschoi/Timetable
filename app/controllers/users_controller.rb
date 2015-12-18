@@ -4,9 +4,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
-
   end
 
   def timetable
