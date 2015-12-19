@@ -23,8 +23,8 @@ class TimetablesController < ApplicationController
 	end
 
 	def create
-		current_user.timetables.create!(name: "기본시간표")
+		@timetable = current_user.timetables.create!(name: "기본시간표")
 
-		redirect_to timetable_path
+		redirect_to timetable_path(@timetable)
 	end
 end

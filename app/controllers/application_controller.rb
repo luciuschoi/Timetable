@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   def define_timetable
-    @timetable = current_user.timetables[0]
+    if current_user
+      @timetable = current_user.timetables[0]
+    end
   end
+
+
 end
