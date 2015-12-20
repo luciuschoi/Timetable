@@ -31,8 +31,9 @@ Rails.application.routes.draw do
 
 
 get '/timetable/:id', to: 'timetables#timetable', as: 'timetable'
-post 'new_timetable'  => 'timetables#create'
-delete 'delete_timetable' => 'timetables#destroy'
+# post 'new_timetable'  => 'timetables#create'
+delete '/delete_timetable/:id' => 'timetables#destroy', as: 'delete_timetable'
+resources :timetables, only: [:create]
 
 
 resources :users do

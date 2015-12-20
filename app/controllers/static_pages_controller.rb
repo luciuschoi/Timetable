@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
    before_action :gohome, only: [:daemoon]
    before_action :goforcingwritting, only:[:home, :newsfeed]
-   before_action :define_timetable, only:[:home]
+   
   
   def home
     if params[:search]
@@ -160,10 +160,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def define_timetable
-    @timetable = current_user.timetables[0]
-  end
- 
   
   
 end

@@ -13,44 +13,15 @@
 </div>
 
 <div class="low-group" style="inline-block;max-width:180px;">
-    <%= button_to "delete", { action: "destroy", id: current_timetable.id },
-                  method: :delete, data: { confirm: "Are you sure?" },
-                  class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' %>
+    <!--%= button_to "", action: "destroy", id: current_timetable.id,
+                  method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
+                  class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' do %-->
+    <%= button_to delete_timetable_path(current_timetable.id),
+                  method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
+                  class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' do %>
+                  
+      <i class="glyphicon glyphicon-share" style="color:white;"><B> 삭제 </B></i>
+    <% end %>
     <!-- <button class="btn btn-default del_timetable_btn" type="button" id="del_timetable_btn"> -->
     <!-- </button> -->
 </div>
-
-<script>
-// $('body').on('click', '.low-group #del_timetable_btn' ,del_timetable);
-
-// $('a.delete').click (function(){
-            
-//     });
-
-//   function del_timetable() {
-
-//   	var timetable_id = $('.lessons').attr('id');
-//   	if(confirm("Are you sure?"))
-//   	{
-// 		$.ajax({
-// 		      url:'<%= delete_timetable_url %>',
-// 		      type:'delete',
-// 		      data:{'timetable_id':timetable_id},
-// 		      success:function()
-// 		      {
-// 		        alert('삭제 성공하였슴다.');
-// 		      },
-// 		      error:function()
-// 		      {
-// 		        alert('삭제 실패했습니다... 다시 삭제 눌러주세요 ㅠㅠ');
-// 		      }
-// 		  });
-// 		return false;
-//     } 
-//     else 
-//     {
-// 	    //they clicked no.
-// 	    return false;
-//     }
-//   }
-</script>
