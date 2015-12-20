@@ -50,6 +50,14 @@
 {
     display:inline-block;
     max-width:180px;
+    .del_timetable_btn
+    {
+        background-color:#e00000;
+        max-width:90px;
+        border-radius:0;
+        float:left;
+        border:none;
+    }
 }
 .timetable_dropdown{
     max-width:90px;

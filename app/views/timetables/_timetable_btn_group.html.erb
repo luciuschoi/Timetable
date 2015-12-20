@@ -1,0 +1,56 @@
+<div class="low-group" style="inline-block;max-width:180px;">
+      <span class="dropdown" style="max-width:90px;margin-left:0px;margin-right: 0px;">
+        <button style="background-color:#009ce6;max-width:90px;border-radius:0;float:left;border:none;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+             <i class="glyphicon glyphicon-share" style="color:white;"><B> 공유</B></i>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#" >페이스북 공유</a></li>
+          <li><a href="#" id="save_image_locally">이미지 저장 </a></li>
+          <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
+        </ul>
+    </span>  
+</div>
+
+<div class="low-group" style="inline-block;max-width:180px;">
+    <%= button_to "delete", { action: "destroy", id: current_timetable.id },
+                  method: :delete, data: { confirm: "Are you sure?" },
+                  class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' %>
+    <!-- <button class="btn btn-default del_timetable_btn" type="button" id="del_timetable_btn"> -->
+    <!-- </button> -->
+</div>
+
+<script>
+// $('body').on('click', '.low-group #del_timetable_btn' ,del_timetable);
+
+// $('a.delete').click (function(){
+            
+//     });
+
+//   function del_timetable() {
+
+//   	var timetable_id = $('.lessons').attr('id');
+//   	if(confirm("Are you sure?"))
+//   	{
+// 		$.ajax({
+// 		      url:'<%= delete_timetable_url %>',
+// 		      type:'delete',
+// 		      data:{'timetable_id':timetable_id},
+// 		      success:function()
+// 		      {
+// 		        alert('삭제 성공하였슴다.');
+// 		      },
+// 		      error:function()
+// 		      {
+// 		        alert('삭제 실패했습니다... 다시 삭제 눌러주세요 ㅠㅠ');
+// 		      }
+// 		  });
+// 		return false;
+//     } 
+//     else 
+//     {
+// 	    //they clicked no.
+// 	    return false;
+//     }
+//   }
+</script>

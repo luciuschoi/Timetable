@@ -19,24 +19,15 @@
 
         </div>
 
-
-
-        
-
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" style = "margin-left:80px;">
-          <% if current_page? controller: 'static_pages', action: 'rank'%>
-            <li>
-              <%= link_to '시간표짜기', timetable_path(@timetable), class: 'activate'%>
-            </li>
-          <% else %> 
-            <li>
-              <%= link_to '시간표짜기', timetable_path(@timetable)%>
-            </li>  
-          <% end %> 
+          
+            <%= render 'layouts/header_timetable_dropdown'%>
+         
+
             <% if current_page? controller: 'static_pages', action: 'newsfeed'%>
               <li class ="activate">
-                <%= link_to '최근평가', timetable_path(@timetable), class: 'activate'%>
+                <%= link_to '최근평가', class: 'activate'%>
                 
               </li>
               
@@ -97,3 +88,8 @@
           </ul>
         </div><!--/.nav-collapse -->
     </nav>
+
+
+<script>
+  $('.dropdown-toggle').dropdown()
+</script>

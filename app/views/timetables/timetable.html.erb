@@ -1,58 +1,41 @@
 
 <div style="width:13%;float:left;margin-left:2%;">
+  <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
+</div>
 
-    <div class="low-group" style="inline-block;max-width:180px;">
-          <span class="dropdown" style="max-width:90px;margin-left:0px;margin-right: 0px;">
-            <button style="background-color:#009ce6;max-width:90px;border-radius:0;float:left;border:none;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                 <i class="glyphicon glyphicon-share" style="color:white;"><B> 공유</B></i>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#" >페이스북 공유</a></li>
-              <li><a href="#" id="save_image_locally">이미지 저장 </a></li>
-              <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
-            </ul>
-        </span>  
-    </div>
-
-    <div>
-      <%= render 'timetables/timetable_buttons', :timetables => @timetables %>
-    </div>
+<div style="width:55%;float:left;" >
+  <div class="lessons" style = "font-size:14px;">
+    <%= render 'enrollments/table_form' %>
   </div>
+</div>
 
-  <div style="width:55%;float:left;" >
-    <div class="lessons" style = "font-size:14px;">
-      <%= render 'enrollments/table_form' %>
-    </div>
-   
+
+<div class="right-container">
+  <div class = "search_box">
+    <%= form_tag timetable_path, :method => 'get', :class =>'form-inline rank-form' do %>
+        <%= text_field_tag :search, params[:search],
+            placeholder: :"과목 또는 교수님명을 입력해주세요!",
+            :class => 'form-control  form-group rank-textf',
+            :id => 'textfield' %>
+
+        <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
+          <i class="glyphicon glyphicon-search"></i>
+        <%end%>
+    <% end %>  
   </div>
+  <%= render 'search_table', :lectures => @lectures %>
+     <!-- 검색 결과 -->
+    <% if @lectures.nil? %> 
+      <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+    <%end%> 
+</div>
 
 
-  <div class="right-container">
-      <div class = "search_box">
-              <%= form_tag timetable_path, :method => 'get', :class =>'form-inline rank-form' do %>
-                  <%= text_field_tag :search,params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!", :class => 'form-control  form-group rank-textf',:id=> 'textfield'%>
-                  <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
-                  <i class="glyphicon glyphicon-search"></i>
-                  <%end%>
-              <% end %>
-         
-          
-      </div>
-       <%= render 'search_table', :lectures => @lectures %>
-         <!-- 검색 결과 -->
-        <% if @lectures.nil? %> 
-          <div style = "text-align : center"> 검색결과가 없습니다.. </div>
-        <%end%> 
-    </div>
+<div class = "my_cart_container">
+  <div style = "width : 80%">
+    <%= render 'enrollments/my_cart_table' %>
   </div>
-
-
-  <div class = "my_cart_container">
-    <div style = "width : 80%">
-      <%= render 'enrollments/my_cart_table' %>
-    </div>
-  </div>
+</div>
 
 
 
@@ -648,7 +631,7 @@
     var lec_place;
     var event_string = 'ready';
 
-    var current_timetable_id = "<%= session[:timetable_id] %>";
+    var current_timetable_id = "<%= @current_timetable.id %>";
     $('.lessons').attr('id', current_timetable_id);
     <% @lectures_in_timetable.each do |lec_in_timetable| %>
       

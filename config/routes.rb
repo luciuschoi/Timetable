@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
 get '/timetable/:id', to: 'timetables#timetable', as: 'timetable'
 post 'new_timetable'  => 'timetables#create'
-
+delete 'delete_timetable' => 'timetables#destroy'
 
 
 resources :users do
