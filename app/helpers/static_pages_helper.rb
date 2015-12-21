@@ -8,4 +8,9 @@ module StaticPagesHelper
           true
      end
   end
+
+  def return_place
+  	# 장소값 리턴하기 
+  end	
+  
 end

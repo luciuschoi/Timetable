@@ -4,15 +4,10 @@ class StaticPagesController < ApplicationController
    before_action :goforcingwritting, only:[:home, :newsfeed]
   def home
     if params[:search]
-
       if !params[:major].nil? && !params[:major].include?('모든학과')
-
-      @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
-           
+        @lectures = Lecture.search_home(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
       else 
-
-       @lectures = Lecture.search(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
-
+       @lectures = Lecture.search_home(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).
@@ -29,7 +24,6 @@ class StaticPagesController < ApplicationController
       @count_of_today = 0
       
       @valuations.each do |v|
-
         difference = Time.zone.now - v.created_at 
         if difference < 86400 && difference > 0
           @count_of_today += 1
@@ -55,23 +49,46 @@ class StaticPagesController < ApplicationController
 
   end 
 
+  def rank
+
+  
+    if params[:search]==''||params[:search].nil?
+
+# <<<<<<< HEAD
+#     if params[:search]
+#       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 6)
+# =======
+
+    else
+     
+        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
+   
+    end
+    @lectures_in_timetable = current_user.enrollments
+  end
+    
+  def propose
+    
+  end
+
   def menual
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
-
-
   end
 
   def daemoon
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end 
 
+  def first_login
+    render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+  end
+
 
   def forcingwritting
     if params[:search]
 
       if !params[:major].nil? && !params[:major].include?('모든학과')
-
 
       @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
            
@@ -90,7 +107,6 @@ class StaticPagesController < ApplicationController
   end
 
   def forcinglogin
-
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
@@ -111,7 +127,7 @@ class StaticPagesController < ApplicationController
  private 
 
   def goforcingwritting
-      if current_user.valuations.count<2
+      if current_user.valuations.count<1
         redirect_to forcingwritting_path
       end 
   end
@@ -121,14 +137,6 @@ class StaticPagesController < ApplicationController
         flash[:danger]= "닉네임을 설정하여 주세요. 익명성 보장을 위함입니다."
         redirect_to edit_user_url(current_user)
      end
-  end
-
-  def user_login?
-    if session[:user_id].nil? && session[:user_name].nil?
-        false
-    else 
-        true
-    end
   end
 
   def user_login?

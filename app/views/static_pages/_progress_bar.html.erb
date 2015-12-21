@@ -1,41 +1,29 @@
 
 <%= render 'shared/progress_bars' %>
 
-<div class ="row ">
-	<div class="col-xs-6">
-
-				강의평을 남겨주세요(40자만 더 입력해주세요!)
-
-				 <textarea class="message" rows='15' cols='500' maxlength="1000" style=" width:170%;height:400%"
-				 placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요!"> </textarea>
-			       
-
-	
+<div class = "v_textarea">
+	<div class="valuation_text_box">
+		<h4 class="h_size">구체적인 강의평을 남겨주세요(40자이상 입력해주세요!)</h4>
+		<textarea class="message" rows='15' cols='500' maxlength="500" 
+		placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요!">
+		</textarea>
+		<div id="showremain">0</div>
 
 	</div>
-		
-	<div class="col-xs-3"></div>
-
+	<div>
+		<button type="submit" class="btn btn-primary" id ="submit_button">
+			평가하기
+		</button>
+	</div>	
 </div>
 
-<div class"row">
-	<div class="col-xs-9">
-   		<span id="showremain"></span>
-   	</div>
-</div>  		
 
-<div class="row">
+
+
 	 
-	 	<div class="col-xs-6"> 
 
-			<div>
-				<button type="submit" class="btn btn-primary" id ="submit_button">평가하기</button>
-			</div>
 
-	    </div>
-		<div class="col-xs-3"></div>
-	
-</div>
+
 
 
 
@@ -52,17 +40,9 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 
 	// first_grade
 	$('#first_grade').hover(function(){
-
-		if(grade_clicked)
-			{
-				return;
-			}
-		else{
-				$('#first_grade').attr('aria-valuenow', '100');
-				$('#first_grade').on('mouseout');
-				$('#grade_text').text('FF 폭격기!! FF');
-			}
-
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#first_grade').on('mouseout');
+		$('#grade_text').text('FF 폭격기!! FF');
 	});
 
 	$('#first_grade').mouseout(function(){
@@ -75,6 +55,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_grade').attr('aria-valuenow', '0');
 		$('#third_grade').attr('aria-valuenow', '0');
 		$('#fourth_grade').attr('aria-valuenow', '0');
+		$('#fifth_grade').attr('aria-valuenow', '0');
 		$('#first_grade').off('mouseout');
 		$('#second_grade').off('mouseout');
 		$('#third_grade').off('mouseout');
@@ -86,15 +67,9 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 
 	// second_grade
 	$('#second_grade').hover(function(){
-				if(grade_clicked)
-				{
-				return;
-				}
-			else {
-					$('#first_grade').attr('aria-valuenow', '100');
-					$('#second_grade').attr('aria-valuenow', '100');
-					$('#grade_text').text('야박하시다..');
-				 }
+		$('#first_grade').attr('aria-valuenow', '100');
+		$('#second_grade').attr('aria-valuenow', '100');
+		$('#grade_text').text('야박하시다..');
 	});
 
 	$('#second_grade').mouseout(function(){
@@ -108,6 +83,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_grade').attr('aria-valuenow', '100');
 		$('#third_grade').attr('aria-valuenow', '0');
 		$('#fourth_grade').attr('aria-valuenow', '0');
+		$('#fifth_grade').attr('aria-valuenow', '0');
 		$('#first_grade').off('mouseout');
 		$('#second_grade').off('mouseout');
 		grade = 40;
@@ -132,9 +108,9 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#first_grade').attr('aria-valuenow', '100');
 		$('#second_grade').attr('aria-valuenow', '100');
 		$('#third_grade').attr('aria-valuenow', '100');
-
 		$('#fourth_grade').attr('aria-valuenow', '0');
-		
+		$('#fifth_grade').attr('aria-valuenow', '0');
+
 		$('#first_grade').off('mouseout');
 		$('#second_grade').off('mouseout');
 		$('#third_grade').off('mouseout');
@@ -164,6 +140,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_grade').attr('aria-valuenow', '100');
 		$('#third_grade').attr('aria-valuenow', '100');
 		$('#fourth_grade').attr('aria-valuenow', '100');
+		$('#fifth_grade').attr('aria-valuenow', '0');
 
 		$('#first_grade').off('mouseout');
 		$('#second_grade').off('mouseout');
@@ -206,7 +183,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		grade = 100;
 	});
 
-
+//  공부량 
 	$('#first_workload').hover(function(){
 		$('#first_workload').attr('aria-valuenow', '100');
 		$('#first_workload').on('mouseout');
@@ -224,6 +201,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_workload').attr('aria-valuenow', '0');
 		$('#third_workload').attr('aria-valuenow', '0');
 		$('#fourth_workload').attr('aria-valuenow', '0');
+		$('#fifth_workload').attr('aria-valuenow', '0');
 		$('#first_workload').off('mouseout');
 		workload = 20;
 	});
@@ -247,6 +225,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_workload').attr('aria-valuenow', '100');
 		$('#third_workload').attr('aria-valuenow', '0');
 		$('#fourth_workload').attr('aria-valuenow', '0');
+		$('#fifth_workload').attr('aria-valuenow', '0');
 
 		$('#first_workload').off('mouseout');
 		$('#second_workload').off('mouseout');
@@ -273,7 +252,8 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_workload').attr('aria-valuenow', '100');
 		$('#third_workload').attr('aria-valuenow', '100');
 		$('#fourth_workload').attr('aria-valuenow', '0');
-		
+		$('#fifth_workload').attr('aria-valuenow', '0');
+		$('#fifth_workload').attr('aria-valuenow', '0');
 		$('#first_workload').off('mouseout');
 		$('#second_workload').off('mouseout');
 		$('#third_workload').off('mouseout');
@@ -303,7 +283,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_workload').attr('aria-valuenow', '100');
 		$('#third_workload').attr('aria-valuenow', '100');
 		$('#fourth_workload').attr('aria-valuenow', '100');
-
+		$('#fifth_workload').attr('aria-valuenow', '0');
 		$('#first_workload').off('mouseout');
 		$('#second_workload').off('mouseout');
 		$('#third_workload').off('mouseout');
@@ -346,7 +326,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		workload = 100;
 	});
 
-
+// 성취감
 	// first_achievement
 	$('#first_achievement').hover(function(){
 		$('#first_achievement').attr('aria-valuenow', '100');
@@ -365,6 +345,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_achievement').attr('aria-valuenow', '0');
 		$('#third_achievement').attr('aria-valuenow', '0');
 		$('#fourth_achievement').attr('aria-valuenow', '0');
+		$('#fifth_achievement').attr('aria-valuenow', '0');
 		$('#first_achievement').off('mouseout');
 		achievement = 20;
 	});
@@ -388,6 +369,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_achievement').attr('aria-valuenow', '100');
 		$('#third_achievement').attr('aria-valuenow', '0');
 		$('#fourth_achievement').attr('aria-valuenow', '0');
+		$('#fifth_achievement').attr('aria-valuenow', '0');
 
 		$('#first_achievement').off('mouseout');
 		$('#second_achievement').off('mouseout');
@@ -413,8 +395,8 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#first_achievement').attr('aria-valuenow', '100');
 		$('#second_achievement').attr('aria-valuenow', '100');
 		$('#third_achievement').attr('aria-valuenow', '100');
-
 		$('#fourth_achievement').attr('aria-valuenow', '0');
+		$('#fifth_achievement').attr('aria-valuenow', '0');
 		
 		$('#first_achievement').off('mouseout');
 		$('#second_achievement').off('mouseout');
@@ -445,6 +427,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_achievement').attr('aria-valuenow', '100');
 		$('#third_achievement').attr('aria-valuenow', '100');
 		$('#fourth_achievement').attr('aria-valuenow', '100');
+		$('#fifth_achievement').attr('aria-valuenow', '0');
 
 		$('#first_achievement').off('mouseout');
 		$('#second_achievement').off('mouseout');
@@ -489,7 +472,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 	});
 
 
-
+// 난이도
 	// first_level
 	$('#first_level').hover(function(){
 		$('#first_level').attr('aria-valuenow', '100');
@@ -507,6 +490,8 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_level').attr('aria-valuenow', '0');
 		$('#third_level').attr('aria-valuenow', '0');
 		$('#fourth_level').attr('aria-valuenow', '0');
+		$('#fifth_level').attr('aria-valuenow', '0');
+
 		$('#first_level').off('mouseout');
 		level = 20;
 	});
@@ -530,7 +515,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_level').attr('aria-valuenow', '100');
 		$('#third_level').attr('aria-valuenow', '0');
 		$('#fourth_level').attr('aria-valuenow', '0');
-
+		$('#fifth_level').attr('aria-valuenow', '0');
 		$('#first_level').off('mouseout');
 		$('#second_level').off('mouseout');
 		level = 40;
@@ -557,7 +542,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#third_level').attr('aria-valuenow', '100');
 
 		$('#fourth_level').attr('aria-valuenow', '0');
-		
+		$('#fifth_level').attr('aria-valuenow', '0');
 		$('#first_level').off('mouseout');
 		$('#second_level').off('mouseout');
 		$('#third_level').off('mouseout');
@@ -587,7 +572,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_level').attr('aria-valuenow', '100');
 		$('#third_level').attr('aria-valuenow', '100');
 		$('#fourth_level').attr('aria-valuenow', '100');
-
+		$('#fifth_level').attr('aria-valuenow', '0');
 		$('#first_level').off('mouseout');
 		$('#second_level').off('mouseout');
 		$('#third_level').off('mouseout');
@@ -631,7 +616,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 	});
 
 
-
+// 과제양
 	// first_homework
 	$('#first_homework').hover(function(){
 		$('#first_homework').attr('aria-valuenow', '100');
@@ -650,6 +635,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_homework').attr('aria-valuenow', '0');
 		$('#third_homework').attr('aria-valuenow', '0');
 		$('#fourth_homework').attr('aria-valuenow', '0');
+		$('#fifth_homework').attr('aria-valuenow', '0');
 		$('#first_homework').off('mouseout');
 		homework = 20;
 	});
@@ -673,7 +659,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_homework').attr('aria-valuenow', '100');
 		$('#third_homework').attr('aria-valuenow', '0');
 		$('#fourth_homework').attr('aria-valuenow', '0');
-
+		$('#fifth_homework').attr('aria-valuenow', '0');
 		$('#first_homework').off('mouseout');
 		$('#second_homework').off('mouseout');
 		homework = 40;
@@ -700,7 +686,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#third_homework').attr('aria-valuenow', '100');
 
 		$('#fourth_homework').attr('aria-valuenow', '0');
-		
+		$('#fifth_homework').attr('aria-valuenow', '0');
 		$('#first_homework').off('mouseout');
 		$('#second_homework').off('mouseout');
 		$('#third_homework').off('mouseout');
@@ -730,7 +716,7 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 		$('#second_homework').attr('aria-valuenow', '100');
 		$('#third_homework').attr('aria-valuenow', '100');
 		$('#fourth_homework').attr('aria-valuenow', '100');
-
+		$('#fifth_homework').attr('aria-valuenow', '0');
 		$('#first_homework').off('mouseout');
 		$('#second_homework').off('mouseout');
 		$('#third_homework').off('mouseout');
@@ -776,12 +762,9 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 
 		// first_total
 	$('#first_total').hover(function(){
-
-				$('#first_total').attr('src',"<%= image_path "activated_star.png", :id => "first_total" %>");
-				$('#first_total').on('mouseout');
-				$('#total_text').text('최악이에요');
-			
-
+		$('#first_total').attr('src',"<%= image_path "activated_star.png", :id => "first_total" %>");
+		$('#first_total').on('mouseout');
+		$('#total_text').text('최악이에요');
 	});
 
 	$('#first_total').mouseout(function(){
@@ -942,9 +925,9 @@ var grade_clicked=0;  // 클릭했는지 유무 확인
 $('#submit_button').click(function(event){
 
 
-	if($('.message').val().length<200)
+	if($('.message').val().length<40)
 	{
-		alert('강의평을 200자이상 입력해주세요!');
+		alert('강의평을 40자이상 입력해주세요!');
 	}
 	else 
 	{

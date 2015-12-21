@@ -1,8 +1,8 @@
 <div class="btn-group">
 
-  <button class="btn btn-default btn-lg dropdown-toggle major-btn" data-toggle="dropdown">
+  <button class="btn btn-default btn-md dropdown-toggle major-btn" style="border: 3px solid #8FCEFF;" data-toggle="dropdown">
+    학과 전체 강의 검색 <span class="caret"></span>
 
-    학과 선택 <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="
   height : 400%; overflow:scroll;">
@@ -15,23 +15,9 @@
     <li><%= link_to '정보통신공학과', forcingwritting_url(:major => '정보통신공학과',:search=> params[:search]), remote: true  %></li>
     <li><%= link_to '정보보호학과', forcingwritting_url(:major => '정보보호학과',:search=> params[:search]), remote: true  %></li>
 
-    <li role="separator" class="divider"></li>
-
-    <li> <%= link_to '건설환경공학과', forcingwritting_url(:major => '건설환경공학과',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '환경에너지융합학과', forcingwritting_url(:major => '환경에너지공간융합학과',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '공간정보학과', forcingwritting_url(:major => '공간정보학과',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '에너지자원학과', forcingwritting_url(:major => '에너지자원공학과',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '기계공학학과', forcingwritting_url(:major => '기계항공우주공학부 기계공학전공',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '항공우주공학과', forcingwritting_url(:major => '기계항공우주공학부 항공우주공학전공',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '나노신소재공학과', forcingwritting_url(:major => '나노신소재공학과',:search=> params[:search]) , remote: true %> </li>
 
     <li role="separator" class="divider"></li>
 
-    <li> <%= link_to '바이오융합공학과', forcingwritting_url(:major => '바이오융합공학과',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '분자생물학과', forcingwritting_url(:major => '분자생물학과',:search=> params[:search]), remote: true  %> </li>
-    <li> <%= link_to '바이오자원공학과', forcingwritting_url(:major => '바이오자원공학과',:search=> params[:search]), remote: true  %> </li>
-    
-    <li role="separator" class="divider"></li>
 
     <li> <%= link_to '국어국문학과', forcingwritting_url(:major => '국어국문학과',:search=> params[:search]), remote: true  %> </li>
     <li> <%= link_to '국제학부', forcingwritting_url(:major => '국제학부',:search=> params[:search]), remote: true  %> </li>
@@ -61,14 +47,22 @@
     <li> <%= link_to '천문우주학과', forcingwritting_url(:major => '천문우주학과',:search=> params[:search]), remote: true  %> </li>
     <li> <%= link_to '화학과', forcingwritting_url(:major => '화학과',:search=> params[:search]), remote: true  %> </li>
     
-
+    <li role="separator" class="divider"></li>
+    <li> <%= link_to '바이오융합공학과', forcingwritting_url(:major => '바이오융합공학과',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '분자생물학과', forcingwritting_url(:major => '분자생물학과',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '바이오자원공학과', forcingwritting_url(:major => '바이오자원공학과',:search=> params[:search]), remote: true  %> </li>
+    
     <li role="separator" class="divider"></li>
     <li> <%= link_to '건축공학전공', forcingwritting_url(:major => '건축공학부 건축공학전공',:search=> params[:search]), remote: true  %> </li>
     <li> <%= link_to '건축공학부', forcingwritting_url(:major => '건축학전공',:search=> params[:search]), remote: true  %> </li>
-
-    <li role="separator" class="divider"></li>
-
-
+건설환경
+    <li> <%= link_to '건설환경공학과', forcingwritting_url(:major => '건설환경공학과',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '환경에너지융합학과', forcingwritting_url(:major => '환경에너지공간융합학과',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '공간정보학과', forcingwritting_url(:major => '공간정보학과',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '에너지자원학과', forcingwritting_url(:major => '에너지자원공학과',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '기계공학학과', forcingwritting_url(:major => '기계항공우주공학부 기계공학전공',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '항공우주공학과', forcingwritting_url(:major => '기계항공우주공학부 항공우주공학전공',:search=> params[:search]), remote: true  %> </li>
+    <li> <%= link_to '나노신소재공학과', forcingwritting_url(:major => '나노신소재공학과',:search=> params[:search]) , remote: true %> </li>
 
     
     <li> <%= link_to '국방시스템학과', forcingwritting_url(:major => '경제통상학과',:search=> params[:search]), remote: true  %> </li>

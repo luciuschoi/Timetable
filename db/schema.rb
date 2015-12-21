@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909022433) do
+ActiveRecord::Schema.define(version: 20151128165901) do
 
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
@@ -40,6 +40,25 @@ ActiveRecord::Schema.define(version: 20150909022433) do
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "enrollments", force: :cascade do |t|
+    t.string   "day"
+    t.string   "begin_time"
+    t.string   "end_time"
+    t.integer  "table_num"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "lecture_id"
+    t.integer  "user_id"
+    t.integer  "howoften"
+    t.string   "day2"
+    t.integer  "size"
+    t.string   "subject"
+    t.string   "days"
+    t.integer  "timetable_id"
+  end
+
+  add_index "enrollments", ["timetable_id"], name: "index_enrollments_on_timetable_id"
+
   create_table "lectures", force: :cascade do |t|
     t.string   "subject"
     t.string   "professor"
@@ -55,6 +74,15 @@ ActiveRecord::Schema.define(version: 20150909022433) do
     t.float    "acc_achievement", default: 0.0
     t.float    "acc_homework",    default: 0.0
     t.float    "acc_total",       default: 0.0
+    t.string   "place"
+    t.string   "isu"
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,6 +98,8 @@ ActiveRecord::Schema.define(version: 20150909022433) do
     t.boolean  "admin",           default: false
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "year"
+    t.string   "major"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

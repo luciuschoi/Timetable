@@ -9,11 +9,21 @@ class UsersController < ApplicationController
 
   end
 
+  def timetable
+    if params[:search].nil?
+      @lectures=Lecture.paginate(:page => params[:page], :per_page => 10 )
+      @timetables=current_user.timetables
+    
+    else
+      @lectures=Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+    end
+  end
+  
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to :controller => 'static_pages', :action => 'forcingwritting'
+      redirect_to :controller => 'static_pages', :action => 'rank'
     else
       render 'new'
     end
@@ -33,7 +43,7 @@ class UsersController < ApplicationController
 
   def update
   	@user=User.find(params[:id])
-  	if !params[:user][:ninkname].nil?
+  	if !params[:user][:nickname].nil?
         @user.update_attribute(:nickname, params[:user][:nickname])
         if @user.valuations.count > 2
   		      redirect_to home_path

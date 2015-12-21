@@ -1,6 +1,6 @@
 
 
-$('#valuationlist').html('<%= escape_javascript(render("home_user")) %>')
+$('.valuationlist').html('<%= escape_javascript(render("home_user")) %>')
 $('.pagination a').attr('data-remote', 'true');
 
 $('#v_total_count').html('<%= @valuations.count %>');

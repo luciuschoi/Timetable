@@ -1,34 +1,41 @@
 
-	<h4> 강의&nbsp;&nbsp; 교수명 &nbsp;&nbsp; 개설학과 </h4>
-	<% @lectures.each do |lec| %>
-		<%= lec.subject%> <%=lec.professor%> <%= lec.major%> &nbsp;&nbsp;&nbsp;&nbsp;
-		<%= link_to "Show",   lecture_path(lec) %>  &nbsp; <%= link_to "Edit", 
-		edit_lecture_path(lec)%>  &nbsp;
-		<%= link_to "Destroy", lecture_path(lec), method: :delete, data: {confirm: "Are you sure you want to delete this? (#{lec.subject})"}%> <br>
-	<% end %>
+	<table>
+		<thead>
+			<tr>
+				<td> 강의명 </td>
+				<td> 교수명 </td>
+				<td> 개설학과 </td>
+				<td> 장소 </td>
+				<td> 강의시간 </td>
+				<td> show </td>
+				<td> edit  </td>
+				<td> destroy </td>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @lectures.each do |lec| %>
+				<tr>
+					<td> <%= lec.subject%>  </td>
+					<td> <%=lec.professor%> </td>
+					<td> <%= lec.major%> </td>
+					<td> <%= lec.place %> </td>
+					<td> <%= lec.lecturetime%> </td>
+					<td> <%= link_to "Show",   lecture_path(lec) %> </td>
+					<td> <%= link_to "Edit", edit_lecture_path(lec)%> </td>
+					<td> <%= link_to "Destroy", lecture_path(lec), method: :delete, data: {confirm: "Are you sure you want to delete this? (#{lec.subject})"}%>  </td>
+				</tr> 
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= will_paginate @lectures %>
 
 	<%= link_to "New_Lecture", new_lecture_path %>
-
-
 	
-	<%= form_tag import_lectures_path, multipart: true do %>
-	<%= file_field_tag :file %>
-	<%= submit_tag "Import" %>
-	<% end %>
-	
-
-</div> 
-
-<div class="col-md-1"></div >	 
-
-	
-
-</div>    
-<div class="row">
-	<div class="col-md-2"></div>   
-	<div class="col-md-8" align="left">
-	
+	<div style = "width:50%">
+		<%= form_tag import_lectures_path, multipart: true do %>
+			<%= file_field_tag :file %>
+			<%= submit_tag "Import" %>
+		<% end %>
 	</div>
-	<div class="col-md-2"></div>
-</div>
-

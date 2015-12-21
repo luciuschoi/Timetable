@@ -1,23 +1,20 @@
 
-    <nav class="navbar" role="navigation" >
+
+    <nav class="navbar" role="navigation" style="border-radius:0">
+ 
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>home
+            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
 
           <!-- QQQQ -->
           <% if current_user && current_user.nickname.nil?%>
-            
-            <a class="navbar-brand" href="#" id="header">
-              <%= image_tag "logo3.png", size: "30x30"%> 아뭐듣지
-            </a>
+            <a class="navbar-brand" href="#" id="header">아뭐듣지</a>
           <% else %>
-            <a class="navbar-brand" href="/home" id="header">
-              <%= image_tag "logo3.png", size: "30x30"%> 아뭐듣지
-            </a>
+            <a class="navbar-brand" href="/home" id="header">아뭐듣지</a>
           <% end %>
 
         </div>
@@ -28,56 +25,70 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" style = "margin-left:80px;">
-
+          <% if current_page? controller: 'static_pages', action: 'rank'%>
+            <li>
+              <%= link_to '시간표짜기', rank_path, class: 'activate'%>
+            </li>
+          <% else %> 
+            <li>
+              <%= link_to '시간표짜기', rank_path%>
+            </li>  
+          <% end %> 
             <% if current_page? controller: 'static_pages', action: 'newsfeed'%>
               <li class ="activate">
                 <%= link_to '최근평가', newsfeed_path, class: 'activate'%>
-                <%= link_to '시간표 짜기', timetable_lecture_path%>
+                
               </li>
               
             <% elsif current_page? controller: 'static_pages', action: 'forcingwritting' %>
               <li>
                 <%= link_to '최근평가', newsfeed_path%>
-                <%= link_to '시간표 짜기', timetable_lecture_path%>
+                
               </li>
              <% elsif current_page? controller: 'static_pages', action: 'forcingwritting' %> 
                 <%= link_to '최근평가', newsfeed_path%>
-                <%= link_to '시간표 짜기', timetable_lecture_path, class: 'activate'%>
+                
             <% else %>
               <li>
                 <%= link_to '최근평가', newsfeed_path%>
-                <%= link_to '시간표 짜기', timetable_lecture_path%>
+          
+                
               </li>
 
             <% end %>
 
-              <li class="nav navbar-nav navbar-form">
-              <%= form_tag home_path, :method => 'get', :class =>'form-inline' do %>
-                    <%= text_field_tag :search, params[:search], placeholder: :"과목,교수님명을 입력해주세요." ,:class => 'form-control  form-group' ,:style => "width:150%;;"%>
-              
-              <% end %>
-              </li>
           </ul>
 
       
           
 
 
-          <ul class="nav navbar-nav navbar-right" style = "margin-right : 0">   
+          <ul class="nav navbar-nav navbar-right" style = "margin-right : 3%;">   
             <% if current_user %>
 
                 <% unless current_user.nickname.nil? %>
-                  <div id = "navbar_margin_top" style = "margin-right:30px">
+                  <div id = "navbar_margin_top">
+
+                    <li class="dropdown">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.nickname%>님 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                            <li><%=link_to "별명 바꾸기", edit_user_path(current_user)%></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/signout">Sign Out</a></li>
+                        </ul>
+                    </li>
+                        <!--
                     <li> <span id = "navbar_hello_color">
                     <%= link_to current_user.nickname + " ", edit_user_path(current_user), class: "in-blk" %>  님   <a href="/signout"
                     id = "logout">logout </a></span>
+                    -->
                     
-                    </li>
                   </div>
                 <% end %>
 
             <% else %>
-              <div id ="navbar_margin_top" style = "margin-right:30px">
+              <div id ="navbar_margin_top">
                 <li> 
                   <a href = "<%= login_path%>" id = "navbar_hello_color">로그인</a>
                 </li>
@@ -85,6 +96,4 @@
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->
-
-
     </nav>

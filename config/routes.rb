@@ -5,6 +5,8 @@ Rails.application.routes.draw do
  get 'lecture_search' => 'static_pages#search'
  get 'newsfeed' => 'static_pages#newsfeed'
  get 'rank' => 'static_pages#rank'
+ get 'search_timetable' => 'enrollments#search_timetable'
+ get 'propose' => 'static_pages#propose'
 
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
 
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
+ get 'first_login' => 'static_pages#first_login'
 
   get 'signup'  => 'users#new'
 
@@ -22,8 +25,13 @@ Rails.application.routes.draw do
  post   'login'   => 'sessions#create'
  delete 'logout'  => 'sessions#destroy'
 
+ post 'enrollments/make_a_change' => 'enrollments#make_a_change'
+ delete 'delete_enrollment' => 'enrollments#destroy'
+ post 'add_enrollment' => 'enrollments#create'
 #resources :lectures
-resources :users
+resources :users do
+   member { get :timetable }
+end 
 
 
 match 'auth/:provider/callback', :controller => 'sessions', action: 'create_by_facebook', via: [:get, :post]
@@ -31,7 +39,7 @@ match 'auth/failure', to: redirect('/'), via: [:get, :post]
 match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 resources :lectures do
   collection { post :import }
-  member { get :timetable }
+  
   member { get :writtingform }
 end
 

@@ -11,28 +11,21 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- Test -->  
-  
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 
-<body onload="$('.fancybox').trigger('click');">
+<body>
  
-    <%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
     
-    <aside>
-      <div id='cssmenu'>
-        <ul>
-          <li><a href="#">이용가이드</a></li>
-          <li><%=link_to "Feedback","http://goo.gl/forms/CWP0XnBEqJ",target: '_blank'%></li>
-        </ul>
-      </div>
-    </aside>
-<!-- /.row --> 
-     <!-- flash 메세지 출력 -->  
-     <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
+  <!-- flash 메세지 출력 -->  
+  <div class = "alert-container">
 
-<%= yield %>
+  </div>
+
+  <div>
+     <%= yield %>
+  </div>
 <aside>
 
 </aside>
