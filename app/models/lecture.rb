@@ -29,7 +29,7 @@ class Lecture < ActiveRecord::Base
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
   #     lecture = find_by_id(row["id"]) || new
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major","lecturetime", "place")
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major","lecturetime", "place", "isu")
 
   #     lecture.save
   #   end
@@ -44,6 +44,8 @@ class Lecture < ActiveRecord::Base
       lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
       #lecture = find_by_id(row["id"]) || new
       lecture.update_attribute("isu", row["isu"] )
+      lecture.update_attribute("place", row["place"] )
+      lecture.update_attribute("lecturetime", row["lecturetime"])
 
       lecture.save
     end
