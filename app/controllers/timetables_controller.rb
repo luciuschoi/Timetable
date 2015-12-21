@@ -23,11 +23,11 @@ class TimetablesController < ApplicationController
 	end
 
 	def new
-
+		@timetable = Timetable.new
 	end
 
 	def create
-		@timetable = current_user.timetables.create!(name: "기본시간표")
+		@timetable = current_user.timetables.create!(timetable_params)
 
 		redirect_to timetable_path(@timetable)
 	end
@@ -37,5 +37,10 @@ class TimetablesController < ApplicationController
 		timetable.destroy
 
 		redirect_to home_path
+	end
+
+	private 
+	def timetable_params
+		params.require(:timetable).permit(:name)
 	end
 end
