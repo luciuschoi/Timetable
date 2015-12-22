@@ -1,5 +1,5 @@
 class TimetablesController < ApplicationController
-	def timetable
+	def show
 		if params[:search]==''||params[:search].nil?
 
 	    else
@@ -26,6 +26,20 @@ class TimetablesController < ApplicationController
 		@timetable = Timetable.new
 	end
 
+	def edit
+		@timetable = Timetable.find_by(id: params[:id])
+	end
+
+	def update
+		@timetable = Timetable.find(params[:id])
+		if !params[:timetable][:name].nil?
+			@timetable.update_attribute(:name, params[:timetable][:name])
+			redirect_to timetable_path(@timetable)
+		else
+			render 'edit'
+		end
+	end
+
 	def create
 		@timetable = current_user.timetables.create!(timetable_params)
 
@@ -39,7 +53,12 @@ class TimetablesController < ApplicationController
 		redirect_to home_path
 	end
 
+	def copy
+		
+	end
+
 	private 
+
 	def timetable_params
 		params.require(:timetable).permit(:name)
 	end

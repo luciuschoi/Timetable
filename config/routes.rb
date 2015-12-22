@@ -30,10 +30,12 @@ Rails.application.routes.draw do
  post 'add_enrollment' => 'enrollments#create'
 
 
-get '/timetable/:id', to: 'timetables#timetable', as: 'timetable'
+# get '/timetable/:id', to: 'timetables#timetable', as: 'timetable'
 # post 'new_timetable'  => 'timetables#create'
 delete '/delete_timetable/:id' => 'timetables#destroy', as: 'delete_timetable'
-resources :timetables, only: [:create, :new]
+# patch '/timetables/:id' => 'timetables#update', as: 'timetable'
+# put '/timetables/:id' => 'timetables#update', as: 'update_timetable'
+resources :timetables, only: [:show, :create, :new, :edit, :update]
 
 
 resources :users do

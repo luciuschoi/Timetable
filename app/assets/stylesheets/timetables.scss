@@ -267,6 +267,12 @@ $ft_navy      : #095fb5;
 	.timetable_name_box
 	{
 		display :inline-block;
+		
+		span
+		{
+			width:15px;
+			height:15px;
+		}
 	}
 
 	.timetable_total_grade

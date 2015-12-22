@@ -6,7 +6,14 @@
 <div class = "timetable_container">
 
   <div class = "timetable_name_box">
-    <p class = "lead"> <%=@current_timetable.name%></p>
+    <p class = "lead">
+      <%=@current_timetable.name%>
+    </p>
+  </div>
+
+  <div style = "display :inline-block">
+    <%= link_to " ", edit_timetable_path(@current_timetable),
+                     class: 'glyphicon glyphicon-pencil' %>
   </div>
 
   <div class = "timetable_total_grade">
