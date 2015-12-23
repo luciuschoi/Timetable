@@ -1,10 +1,11 @@
 
-<div style="width:13%;float:left;margin-left:2%;">
+<div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;">
   <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
 </div>
 
-<div class = "timetable_container">
 
+<!-- 시간표 TABLE VIEW -->
+<div class = "timetable_container">
   <div class = "timetable_name_box">
     <p class = "lead">
       <%=@current_timetable.name%>
@@ -26,6 +27,7 @@
 </div>
 
 
+<!-- 시간표 테이블 right_container  :  검색창, 내가 담은 강의 -->
 <div class="right-container">
   <div class = "search_box">
     <%= form_tag timetable_path, :method => 'get', :class =>'form-inline rank-form' do %>
