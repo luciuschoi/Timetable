@@ -58,8 +58,10 @@ class TimetablesController < ApplicationController
 	end
 
 	def paste
+		byebug
 		@existed_t = Timetable.find(params[:timetable][:id])
-		#복제시 이름 같이 업데이트 
+		
+		#복제시 이름 같이 업데이트, 그래서 이름값 인자로 같이 보냄 
 		@reproduced_t = reproduce_timetable(@existed_t, params[:timetable][:name])
 		reproduce_enrollment(@existed_t, @reproduced_t)
 
