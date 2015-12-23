@@ -1,18 +1,18 @@
-<div class="low-group" style="inline-block;max-width:180px;">
-      <span class="dropdown" style="max-width:90px;margin-left:0px;margin-right: 0px;">
-        <button style="background-color:#009ce6;max-width:90px;border-radius:0;float:left;border:none;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-             <i class="glyphicon glyphicon-share" style="color:white;"><B> 공유</B></i>
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li><a href="#" >페이스북 공유</a></li>
-          <li><a href="#" id="save_image_locally">이미지 저장 </a></li>
-          <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
-        </ul>
+<div class="timetable_btn_group">
+    <span class="dropdown" style="max-width:90px;margin-left:0px;margin-right: 0px;">
+      <button style="background-color:#009ce6;max-width:90px;border-radius:0;float:left;border:none;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+           <i class="glyphicon glyphicon-share" style="color:white;"><B> 공유</B></i>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#" >페이스북 공유</a></li>
+        <li><a href="#" id="save_image_locally">이미지 저장 </a></li>
+        <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
+      </ul>
     </span>  
 </div>
 
-<div class="low-group" style="inline-block;max-width:180px;">
+<div class="timetable_btn_group">
     <!--%= button_to "", action: "destroy", id: current_timetable.id,
                   method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
                   class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' do %-->
@@ -20,8 +20,16 @@
                   method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
                   class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' do %>
                   
-      <i class="glyphicon glyphicon-share" style="color:white;"><B> 삭제 </B></i>
+      <i class="glyphicon glyphicon-remove" style="color:white;"><B> 삭제 </B></i>
     <% end %>
-    <!-- <button class="btn btn-default del_timetable_btn" type="button" id="del_timetable_btn"> -->
-    <!-- </button> -->
+</div>
+
+<div>
+  <!-- glyphicon glyphicon-file -->
+  <%= button_to copy_path, method: :get, class: 'btn btn-default', :type => 'button' do %>
+    <%= hidden_field_tag :id, @current_timetable.id %>
+    <i class="glyphicon glyphicon-file" style="color:white;"><B> 복사 </B></i>
+
+  <% end %>
+
 </div>

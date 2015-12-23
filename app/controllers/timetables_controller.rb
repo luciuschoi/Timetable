@@ -54,12 +54,30 @@ class TimetablesController < ApplicationController
 	end
 
 	def copy
-		
+		@existed_timetable = Timetable.find(params[:id])
 	end
+
+	def paste
+		@existed_t = Timetable.find(params[:timetable][:id])
+		#복제시 이름 같이 업데이트 
+		@reproduced_t = reproduce_timetable(@existed_t, params[:timetable][:name])
+		reproduce_enrollment(@existed_t, @reproduced_t)
+
+		redirect_to timetable_path(@reproduced_t)
+	end
+
+
 
 	private 
 
 	def timetable_params
 		params.require(:timetable).permit(:name)
 	end
+
+
+
+
+
+
+
 end

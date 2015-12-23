@@ -36,6 +36,8 @@ delete '/delete_timetable/:id' => 'timetables#destroy', as: 'delete_timetable'
 # patch '/timetables/:id' => 'timetables#update', as: 'timetable'
 # put '/timetables/:id' => 'timetables#update', as: 'update_timetable'
 resources :timetables, only: [:show, :create, :new, :edit, :update]
+get 'copy'   => 'timetables#copy'
+post 'paste' => 'timetables#paste'
 
 
 resources :users do
