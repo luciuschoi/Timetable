@@ -1,6 +1,7 @@
 class EnrollmentsController < ApplicationController
 	def create
 		current_timetable = Timetable.find(params[:timetable_id])
+
 		@request_lecture = current_timetable.enrollments.build(enrollment_params)
 		@request_lecture.save!
 
@@ -33,15 +34,9 @@ class EnrollmentsController < ApplicationController
     	params.permit(:begin_time, :end_time, {:days => []}, :lecture_id, :timetable_id)
     end
 
-    def time_validation
-
+    def validate_enrollment
+    	
     end
-    # def subject_and_professor_name_existed?
-    # 	# 등록한 강의가 1개 이상이니?
-    # 	if self.
-    # end
-
-
 
 
 

@@ -138,6 +138,39 @@
     return duplicated_lec_name;
   }
 
+  function search_duplicate_for_e_lecture(s_row, e_row, col, added_lec_name)
+  {
+    var col_num;
+    var duplicated_lec_name = "false";
+    var be_duplicated;
+    var row_num;
+    var time_row;
+    var lecture_cell;
+    var lecture_name_span;
+    var lecture_name;
+    var be_duplicated;
+    for (h=0; h<col.length; h++)
+    {
+      col_num = col[h]+")";
+      for(i=s_row; i<= e_row; i++)
+      {
+        row_num = i + ")";
+        time_row = timetable.find('tbody tr:nth-child('+row_num);
+        lecture_cell = time_row.find('td:nth-child('+col_num);
+        lecture_name_span = $(lecture_cell).find('.lec_name');
+        lecture_name = $(lecture_name_span).html();
+        if (lecture_name == added_lec_name)
+        {
+          be_duplicated = true;
+          duplicated_lec_name = added_lec_name;
+          break;
+        }
+      }
+      if (be_duplicated == true) break;
+    }
+    return duplicated_lec_name;
+  }
+
   function alert_branch(which_alert, duplicated_lec_name)
   {
     $('.alert-container').prepend('<div> </div>');
@@ -182,12 +215,15 @@
     var s_row;
     var e_row;
     var lec_professor;
-    var lec_place
+    var lec_place;
+    var duplicated_lec_name = 'false'
     $(this).off('mouseleave');
     $(this).off('mouseenter');
-    var data = $(this).find('.lecture_time').html();
+
+    var lecture_time_data = $(this).find('.lecture_time').html();
     
-    data = split_text_for_lectureTime(data);
+    // lectureTime = "월수13:30-15:00"
+    lecture_time_data = split_text_for_lectureTime(lecture_time_data);
 
     var timetable_id = $('.lessons').attr('id');
 
@@ -196,11 +232,13 @@
     var lec_name = $(this).find('.subject').html();
     var lec_isu = $(this).find('.isu').html();
 
-    if (data != null)
+
+    // lecture_time_data = ["월수","13:30","15:00"]
+    if (lecture_time_data != null)
     {
-      d_col = find_day_td(data[0]);
-      s_row = find_begin_time_row(data[1]);
-      e_row = find_end_time_row(data[2]);
+      d_col = find_day_td(lecture_time_data[0]);
+      s_row = find_begin_time_row(lecture_time_data[1]);
+      e_row = find_end_time_row(lecture_time_data[2]);
 
       lec_professor = $(this).find('.professor').html();
       lec_professor = lec_professor.split('/')[0];
@@ -208,19 +246,8 @@
 
       // 시간표에 등록된 강의 중 겹치는 강의 있는지 확인.
       // 있다면 이름 반환, 없으면 false(겹치는 강의 '없'다) 반환.
-      var duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
-
-      // DB 저장을 위한 ajax 전송
-      if (duplicated_lec_name != 'false')
-      {
-        alert_branch('duplicate', duplicated_lec_name);
-      }
-      else
-      {
-        default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event.type);
-        make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu);
-        send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
-      }
+      duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
+        
     }
     
     else 
@@ -229,15 +256,23 @@
       // 자동으로 사강 col에 강의 추가
       // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
       // 강의추가를 위해 필요한 것 : col, s_row, e_row 정하기
+      duplicated_lec_name = search_duplicate_for_e_lecture(1,20,['7'], lec_name)
       arr_rows = find_location_of_cyber_lecture_cell();
-      
       d_col = [7];
       s_row = find_begin_time_row(arr_rows[0]);
       e_row = find_end_time_row(arr_rows[1]);
-      // default_fill_cell(col, s_row, e_row,  lec_id, lec_name, lec_professor, lec_place, event.type);
+    }
+
+
+    if (duplicated_lec_name != 'false')
+    {
+      alert_branch('duplicate', duplicated_lec_name);
+    }
+    else
+    {
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event.type);
       make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu);
-      send_lecture_to_timetable(s_row, e_row, d_col, lec_id, timetable_id)
+      send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
     }
     
   });
@@ -248,8 +283,10 @@
     var duplicated_lec_name;
     var s_row;
     var e_row;
-    var arr_sRow = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30'];
-    var arr_eRow = ['10:30', '12:00', '13:30', '15:00', '16:30', '18:00'];
+    var arr_sRow = ['09:00','10:00','11:00', '12:00','13:00','14:00',
+                    '15:00', '16:00', '17:00'];
+    var arr_eRow = ['10:00','11:00', '12:00','13:00','14:00',
+                    '15:00', '16:00', '17:00', '18:00'];
     var d_col = [7];
     var arr_Row = [];
 
@@ -592,9 +629,9 @@
     
     span_pl     = '<span class = lec_place> </span>';
     span_lp     = '<span class = lec_professor> </span>';
-    span_ln     = '<span class = lec_name> </span>';
+    span_ln     = '<span class = lec_name></span>';
     span_del    = '<span class = del_btn> </span>';
-    a_info      = '<a> </a>'
+    a_info      = '<a> </a>';
     span_info   = '<span class = info_btn> </span>';
 
     var contents = [lec_name, lec_professor, lec_place];
@@ -607,20 +644,27 @@
     content_box = $(lec_cell).find('div');
     $(content_box).addClass('lec_'+lec_id);
 
+    
     $(content_box).prepend(span_pl).prepend(span_lp).prepend(span_ln);
 
     for(var i = 0; i < contents.length; i++)
     {
       var temp_span = $(content_box).find('span')[i];
-      $(temp_span).css('display','inline-block');
-      $(temp_span).html(contents[i]);
+      if (contents[i] == null) 
+      {
+        $(temp_span).remove();
+      }
+      else
+      {
+        $(temp_span).css('display','inline-block');
+        $(temp_span).html(contents[i]);  
+      }
     }
 
     $(content_box).append(span_info).append(span_del);
     $(content_box).find('.del_btn').addClass('glyphicon glyphicon-remove');
     $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign');
 
-    
     $(content_box).find('.info_btn').wrap(a_info);
     $('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id);
 
