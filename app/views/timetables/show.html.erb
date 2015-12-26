@@ -116,7 +116,8 @@
     var col_num;
     var duplicated_lec_name = "false";
 
-    for (h=0; h<col.length; h++){
+    for (h=0; h<col.length; h++)
+    {
       col_num = col[h]+")";
       for(i=s_row; i<=e_row; i++)
       {
@@ -131,7 +132,6 @@
           duplicated_lec_name = $(first_cells)[0].find('.lec_name').html();
           break;
         }
-        
       }
       if (be_duplicated == true) break;
     }
@@ -175,58 +175,123 @@
   // 속한 행과 열을 결정한다.
 
   $('body').on('click', '.list-group',function(event){
+    // d_col | 요일 저장하는 배열 
+    // s_row | 시작시간 
+    // e_row | 종료시간 
+    var d_col;
+    var s_row;
+    var e_row;
+    var lec_professor;
+    var lec_place
     $(this).off('mouseleave');
     $(this).off('mouseenter');
     var data = $(this).find('.lecture_time').html();
     
     data = split_text_for_lectureTime(data);
 
-    // d_col | 요일 저장하는 배열 
-    // s_row | 시작시간 
-    // e_row | 종료시간 
-    var d_col = find_day_td(data[0]);
-    var s_row = find_begin_time_row(data[1]);
-    var e_row = find_end_time_row(data[2]);
-    
-    var lec_id = $(this).attr('class').split('_')[1];
-    var lec_name = $(this).find('.subject').html();
-    var lec_professor = $(this).find('.professor').html();
-    lec_professor = lec_professor.split('/')[0];
-    var lec_place = $(this).find('.place').html();
-    var lec_isu = $(this).find('.isu').html();
-
     var timetable_id = $('.lessons').attr('id');
 
-    var duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
+    // 강의 필수 요소
+    var lec_id = $(this).attr('class').split('_')[1];
+    var lec_name = $(this).find('.subject').html();
+    var lec_isu = $(this).find('.isu').html();
 
-    // DB 저장을 위한 ajax 전송
-    if (duplicated_lec_name != 'false')
+    if (data != null)
     {
-      alert_branch('duplicate', duplicated_lec_name);
+      d_col = find_day_td(data[0]);
+      s_row = find_begin_time_row(data[1]);
+      e_row = find_end_time_row(data[2]);
+
+      lec_professor = $(this).find('.professor').html();
+      lec_professor = lec_professor.split('/')[0];
+      lec_place = $(this).find('.place').html();
+
+      // 시간표에 등록된 강의 중 겹치는 강의 있는지 확인.
+      // 있다면 이름 반환, 없으면 false(겹치는 강의 '없'다) 반환.
+      var duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
+
+      // DB 저장을 위한 ajax 전송
+      if (duplicated_lec_name != 'false')
+      {
+        alert_branch('duplicate', duplicated_lec_name);
+      }
+      else
+      {
+        default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event.type);
+        make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu);
+        send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
+      }
     }
-    else
+    
+    else 
     {
+      var arr_rows = [];
+      // 자동으로 사강 col에 강의 추가
+      // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
+      // 강의추가를 위해 필요한 것 : col, s_row, e_row 정하기
+      arr_rows = find_location_of_cyber_lecture_cell();
+      
+      d_col = [7];
+      s_row = find_begin_time_row(arr_rows[0]);
+      e_row = find_end_time_row(arr_rows[1]);
+      // default_fill_cell(col, s_row, e_row,  lec_id, lec_name, lec_professor, lec_place, event.type);
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event.type);
       make_cell_in_my_cart_table(lec_id, lec_name, lec_professor, lec_isu);
-      send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
+      send_lecture_to_timetable(s_row, e_row, d_col, lec_id, timetable_id)
     }
+    
   });
 
+  function find_location_of_cyber_lecture_cell()
+  {
+    var i = 0
+    var duplicated_lec_name;
+    var s_row;
+    var e_row;
+    var arr_sRow = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30'];
+    var arr_eRow = ['10:30', '12:00', '13:30', '15:00', '16:30', '18:00'];
+    var d_col = [7];
+    var arr_Row = [];
+
+    for (; i < arr_sRow.length; i++)
+    {
+      s_row = find_begin_time_row(arr_sRow[i]);
+      e_row = find_end_time_row(arr_eRow[i]);
+      duplicate_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
+      if (duplicate_lec_name == 'false')
+      {
+        arr_Row.push(arr_sRow[i]);
+        arr_Row.push(arr_eRow[i]);
+        break;
+      } 
+    }
+    return arr_Row;
+  }
+
   $('body').on('mouseenter', '.list-group',function(event){
-    
+
     var data = $(this).find('.lecture_time').html();
         data = split_text_for_lectureTime(data);
 
-    var d_col = find_day_td(data[0]);
-    var s_row = find_begin_time_row(data[1]);
-    var e_row = find_end_time_row(data[2]);
-        
-    var lec_id = $(this).attr('class').split(' ')[1];
-    lec_id = lec_id.split('_')[1];
-    var lec_name = ""; 
-    var lec_professor = ""; 
-    
-    hover_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+    if (data != null)
+    {
+      var d_col = find_day_td(data[0]);
+      var s_row = find_begin_time_row(data[1]);
+      var e_row = find_end_time_row(data[2]);
+          
+      var lec_id = $(this).attr('class').split(' ')[1];
+      lec_id = lec_id.split('_')[1];
+      var lec_name = ""; 
+      var lec_professor = ""; 
+
+      hover_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
+    }
+
+    // lecture_time이 없다면 ( data == null )
+    else
+    {
+
+    }
   });
 
 
@@ -242,19 +307,30 @@
   {
     // replace에서의 day를 1개 요일 vs 2개 요일로 비교해서 값을 따로 줘야한다.
     // 요일이 1개 ex)화 인경우
-    if (data.length <= 12)
+    if (data.length == 0)
     {
-      var day = data[0];
+      return null;
     }
-    // 요일이 2개 ex)화목 인 경우
-    else if (data.length <= 13)
+    else
     {
-      var day = data[0]+data[1];
-    }
-    else{}
+      if (data.length <= 12)
+      {
+        var day = data[0];
+      }
+      
+      // 요일이 2개 ex)화목 인 경우
+      else if (data.length <= 13)
+      {
+        var day = data[0]+data[1];
+      }
 
-    data = data.replace(day,day+"-");
-    data = data.split('-');   
+      else{}
+      data = data.replace(day,day+"-");
+      data = data.split('-'); 
+    }
+    
+
+      
     // data[0] 요일, data[1] 시작시간, data[2] 끝시간.
     return data;
   }
