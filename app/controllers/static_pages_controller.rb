@@ -53,6 +53,7 @@ class StaticPagesController < ApplicationController
 
   def rank  
 
+    # 검색 수행 유무 확인
     if params[:search]==''||params[:search].nil?
 
     else
@@ -61,10 +62,8 @@ class StaticPagesController < ApplicationController
     
     # 시간표에 강의 등록한 사용자
     if current_user.timetables[0]
-
       # 기본 타임테이블(0번 인덱스) 안에 등록된 강의 collection 담기
       @lectures_in_timetable = current_user.timetables[0].enrollments  
-
       # 유저가 생성한 타임테이블 collection 
       @timetables = current_user.timetables
     

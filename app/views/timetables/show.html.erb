@@ -273,16 +273,24 @@
     var data = $(this).find('.lecture_time').html();
         data = split_text_for_lectureTime(data);
 
+    var d_col;
+    var s_row;
+    var e_row;
+
+    var lec_id;
+    var lec_name;
+    var lec_professor;
+
     if (data != null)
     {
-      var d_col = find_day_td(data[0]);
-      var s_row = find_begin_time_row(data[1]);
-      var e_row = find_end_time_row(data[2]);
+      d_col = find_day_td(data[0]);
+      s_row = find_begin_time_row(data[1]);
+      e_row = find_end_time_row(data[2]);
           
-      var lec_id = $(this).attr('class').split(' ')[1];
+      lec_id = $(this).attr('class').split(' ')[1];
       lec_id = lec_id.split('_')[1];
-      var lec_name = ""; 
-      var lec_professor = ""; 
+      // var lec_name = ""; 
+      // var lec_professor = ""; 
 
       hover_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
     }
@@ -290,7 +298,14 @@
     // lecture_time이 없다면 ( data == null )
     else
     {
+      var arr_rows = [];
 
+      arr_rows = find_location_of_cyber_lecture_cell();
+      
+      d_col = [7];
+      s_row = find_begin_time_row(arr_rows[0]);
+      e_row = find_end_time_row(arr_rows[1]);
+      hover_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor);
     }
   });
 
