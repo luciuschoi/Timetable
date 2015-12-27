@@ -5,7 +5,8 @@
  <meta http-equiv="contentType" type="text/html" charset="euc-kr" />
   <%= favicon_link_tag 'favicon.ico'%>
   <%= favicon_link_tag 'favicon.ico', rel: 'apple-touch-icon', type: 'image/png'%>
-
+  <link rel="stylesheet" href="/assets/jquery.fancybox.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   <title >아뭐듣지</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -22,7 +23,7 @@
   <div class = "alert-container">
 
   </div>
-
+ 
   <div>
      <%= yield %>
   </div>

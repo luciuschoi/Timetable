@@ -38,7 +38,9 @@ class TimetablesController < ApplicationController
 
 		redirect_to home_path
 	end
-
+	def detailsearch
+		render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+	end
 	private 
 	def timetable_params
 		params.require(:timetable).permit(:name)

@@ -137,15 +137,16 @@ class Lecture < ActiveRecord::Base
   def self.search_timetable(search)
     unless search.nil?
       
-      if (search=="인기강의")
+      where(['professor LIKE ? OR subject LIKE ? OR major LIKE ?', "#{search}%","#{search}%","#{search}%"])
+      # if (search=="인기강의")
 
-      timetables=Timetable.group(:subject,:professor).select("count(*) as count, subject").order("count DESC")
-      where(['subject Like ?', "#{timetables.subject}%"])
+      # timetables=Timetable.group(:subject,:professor).select("count(*) as count, subject").order("count DESC")
+      # where(['subject Like ?', "#{timetables.subject}%"])
 
-      else
-      where(['professor LIKE ? OR subject Like ?', 
-        "#{search}%", "#{search}%"])
-      end
+      # else
+      # where(['professor LIKE ? OR subject Like ?', 
+      #   "#{search}%", "#{search}%"])
+      # end
     end
 
   end  
