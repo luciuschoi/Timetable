@@ -55,6 +55,7 @@ class TimetablesController < ApplicationController
 		redirect_to home_path
 	end
 
+
 	def copy
 		@existed_timetable = Timetable.find(params[:id])
 	end
@@ -69,7 +70,9 @@ class TimetablesController < ApplicationController
 		redirect_to timetable_path(@reproduced_t)
 	end
 
-
+	def detailsearch
+		render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
+	end
 
 	private 
 

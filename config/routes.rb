@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
-
+ get 'detailsearch' =>'timetables#detailsearch'
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
  root 'static_pages#daemoon'
