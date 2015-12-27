@@ -1,0 +1,26 @@
+<div class="detailsearch">
+<%= form_tag timetable_path(1), :target => '_parent', :method => 'get' do %>
+      <div>
+        <%= label_tag 'search', '학 과 :'%>
+        <%= text_field_tag :search, params[:search],
+            placeholder: :"학과 입력", :class =>'detail-form'
+            %>
+      </div>
+      <div>
+        <%= label_tag 'isu', '이 수 : '%>
+        <%= select_tag :isu, "<option>전필</option>
+                              <option>전선</option>
+                              <option>중선</option>
+                              <option>자교</option>".html_safe, :class =>'detail-form'
+             %>
+      </div>
+        <%= button_tag(type: "submit", class: "btn btn-default btn-detailsearch", :id=> 'searchbtn') do %>
+          검색
+          <%end%>
+        <%end%>
+
+       <a href=”.” class="btn btn-default btn-detailclose" onClick="parent.jQuery.fancybox.close();">닫기</a>
+
+
+
+</div>
