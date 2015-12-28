@@ -64,22 +64,21 @@
 
 <script>
   // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    // Kakao.init('8af2fccfaf9fe878576de125c4ba83eb');
+    Kakao.init('8af2fccfaf9fe878576de125c4ba83eb');
 
-    // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    // Kakao.Link.createTalkLinkButton({
-    //   container: '#kakao-link-btn',
-    //   label: '세종대 강의정보공유 사이트 구경오세요.',
-    //   image: {
-    //     src: 'http://xn--oy1bw5jn8ijte.com/assets/logo2-bfa40186d9f501f9483243509d751037a6da6190d053cef4cc15f1221d3ed4b1.png', //카카오톡에 보여질 이미지 
-    //     width: '300',
-    //     height: '200'
-    //   },
-    //   webButton: {
-    //     text: '아뭐듣지.com',
-    //     url: 'http://xn--oy1bw5jn8ijte.com' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
-    //   }
-    // });
+    Kakao.Link.createTalkLinkButton({
+      container: '#kakao-link-btn',
+      label: '세종대 강의정보공유 사이트 구경오세요.',
+      image: {
+        src: 'http://xn--oy1bw5jn8ijte.com/assets/logo2-bfa40186d9f501f9483243509d751037a6da6190d053cef4cc15f1221d3ed4b1.png', //카카오톡에 보여질 이미지 
+        width: '300',
+        height: '200'
+      },
+      webButton: {
+        text: '아뭐듣지.com',
+        url: 'http://xn--oy1bw5jn8ijte.com' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+      }
+    });
 
   $('.glyphicon-star').click(function (){
       var elements = document.getElementsByClassName('list-group')
