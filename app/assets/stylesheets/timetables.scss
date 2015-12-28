@@ -1,0 +1,442 @@
+// Place all the styles related to the timetables controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$bg_red       : #e5cfcf;
+$bg_orange    : #fef1e6;
+$bg_yellow    : #fefae7;
+$bg_green     : #edf6e9;
+$bg_blue      : #e6f5fc;
+$bg_navy      : #e6eff8;
+
+$ft_red       : #9c0d0d;
+$ft_orange    : #f47700;
+$ft_yellow    : #f7c90d;
+$ft_green     : #48a024;
+$ft_blue      : #009ce6;
+$ft_navy      : #095fb5;
+
+
+
+
+.time_cell{
+	padding-bottom: 0;
+    padding-top: 0;
+    padding-right: 0;
+    height: 29px;
+    border-width: 0;
+    background: white;
+}
+.time_text{
+    position: relative;
+    top: -0.7em;
+    text-align: right;
+}
+
+.lessons td {
+    width : 1000px;
+}
+
+.upper-group{
+    position: relative;
+    display:inline-block;
+    vertical-align: middle;
+    float:left; 
+    display:inline;
+}
+.left-container{
+    width:17%;
+    float:left;
+    margin-left:2%;
+}
+.btn-add{
+    background-color:#095fb5 !important;
+    color:white !important;
+    min-width:90px;
+    margin-right:0px;
+    border-radius:0 !important;
+    float:left;
+    border:none !important; 
+}
+.btn-copy{
+    min-width:90px;
+    float:left;
+    background-color:#555555 !important;
+    color:white !important;
+    border-radius:0 !important;
+    border:none !important;
+}
+
+.timetable_dropdown{
+    max-width:90px;
+    margin-left:0px;
+    margin-right: 0px;
+}
+.btn-share{
+    background-color:#009ce6 !important; 
+    max-width:90px;
+    border-radius:0 !important;
+    float:left;
+    border:none !important;
+}
+.btn-del{
+    min-width:90px;
+    color:white;
+    background-color:#e00000 !important;
+    border-radius:0 !important;
+    float:left !important;
+    border:none;
+    max-height:32px;
+}
+.center-container{
+    width:50%;
+    float:left;
+    margin-top:5%;
+}
+.right-container
+{
+    width:26%;
+    float:right;
+    padding-left:2%;
+    margin-right:2%;
+    
+    .search_box
+    {
+        width:100%;
+        float:right;
+        margin-bottom:20px !important;
+    }
+}
+
+.rank-form{
+    text-align:center; 
+    display:inline
+}
+.rank-textf{
+    float:left;
+    border-radius:0 !important;
+    min-width:220px;
+    max-width:440px;
+    margin-bottom:21px;
+}
+.btn-search{
+    min-height:34px;
+    border-radius:0 !important;
+    border:none !important;
+    float:left;
+    margin-bottom:20px;
+    background-color:#2db1ee !important;
+    width : 55px;
+}
+.detail-form{
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+   margin: 0 auto;
+   margin-bottom:20px;
+    width: 50% !important;
+    
+}
+.btn-detailsearch{
+    min-height:34px;
+    border-radius:0 !important;
+    border:none !important;
+    float:right;
+    margin-top:10px;
+    margin-bottom:20px;
+    margin-right:10px;
+    background-color:#2db1ee !important;
+    width : 55px;   
+}
+.btn-detailclose{
+    min-height:34px;
+    border-radius:0 !important;
+    border:none !important;
+    float:right;
+    margin-top:10px;
+    margin-bottom:20px;
+    background-color:#95a5a6 !important;
+    width : 55px;  
+}
+.btn-zoomin{
+    color:white;
+    min-height:34px;
+    border-radius:0 !important;
+    border:none !important;
+    float:left;
+    margin-bottom:20px;
+    background-color:orange !important;
+    width : 55px;   
+}
+.glyphicon-search{
+    font-size:15px;
+    color:white;
+}
+.btn-favorite{
+    min-height:34px;
+    border-radius:0 !important;
+    border:none !important;
+    float:left;
+    margin-bottom:20px;
+    background-color:#fc8e0f !important;
+}
+.glyphicon-star{
+    font-size:15px;
+    color:white;
+}
+.glyphicon-zoom-in{
+    color:white;
+}
+.showing {
+    position:absolute;
+    bottom: 50px;
+    left: 50px;
+    height: auto;
+    width: 100px;
+    background:#2E3732;
+    color: #FFFFFF;
+    display:none;
+    text-shadow: none;
+    z-index: 1000;
+    padding: 20px;
+    line-height: 19px;
+    text-align: justify;
+    opacity: 0.8;
+
+}
+.list-group{
+    width:100%;
+    border:1px solid #f5f5f5;
+    margin-bottom:0 !important;
+}
+
+
+
+
+
+
+
+/*
+
+    Timetable #new
+    new.html.erb
+
+*/
+
+.timetable_new_container
+{
+    width:1000px;
+    margin : 10px auto;
+
+    .add_form_box{
+    	border-radius : 3px;
+    	background-color: #ecf0f1;
+    	padding : 20px;
+		width:500px;
+		margin : 10px auto;
+    }
+}
+
+
+
+
+
+/* 						        	  */
+/*   timetableController # timetable  */
+/*   시간표 뷰 입니다. 			          */
+/*   						  		  */
+
+
+/* timetable의 삭제, 복사, 공유 버튼 container */
+.timetable_btn_container
+{
+    .timetable_btn
+    {
+        display:inline-block;
+        max-width:180px;
+        
+        .del_btn
+        {
+            background-color:#e00000;
+            max-width:90px;
+            border-radius:0;
+            float:left;
+            border:none;
+            
+        }
+    }
+    .copy_btn
+    {
+            background-color:#555555;
+            max-width:90px;
+            border-radius:0;
+            float:left;
+            border:none;
+    }
+}
+
+
+
+
+.table > thead > tr > th, .table > thead > tr > td,
+ .table > tbody > tr > th, .table > tbody > tr > td,
+  .table > tfoot > tr > th, .table > tfoot > tr > td
+{
+	border:0;
+}
+.table
+{
+	border:0;
+}
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border-top: 0;
+}
+
+.table_search tbody tr:hover, .lessons > .table-striped > tbody > tr > td > span > a{
+  cursor: pointer;
+}
+
+
+/* duplicated 클래스가 캐스캐이딩 기준으로 c클래스의 style의 우선순위보다 높아지기 위함 */
+.lessons > #timetable > tbody > tr > td.duplicated
+{
+	background : #e00000 !important;
+	color : white;
+	border : 0;
+}
+
+.lessons > #timetable > tbody > tr > td.temporary_fill
+{
+	background : #009ce6 !important;
+	color : white;
+}
+
+.lessons > #timetable > tbody > tr > td.not_duplicated
+{
+	background : #eeeeee;
+}
+
+.timetable_container{
+	width:55%;
+	float:left;
+
+	.timetable_name_box
+	{
+		display :inline-block;
+		
+		span
+		{
+			width:15px;
+			height:15px;
+		}
+	}
+
+	.timetable_total_grade
+	{
+		display :inline-block;
+		margin-left : 25px;
+		color : #cbd4db;	
+	}
+
+	.lessons
+	{
+
+		td {
+			height:32px;
+			.duplicated
+			{
+				background-color : #fff3f2 !important;
+			}
+		}
+		.c0{
+			background-color : $bg_red !important;
+			color : $ft_red; 
+		}	
+		.c1{
+			background-color : $bg_orange !important;
+			color : $ft_orange;
+		}	
+		.c2{
+			background-color : $bg_yellow !important;
+			color : $ft_yellow;
+		}	
+		.c3{
+			background-color : $bg_green !important;
+			color : $ft_green;
+		}
+		.c4{
+			background-color : $bg_blue !important;
+			color : $ft_blue;
+		}
+		.c5{
+			background-color : $bg_navy !important;
+			color : $ft_navy;			
+		}
+		.lec{}
+		.lec_box
+		{
+			position:relative;
+
+			.lec_place, .lec_professor, .lec_name {
+				width:80%;		
+			}
+			
+
+			.del_btn {
+				cursor : pointer;
+				top   : 0;
+			}
+			
+
+			a{
+				color : #333333;
+				
+				.info_btn{
+				cursor : pointer;
+				top: 20px;
+				}	
+			}
+
+			.glyphicon {
+				right : 0;
+				position:absolute;
+			}	
+		}
+	}
+}
+
+
+
+/* detailsearch */
+div.detailsearch{
+    text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

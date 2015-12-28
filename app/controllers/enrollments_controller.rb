@@ -1,8 +1,9 @@
 class EnrollmentsController < ApplicationController
 	def create
-		@request_lecture = current_user.enrollments.build(enrollment_params)
-		@request_lecture.save!
+		current_timetable = Timetable.find(params[:timetable_id])
 
+		@request_lecture = current_timetable.enrollments.build(enrollment_params)
+		@request_lecture.save!
 
 		lec = Lecture.find(params[:lecture_id])
 		@place = lec.place
@@ -14,8 +15,10 @@ class EnrollmentsController < ApplicationController
 	end
 
 	def destroy 
-		@timetable = Enrollment.find_by(lecture_id: params[:lecture_id])
-		@timetable.destroy
+		timetable = Timetable.find(params[:timetable_id])
+
+		@lecture = timetable.enrollments.find_by(lecture_id: params[:lecture_id])
+		@lecture.destroy
 
 		respond_to do |format|
 			format.js
@@ -23,21 +26,17 @@ class EnrollmentsController < ApplicationController
 		end
 	end
 
+
+
 	private
 
     def enrollment_params
-    	params.permit(:begin_time, :end_time, {:days => []}, :lecture_id)
+    	params.permit(:begin_time, :end_time, {:days => []}, :lecture_id, :timetable_id)
     end
 
-    def time_validation
-
+    def validate_enrollment
+    	
     end
-    # def subject_and_professor_name_existed?
-    # 	# 등록한 강의가 1개 이상이니?
-    # 	if self.
-    # end
-
-
 
 
 

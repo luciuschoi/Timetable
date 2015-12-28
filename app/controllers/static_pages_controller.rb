@@ -2,6 +2,8 @@ class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
    before_action :gohome, only: [:daemoon]
    before_action :goforcingwritting, only:[:home, :newsfeed]
+   
+  
   def home
     if params[:search]
       if !params[:major].nil? && !params[:major].include?('모든학과')
@@ -49,28 +51,32 @@ class StaticPagesController < ApplicationController
 
   end 
 
-  def rank
+  def rank  
 
-  
+    # 검색 수행 유무 확인
     if params[:search]==''||params[:search].nil?
 
-# <<<<<<< HEAD
-#     if params[:search]
-#       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 6)
-# =======
-
     else
-     
         @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
-   
     end
-    @lectures_in_timetable = current_user.enrollments
-  end
     
-  def propose
+    # 시간표에 강의 등록한 사용자
+    if current_user.timetables[0]
+      # 기본 타임테이블(0번 인덱스) 안에 등록된 강의 collection 담기
+      @lectures_in_timetable = current_user.timetables[0].enrollments  
+      # 유저가 생성한 타임테이블 collection 
+      @timetables = current_user.timetables
     
-  end
+    # 강의 등록한 적 없는 사용자
+    else
+      current_user.timetables.create!(name: "기본시간표")
+      @lectures_in_timetable = current_user.timetables[0].enrollments  
+    end
 
+    # enrollment 있는 사용자
+    
+  end
+    
   def menual
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
@@ -101,7 +107,7 @@ class StaticPagesController < ApplicationController
     else 
 
      # @lectures=Lecture.all.order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
-       @lectures=Lecture.search('asgreagjergoierjiogjerigjeriogj').order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+       @lectures=Lecture.search_home('asgreagjergoierjiogjerigjeriogj').order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
 
     end
   end
@@ -152,6 +158,7 @@ class StaticPagesController < ApplicationController
       redirect_to home_path
     end
   end
+
   
   
 end

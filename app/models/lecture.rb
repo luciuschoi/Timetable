@@ -28,8 +28,10 @@ class Lecture < ActiveRecord::Base
   #   header = spreadsheet.row(1)
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     lecture = find_by_id(row["id"]) || new
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major","lecturetime", "place", "isu")
+
+  #     lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu")
+  #     lecture.lecturetime = [row["lecturetime"]]
 
   #     lecture.save
   #   end
@@ -41,13 +43,31 @@ class Lecture < ActiveRecord::Base
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+      @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
       #lecture = find_by_id(row["id"]) || new
-      lecture.update_attribute("isu", row["isu"] )
-      lecture.update_attribute("place", row["place"] )
-      lecture.update_attribute("lecturetime", row["lecturetime"])
+      # lecture.update_attribute("isu", row["isu"] )
+      # lecture.update_attribute("place", row["place"] )
+      
+      # if lecture.lecturetime == nil
+      @bool_value = true
+        unless @lecture.lecturetime.nil?
+          if @lecture.lecturetime.length >= 1
+            @lecture.lecturetime.each do |time|
+              if time == row["lecturetime"]
+                @bool_value = false
+              end
+            end
+          end
+        end
 
-      lecture.save
+        if @bool_value
+          @lecture.lecturetime << row["lecturetime"]  
+        end
+      # elsif lecture.lecturetime.length >= 1
+      #   lecture.lecturetime << row["lecturetime"]
+      # end
+      # lecture.lecturetime = [row["lecturetime"]]
+      @lecture.save
     end
   end
 
@@ -63,28 +83,33 @@ class Lecture < ActiveRecord::Base
   #   header = spreadsheet.row(1)
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #       row.to_hash.slice("subject", "professor", "major","lecturetime")
-  #       @lecture= Lecture.where(subject: row["subject"], professor: row["professor"]).first
+  #     row.to_hash.slice("subject", "professor", "major","lecturetime")
+  #     @lecture= Lecture.where(subject: row["subject"], professor: row["professor"]).first
         
-         
+  #     byebug
   #    #첫번째 시도 시 하기 
-  #     # @lecture.lecturetime = {:first => row["lecturetime"]}
+  #     @lecture.lecturetime = {:first => row["lecturetime"]}
   #   # 두번째 시도 시 하기  
 
 
-  #     if(@lecture.lecturetime[:second].nil?&& @lecture.lecturetime[:first]!= row["lecturetime"])
-  #        counts=@lecture.lecturetime.count 
-  #       counts.times do |i|
-  #       end
+  #     # if(@lecture.lecturetime[:second].nil? && @lecture.lecturetime[:first] != row["lecturetime"])
+  #     #   counts=@lecture.lecturetime.count 
 
-  #         first=@lecture.lecturetime[:first]
-  #          @lecture.lecturetime = {:first => first, :second => row["lecturetime"]}
-      
-  #     elsif(@lecture.lecturetime[:third].nil? && @lecture.lecturetime[:first]!= row["lecturetime"]&&@lecture.lecturetime[:second]!= row["lecturetime"])
-      
-  #         first=@lecture.lecturetime[:first]
-  #         second=@lecture.lecturetime[:second]
-  #         @lecture.lecturetime = {:first => first, :second => second, :third => row["lecturetime"]}
+  #     #   counts.times do |i|
+  #     #   end
+
+  #     #   first=@lecture.lecturetime[:first]
+  #     #   @lecture.lecturetime = {:first => first, :second => row["lecturetime"]}
+
+  #     # elsif(@lecture.lecturetime[:third].nil? && @lecture.lecturetime[:first]!= row["lecturetime"]&&@lecture.lecturetime[:second]!= row["lecturetime"])
+
+  #     #   first=@lecture.lecturetime[:first]
+  #     #   second=@lecture.lecturetime[:second]
+  #     #   @lecture.lecturetime = {:first => first, :second => second, :third => row["lecturetime"]}
+  #     # end
+  #   end
+  # end
+
        
 
 
@@ -136,18 +161,8 @@ class Lecture < ActiveRecord::Base
 
   def self.search_timetable(search)
     unless search.nil?
-      
-      if (search=="인기강의")
-
-      timetables=Timetable.group(:subject,:professor).select("count(*) as count, subject").order("count DESC")
-      where(['subject Like ?', "#{timetables.subject}%"])
-
-      else
-      where(['professor LIKE ? OR subject Like ?', 
-        "#{search}%", "#{search}%"])
-      end
+      where(['professor LIKE ? OR subject LIKE ? OR major LIKE ?', "#{search}%","#{search}%","#{search}%"])
     end
-
   end  
 
   def self.search_home(search)  

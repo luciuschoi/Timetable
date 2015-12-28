@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
-
+ get 'detailsearch' =>'timetables#detailsearch'
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
  root 'static_pages#daemoon'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
  get 'forcingwritting' =>'static_pages#forcingwritting'
  get 'first_login' => 'static_pages#first_login'
 
-  get 'signup'  => 'users#new'
+ get 'signup'  => 'users#new'
 
  get    'login'   => 'sessions#new'
  post   'login'   => 'sessions#create'
@@ -28,7 +28,18 @@ Rails.application.routes.draw do
  post 'enrollments/make_a_change' => 'enrollments#make_a_change'
  delete 'delete_enrollment' => 'enrollments#destroy'
  post 'add_enrollment' => 'enrollments#create'
-#resources :lectures
+
+
+# get '/timetable/:id', to: 'timetables#timetable', as: 'timetable'
+# post 'new_timetable'  => 'timetables#create'
+delete '/delete_timetable/:id' => 'timetables#destroy', as: 'delete_timetable'
+# patch '/timetables/:id' => 'timetables#update', as: 'timetable'
+# put '/timetables/:id' => 'timetables#update', as: 'update_timetable'
+resources :timetables, only: [:show, :create, :new, :edit, :update]
+get 'copy'   => 'timetables#copy'
+post 'paste' => 'timetables#paste'
+
+
 resources :users do
    member { get :timetable }
 end 

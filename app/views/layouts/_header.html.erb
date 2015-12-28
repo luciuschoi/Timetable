@@ -11,7 +11,7 @@
           </button>
 
           <!-- QQQQ -->
-          <% if current_user && current_user.nickname.nil?%>
+          <% if current_user && current_user.nickname.nil?%> 
             <a class="navbar-brand" href="#" id="header">아뭐듣지</a>
           <% else %>
             <a class="navbar-brand" href="/home" id="header">아뭐듣지</a>
@@ -19,24 +19,15 @@
 
         </div>
 
-
-
-        
-
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" style = "margin-left:80px;">
-          <% if current_page? controller: 'static_pages', action: 'rank'%>
-            <li>
-              <%= link_to '시간표짜기', rank_path, class: 'activate'%>
-            </li>
-          <% else %> 
-            <li>
-              <%= link_to '시간표짜기', rank_path%>
-            </li>  
-          <% end %> 
+          
+            <%= render 'layouts/header_timetable_dropdown'%>
+         
+
             <% if current_page? controller: 'static_pages', action: 'newsfeed'%>
               <li class ="activate">
-                <%= link_to '최근평가', newsfeed_path, class: 'activate'%>
+                <%= link_to '최근평가', class: 'activate'%>
                 
               </li>
               
@@ -97,3 +88,8 @@
           </ul>
         </div><!--/.nav-collapse -->
     </nav>
+
+
+<script>
+  $('.dropdown-toggle').dropdown()
+</script>

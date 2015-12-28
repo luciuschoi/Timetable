@@ -4,7 +4,6 @@ class LecturesController < ApplicationController
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
 	before_action :godaemoon, only:[:show]
-	#before_action :forcingwritting, only: [:show, :timetable]
 	require 'roo'
 
 	def show
