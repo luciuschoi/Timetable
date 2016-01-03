@@ -29,7 +29,7 @@ class Lecture < ActiveRecord::Base
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
   #     lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu")
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu", "semester")
   #     lecture.lecturetime = [row["lecturetime"]]
   #     lecture.save
   #   end
@@ -42,32 +42,48 @@ class Lecture < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
-      #lecture = find_by_id(row["id"]) || new
+      # lecture = find_by_id(row["id"]) || new
       # lecture.update_attribute("isu", row["isu"] )
       # lecture.update_attribute("place", row["place"] )
-      
-      # if lecture.lecturetime == nil
-      @bool_value = true
-        unless @lecture.lecturetime.nil?
-          if @lecture.lecturetime.length >= 1
-            @lecture.lecturetime.each do |time|
-              if time == row["lecturetime"]
-                @bool_value = false
-              end
-            end
-          end
-        end
-
-        if @bool_value
-          @lecture.lecturetime << row["lecturetime"]  
-        end
-      # elsif lecture.lecturetime.length >= 1
-      #   lecture.lecturetime << row["lecturetime"]
-      # end
-      # lecture.lecturetime = [row["lecturetime"]]
+      @lecture.update_attribute("semester", row["semester"])
       @lecture.save
     end
   end
+  
+
+  # 3 DB에 있는 강의 중 lecturetime 업데이트.. 좀 복잡한거 설명 들어야함
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+  #     #lecture = find_by_id(row["id"]) || new
+  #     # lecture.update_attribute("isu", row["isu"] )
+  #     # lecture.update_attribute("place", row["place"] )
+      
+  #     # if lecture.lecturetime == nil
+  #     @bool_value = true
+  #       unless @lecture.lecturetime.nil?
+  #         if @lecture.lecturetime.length >= 1
+  #           @lecture.lecturetime.each do |time|
+  #             if time == row["lecturetime"]
+  #               @bool_value = false
+  #             end
+  #           end
+  #         end
+  #       end
+
+  #       if @bool_value
+  #         @lecture.lecturetime << row["lecturetime"]  
+  #       end
+  #     # elsif lecture.lecturetime.length >= 1
+  #     #   lecture.lecturetime << row["lecturetime"]
+  #     # end
+  #     # lecture.lecturetime = [row["lecturetime"]]
+  #     @lecture.save
+  #   end
+  # end
 
 
 
@@ -157,9 +173,10 @@ class Lecture < ActiveRecord::Base
   end
 
 
-  def self.search_timetable(search)
+  def self.search_timetable(search, semester)
     unless search.nil?
-      where(['professor LIKE ? OR subject LIKE ? OR major LIKE ?', "#{search}%","#{search}%","#{search}%"])
+      where(['professor LIKE ? OR subject LIKE ? OR major LIKE ? AND semester LIKE ?',
+             "#{search}%","#{search}%","#{search}%", "#{semester}"])
     end
   end  
 

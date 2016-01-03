@@ -18,7 +18,7 @@
   </div>
 
   <div class = "timetable_total_grade">
-    <p class = "lead"> 21 학점</p>
+    <p class = "lead"> <%= @current_timetable.semester%> 시간표 </p>
   </div>
   
   <div class="lessons" style = "font-size:14px;">
@@ -35,7 +35,7 @@
             placeholder: :"과목 또는 교수님명을 입력해주세요!",
             :class => 'form-control  form-group rank-textf',
             :id => 'textfield' %>
-
+        <%= hidden_field_tag :semester, @current_timetable.semester %>
         <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
           <i class="glyphicon glyphicon-search"></i>
         <%end%>
@@ -650,7 +650,7 @@
     for(var i = 0; i < contents.length; i++)
     {
       var temp_span = $(content_box).find('span')[i];
-      if (contents[i] == null) 
+      if (contents[i] == null || contents[i].length == 0) 
       {
         $(temp_span).remove();
       }
@@ -666,7 +666,7 @@
     $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign');
 
     $(content_box).find('.info_btn').wrap(a_info);
-    $('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id);
+    $(lec_cell).find('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id);
 
   }
 
