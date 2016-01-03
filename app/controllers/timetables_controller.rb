@@ -4,7 +4,7 @@ class TimetablesController < ApplicationController
 		if params[:search]==''||params[:search].nil?
 
 	    else
-	        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 4)
+	        @lectures = Lecture.search_timetable(params[:search], params[:semester]).paginate(:page => params[:page], :per_page => 4)
 	    end
 
 	    # 시간표에 강의 등록한 사용자
@@ -16,7 +16,6 @@ class TimetablesController < ApplicationController
 			# activated_timetable(t)
 			
 			@timetables = current_user.timetables
-	      	
 	    # 강의 등록한 적 없는 사용자
 	    else
 	      current_user.timetables.create!(name: "기본시간표")
@@ -77,7 +76,7 @@ class TimetablesController < ApplicationController
 	private 
 
 	def timetable_params
-		params.require(:timetable).permit(:name)
+		params.require(:timetable).permit(:name, :semester)
 	end
 
 
