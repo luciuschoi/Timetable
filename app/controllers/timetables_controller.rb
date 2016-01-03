@@ -4,7 +4,7 @@ class TimetablesController < ApplicationController
 		if params[:search]==''||params[:search].nil?
 
 	    else
-	        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
+	        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 4)
 	    end
 
 	    # 시간표에 강의 등록한 사용자

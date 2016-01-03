@@ -23,53 +23,62 @@ class Lecture < ActiveRecord::Base
   # 2  DB에 있는 강의에 몇가지 COLUMN 업데이트   #
 
   # 1 기존에 없던 강의 추가 
-  # def self.import(file)
-  #   spreadsheet = open_spreadsheet(file)
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-
-  #     lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu")
-  #     lecture.lecturetime = [row["lecturetime"]]
-
-  #     lecture.save
-  #   end
-  # end
-
-  # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
-      #lecture = find_by_id(row["id"]) || new
-      # lecture.update_attribute("isu", row["isu"] )
-      # lecture.update_attribute("place", row["place"] )
-      
-      # if lecture.lecturetime == nil
-      @bool_value = true
-        unless @lecture.lecturetime.nil?
-          if @lecture.lecturetime.length >= 1
-            @lecture.lecturetime.each do |time|
-              if time == row["lecturetime"]
-                @bool_value = false
-              end
-            end
-          end
-        end
 
-        if @bool_value
-          @lecture.lecturetime << row["lecturetime"]  
-        end
-      # elsif lecture.lecturetime.length >= 1
-      #   lecture.lecturetime << row["lecturetime"]
-      # end
+      lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
+      lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu")
+      lecture.lecturetime = nil
       # lecture.lecturetime = [row["lecturetime"]]
-      @lecture.save
+
+      lecture.save
     end
   end
+
+  # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+  #     # lecture = find_by_id(row["id"]) || new
+  #     # lecture.update_attribute("isu", row["isu"] )
+  #     # lecture.update_attribute("place", row["place"] )
+      
+  #     # if lecture.lecturetime == nil
+
+  #     ##########################################################################################
+  #     @bool_value = true
+  #     if @lecture
+  #       unless @lecture.lecturetime.nil?
+  #         if @lecture.lecturetime.length <= 3
+  #           @lecture.lecturetime.each do |time|
+  #             if time == row["lecturetime"]
+  #               @bool_value = false
+  #             end
+  #           end
+  #         else
+  #           @lecture.lecturetime = nil
+  #         end
+  #       end
+
+  #       if @bool_value && @lecture.lecturetime.nil?
+  #         @lecture.lecturetime = [row["lecturetime"]]
+  #       elsif @bool_value
+  #         @lecture.lecturetime << row["lecturetime"]  
+  #       end
+        
+  #       @lecture.save
+  #     end
+        
+  #     #########################################################################################
+
+  #   end
+  # end
 
 
 

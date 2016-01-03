@@ -643,7 +643,6 @@
     $(lec_cell).prepend(content_box);
     content_box = $(lec_cell).find('div');
     $(content_box).addClass('lec_'+lec_id);
-
     
     $(content_box).prepend(span_pl).prepend(span_lp).prepend(span_ln);
 
@@ -666,7 +665,7 @@
     $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign');
 
     $(content_box).find('.info_btn').wrap(a_info);
-    $('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id);
+    $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
 
   }
 
