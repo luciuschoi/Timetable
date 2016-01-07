@@ -46,8 +46,10 @@ class Lecture < ActiveRecord::Base
       # lecture = find_by_id(row["id"]) || new
       # lecture.update_attribute("isu", row["isu"] )
       # lecture.update_attribute("place", row["place"] )
-      @lecture.update_attribute("semester", row["semester"])
-      @lecture.save
+      if @lecture
+        @lecture.update_attribute("semester", row["semester"])
+        @lecture.save
+      end
     end
   end
   
@@ -218,7 +220,7 @@ class Lecture < ActiveRecord::Base
 
   def self.search_timetable(search, semester)
     unless search.nil?
-      where(['professor LIKE ? OR subject LIKE ? OR major LIKE ? AND semester LIKE ?',
+      where(['(professor LIKE ? OR subject LIKE ? OR major LIKE ?)AND semester LIKE ?',
              "#{search}%","#{search}%","#{search}%", "#{semester}"])
     end
   end  
