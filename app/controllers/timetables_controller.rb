@@ -1,10 +1,13 @@
 class TimetablesController < ApplicationController
 	def show
 		
+		if !params[:major].nil?&&!params[:isu].nil?
+			@lectures = Lecture.detailSearch(params[:major],params[:isu]).paginate(:page => params[:page], :per_page => 4)
+		end
 		if params[:search]==''||params[:search].nil?
 
-	    else
-	        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
+		else
+	        @lectures = Lecture.search_timetable(params[:search],params[:semester]).paginate(:page => params[:page], :per_page => 4)
 	    end
 
 	    # 시간표에 강의 등록한 사용자
@@ -77,7 +80,7 @@ class TimetablesController < ApplicationController
 	private 
 
 	def timetable_params
-		params.require(:timetable).permit(:name)
+		params.require(:timetable).permit(:name,:semester)
 	end
 
 

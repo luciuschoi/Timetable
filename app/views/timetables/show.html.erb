@@ -39,12 +39,16 @@
         <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
           <i class="glyphicon glyphicon-search"></i>
         <%end%>
+        <a href=<%=detailsearch_path%> id="detailbox" class= "iframe btn btn-default btn-zoomin"><span class= "glyphicon glyphicon-zoom-in"></span></a>
     <% end %>  
   </div>
   <%= render 'search_table', :lectures => @lectures %>
      <!-- 검색 결과 -->
     <% if @lectures.nil? %> 
       <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+    <% else %>
+      <div>'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
+  
     <%end%> 
 </div>
 
@@ -55,6 +59,16 @@
   </div>
 </div>
 
+<script>
+$(document).ready(function() {
+    $(".iframe").fancybox({
+        type: 'iframe',
+        'width':200,
+        'height':200,
+        'autoSize' : false
+    });
+});
+</script> 
 
 
 
