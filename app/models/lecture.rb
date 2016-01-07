@@ -30,11 +30,15 @@ class Lecture < ActiveRecord::Base
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
   #     lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu", "semester")
-  #     lecture.lecturetime = [row["lecturetime"]]
+
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester")
+  #     lecture.lecturetime=nil
+
+  #     #lecture.lecturetime = [row["lecturetime"]]
   #     lecture.save
   #   end
   # end
+
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
   def self.import(file)
@@ -130,6 +134,9 @@ class Lecture < ActiveRecord::Base
   #   end
   # end
 
+
+   end
+ end
 
 
 
@@ -232,6 +239,9 @@ class Lecture < ActiveRecord::Base
       end
   end  
 
+  def self.detailSearch(major, isu)
+      where(['major LIKE ? OR isu Like ?', "#{major}%","#{isu}%"]).order('acc_total DESC')
+  end
 
 
 

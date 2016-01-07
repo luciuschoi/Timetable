@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
    before_action :gohome, only: [:daemoon]
    before_action :goforcingwritting, only:[:home, :newsfeed]
    
-  
+ 
   def home
     if params[:search]
       if !params[:major].nil? && !params[:major].include?('모든학과')
