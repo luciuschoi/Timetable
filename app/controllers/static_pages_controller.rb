@@ -96,10 +96,10 @@ class StaticPagesController < ApplicationController
 
       if !params[:major].nil? && !params[:major].include?('모든학과')
 
-      @lectures = Lecture.search(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+      @lectures = Lecture.search_home(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
            
       else 
-       @lectures = Lecture.search(params[:search]).paginate(:page => params[:page], :per_page => 10 )
+       @lectures = Lecture.search_home(params[:search]).paginate(:page => params[:page], :per_page => 10 )
       end 
     elsif !params[:major].nil? && !params[:major].include?('모든학과')
       @lectures = Lecture.where(:major =>params[:major]).

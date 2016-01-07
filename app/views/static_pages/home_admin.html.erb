@@ -2,6 +2,7 @@
 	<table>
 		<thead>
 			<tr>
+				<td> 학기 </td>
 				<td> 강의명 </td>
 				<td> 교수명 </td>
 				<td> 개설학과 </td>
@@ -16,6 +17,7 @@
 		<tbody>
 			<% @lectures.each do |lec| %>
 				<tr>
+					<td> <%= lec.semester %> </td>
 					<td> <%= lec.subject%>  </td>
 					<td> <%=lec.professor%> </td>
 					<td> <%= lec.major%> </td>
