@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103121508) do
+ActiveRecord::Schema.define(version: 20160109043227) do
 
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160103121508) do
     t.string   "place"
     t.string   "isu"
     t.string   "semester"
+    t.float    "credit"
   end
 
   create_table "timetables", force: :cascade do |t|

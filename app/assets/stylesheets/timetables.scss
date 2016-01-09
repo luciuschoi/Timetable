@@ -341,13 +341,24 @@ $ft_navy      : #095fb5;
 		}
 	}
 
-	.timetable_total_grade
+    .name_edit_btn
+    {
+        display: inline-block;
+    }
+
+	.timetable_semester
 	{
 		display :inline-block;
 		margin-left : 25px;
 		color : #cbd4db;	
 	}
 
+    .total_credits
+    {
+        display : inline-block;
+    }
+
+    
 	.lessons
 	{
 

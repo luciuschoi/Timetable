@@ -6,6 +6,7 @@
 				<td> 강의명 </td>
 				<td> 교수명 </td>
 				<td> 개설학과 </td>
+				<td> 학점 </td>
 				<td> 장소 </td>
 				<td> 강의시간 </td>
 				<td> show </td>
@@ -21,6 +22,7 @@
 					<td> <%= lec.subject%>  </td>
 					<td> <%=lec.professor%> </td>
 					<td> <%= lec.major%> </td>
+					<td> <%= lec.credit %> </td>
 					<td> <%= lec.place %> </td>
 					<td>
 						<% unless lec.lecturetime.nil? %>

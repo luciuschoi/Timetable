@@ -12,13 +12,18 @@
     </p>
   </div>
 
-  <div style = "display :inline-block">
+  <div class = "name_edit_btn">
     <%= link_to " ", edit_timetable_path(@current_timetable),
                      class: 'glyphicon glyphicon-pencil' %>
   </div>
 
-  <div class = "timetable_total_grade">
-    <p class = "lead"> <%= @current_timetable.semester%> 시간표 </p>
+  <div class = "timetable_semester">
+    <p class = "lead"> <%= @current_timetable.semester%> / </p>
+  </div>
+
+  <div class = "total_credits">
+    <span class = "lead credits"></span>
+    <span class = "lead">학점</span>
   </div>
   
   <div class="lessons" style = "font-size:14px;">
@@ -216,7 +221,8 @@
     var e_row;
     var lec_professor;
     var lec_place;
-    var duplicated_lec_name = 'false'
+    var duplicated_lec_name = 'false';
+
     $(this).off('mouseleave');
     $(this).off('mouseenter');
 
@@ -231,6 +237,8 @@
     var lec_id = $(this).attr('class').split('_')[1];
     var lec_name = $(this).find('.subject').html();
     var lec_isu = $(this).find('.isu').html();
+    var credit = $(this).find('.credit').html();
+
 
 
     // lecture_time_data = ["월수","13:30","15:00"]
@@ -270,8 +278,10 @@
     }
     else
     {
-      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event.type);
+      modify_total_credits(credit, '+');
+      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
       make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu);
+
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
     }
     
@@ -507,7 +517,7 @@
     return first_cells;
   }
 
-  function default_fill_cell(s_row, e_row, col, lec_id, lec_name, lec_professor, lec_place, event_string)
+  function default_fill_cell(s_row, e_row, col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event_string)
   {
     var col_num;
     var row_num;
@@ -556,7 +566,7 @@
 
         }
 
-        mix_cell_text(lecture_cell, lec_id, lec_name, lec_professor, lec_place, s_row, e_row);  
+        mix_cell_text(lecture_cell, lec_id, lec_name, lec_professor, lec_place, s_row, e_row, lec_credit);  
     }
   }
 
@@ -618,7 +628,7 @@
     
   }
 
-  function mix_cell_text(lec_cell, lec_id, lec_name, lec_professor, lec_place, s_row, e_row)
+  function mix_cell_text(lec_cell, lec_id, lec_name, lec_professor, lec_place, s_row, e_row, lec_credit)
   { 
     //
     var completed_content;
@@ -634,11 +644,12 @@
     span_pl     = '<span class = lec_place> </span>';
     span_lp     = '<span class = lec_professor> </span>';
     span_ln     = '<span class = lec_name></span>';
+    span_cr     = '<span class = lec_credit></span>';
     span_del    = '<span class = del_btn> </span>';
     a_info      = '<a> </a>';
     span_info   = '<span class = info_btn> </span>';
 
-    var contents = [lec_name, lec_professor, lec_place];
+    var contents = [lec_name, lec_professor, lec_place, lec_credit];
 
     // 1 element 추가
     // 2 class 추가
@@ -652,9 +663,10 @@
     // 기존 코드 
     // $(content_box).addClass('lec_'+lec_id);
     $(content_box).addClass('l'+s_row+'-'+e_row+'_'+lec_id);
+    // $(content_box).addClass(lec_credit);
 
     // td안에 span을 순서대로 추가(place -> professor -> lecture_name)
-    $(content_box).prepend(span_pl).prepend(span_lp).prepend(span_ln);
+    $(content_box).prepend(span_cr).prepend(span_pl).prepend(span_lp).prepend(span_ln);
 
     for(var i = 0; i < contents.length; i++)
     {
@@ -670,6 +682,7 @@
       }
     }
 
+    $(content_box).find('.lec_credit').css('display','none');
     $(content_box).append(span_info).append(span_del);
     $(content_box).find('.del_btn').addClass('glyphicon glyphicon-remove');
     $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign');
@@ -710,6 +723,10 @@
 
     delete_timetable_cell(del_class[1]);
     delete_cart_table_cell(del_class[1]);
+
+    var deleted_credit = $(this).parent().find('.lec_credit').html();
+    
+    modify_total_credits(deleted_credit, '-');
 
     var del_id = del_class[1].split('_');
     var del_end_time = del_id[0].split('-');
@@ -785,7 +802,6 @@
   }
 
 
-
   // 웹페이지 로드시, 현재 유저가 등록한 강의를 시간표에 보여준다.
   jQuery( document ).ready(function( $ )
   {   
@@ -796,10 +812,14 @@
     var lec_name;
     var lec_professor;
     var lec_place;
+    var lec_credit
     var event_string = 'ready';
+
+    var credits = 0;
 
     var current_timetable_id = "<%= @current_timetable.id %>";
     $('.lessons').attr('id', current_timetable_id);
+    
     <% @lectures_in_timetable.each do |lec_in_timetable| %>
       
       var s_row = <%= lec_in_timetable.begin_time %>;
@@ -822,11 +842,37 @@
       lec_name = "<%= l.subject %>";
       lec_professor = "<%= l.professor %>";
       lec_place = "<%= l.place %>";
-
+      lec_credit = <%= l.credit %>
+      credits = credits + lec_credit
+      
       // 처음 html 로드시, 사용자가 시간표에 등록한 강의들을 timetable cell에 채우는 함수 
-      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, event_string);
+      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event_string);
     <% end %>
+
+    modify_total_credits(credits);
   }); 
+
+  function modify_total_credits(credits, operator)
+  {
+    var existed_credits = $('.credits').html();
+    var new_credits = credits;
+    // 기존에 등록된 강의가 있다면  =  시간표에 0학점 이상의 강의가 등록되있다
+    if (existed_credits.length > 0)
+    {
+      // Number 함수는 converting string to integer
+      existed_credits = Number(existed_credits);
+      if (operator == '+')
+      {
+        new_credits = existed_credits + Number(new_credits);
+      }
+      else if (operator == '-')
+      {
+        new_credits = existed_credits - Number(new_credits);
+      }
+      
+    }
+    $('.credits').html(new_credits);  
+  }
 </script>
 
 
