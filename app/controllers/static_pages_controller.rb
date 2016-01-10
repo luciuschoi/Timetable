@@ -1,8 +1,9 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
    before_action :gohome, only: [:daemoon]
+   before_action :goLog, only: [:forcingwritting]
    #before_action :goforcingwritting, only:[:home, :newsfeed]
-   
+    #before_action :goLog, :only [:forcingwritting]
  
   def home
     if params[:search]
@@ -38,7 +39,8 @@ class StaticPagesController < ApplicationController
         format.html {redirect_to newsfeed_path}
       end
     else
-      @valuations=Valuation.order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
+      @valuations=Valuation.join_major.where("major = ?", '전체학과')
+      .order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
       @count_of_today = 0
       @major_name = '전체학과'
       @valuations.each do |v|
@@ -76,7 +78,14 @@ class StaticPagesController < ApplicationController
     # enrollment 있는 사용자
     
   end
-    
+
+  def goLog
+    unless current_user
+      flash[:danger]="로그인 후 이용바랍니다."
+      redirect_to login_url
+    end
+  end
+
   def menual
     @menual_num
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
@@ -90,7 +99,8 @@ class StaticPagesController < ApplicationController
     render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
   end
 
-
+  def support 
+  end
   def forcingwritting
     if params[:search]
 
@@ -129,10 +139,13 @@ class StaticPagesController < ApplicationController
   end
 
   
+  
   def search
     @lectures = Lecture.where('major = ?', params[:lecture_name])
     render '_home_user'    
   end
+
+
 
  private 
 
@@ -148,6 +161,7 @@ class StaticPagesController < ApplicationController
         redirect_to edit_user_url(current_user)
      end
   end
+
 
   def user_login?
     if session[:user_id].nil? && session[:user_name].nil?

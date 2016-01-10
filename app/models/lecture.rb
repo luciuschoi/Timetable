@@ -2,7 +2,7 @@ class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
 
-  
+  attr_accessor :id
   validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
@@ -180,7 +180,6 @@ class Lecture < ActiveRecord::Base
         self.acc_total = total/counts
     end   
   end
-
 
   def self.search_timetable(search, semester)
     unless search.nil?

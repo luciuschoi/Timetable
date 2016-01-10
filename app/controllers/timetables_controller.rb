@@ -1,4 +1,5 @@
 class TimetablesController < ApplicationController
+	before_action :goLog, only: [:new, :show]
 	def show
 		
 		if !params[:major].nil?&&!params[:isu].nil?
@@ -26,6 +27,12 @@ class TimetablesController < ApplicationController
 	      current_user.timetables.create!(name: "기본시간표")
 	      @lectures_in_timetable = current_user.timetables[0].enrollments  
 	    end
+	end
+	def goLog
+		unless current_user
+			flash[:danger]="로그인 후 이용 바랍니다."
+			redirect_to login_path
+		end
 	end
 
 	def new
@@ -77,6 +84,7 @@ class TimetablesController < ApplicationController
 	def detailsearch
 		render(:layout => "layouts/noheader") #헤더파일 포함 안함 !
 	end
+
 
 	private 
 
