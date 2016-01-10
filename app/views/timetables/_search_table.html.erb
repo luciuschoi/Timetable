@@ -6,6 +6,7 @@
     <% else %>
 
         <% lectures.each do |lec| %>
+            <!-- 강의 시간이 2개 이상 존재하는 강의 -->
             <% if !lec.lecturetime.nil? && lec.lecturetime.length >= 1 %>
               <% for i in 0..lec.lecturetime.length-1 %>
                 <div class="list-group lec_<%= lec.id%>" style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
@@ -14,9 +15,11 @@
                   <span class = "professor"><%= lec.professor %> / </span>
                   <span class = "place"> <%=lec.place%> </span>       
                   <span class = "lecture_time" style = "display:none"><%= lec.lecturetime[i] %></span>
+                  <span class = "credit" style = "display:none"><%= lec.credit %></span>
                   <span class = "isu" style = "display:none"><%= lec.isu %></span>               
                 </div>      
               <% end %>
+              <!-- 강의시간이 1개인 강의 -->
             <% else %>
                 <div class="list-group lec_<%= lec.id%>" style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
                   <h4 class = "subject"><%=lec.subject %></h4>
@@ -24,6 +27,7 @@
                   <span class = "professor"><%= lec.professor %> / </span>
                   <span class = "place"> <%=lec.place%> </span>       
                   <span class = "lecture_time" style = "display:none"></span>
+                  <span class = "credit" style = "display:none"><%= lec.credit %></span>
                   <span class = "isu" style = "display:none"><%= lec.isu %></span>               
                 </div>
             <% end %>
