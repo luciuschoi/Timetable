@@ -32,6 +32,50 @@ body{
 
 .navbar{
   background-color:#009ce6;
+
+
+}
+.btn-log{
+  margin-top:10px;
+}
+#topMenu{
+  height:40px;
+  width:100%;
+}
+#topMenu ul {
+  list-style-type:none;
+  margin:0px;
+  padding:0px;
+}
+#topMenu > ul >.topMenuLi {
+  color: white;
+  float: left;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+  padding: 10px;  
+}
+#topMenu li a:hover, #topMenu li a:focus{
+  color:black;
+  text-decoration:none;
+
+}
+
+#logo{
+  padding-top: 4px !important;
+  font-size:20px;
+  font-weight:bold;
+  margin-right:10px;
+}
+.topMenuLog{
+  vertical-align: middle;
+  text-align: center;
+  float: right;
+  padding: 10px;
+  padding-right: 20px;
+}
+.topMenuLog:after{
+  clear:both;
 }
 
 
@@ -198,7 +242,7 @@ table.nogap{
 
 .navbar{
   padding-top:5px;
-  padding-bottom:5px;
+
 
   .container{
     margin-left:20px;

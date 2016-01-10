@@ -37,152 +37,71 @@ var homework=0;  //과제량
 var level=0;    // 난이도
 var total=0;    // 총합 
 var grade_clicked=0;  // 클릭했는지 유무 확인
-
+var grade_th=-1;
+function writeGradeText(index)
+	{
+		switch(index) 
+			{
+			case 0:
+				$('#grade_text').text('FF 폭격기!! FF');
+				break;
+			case 1:
+				$('#grade_text').text('야박하시다..');	
+				break;
+			case 2:
+				$('#grade_text').text('보통');
+				break;
+			case 3:
+				$('#grade_text').text('잘 주시는 편');
+				break;
+			case 4:
+				$('#grade_text').text('꽉꽉 채워주심!!');
+				break;
+			}
+	}
 	// first_grade
-	$('#first_grade').hover(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#first_grade').on('mouseout');
-		$('#grade_text').text('FF 폭격기!! FF');
+$('#first_grade, #second_grade, #third_grade, #fourth_grade, #fifth_grade').bind({
+		"mouseenter" : function(){
+			for(i=0; i<$(this).index()+1; i++){
+				$(this).parent().children().eq(i).attr('aria-valuenow','20');
+				}
+			writeGradeText($(this).index());
+		},
+		"mouseout" : function() {
+			if(grade_clicked)
+			{
+				for(i=0; i<5; i++){
+					if(i<grade_th)
+						$(this).parent().children().eq(i).attr('aria-valuenow','20');
+					else 
+						$(this).parent().children().eq(i).attr('aria-valuenow','0');
+					}
+				writeGradeText(grade_th-1);
+			}
+			else
+			{
+				for(i=0; i<$(this).index()+1; i++)
+				{
+					$(this).parent().children().eq(i).attr('aria-valuenow','0');
+				}
+				$('#grade_text').text('');
+			}
+		},
+	    "click" : function() {
+	    	grade_clicked=1;
+	    	grade_th=$(this).index()+1;
+	    	grade=grade_th*20
+
+	    	for(i=0; i<5;i++)
+	    	  {
+	    		if(i<grade_th)
+						$(this).parent().children().eq(i).attr('aria-valuenow','20');
+				else 
+						$(this).parent().children().eq(i).attr('aria-valuenow','0');
+		      }
+	    	writeGradeText(grade_th-1);
+	    }
 	});
-
-	$('#first_grade').mouseout(function(){
-		$('#first_grade').attr('aria-valuenow', '0');
-		$('#grade_text').text('');
-	});
-
-	$('#first_grade').click(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '0');
-		$('#third_grade').attr('aria-valuenow', '0');
-		$('#fourth_grade').attr('aria-valuenow', '0');
-		$('#fifth_grade').attr('aria-valuenow', '0');
-		$('#first_grade').off('mouseout');
-		$('#second_grade').off('mouseout');
-		$('#third_grade').off('mouseout');
-		$('#fourth_grade').off('mouseout');
-		grade_clicked=1;
-		grade = 20;
-	});
-
-
-	// second_grade
-	$('#second_grade').hover(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#grade_text').text('야박하시다..');
-	});
-
-	$('#second_grade').mouseout(function(){
-		$('#first_grade').attr('aria-valuenow', '0');
-		$('#second_grade').attr('aria-valuenow', '0');
-		$('#grade_text').text('');
-	});
-
-	$('#second_grade').click(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '0');
-		$('#fourth_grade').attr('aria-valuenow', '0');
-		$('#fifth_grade').attr('aria-valuenow', '0');
-		$('#first_grade').off('mouseout');
-		$('#second_grade').off('mouseout');
-		grade = 40;
-	});
-
-	// third_grade
-	$('#third_grade').hover(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#grade_text').text('보통');
-	});
-
-	$('#third_grade').mouseout(function(){
-		$('#first_grade').attr('aria-valuenow', '0');
-		$('#second_grade').attr('aria-valuenow', '0');
-		$('#third_grade').attr('aria-valuenow', '0');
-		$('#grade_text').text('');
-	});
-
-	$('#third_grade').click(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#fourth_grade').attr('aria-valuenow', '0');
-		$('#fifth_grade').attr('aria-valuenow', '0');
-
-		$('#first_grade').off('mouseout');
-		$('#second_grade').off('mouseout');
-		$('#third_grade').off('mouseout');
-		grade = 60;
-	});
-
-	// fourth_grade
-	$('#fourth_grade').hover(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#fourth_grade').attr('aria-valuenow', '100');
-		$('#grade_text').text('잘 주시는 편');
-	});
-
-	$('#fourth_grade').mouseout(function(){
-		$('#first_grade').attr('aria-valuenow', '0');
-		$('#second_grade').attr('aria-valuenow', '0');
-		$('#third_grade').attr('aria-valuenow', '0');
-		$('#fourth_grade').attr('aria-valuenow', '0');
-		$('#grade_text').text('');
-	});
-
-
-	$('#fourth_grade').click(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#fourth_grade').attr('aria-valuenow', '100');
-		$('#fifth_grade').attr('aria-valuenow', '0');
-
-		$('#first_grade').off('mouseout');
-		$('#second_grade').off('mouseout');
-		$('#third_grade').off('mouseout');
-		$('#fourth_grade').off('mouseout');
-		grade = 80;
-	});
-
-	// fifth_grade
-	$('#fifth_grade').hover(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#fourth_grade').attr('aria-valuenow', '100');
-		$('#fifth_grade').attr('aria-valuenow','100');
-		$('#grade_text').text('꽉꽉 채워주심!!');
-	});
-
-	$('#fifth_grade').mouseout(function(){
-		$('#first_grade').attr('aria-valuenow', '0');
-		$('#second_grade').attr('aria-valuenow', '0');
-		$('#third_grade').attr('aria-valuenow', '0');
-		$('#fourth_grade').attr('aria-valuenow', '0');
-		$('#fifth_grade').attr('aria-valuenow','0');
-		$('#grade_text').text('');
-	});
-
-
-	$('#fifth_grade').click(function(){
-		$('#first_grade').attr('aria-valuenow', '100');
-		$('#second_grade').attr('aria-valuenow', '100');
-		$('#third_grade').attr('aria-valuenow', '100');
-		$('#fourth_grade').attr('aria-valuenow', '100');
-		$('#fifth_grade').attr('aria-valuenow','100');
-		$('#first_grade').off('mouseout');
-		$('#second_grade').off('mouseout');
-		$('#third_grade').off('mouseout');
-		$('#fourth_grade').off('mouseout');
-		$('#fifth_grade').off('mouseout');
-		grade = 100;
-	});
-
 //  공부량 
 	$('#first_workload').hover(function(){
 		$('#first_workload').attr('aria-valuenow', '100');

@@ -1,28 +1,8 @@
 <div class = "home_box">
-
-  <div class = "search_box">
-    <%= form_tag home_path, :method => 'get', :class =>'form-inline',
-        :style => 'text-align:center;' do %>
-      <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!" ,:class => 'form-control  form-group' ,:style => "width:40%;"%>
-      <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
-    <% end %>
-    <div class = "popular_words">
-        자주 찾는 검색어 : 서양고전강독, 경영학원론, 노용덕, 박기호
-    </div>
-  </div> <!-- search_box -->
-
-  <div class = "search_result_box">
-    <div class= "dropdown_box">
-      <h4><B>학과별로 보기</B></h4>
-      <%= render 'dropdown_btns_home'%>
-    </div>
-    <div class = "result_table">
-      <div class="sort_paginate_ajax" id="searchtables">
-          <%= render 'searchtables' %>
-      </div> 
-    </div>
-  </div>
-
+<img src="assets/homeview_withbtn.png" usemap="#button"/>
+<map name="button">
+  <area shape="rect" coords="660,260,859,302" href="/timetables/new" />
+</map>
 </div> <!-- home_box -->
 
 

@@ -80,13 +80,8 @@ class TimetablesController < ApplicationController
 	private 
 
 	def timetable_params
-		params.require(:timetable).permit(:name, :semester)
+		params.require(:timetable).permit(:name,:semester)
 	end
-
-
-
-
-
 
 
 end
