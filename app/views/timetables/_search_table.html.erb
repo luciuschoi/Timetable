@@ -8,7 +8,7 @@
         <% lectures.each do |lec| %>
             <% if !lec.lecturetime.nil? && lec.lecturetime.length >= 1 %>
               <% for i in 0..lec.lecturetime.length-1 %>
-                <div class="list-group lec_<%= lec.id%>" style="width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
+                <div class="list-group lec_<%= lec.id%>" style="clear:both;width:80%;border:1px solid #f5f5f5;margin-bottom:0;">
                   <h4 class = "subject"><%=lec.subject %></h4>
 
                   <span class = "professor"><%= lec.professor %> / </span>
@@ -29,7 +29,7 @@
             <% end %>
         <% end %>
        
-      <%= will_paginate lectures, :class=>'paginate'%>
+      <%= will_paginate lectures, :class=>'paginate', :previous_label=>'«', :next_label=>'»',:inner_window=>'1', :outer_window=>'-1'%>
     <% end %>
 <% end %>
 
@@ -38,6 +38,7 @@
 
 $(document).ready(function(){
       $("a.tooltipLink").tooltip();
+      $(".disabled").hide();
 });
 
 </script>

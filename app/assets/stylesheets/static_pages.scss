@@ -31,7 +31,18 @@ $ft_navy      : #095fb5;
 /*      첫화면(검색창)입니다.			      */
 /*   						  		  */
 .home_box{
-	width:1000px;
+  background-color: #73767D;
+  width:100%;
+  margin-top:-20px !important;
+  margin-bottom: -200px;
+}
+.home_box > img{
+	margin: auto;
+	display:block;
+
+}
+.home_box{
+
 	margin : 10px auto;
 	
 	.search_box{
@@ -360,7 +371,7 @@ $ft_navy      : #095fb5;
 .my_cart_container{
 
 	width : 30%; 
-	margin-top : 40px;
+	margin-top : 10px;
 	float:right;
 	padding-left:30px;
 	font-size:90%;
@@ -392,15 +403,41 @@ $ft_navy      : #095fb5;
 
 
 
+/* footer 입니다. */
+
+.footer{
+	display:block;
+}
+
+.footerSubject
+{
+	display:block;
+	text-align:center;
+}
+span> ul
+{
+	text-align:right;
+	display:inline;
+}
+span >ul >li
+{
+	display: inline;
+	list-style:none;
+	text-align:right;
+	padding-right:5px;
+}
+.pageList{
+	float:right;
+}
 
 
-
-
-
-
-
-
-
+.footerSubjectHr
+{
+	width:10%;
+	margin-top:0px;
+   border-top-width: 5px;
+    border-color: black;
+}
 
 
 

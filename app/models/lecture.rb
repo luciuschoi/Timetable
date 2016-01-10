@@ -92,8 +92,8 @@ class Lecture < ActiveRecord::Base
   # end
 
 
-   end
- end
+ #   end
+ # end
 
 
 

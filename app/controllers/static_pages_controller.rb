@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
    before_action :gohome, only: [:daemoon]
-   before_action :goforcingwritting, only:[:home, :newsfeed]
+   #before_action :goforcingwritting, only:[:home, :newsfeed]
    
  
   def home
@@ -124,7 +124,11 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def feedback
 
+  end
+
+  
   def search
     @lectures = Lecture.where('major = ?', params[:lecture_name])
     render '_home_user'    
