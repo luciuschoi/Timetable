@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
    before_action :fillnickname, only: [:home]
    before_action :gohome, only: [:daemoon]
-   before_action :goLog, only: [:forcingwritting]
+   before_action :goLog, only: [:forcingwritting, :newsfeed]
    #before_action :goforcingwritting, only:[:home, :newsfeed]
     #before_action :goLog, :only [:forcingwritting]
  
