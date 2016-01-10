@@ -39,7 +39,9 @@
         <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
           <i class="glyphicon glyphicon-search"></i>
         <%end%>
-        <a href=<%=detailsearch_path%> id="detailbox" class= "iframe btn btn-default btn-zoomin"><span class= "glyphicon glyphicon-zoom-in"></span></a>
+        <a href=<%=detailsearch_path%> id="detailbox" class= "iframe btn btn-default btn-zoomin">
+          <span class= "glyphicon glyphicon-zoom-in"></span>
+        </a>
     <% end %>  
   </div>
   <%= render 'search_table', :lectures => @lectures %>
