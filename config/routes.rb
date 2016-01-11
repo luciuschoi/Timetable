@@ -14,7 +14,7 @@ Rails.application.routes.draw do
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
  root 'static_pages#home'
-
+ get 'support' =>'static_pages#support'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
  get 'first_login' => 'static_pages#first_login'
