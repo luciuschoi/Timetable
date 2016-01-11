@@ -1,69 +1,69 @@
 
-<div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;">
-  <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
-</div>
-
-
-<!-- 시간표 TABLE VIEW -->
-<div class = "timetable_container">
-  <div class = "timetable_name_box">
-    <p class = "lead">
-      <%=@current_timetable.name%>
-    </p>
+  <div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;">
+    <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
   </div>
 
-  <div class = "name_edit_btn">
-    <%= link_to " ", edit_timetable_path(@current_timetable),
-                     class: 'glyphicon glyphicon-pencil' %>
+
+  <!-- 시간표 TABLE VIEW -->
+  <div class = "timetable_container">
+    <div class = "timetable_name_box">
+      <p class = "lead">
+        <%=@current_timetable.name%>
+      </p>
+    </div>
+
+    <div class = "name_edit_btn">
+      <%= link_to " ", edit_timetable_path(@current_timetable),
+                       class: 'glyphicon glyphicon-pencil' %>
+    </div>
+
+    <div class = "timetable_semester">
+      <p class = "lead"> <%= @current_timetable.semester%> / </p>
+    </div>
+
+    <div class = "total_credits">
+      <span class = "lead credits"></span>
+      <span class = "lead">학점</span>
+    </div>
+    
+    <div class="lessons" style = "font-size:14px;">
+      <%= render 'enrollments/table_form' %>
+    </div>
   </div>
 
-  <div class = "timetable_semester">
-    <p class = "lead"> <%= @current_timetable.semester%> / </p>
+
+  <!-- 시간표 테이블 right_container  :  검색창, 내가 담은 강의 -->
+  <div class="right-container">
+    <div class = "search_box">
+      <%= form_tag timetable_path, :method => 'get', :class =>'form-inline rank-form' do %>
+          <%= text_field_tag :search, params[:search],
+              placeholder: :"과목 또는 교수님명을 입력해주세요!",
+              :class => 'form-control  form-group rank-textf',
+              :id => 'textfield' %>
+          <%= hidden_field_tag :semester, @current_timetable.semester %>
+          <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
+            <i class="glyphicon glyphicon-search"></i>
+          <%end%>
+          <!-- <a href=<%=detailsearch_path%> id="detailbox" class= "iframe btn btn-default btn-zoomin"><span class= "glyphicon glyphicon-zoom-in"></span></a> -->
+      <% end %> 
+
+      <% if @lectures.nil? %> 
+            <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+      <% else %>
+             <div>'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
+      <%end%>  
+
+    </div>
+    <%= render 'search_table', :lectures => @lectures %>
+       <!-- 검색 결과 -->
+     
   </div>
 
-  <div class = "total_credits">
-    <span class = "lead credits"></span>
-    <span class = "lead">학점</span>
+  <div class = "my_cart_container">
+    <div style = "width : 80%">
+      <%= render 'enrollments/my_cart_table' %>
+    </div>
   </div>
-  
-  <div class="lessons" style = "font-size:14px;">
-    <%= render 'enrollments/table_form' %>
-  </div>
-</div>
-
-
-<!-- 시간표 테이블 right_container  :  검색창, 내가 담은 강의 -->
-<div class="right-container">
-  <div class = "search_box">
-    <%= form_tag timetable_path, :method => 'get', :class =>'form-inline rank-form' do %>
-        <%= text_field_tag :search, params[:search],
-            placeholder: :"과목 또는 교수님명을 입력해주세요!",
-            :class => 'form-control  form-group rank-textf',
-            :id => 'textfield' %>
-        <%= hidden_field_tag :semester, @current_timetable.semester %>
-        <%= button_tag(type: "submit", class: "btn btn-default btn-search", :id=> 'searchbtn') do %>
-          <i class="glyphicon glyphicon-search"></i>
-        <%end%>
-        <!-- <a href=<%=detailsearch_path%> id="detailbox" class= "iframe btn btn-default btn-zoomin"><span class= "glyphicon glyphicon-zoom-in"></span></a> -->
-    <% end %> 
-
-    <% if @lectures.nil? %> 
-          <div style = "text-align : center"> 검색결과가 없습니다.. </div>
-    <% else %>
-           <div>'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
-    <%end%>  
-
-  </div>
-  <%= render 'search_table', :lectures => @lectures %>
-     <!-- 검색 결과 -->
-   
-</div>
-
-<div class = "my_cart_container">
-  <div style = "width : 80%">
-    <%= render 'enrollments/my_cart_table' %>
-  </div>
-</div>
 
 <script>
 $(document).ready(function() {
