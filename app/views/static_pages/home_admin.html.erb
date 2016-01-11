@@ -24,13 +24,16 @@
 					<td> <%= lec.major%> </td>
 					<td> <%= lec.credit %> </td>
 					<td> <%= lec.place %> </td>
+
 					<td>
 						<% unless lec.lecturetime.nil? %>
+							
 							<% lec.lecturetime.each do |lec_time|%>
 						 		<%= lec_time %>       
 							<% end %>
 						<% end %>
 					</td>
+
 					<td> <%= link_to "Show",   lecture_path(lec) %> </td>
 					<td> <%= link_to "Edit", edit_lecture_path(lec)%> </td>
 					<td> <%= link_to "Destroy", lecture_path(lec), method: :delete, data: {confirm: "Are you sure you want to delete this? (#{lec.subject})"}%>  </td>

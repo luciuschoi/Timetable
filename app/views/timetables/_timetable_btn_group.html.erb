@@ -13,9 +13,6 @@
 </div>
 
 <div class="timetable_btn">
-    <!--%= button_to "", action: "destroy", id: current_timetable.id,
-                  method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
-                  class: 'btn btn-default del_timetable_btn', :type => 'button', :id => 'del_timetable_btn' do %-->
     <%= button_to delete_timetable_path(current_timetable.id),
                   method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
                   class: 'btn btn-default del_btn', :type => 'button', :id => 'del_timetable_btn' do %>
@@ -24,7 +21,7 @@
 </div>
 
 <div>
-  <!-- glyphicon glyphicon-file -->
+  
   <%= button_to copy_path, method: :get, class: 'btn btn-default copy_btn', :type => 'button' do %>
     <%= hidden_field_tag :id, @current_timetable.id %>
     <i class="glyphicon glyphicon-file" style="color:white;"><B> 복사 </B></i>

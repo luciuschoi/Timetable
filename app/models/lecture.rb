@@ -2,7 +2,7 @@ class Lecture < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
 
-  
+  attr_accessor :id
   validates :subject, presence: true, length: {maximum: 40}, uniqueness: {scope: [:professor] }
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
@@ -23,17 +23,22 @@ class Lecture < ActiveRecord::Base
   # 2  DB에 있는 강의에 몇가지 COLUMN 업데이트   #
 
   # 1 기존에 없던 강의 추가 
+
   # def self.import(file)
   #   spreadsheet = open_spreadsheet(file)
   #   header = spreadsheet.row(1)
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
   #     lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu", "semester")
-  #     lecture.lecturetime = [row["lecturetime"]]
+
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester")
+  #     lecture.lecturetime=nil
+
+  #     #lecture.lecturetime = [row["lecturetime"]]
   #     lecture.save
   #   end
   # end
+
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
   def self.import(file)
@@ -87,6 +92,51 @@ class Lecture < ActiveRecord::Base
   #   end
   # end
 
+  # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+  #     # lecture = find_by_id(row["id"]) || new
+  #     # lecture.update_attribute("isu", row["isu"] )
+  #     # lecture.update_attribute("place", row["place"] )
+      
+  #     # if lecture.lecturetime == nil
+
+  #     ##########################################################################################
+  #     @bool_value = true
+  #     if @lecture
+  #       unless @lecture.lecturetime.nil?
+  #         if @lecture.lecturetime.length <= 3
+  #           @lecture.lecturetime.each do |time|
+  #             if time == row["lecturetime"]
+  #               @bool_value = false
+  #             end
+  #           end
+  #         else
+  #           @lecture.lecturetime = nil
+  #         end
+  #       end
+
+  #       if @bool_value && @lecture.lecturetime.nil?
+  #         @lecture.lecturetime = [row["lecturetime"]]
+  #       elsif @bool_value
+  #         @lecture.lecturetime << row["lecturetime"]  
+  #       end
+        
+  #       @lecture.save
+  #     end
+        
+  #     #########################################################################################
+
+  #   end
+  # end
+
+
+ #   end
+ # end
 
 
 
@@ -174,7 +224,6 @@ class Lecture < ActiveRecord::Base
     end   
   end
 
-
   def self.search_timetable(search, semester)
     unless search.nil?
       where(['(professor LIKE ? OR subject LIKE ? OR major LIKE ?)AND semester LIKE ?',
@@ -189,6 +238,9 @@ class Lecture < ActiveRecord::Base
       end
   end  
 
+  def self.detailSearch(major, isu)
+      where(['major LIKE ? OR isu Like ?', "#{major}%","#{isu}%"]).order('acc_total DESC')
+  end
 
 
 

@@ -9,13 +9,13 @@ Rails.application.routes.draw do
  get 'rank' => 'static_pages#rank'
  get 'search_timetable' => 'enrollments#search_timetable'
  get 'propose' => 'static_pages#propose'
-
+ get 'feedback' => 'static_pages#feedback'
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
  get 'detailsearch' =>'timetables#detailsearch'
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
- root 'static_pages#daemoon'
+ root 'static_pages#home'
 
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'

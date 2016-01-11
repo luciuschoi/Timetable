@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head >
-<%= favicon_link_tag 'favicon.ico' %>
+
  <meta http-equiv="contentType" type="text/html" charset="euc-kr" />
   <%= favicon_link_tag 'favicon.ico'%>
   <%= favicon_link_tag 'favicon.ico', rel: 'apple-touch-icon', type: 'image/png'%>
@@ -24,20 +24,14 @@
 
   </div>
  
-  <div>
+  
      <%= yield %>
-  </div>
+  
   <aside>
 
   </aside>
 
-  <div class = "container">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+  <div class = "footer">
       <%= render 'layouts/footer' %>
   </div>
 

@@ -38,16 +38,12 @@ class SessionsController < ApplicationController
 
   end
  
-
-
-
-
   def destroy
     log_out
     current_user=nil;
     session[:user_id] = nil; 
     session[:user_name] = nil;
-    redirect_to root_url
+    redirect_to home_url
   end
 
 
