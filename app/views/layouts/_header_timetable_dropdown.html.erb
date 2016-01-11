@@ -28,7 +28,7 @@
  $(document).ready(function(){
     $("#time").click(function(){
         <% unless current_user%>
-          alert('로그인 후 이용해주세요.');
+          window.location="<%= new_timetable_path %>";
         <%end%>
     });
 });
