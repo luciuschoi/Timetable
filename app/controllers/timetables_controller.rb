@@ -10,7 +10,7 @@ class TimetablesController < ApplicationController
 	    # 시간표에 강의 등록한 사용자
 	    if (@current_timetable = current_user.timetables.find(params[:id]))
 
-			# 기본 타임테이블(0번 인덱스) 안에 등록된 강의 collection 담기
+			# 기본 타임테이블 안에 등록된 강의 collection 담기
 			@lectures_in_timetable = @current_timetable.enrollments  
 
 			# activated_timetable(t)
