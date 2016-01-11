@@ -850,7 +850,6 @@ $(document).ready(function() {
         d_col.push("<%= lec_in_timetable.days[0] %>");
         d_col.push("<%= lec_in_timetable.days[1] %>");
       }
-
       <% l = Lecture.find(lec_in_timetable.lecture_id) %>
       lec_id = <%= l.id %>;
       lec_name = "<%= l.subject %>";
