@@ -5,9 +5,9 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a href="#" >페이스북 공유</a></li>
+        <!-- <li><a href="#" >페이스북 공유</a></li> -->
         <li><a href="#" id="save_image_locally">이미지 저장 </a></li>
-        <li><a href="javascript:;" id="kakao-link-btn"><%=image_tag "talk.png"%>카카오톡 공유</a></li>
+        <!-- <li><a href="javascript:;" id="kakao-link-btn"><=image_tag "talk.png">카카오톡 공유</a></li> -->
       </ul>
     </span>  
 </div>
@@ -20,14 +20,14 @@
     <% end %>
 </div>
 
-<div>
+<!-- <div> -->
   
-  <%= button_to copy_path, method: :get, class: 'btn btn-default copy_btn', :type => 'button' do %>
-    <%= hidden_field_tag :id, @current_timetable.id %>
-    <i class="glyphicon glyphicon-file" style="color:white;"><B> 복사 </B></i>
-  <% end %>
+  <!--%= button_to copy_path, method: :get, class: 'btn btn-default copy_btn', :type => 'button' do %-->
+    <!--%= hidden_field_tag :id, @current_timetable.id %-->
+    <!-- <i class="glyphicon glyphicon-file" style="color:white;"><B> 복사 </B></i> -->
+  <!--% end %-->
 
-</div>
+<!-- </div> -->
 
 
 

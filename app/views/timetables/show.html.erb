@@ -100,6 +100,8 @@ $(document).ready(function() {
     //   }
     // });
 
+  
+
   $('.glyphicon-star').click(function (){
       var elements = document.getElementsByClassName('list-group')
       var pagenation= document.getElementsByClassName('paginate')
@@ -331,6 +333,8 @@ $(document).ready(function() {
   }
 
   $('body').on('mouseenter', '.list-group',function(event){
+
+
 
     var data = $(this).find('.lecture_time').html();
         data = split_text_for_lectureTime(data);
@@ -684,6 +688,7 @@ $(document).ready(function() {
     for(var i = 0; i < contents.length; i++)
     {
       var temp_span = $(content_box).find('span')[i];
+      // 컨텐츠 배열에서 값이 없는 것은 그것과 관련된 span 엘리먼트 remove
       if (contents[i] == null || contents[i].length == 0) 
       {
         $(temp_span).remove();
@@ -696,15 +701,19 @@ $(document).ready(function() {
     }
 
     $(content_box).find('.lec_credit').css('display','none');
+    // $(content_box).find('.lec_place').css('display','none');
+
     $(content_box).append(span_info).append(span_del);
     $(content_box).find('.del_btn').addClass('glyphicon glyphicon-remove');
+
     $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign');
 
     $(content_box).find('.info_btn').wrap(a_info);
 
-    $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
+
     // $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
-    //$(lec_cell).find('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id);
+    // $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
+    $(lec_cell).find('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id).attr('target', '_blank');
   }
 
 

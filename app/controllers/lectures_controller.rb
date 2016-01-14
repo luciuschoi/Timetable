@@ -8,7 +8,7 @@ class LecturesController < ApplicationController
 
 	def show
 		@lecture = Lecture.find_by(id: params[:id])
-		@valuations = Valuation.where("lecture_id = #{@lecture.id}").order("created_at DESC")
+		@valuations = Valuation.where("lecture_id = ?", @lecture.id).order("created_at DESC")
 	end
 
 	def edit

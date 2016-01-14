@@ -50,7 +50,7 @@ class Lecture < ActiveRecord::Base
       # lecture.update_attribute("isu", row["isu"] )
       # lecture.update_attribute("place", row["place"] )
       if @lecture
-        @lecture.update_attribute("credit", row["credit"])
+        @lecture.update_attribute("open_department", row["open_department"])
         @lecture.save
       end
     end

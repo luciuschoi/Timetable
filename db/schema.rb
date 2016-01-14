@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160109100636) do
+ActiveRecord::Schema.define(version: 20160114055301) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -47,7 +46,6 @@ ActiveRecord::Schema.define(version: 20160109100636) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-
   create_table "comment_valuations", force: :cascade do |t|
     t.boolean  "like",       default: false
     t.integer  "user_id"
@@ -75,7 +73,6 @@ ActiveRecord::Schema.define(version: 20160109100636) do
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-
   create_table "enrollments", force: :cascade do |t|
     t.string   "day"
     t.string   "begin_time"
@@ -89,8 +86,6 @@ ActiveRecord::Schema.define(version: 20160109100636) do
   end
 
   add_index "enrollments", ["timetable_id"], name: "index_enrollments_on_timetable_id"
-
-
 
   create_table "lectures", force: :cascade do |t|
     t.string   "subject"
@@ -109,6 +104,7 @@ ActiveRecord::Schema.define(version: 20160109100636) do
     t.string   "isu"
     t.string   "semester"
     t.float    "credit"
+    t.string   "open_department"
   end
 
   create_table "timetables", force: :cascade do |t|
@@ -126,11 +122,17 @@ ActiveRecord::Schema.define(version: 20160109100636) do
     t.string   "image"
     t.string   "token"
     t.datetime "expires_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "nickname"
-    t.boolean  "admin",      default: false
+    t.boolean  "admin",           default: false
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "year"
+    t.string   "major"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "valuations", force: :cascade do |t|
     t.integer  "user_id"
