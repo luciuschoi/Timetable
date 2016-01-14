@@ -3,7 +3,8 @@
     <% if lectures.nil? %>
       <div> 검색결과가 없습니다.. </div>
 
-    <% else %>
+    <% else %> 
+           <div class="timetable_result_Y">'<%=params[:search]%>' 검색결과 총 <%=@lectures.count%>개</div>
 
         <% lectures.each do |lec| %>
             <% if !lec.lecturetime.nil? && lec.lecturetime.length >= 1 %>

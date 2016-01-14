@@ -1,94 +1,129 @@
-<div class="detailsearch">
-<%= form_tag timetable_path(@timetable.id), :target => '_parent', :method => 'get' do %>
-      <div>
+<div class="detail-title">학과로 검색하기</div>
+<hr class="detail-hr"/>
+<div class="detailsearch modal-body">
+
+<%= form_tag timetable_path(params[:id]), :target => '_parent', :method => 'get' do %>
+      <div class="ui-widget">
         <%= label_tag 'search', '학 과 :'%>
             
-            <datalist id="majors">
-              <option value="건설환경공학과">크그크그</option>
-              <option value="건축공학전공" />
-              <option value="건축학전공"/>
-              <option value="경영학부" />
-              <option value="경영학전공" />
-              <option value="경제통상학과" />
-              <option value="공간정보공학과" />
-              <option value="광전자공학과" />
-              <option value="교양학부" />
-              <option value="교육학과" />
-              <option value="국방시스템공학과" />
-              <option value="국어국문학과" />
-              <option value="국제학부" />
-              <option value="영어영문학전공" />
-              <option value="일어일문학전공" />
-              <option value="중국통상학전공" />
-              <option value="기계항공우주공학부" />
-              <option value="기계학전공" />
-              <option value="항공우주공학전공" />
-              <option value="나노신소재공학과" />
-              <option value="만화애니메이션학과" />
-              <option value="무용과" />
-              <option value="물리천문학과" />
-              <option value="물리학과" />
-              <option value="바이오융학공학과" />
-              <option value="바이오자원공학과" />
-              <option value="분자생물학과" />
-              <option value="산업디자인학과" />
-              <option value="산업디자인" />
-              <option value="시각디자인" />
-              <option value="생명공학과" />
-              <option value="생명시스템학부" />
-              <option value="바이오산업자원공학전공" />
-              <option value="바이오융합공학전공" />
-              <option value="식품공학전공" />
-              <option value="수학통계학부" />
-              <option value="수학전공" />
-              <option value="응용통계학전공" />
-              <option value="식품공학과" />
-              <option value="신문방송학과" />
-              <option value="에너지자원공학과" />
-              <option value="역사학과" />
-              <option value="영어영문학과" />
-              <option value="영화예술학과" />
-              <option value="연기예술" />
-              <option value="연출제작" />
-              <option value="원자력공학과" />
-              <option value="융합창업전공" />
-              <option value="음악과" />
-              <option value="일어일문학과" />
-              <option value="자유전공학부" />
-              <option value="전자정보통신공학과" />
-              <option value="정보보호학과" />
-              <option value="정보통신공학과" />
-              <option value="중국통상학과" />
-              <option value="천문우주학과" />
-              <option value="체육학과" />
-              <option value="패션디자인학과" />
-              <option value="항공시스템공학과" />
-              <option value="행정학과" />
-              <option value="향장뷰티산업학과" />
-              <option value="호텔관광외식경영학부" />
-              <option value="관광경영전공" />
-              <option value="외식경영학전공" />
-              <option value="호텔경영전공" />
-              <option value="호텔관광경영학전공" />
-              <option value="호텔외식관강프랜차이즈경영학과" />
-              <option value="호텔외식비즈니스학과" />
-              <option value="화학과" />
-              <option value="환경에너지공간융합학과" />
-              <option value="환경에너지융합학과" />
-              <option value="회화과" />
-              <option value="회화과 서양화" />
-              <option value="회화과 한국화" />
-              <option value="컴퓨터공학" />
-              <option value="디지털콘텐츠학과" />
-              <option value="전자공학과" />
-            </datalist>
-            <%= text_field_tag :major, params[:major],
-                placeholder: :"학과 입력", :class =>'detail-form', :list=>"majors"
-                %>
+            <select id="combobox" name="major" size="3">
+              <option value="">Select one...</option>
+              <optgroup label="공과대학">
+              <option value="국방시스템공학과">국방시스템공학과</option>
+              <option value="건설환경공학과">건설환경공학과</option>
+              <option value="기계항공우주공학부">기계항공우주공학부</option>
+              <option value="기계학전공">기계학전공</option>
+              <option value="항공우주공학전공">항공우주공학전공</option>
+              <option value="건축공학전공">건축공학전공</option>
+              <option value="건축학전공">건축학전공</option>
+              <option value="나노신소재공학과">나노신소재공학과</option>
+              <option value="에너지자원공학과">에너지자원공학과</option>
+
+              <option value="경영">경영학부</option>
+              </optgroup>
+
+              <optgroup label="전자정보공학대학">
+                <option value="디지털콘텐츠학과">디지털콘텐츠학과</option>
+                <option value="광전자">광전자공학과</option>
+              <option value="전자정보통신공학과">전자정보통신공학과</option>
+              <option value="정보보호학과">정보보호학과</option>
+              <option value="정보통신공학과">정보통신공학과</option>
+              <option value="컴퓨터공학">컴퓨터공학</option>
+              <option value="전자공학과">전자공학과</option>
+              </optgroup>
+
+              <optgroup label="예체능대학">
+                <option value="만화애니메이션학과">만화애니메이션학과</option>
+                <option value="무용과">무용과</option>
+                <option value="산업디자인학과">산업디자인학과</option>
+                <option value="산업디자인">산업디자인</option>
+                <option value="시각디자인">시각디자인</option>
+                <option value="음악과">음악과</option>
+
+              </optgroup>
+
+              <optgroup label="자연과학대학">
+                <option value="물리천문학과">물리천문학과</option>
+              <option value="물리학과">물리학과</option>
+              <option value="바이오융학공학과">바이오융학공학과</option>
+              <option value="바이오자원공학과">바이오자원공학과</option>
+              <option value="분자생물학과">분자생물학과</option>
+              <option value="수학통계학부">수학통계학부</option>
+              <option value="수학전공">수학전공</option>
+              <option value="응용통계학전공">응용통계학전공</option>
+              </optgroup>
+
+              <optgroup label="생명과학대학">
+                <option value="생명공학과">생명공학과</option>
+                <option value="생명시스템학부">생명시스템학부</option>
+                <option value="바이오산업자원공학전공">생명시스템학부</option>
+                <option value="바이오융합공학전공">바이오융합공학전공</option>
+                <option value="식품공학전공">식품공학전공</option>
+
+              </optgroup>
+
+              <optgroup label="사회과학대학"> 
+                <option value="신문방송학과">신문방송학과</option>
+              </optgroup>
+              <option value="경영">경영학전공</option>
+              <option value="경제통상">경제통상학과</option>
+              <option value="공간정보">공간정보공학과</option>
+              <option value="교양">교양학부</option>
+              <option value="교육">교육학과</option>
+              <option value="중국통상학과">중국통상학과</option>
+
+
+              <optgroup lable="인문과학대학"> 
+              <option value="국어국문학과">국어국문학과
+              </option>
+              <option value="국제학부">국제학부</option>
+              <option value="영어영문학전공">영어영문학전공</option>
+              <option value="일어일문학전공">일어일문학전공</option>
+              <option value="중국통상학전공">중국통상학전공</option>
+              <option value="역사학과">역사학과</option>
+              <option value="영어영문학과">영어영문학과</option>
+              <option value="일어일문학과">일어일문학과</option>
+              </optgroup>
+              
+               
+              
+              
+             
+              
+              <option value="영화예술학과">영화예술학과</option>
+              <option value="연기예술">연기예술</option>
+              <option value="연출제작">연출제작</option>
+              <option value="원자력공학과">원자력공학과</option>
+              <option value="융합창업전공">융합창업전공</option>
+              
+              
+              
+              <option value="천문우주학과">천문우주학과</option>
+              <option value="체육학과">체육학과</option>
+              <option value="패션디자인학과">패션디자인학과</option>
+              <option value="항공시스템공학과">항공시스템공학과</option>
+              <option value="행정학과">행정학과</option>
+              <option value="향장뷰티산업학과">향장뷰티산업학과</option>
+              <option value="호텔관광외식경영학부">호텔관광외식경영학부</option>
+              <option value="관광경영전공">관광경영전공</option>
+              <option value="외식경영학전공">외식경영학전공</option>
+              <option value="호텔경영전공">호텔경영전공</option>
+              <option value="호텔관광경영학전공">호텔관광경영학전공</option>
+              <option value="호텔외식관강프랜차이즈경영학과">호텔외식관강프랜차이즈경영학과</option>
+              <option value="호텔외식비즈니스학과">호텔외식비즈니스학과</option>
+              <option value="화학과">화학과</option>
+              <option value="환경에너지공간융합학과">환경에너지공간융합학과</option>
+              <option value="환경에너지융합학과">환경에너지융합학과</option>
+              <option value="회화과">회화과</option>
+              <option value="회화과 서양화">회화과 서양화</option>
+              <option value="회화과 한국화">회화과 한국화</option>
+              
+            </select>
+            
             
       </div>
       <div>
-        <%= label_tag 'isu', '이 수 : '%>
+        <%= label_tag 'isu', '이 수 : ' ,:id=>'btn_isu'%>
         <%= select_tag :isu, "
                               <option>전체</option>
                               <option>전공기초</option>
@@ -97,10 +132,10 @@
                               <option>자유선택교양</option>
                               <option>전공기초교양</option>
                               <option>중핵필수</option>
-                              <option>중핵필수선택</option>".html_safe, :class =>'detail-form'
+                              <option>중핵필수선택</option>".html_safe, :class =>'detail-form form-control'
              %>
       </div>
-        <%= button_tag(type: "submit", class: "btn btn-default btn-detailsearch", :id=> 'searchbtn') do %>
+        <%= button_tag(type: "submit", class: "btn-default btn-detailsearch", :id=> 'searchbtn') do %>
           검색
           <%end%>
         <%end%>
@@ -110,3 +145,139 @@
 
 
 </div> 
+
+<script>
+(function( $ ) {
+$.widget( "custom.combobox_with_optgroup", {
+    _create: function() {
+        this.wrapper = $( "<span>" )
+            .addClass( "custom-combobox" )
+            .insertAfter( this.element );
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+    },
+    _createAutocomplete: function() {
+        var selected = this.element.find( ":selected" ),
+            value = selected.val() ? selected.text() : "";
+        this.input = $( "<input>" )
+            .appendTo( this.wrapper )
+            .val( value )
+            .attr( "title", "" )
+            .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+            .autocomplete({
+                delay: 0,
+                minLength: 0,
+                source: $.proxy( this, "_source" )
+            })
+            .tooltip({
+                tooltipClass: "ui-state-highlight"
+            });
+        this._on( this.input, {
+            autocompleteselect: function( event, ui ) {
+                ui.item.option.selected = true;
+                this._trigger( "select", event, {
+                    item: ui.item.option
+                });
+            },
+            autocompletechange: "_removeIfInvalid"
+        });
+
+        this.input.data("uiAutocomplete")._renderMenu = function(ul, items) {
+            var self = this,
+                currentCategory = "";
+            $.each(items, function(index, item) {
+                if (item.category != currentCategory) {
+                    if (item.category) {
+                        ul.append("<li class='custom-autocomplete-category'>" + item.category + "</li><hr class='custom-hr'/>");
+                    }
+                    currentCategory = item.category;
+                }
+                self._renderItemData(ul, item);
+            });
+        };
+    },
+    _createShowAllButton: function() {
+        var input = this.input,
+            wasOpen = false;
+        $( "<a>" )
+            .attr( "tabIndex", -1 )
+            .attr( "title", "전체학과 보기")
+            .tooltip()
+            .appendTo( this.wrapper )
+            .button({
+                icons: {
+                    primary: "ui-icon-triangle-1-s"
+                },
+                text: false
+            })
+            .removeClass( "ui-corner-all" )
+            .addClass( "custom-combobox-toggle ui-corner-right" )
+            .mousedown(function() {
+                wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+            })
+            .click(function() {
+                input.focus();
+
+                if ( wasOpen ) {
+                    return;
+                }
+
+                input.autocomplete( "search", "" );
+            });
+    },
+    _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.find( "option" ).map(function() {
+            var text = $( this ).text();
+            if ( this.value && ( !request.term || matcher.test(text) ) )
+                return {
+                    label: text,
+                    value: text,
+                    option: this,
+                    category: $(this).closest("optgroup").attr("label")
+                };
+        }) );
+    },
+    _removeIfInvalid: function( event, ui ) {
+
+        if ( ui.item ) {
+            return;
+        }
+
+        var value = this.input.val(),
+            valueLowerCase = value.toLowerCase(),
+            valid = false;
+        this.element.find( "option" ).each(function() {
+            if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+                this.selected = valid = true;
+                return false;
+            }
+        });
+
+        if ( valid ) {
+            return;
+        }
+
+        this.input
+            .val( "" )
+        this.element.val( "" );
+        this._delay(function() {
+            this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.data( "ui-autocomplete" ).term = "";
+    },
+    _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+    }
+});
+})( jQuery );
+ 
+  $(function() {
+    $( "#combobox" ).combobox_with_optgroup();
+    $( "#toggle" ).click(function() {
+      $( "#combobox" ).toggle();
+    });
+  });
+</script>

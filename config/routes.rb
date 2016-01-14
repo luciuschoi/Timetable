@@ -10,7 +10,7 @@ Rails.application.routes.draw do
  get 'feedback' => 'static_pages#feedback'
  get 'usage' => 'static_pages#menual'
  get 'notice' => 'static_pages#notice'
- get 'detailsearch' =>'timetables#detailsearch'
+ get '/detailsearch' =>'timetables#detailsearch'
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
  root 'static_pages#home'
@@ -35,7 +35,8 @@ Rails.application.routes.draw do
 delete '/delete_timetable/:id' => 'timetables#destroy', as: 'delete_timetable'
 # patch '/timetables/:id' => 'timetables#update', as: 'timetable'
 # put '/timetables/:id' => 'timetables#update', as: 'update_timetable'
-resources :timetables, only: [:show, :create, :new, :edit, :update]
+resources :timetables, only: [ :show, :create, :new, :edit, :update]
+
 get 'copy'   => 'timetables#copy'
 post 'paste' => 'timetables#paste'
 

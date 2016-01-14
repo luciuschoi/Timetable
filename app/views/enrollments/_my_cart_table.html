@@ -10,18 +10,6 @@
   </thead>
 
   <tbody>
-    <% @lectures_in_timetable.each do |lec_in_timetable| %>
-      <% l = Lecture.find(lec_in_timetable.lecture_id) %>
-      
-      <tr class = "t_contents l<%= lec_in_timetable.begin_time %>-<%= lec_in_timetable.end_time %>_<%= l.id%>">
-        <td> <%= l.subject %> </td>
-        <td class = "professor"> <%= l.professor %> </td>
-        <td class = "isu"> <%= l.isu %> </td>
-        <td class = "del_btn"> 
-          <span class = "glyphicon glyphicon-remove"> </span> 
-        </td>
-      </tr>
-
-    <% end %>
+   
   </tbody>
 </table>

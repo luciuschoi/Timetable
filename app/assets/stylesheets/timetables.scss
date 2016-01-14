@@ -136,8 +136,9 @@ $ft_navy      : #095fb5;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
    margin: 0 auto;
    margin-bottom:20px;
-    width: 50% !important;
-    
+   display: inline !important;
+    width: 63% !important;
+    margin-left:-6px;
 }
 .btn-detailsearch{
     min-height:34px;
@@ -149,15 +150,19 @@ $ft_navy      : #095fb5;
     margin-right:10px;
     background-color:#2db1ee !important;
     width : 55px;   
+    color: white !important;
+    font-weight: bold;
 }
 .btn-detailclose{
+    color: white !important;
+    font-weight: bold !important;
     min-height:34px;
     border-radius:0 !important;
     border:none !important;
     float:right;
     margin-top:10px;
     margin-bottom:20px;
-    background-color:#95a5a6 !important;
+    background-color:#5cb85c !important;
     width : 55px;  
 }
 .btn-zoomin{
@@ -169,6 +174,7 @@ $ft_navy      : #095fb5;
     margin-bottom:20px;
     background-color:orange !important;
     width : 55px;   
+
 }
 .glyphicon-search{
     font-size:15px;
@@ -417,9 +423,14 @@ $ft_navy      : #095fb5;
 
 
 
-/* detailsearch */
+/* 디테일써치 */
 div.detailsearch{
     text-align:center;
+}
+#btn_isu{
+    margin-top: 20px;
+    width:50px;
+    margin-left:26px;
 }
 
 
@@ -427,16 +438,47 @@ div.detailsearch{
 
 
 
+/* 자동완성 관련 */
+
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+    width:200px;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+
+
+.detail-title{
+    font-weight:bold;
+    margin-top:-30px;
+    margin-left:20px;
+}
+.detail-hr{
+    width:80%;
+   border-top-width: 1px;
+    border-color: black;
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
+.timetable_result{
+    float:left;
+    text-align:center;
+    margin-top:10px;
+}
+/* 검색결과 있을 때 */
+.timetable_result_Y
+{
+    float:right;
+    margin-right:20%;
+}
