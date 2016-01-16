@@ -47,13 +47,15 @@
           <!-- <a href=<%=detailsearch_path%> id="detailbox" class= "iframe btn btn-default btn-zoomin"><span class= "glyphicon glyphicon-zoom-in"></span></a> -->
       <% end %> 
 
-      <% if @lectures.nil? %> 
+      
+
+    </div>
+
+    <% if @lectures.nil? %> 
             <div style = "text-align : center"> 검색결과가 없습니다.. </div>
       <% else %>
              <div>'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
       <%end%>  
-
-    </div>
     <%= render 'search_table', :lectures => @lectures %>
        <!-- 검색 결과 -->
      
@@ -702,7 +704,7 @@ $(document).ready(function() {
 
     $(content_box).find('.info_btn').wrap(a_info);
 
-    $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
+    $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com' + '/lectures/'+lec_id);
     // $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
     //$(lec_cell).find('.info_btn').parent().attr('href', 'http://localhost:3000/lectures/'+lec_id);
   }
@@ -852,15 +854,15 @@ $(document).ready(function() {
       }
 
       <% l = Lecture.find(lec_in_timetable.lecture_id) %>
-      lec_id = <%= l.id %>;
-      lec_name = "<%= l.subject %>";
-      lec_professor = "<%= l.professor %>";
-      lec_place = "<%= l.place %>";
-      lec_credit = <%= l.credit %>
-      credits = credits + lec_credit
-      
-      // 처음 html 로드시, 사용자가 시간표에 등록한 강의들을 timetable cell에 채우는 함수 
-      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event_string);
+        lec_id = <%= l.id %>;
+        lec_name = "<%= l.subject %>";
+        lec_professor = "<%= l.professor %>";
+        lec_place = "<%= l.place %>";
+        lec_credit = <%= l.credit %>;
+        credits = credits + lec_credit;
+        
+        // 처음 html 로드시, 사용자가 시간표에 등록한 강의들을 timetable cell에 채우는 함수 
+        default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event_string);
     <% end %>
 
     modify_total_credits(credits);
