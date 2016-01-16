@@ -24,9 +24,9 @@ config/initializers/omniauth.rb
 /tmp
 
 # Ignore application configuration
-/config/application.yml
-/config/database.yml
+/config/*.yml
 ./config.database.yml.sqlite3
+config/*.yml
 
 # Ignore seed.rb
 /db/seeds.rb
