@@ -6,6 +6,7 @@ class Lecture < ActiveRecord::Base
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
   serialize :lecturetime
+  
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
