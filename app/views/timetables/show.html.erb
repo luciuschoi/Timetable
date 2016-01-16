@@ -48,9 +48,13 @@
       <% end %> 
 
       <% if @lectures.nil? %> 
-            <div style = "text-align : center"> 검색결과가 없습니다.. </div>
+            <div style = "margin-top : 15px;
+                          text-align : center;
+                          display:inline-block;"> 강의데이터는 세종대 학사정보시스템에서 <br/>제공하는 2016년도 1학기 데이터입니다. </div>
       <% else %>
-             <div>'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
+             <div style = "margin-top : 15px;
+                          text-align : center;
+                          display:inline-block;">'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
       <%end%>  
 
     </div>
@@ -202,7 +206,7 @@ $(document).ready(function() {
     if (which_alert == 'add_success')
     {
       alert_element.addClass('alert-success');
-      alert_element.css('display', 'block').html('강의가 추가 되었습니다.');
+      alert_element.css('display', 'block').html('강의가 추가 되었습니다. <br/> 현재 시간표는 자동 저장됩니다.');
       setTimeout(function(){
         alert_element.fadeOut("slow");
       }, 2000);    
