@@ -16,13 +16,17 @@
 /log/*
 !/log/.keep
 
-
-
-
+# Ignore all default MYSQL database.
+./timetable_dev_db
+./timetable_test_db
 
 config/initializers/omniauth.rb
 /tmp
 
-config/database.yml
 # Ignore application configuration
 /config/application.yml
+/config/database.yml
+./config.database.yml.sqlite3
+
+# Ignore seed.rb
+/db/seeds.rb
