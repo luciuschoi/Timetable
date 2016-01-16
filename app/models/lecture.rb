@@ -6,6 +6,7 @@ class Lecture < ActiveRecord::Base
   validates :professor, length: {maximum: 40}
   validates :major, presence:true
   serialize :lecturetime
+  
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
@@ -50,7 +51,7 @@ class Lecture < ActiveRecord::Base
       # lecture.update_attribute("isu", row["isu"] )
       # lecture.update_attribute("place", row["place"] )
       if @lecture
-        @lecture.update_attribute("credit", row["credit"])
+        @lecture.update_attribute("open_department", row["open_department"])
         @lecture.save
       end
     end

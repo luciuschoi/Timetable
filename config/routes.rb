@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
  # get 'users/new'
  get 'home_admin' => 'static_pages#home_admin'
  get 'lecture_search' => 'static_pages#search'
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
  get 'login_form' => 'static_pages#login_form'
  get 'home' => 'static_pages#home'
  root 'static_pages#home'
-
+ get 'support' =>'static_pages#support'
  get 'forcinglogin' => 'static_pages#forcinglogin'
  get 'forcingwritting' =>'static_pages#forcingwritting'
  get 'first_login' => 'static_pages#first_login'
