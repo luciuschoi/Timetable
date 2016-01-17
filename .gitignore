@@ -30,3 +30,6 @@ config/*.yml
 
 # Ignore seed.rb
 /db/seeds.rb
+
+/db/*.yml
+/config/database.yml
