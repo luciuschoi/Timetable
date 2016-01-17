@@ -51,8 +51,8 @@ gem 'figaro'
 gem 'execjs'
 gem 'therubyracer'
 
-gem 'activeadmin' , github: 'activeadmin'
-gem 'devise'
+# gem 'activeadmin' , github: 'activeadmin'
+# gem 'devise'
 
 
 group :development, :test do
