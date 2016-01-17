@@ -19,6 +19,7 @@
 # Ignore all default MYSQL database.
 ./timetable_dev_db
 ./timetable_test_db
+/db/*.yml
 
 config/initializers/omniauth.rb
 /tmp
@@ -28,5 +29,9 @@ config/initializers/omniauth.rb
 ./config.database.yml.sqlite3
 config/*.yml
 
+
 # Ignore seed.rb
 /db/seeds.rb
+
+# Ignore gem 'active_admin'
+/app/admin/*.*

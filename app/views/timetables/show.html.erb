@@ -280,7 +280,6 @@ $(document).ready(function() {
     
     else 
     {
-      s_row = find_begin_time_row(arr_rows[0]);
       var arr_rows = [];
       // 자동으로 사강 col에 강의 추가
       // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
@@ -288,6 +287,7 @@ $(document).ready(function() {
       duplicated_lec_name = search_duplicate_for_e_lecture(1,20,['7'], lec_name)
       arr_rows = find_location_of_cyber_lecture_cell();
       d_col = [7];
+      s_row = find_begin_time_row(arr_rows[0]);
       e_row = find_end_time_row(arr_rows[1]);
     }
 
