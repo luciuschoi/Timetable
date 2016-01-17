@@ -44,12 +44,16 @@ gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'figaro'
-
 gem 'yaml_db'
 
-gem 'activeadmin' , github: 'activeadmin'
-gem 'devise'
+gem 'figaro'
+
+gem 'execjs'
+gem 'therubyracer'
+
+# gem 'activeadmin' , github: 'activeadmin'
+# gem 'devise'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -227,7 +227,7 @@ class Lecture < ActiveRecord::Base
   def self.search_timetable(search, semester)
     unless search.nil?
       where(['(professor LIKE ? OR subject LIKE ? OR major LIKE ?)AND semester LIKE ?',
-             "#{search}%","#{search}%","#{search}%", "#{semester}"])
+             "#{search}%","%#{search}%","#{search}%", "#{semester}"])
     end
   end  
 
