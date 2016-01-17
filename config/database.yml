@@ -1,16 +1,26 @@
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
 development:
-  <<: *default
-  database: db/development.sqlite3
-
+  adapter: mysql2
+  encoding: utf8
+  database: db_dev
+  pool: 5
+  username: root
+  password: amodzzi15%
+  socket: /var/run/mysqld/mysqld.sock
+  strict: false
 test:
-  <<: *default
-  database: db/test.sqlite3
-
+  adapter: mysql2
+  encoding: utf8
+  database: db_test
+  pool: 5
+  username: root
+  password: amodzzi15%
+  socket: /var/run/mysqld/mysqld.sock
+  strict: false
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: db_production
+  pool: 5
+  username: root
+  password: amodzzi15%
+  socket: /var/run/mysqld/mysqld.sock
