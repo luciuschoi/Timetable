@@ -9,6 +9,7 @@
 				<td> 학점 </td>
 				<td> 장소 </td>
 				<td> 강의시간 </td>
+				<td> open_department </td>
 				<td> show </td>
 				<td> edit  </td>
 				<td> destroy </td>
@@ -33,6 +34,7 @@
 							<% end %>
 						<% end %>
 					</td>
+					<td> <%= lec.open_department %> </td>
 
 					<td> <%= link_to "Show",   lecture_path(lec) %> </td>
 					<td> <%= link_to "Edit", edit_lecture_path(lec)%> </td>
