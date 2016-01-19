@@ -33,7 +33,7 @@
 
 
   <!-- 시간표 테이블 right_container  :  검색창, 내가 담은 강의 -->
-  <div class="right-container">
+  <div class="right-container" style = "z-index : 999">
     <div class = "search_box">
       <%= form_tag timetable_path, :method => 'get', :class =>'form-inline rank-form' do %>
           <%= text_field_tag :search, params[:search],
@@ -201,11 +201,12 @@ $(document).ready(function() {
     $('.alert-container').prepend('<div> </div>');
     var alert_element = $('.alert-container div:first-child');
     alert_element.addClass('alert');
-
+    alert_element.css('z-index','99999');
     if (which_alert == 'add_success')
     {
       alert_element.addClass('alert-success');
       alert_element.css('display', 'block').html('강의가 추가 되었습니다. <br/> 현재 시간표는 자동 저장됩니다.');
+
       setTimeout(function(){
         alert_element.fadeOut("slow");
       }, 2000);    
@@ -280,6 +281,10 @@ $(document).ready(function() {
     
     else 
     {
+<<<<<<< HEAD
+=======
+      
+>>>>>>> eab61afa26ae614d94d314bb412640afb2469082
       var arr_rows = [];
       // 자동으로 사강 col에 강의 추가
       // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
@@ -334,6 +339,18 @@ $(document).ready(function() {
     }
     return arr_Row;
   }
+
+  $('body').on('mouseenter', '.lessons > .table-striped > tbody > tr > td',function(event){
+    $(this).find('.del_btn').css('display', 'inline-block');
+    $(this).find('.info_btn').css('display', 'inline-block');
+
+  });
+  $('body').on('mouseleave', '.lessons > .table-striped > tbody > tr > td',function(event){
+    $(this).find('.del_btn').css('display', 'none');
+    $(this).find('.info_btn').css('display', 'none');
+
+  });
+  
 
   $('body').on('mouseenter', '.list-group',function(event){
 
@@ -610,7 +627,7 @@ $(document).ready(function() {
     }
     $(my_cart_trs[index]).addClass('has');
 
-    index = index % 6;
+    index = index % 10;
 
     return index;
   }
@@ -707,9 +724,9 @@ $(document).ready(function() {
     // $(content_box).find('.lec_place').css('display','none');
 
     $(content_box).append(span_info).append(span_del);
-    $(content_box).find('.del_btn').addClass('glyphicon glyphicon-remove');
+    $(content_box).find('.del_btn').addClass('glyphicon glyphicon-remove').css('display','none');
 
-    $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign');
+    $(content_box).find('.info_btn').addClass('glyphicon glyphicon-info-sign').css('display','none');
 
     $(content_box).find('.info_btn').wrap(a_info);
 
@@ -737,7 +754,6 @@ $(document).ready(function() {
         }
     });
   }
-
 
 
   $('body').on('click', '.lessons > .table-striped > tbody > tr > td > div > .del_btn' ,dynamic_delete);

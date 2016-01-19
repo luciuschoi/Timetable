@@ -33,5 +33,9 @@ config/*.yml
 # Ignore seed.rb
 /db/seeds.rb
 
+
 # Ignore gem 'active_admin'
 /app/admin/*.*
+
+/db/*.yml
+/config/database.yml

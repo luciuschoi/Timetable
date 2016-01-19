@@ -29,68 +29,80 @@ class Lecture < ActiveRecord::Base
   #   header = spreadsheet.row(1)
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     lecture = find_by(subject: row["subject"], professor: row["professor"]) || new
+  #     lecture = find_by(subject: row["subject"], professor: row["professor"])
 
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester")
-  #     lecture.lecturetime=nil
-
-  #     #lecture.lecturetime = [row["lecturetime"]]
+  #     if lecture
+        
+  #     else
+  #       lecture = Lecture.new
+  #       lecture.lecturetime = []
+  #     end
+  #     # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
+  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester", "open_department", "credit")
   #     lecture.save
+  #     #lecture.lecturetime = [row["lecturetime"]]
+      
   #   end
   # end
 
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
-  def self.import(file)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
-      # lecture = find_by_id(row["id"]) || new
-      # lecture.update_attribute("isu", row["isu"] )
-      # lecture.update_attribute("place", row["place"] )
-      if @lecture
-        @lecture.update_attribute("open_department", row["open_department"])
-        @lecture.save
-      end
-    end
-  end
-  
-
-  # 3 DB에 있는 강의 중 lecturetime 업데이트.. 좀 복잡한거 설명 들어야함
   # def self.import(file)
   #   spreadsheet = open_spreadsheet(file)
   #   header = spreadsheet.row(1)
   #   (2..spreadsheet.last_row).each do |i|
   #     row = Hash[[header, spreadsheet.row(i)].transpose]
   #     @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
-  #     #lecture = find_by_id(row["id"]) || new
+  #     # lecture = find_by_id(row["id"]) || new
   #     # lecture.update_attribute("isu", row["isu"] )
   #     # lecture.update_attribute("place", row["place"] )
-      
-  #     # if lecture.lecturetime == nil
-  #     @bool_value = true
-  #       unless @lecture.lecturetime.nil?
-  #         if @lecture.lecturetime.length >= 1
-  #           @lecture.lecturetime.each do |time|
-  #             if time == row["lecturetime"]
-  #               @bool_value = false
-  #             end
-  #           end
-  #         end
-  #       end
-
-  #       if @bool_value
-  #         @lecture.lecturetime << row["lecturetime"]  
-  #       end
-  #     # elsif lecture.lecturetime.length >= 1
-  #     #   lecture.lecturetime << row["lecturetime"]
-  #     # end
-  #     # lecture.lecturetime = [row["lecturetime"]]
-  #     @lecture.save
+  #     if @lecture
+  #       @lecture.update_attribute("semester", row["semester"])
+  #       @lecture.update_attribute("lecturetime", row["lecturetime"])
+  #       @lecture.update_attribute("place", row["place"])
+  #       @lecture.update_attribute("isu", row["isu"])
+  #       @lecture.update_attribute("credit", row["credit"])
+  #       @lecture.save
+  #     end
   #   end
   # end
+  
+
+  # 3 DB에 있는 강의 중 lecturetime 업데이트.. 좀 복잡한거 설명 들어야함
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+      #lecture = find_by_id(row["id"]) || new
+      # lecture.update_attribute("isu", row["isu"] )
+      # lecture.update_attribute("place", row["place"] )
+      
+      # if lecture.lecturetime == nil
+      if lecture 
+        @bool_value = true
+          # 강의시간이 
+          if lecture.lecturetime.length != 0  
+            lecture.lecturetime.each do |time|
+              if time == row["lecturetime"]
+                @bool_value = false
+              end
+            end
+          
+          end
+
+          if @bool_value
+            lecture.lecturetime << row["lecturetime"]  
+          end
+        lecture.save
+      end
+      # elsif lecture.lecturetime.length >= 1
+      #   lecture.lecturetime << row["lecturetime"]
+      # end
+      # lecture.lecturetime = [row["lecturetime"]]
+    end
+  end
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
   # def self.import(file)

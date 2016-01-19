@@ -2,19 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$bg_red       : #e5cfcf;
-$bg_orange    : #fef1e6;
-$bg_yellow    : #fefae7;
-$bg_green     : #edf6e9;
-$bg_blue      : #e6f5fc;
-$bg_navy      : #e6eff8;
+$bg_1       : #f2d5ef;
+$bg_2       : #fcdfcd;
+$bg_3       : #fdf9d5;
+$bg_4       : #e4f0cd;
+$bg_5       : #cdf0e6;
+$bg_6       : #e0ecfb;
+$bg_7       : #bee3f2;
+$bg_8       : #dfd7ef;
+$bg_9       : #fcdfdf;
+$bg_10      : #dcdcdc;
 
-$ft_red       : #9c0d0d;
-$ft_orange    : #f47700;
-$ft_yellow    : #f7c90d;
-$ft_green     : #48a024;
-$ft_blue      : #009ce6;
-$ft_navy      : #095fb5;
+
+$ft_1       : #86607c;
+$ft_2       : #b08265;
+$ft_3       : #9a924d;
+$ft_4       : #50784a;
+$ft_5       : #548677;
+$ft_6       : #52719a;
+$ft_7       : #708993;
+$ft_8       : #686078;
+$ft_9       : #e78282;
+$ft_10       : #898989;
 
 $hover_gray   : #f9f9f9;
 
@@ -410,37 +419,71 @@ $hover_gray   : #f9f9f9;
 			}
 		}
 		.c0{
-			background-color : $bg_red !important;
-			color : $ft_red; 
+			background-color : $bg_1 !important;
+			color : $ft_1; 
 		}	
 		.c1{
-			background-color : $bg_orange !important;
-			color : $ft_orange;
+			background-color : $bg_2 !important;
+			color : $ft_2;
 		}	
 		.c2{
-			background-color : $bg_yellow !important;
-			color : $ft_yellow;
+			background-color : $bg_3 !important;
+			color : $ft_3;
 		}	
 		.c3{
-			background-color : $bg_green !important;
-			color : $ft_green;
+			background-color : $bg_4 !important;
+			color : $ft_4;
 		}
 		.c4{
-			background-color : $bg_blue !important;
-			color : $ft_blue;
+			background-color : $bg_5 !important;
+			color : $ft_5;
 		}
 		.c5{
-			background-color : $bg_navy !important;
-			color : $ft_navy;			
+			background-color : $bg_6 !important;
+			color : $ft_6;			
 		}
+        .c6{
+            background-color : $bg_7 !important;
+            color : $ft_7;          
+
+        }
+        .c7
+        {
+            background-color : $bg_8 !important;
+            color : $ft_8;          
+
+        }
+        .c8
+        {
+            background-color : $bg_9 !important;
+            color : $ft_9;          
+
+        }
+        .c9
+        {
+            background-color : $bg_10 !important;
+            color : $ft_10;          
+
+        }
+
+
 		.lec{}
 		.lec_box
 		{
 			position:relative;
 
 			.lec_place, .lec_professor, .lec_name {
-				width:80%;		
+				width:99%;		
 			}
+            .lec_name
+            {
+                font-size :13px;
+                font-weight : bold;
+            }
+            .lec_professor, .lec_place
+            {
+                font-size:12px;
+            }
 			
 
 			.del_btn {
