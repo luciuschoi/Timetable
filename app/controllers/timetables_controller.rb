@@ -1,7 +1,6 @@
 class TimetablesController < ApplicationController
 	before_action :goLog, only: [:new, :show]
 	def show
-		
 		if !params[:major].nil?&&!params[:isu].nil?
 			@lectures = Lecture.detailSearch(params[:major],params[:isu]).paginate(:page => params[:page], :per_page => 4)
 		end
@@ -61,9 +60,14 @@ class TimetablesController < ApplicationController
 	end
 
 	def create
-		@timetable = current_user.timetables.create!(timetable_params)
 
-		redirect_to timetable_path(@timetable)
+		@timetable = current_user.timetables.build(timetable_params)
+
+		if @timetable.save
+			redirect_to timetable_path(@timetable)
+		else
+			render 'new'
+		end
 	end
 
 	def destroy

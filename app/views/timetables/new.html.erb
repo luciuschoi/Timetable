@@ -7,11 +7,11 @@
       <br><br>
 
         <%= form_for(@timetable) do |f| %>
-
+          <%= render 'shared/error_messages_timetable' %>
           <div class = "form-group">
             <%= f.label :'시간표 이름' %> 
             <%= f.text_field :name, class: 'form-control',
-                :value => '시간표 이름 입력해주세요' %>
+                :placeholder => '시간표 이름을 입력해주세요!' %>
           </div>
           <!--%= f.label :'학기' %> (로그인시 사용됩니다)
           <!%= f.text_field :email, class: 'form-control' %-->
