@@ -39,7 +39,6 @@ class Lecture < ActiveRecord::Base
       else
         lecture = Lecture.new
       end
-      byebug
       lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lecturetime"], place: row["place"])
       lec_plural_attrs.save
       # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
