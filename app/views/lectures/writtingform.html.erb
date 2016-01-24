@@ -52,26 +52,26 @@ $(document).ready(function() {
     
     $('.message').click(function()
     {
-        if(click_textarea==0)
-            {   // message 클래스네임을 가진 textarea에 기본 텍스트값 추가.
-                $('.message').html(
-                    example_text1+'\n\n\n'+example_text2+'\n\n\n'+
-                    example_text3+'\n\n\n'+example_text4+'\n\n\n'+
-                    example_text5+'\n');
+        // if(click_textarea==0)
+        //     {   // message 클래스네임을 가진 textarea에 기본 텍스트값 추가.
+        //         $('.message').html(
+        //             example_text1+'\n\n\n'+example_text2+'\n\n\n'+
+        //             example_text3+'\n\n\n'+example_text4+'\n\n\n'+
+        //             example_text5+'\n');
 
-                text_length=$('.message').val().length-146;
-                 $('#showremain').html(text_length + text_criteria_quantity);
-            }
+        //         text_length=$('.message').val().length-146;
+        //          $('#showremain').html(text_length + text_criteria_quantity);
+        //     }
     });
 
     
     
     $('.message').keyup(function() {
-        text_length = $('.message').val().length - 146;
+        // text_length = $('.message').val().length - 146;
         //var text_remaining = text_max - text_length;
         
         
-        if (text_length >= 41) 
+        if (text_length >= 10) 
 
         {
             // showremain이라는 id 값을 가진 span 엘리먼트에 동적으로 텍스트 길이 / 텍스트 맥스값 출력.
@@ -84,7 +84,7 @@ $(document).ready(function() {
 
 
 
-        if (text_length>40)
+        if (text_length>10)
             {
             	document.getElementById('showremain').style.color="blue"
            

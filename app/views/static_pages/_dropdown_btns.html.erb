@@ -1,11 +1,11 @@
 <div class="btn-group">
   <button class="btn btn-default btn-lg dropdown-toggle major-btn" data-toggle="dropdown">
-    <span id = "major_selection">전체 학과 </span><span class="caret"></span>
+    <span id = "major_selection"> 학과로 검색 </span><span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="
   height : 400%; overflow:scroll;">
 
-    <li><%= link_to '모든학과', newsfeed_url(:major => '모든학과',:search=> params[:search]), remote: true %></li>
+    <li><%= link_to '교양학부', newsfeed_url(:major => '교양학부',:search=> params[:search]), remote: true %></li>
     <li><%= link_to '컴퓨터공학과', newsfeed_url(:major => '컴퓨터공학과',:search=> params[:search]), remote: true %></li>
 
     <li><%= link_to '전자공학과', newsfeed_url(:major => '전자공학과',:search=> params[:search]), remote: true  %></li>

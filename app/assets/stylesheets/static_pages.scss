@@ -116,6 +116,8 @@ $ft_navy      : #095fb5;
 
 
 
+
+
 /* writting_form.html.erb */
 
 .writting_form_box
@@ -175,10 +177,17 @@ $ft_navy      : #095fb5;
 		text-align : center;
 		display: block;
 		margin-bottom: 10px;
-			.search	
+		.search	
 		{
 			background:white;
 			margin :10px;
+			display : inline-block;
+			width:60%;
+		}
+		.dropdown_box
+		{
+			width : 20%;
+			display	:	inline-block;
 		}
 	}
 
@@ -191,6 +200,7 @@ $ft_navy      : #095fb5;
 
 	.search_result_box {
 		width:720px;
+		height:500px;
 		margin:30px auto;
 
 		tr.search_table_row:hover{
@@ -268,6 +278,79 @@ $ft_navy      : #095fb5;
 /*      staticpages # newsfeed        */
 /*      뉴스피드 뷰 입니다. 			      */
 /*   						  		  */
+.temp_box
+{
+	margin : 10px auto;
+	
+	.search_box{
+		width:720px;
+		margin : 10px auto;
+		text-align : center;
+		display: block;
+		margin-bottom: 10px;
+		border-bottom: 1px solid #EEE;margin-top:3%;
+		padding-bottom : 15px;
+
+		.popular_words{
+			margin-top:5px;
+		}
+	}
+	.search_result_box{
+		width:720px;
+		margin : 30px auto;
+
+		tr.search_table_row:hover{
+			background-color: #CEF6EC;
+			cursor: pointer;
+			font-weight:900;
+		}
+		
+		.text_head{
+				text-align:center;
+				color:gray;
+				padding-left:0px;
+				padding-right:0px;
+		}
+		#div_total
+		{
+  			float:left;
+		}
+
+		.tb_unspot{
+			vertical-align:middle;
+			color: gray;
+		}
+		.table_subject, .total_spot{
+			vertical-align:middle;
+		}
+		.total_spot span {
+		    /*margin-right:10px;*/
+		    width : 27px;
+		    height : 26px;
+		    background : url("unactivated_star.png");
+		    display : inline-block;
+		    background-repeat: no-repeat;
+		    margin-right:-4px;
+  		}
+	    .total_spot .active{
+		    width : 27px;
+		    height : 26px;
+		    background : url("activated_star.png");
+		    display : inline-block;
+		    background-repeat: no-repeat;
+		    margin-right:-4px;
+	    }
+
+	    .total_text{
+	    	float: right;
+		    margin-right : 20px;
+		    margin-top: 3px;
+		    font-size: 16px;
+	    }
+	}
+}
+
+
 .newsfeed_box{
 	width:1000px;
 	margin-left : auto;
