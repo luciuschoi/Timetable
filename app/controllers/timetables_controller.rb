@@ -1,15 +1,13 @@
 class TimetablesController < ApplicationController
 	before_action :goLog, only: [:new, :show]
 	def show
-		
 		if !params[:major].nil?&&!params[:isu].nil?
 			@lectures = Lecture.detailSearch(params[:major],params[:isu]).paginate(:page => params[:page], :per_page => 4)
 		end
 		if params[:search]==''||params[:search].nil?
-
-
 		else
-	        @lectures = Lecture.search_timetable(params[:search],params[:semester]).paginate(:page => params[:page], :per_page => 4)
+	        @lectures = Lecture.search_timetable(params[:search],params[:semester])
+	    	@plural_attrs = PluralAttr.where(:lecture_id => @lectures).paginate(:page => params[:page], :per_page => 5)
 	    end
 
 	    # 시간표에 강의 등록한 사용자
@@ -53,9 +51,14 @@ class TimetablesController < ApplicationController
 	end
 
 	def create
-		@timetable = current_user.timetables.create!(timetable_params)
 
-		redirect_to timetable_path(@timetable)
+		@timetable = current_user.timetables.build(timetable_params)
+
+		if @timetable.save
+			redirect_to timetable_path(@timetable)
+		else
+			render 'new'
+		end
 	end
 
 	def destroy

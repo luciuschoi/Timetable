@@ -52,8 +52,13 @@ gem 'execjs'
 gem 'therubyracer'
 
 # gem 'activeadmin' , github: 'activeadmin'
+<<<<<<< HEAD
 # gem 'devise'
+=======
+gem 'devise'
+>>>>>>> e4fc65b5500cf6f164c6bc94f09a750ffb519114
 
+gem 'rails_admin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

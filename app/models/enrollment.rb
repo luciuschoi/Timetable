@@ -1,5 +1,5 @@
 class Enrollment < ActiveRecord::Base
-	has_many :lectures
+	belongs_to :lecture
 	# belongs_to :user
 	belongs_to :timetable
 

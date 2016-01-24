@@ -4,7 +4,7 @@ class CreateTimetables < ActiveRecord::Migration
 
     	t.belongs_to :user
     	t.string :name
-
+ 
     	t.timestamps null: false
     end
   end

@@ -39,4 +39,8 @@ config/*.yml
 
 /db/*.yml
 /config/database.yml
+
 application.html.erb
+
+/timetable_dev_db
+/timetable_test_db

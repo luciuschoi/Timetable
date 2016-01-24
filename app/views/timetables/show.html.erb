@@ -1,8 +1,7 @@
-
-
-  <div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;">
-    <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
-  </div>
+<div class = "row_container">
+  <!-- <div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;"> -->
+    <!--%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %-->
+  <!-- </div> -->
 
 
   <!-- 시간표 TABLE VIEW -->
@@ -23,6 +22,7 @@
     </div>
 
     <div class = "total_credits">
+      <span class = "lead"> 총 </span>
       <span class = "lead credits"></span>
       <span class = "lead">학점</span>
     </div>
@@ -58,17 +58,19 @@
                           text-align : center;
                           display:inline-block;">'<%=params[:search]%>' 검색, 총 <%=@lectures.count%>개의 검색 결과</div>
       <%end%>  
-    <%= render 'search_table', :lectures => @lectures %>
+    <%= render 'search_table', :lectures => @lectures, :plural_attrs => @plural_attrs %>
        <!-- 검색 결과 -->
      
   </div>
 
   <div class = "my_cart_container">
-    <div>
-      <%= render 'enrollments/my_cart_table' %>
+    <div class = "total_credits">
+      <span class = "lead"> 내가 담은 과목 </span>
     </div>
+      <%= render 'enrollments/my_cart_table' %>
   </div>
 
+</div>
 <script>
 $(document).ready(function() {
     $(".iframe").fancybox({
@@ -685,6 +687,7 @@ $(document).ready(function() {
     a_info      = '<a> </a>';
     span_info   = '<span class = info_btn> </span>';
 
+
     var contents = [lec_name, lec_credit, lec_place, lec_professor];
 
     // 1 element 추가
@@ -700,6 +703,7 @@ $(document).ready(function() {
     // $(content_box).addClass(lec_credit);
 
     // td안에 span을 순서대로 추가(place -> professor -> lecture_name)
+
     $(content_box).prepend(span_lp).prepend(span_pl).prepend(span_cr).prepend(span_ln);
 
     for(var i = 0; i < contents.length; i++)
@@ -708,7 +712,7 @@ $(document).ready(function() {
       // 컨텐츠 배열에서 값이 없는 것은 그것과 관련된 span 엘리먼트 remove
       if (contents[i] == null || contents[i].length == 0) 
       {
-        $(temp_span).remove();
+        
       }
       else
       {
@@ -730,7 +734,7 @@ $(document).ready(function() {
     // $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
     // $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id);
 
-    $(lec_cell).find('.info_btn').parent().attr('href', 'http://아뭐듣지.com/lectures/'+lec_id).attr('target', '_blank');
+    $(lec_cell).find('.info_btn').parent().attr('href', ''+'<%= Figaro.env.amodzzi_url%>'+'lectures/'+lec_id).attr('target', '_blank');
   }
 
 
