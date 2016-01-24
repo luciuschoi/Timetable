@@ -6,17 +6,8 @@ class TimetablesController < ApplicationController
 		end
 		if params[:search]==''||params[:search].nil?
 		else
-
 	        @lectures = Lecture.search_timetable(params[:search],params[:semester])
-	        # plural_attrs = PluralAttr.where('lecture_id = ?', @lectures[0].id)
-	        plural_attrs = []
-	        for i in 0..@lectures.count-1
-	        	plural_attrs+=PluralAttr.where('lecture_id = ?', @lectures[i].id)
-	        end
-	        if plural_attrs
-		        plural_attrs.map{|i| i.id}
-	    	end
-	    	@plural_attrs = PluralAttr.where(:id => plural_attrs).paginate(:page => params[:page], :per_page => 5)
+	    	@plural_attrs = PluralAttr.where(:lecture_id => @lectures).paginate(:page => params[:page], :per_page => 5)
 	    end
 
 	    # 시간표에 강의 등록한 사용자

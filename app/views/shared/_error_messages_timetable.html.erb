@@ -6,25 +6,8 @@
       <% @timetable.errors.full_messages.each do |msg| %>
           <% if msg.include?("Name can't be blank") %>
             <li> 시간표 이름을 입력해주세요! </li>
-
-          <% elsif msg.include?("Nickname can't be blank") %>
-            <li> 닉네임을 입력하지 않았습니다. </li>
-
-          <% elsif msg.include?("Password can't be blank") %>
-            <li> 암호를 입력하지 않았습니다. </li>
-
           <% elsif msg.include?("Name is too long") %>
-            <li> 이름은 10글자 이내로 만들어주세요ㅠㅡㅠ </li>
-
-          <% elsif msg.include?("Password confirmation doesn't match") %>
-            <li> 비밀번호가 일치 하지 않습니다. </li>
-
-          <% elsif msg.include?("Nickname has already been") %>
-            <li> 입력하신 닉네임은 이용중입니다. 다른 닉네임을 입력하세요. </li>  
-
-          <% elsif msg.include?("Email has already been") %>
-            <li> 입력하신 아이디는 이용중입니다. 다른 아이디를 입력하세요. </li>  
-          <% end %>
+            <li> 시간표 이름은 10글자 이내로 만들어주세요ㅠㅡㅠ </li>
       <% end %>
     </ul>
 
