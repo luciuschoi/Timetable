@@ -7,10 +7,13 @@ class Lecture < ActiveRecord::Base
   validates :major, presence:true
   serialize :lecturetime
   
+  has_many :plural_attrs, dependent: :destroy
   has_many :comments 
   has_many :valuations, dependent: :destroy
   has_many :comment_valuations, dependent: :destroy
+  has_many :enrollment
   belongs_to :timetable
+
   scope :order_by_comments, -> { joins(:comments).order("comments.created_at DESC") }
   scope :group_by_id, ->  { group(:lecture_id)}
 
@@ -24,26 +27,28 @@ class Lecture < ActiveRecord::Base
 
   # 1 기존에 없던 강의 추가 
 
-  # def self.import(file)
-  #   spreadsheet = open_spreadsheet(file)
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     lecture = find_by(subject: row["subject"], professor: row["professor"])
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      lecture = find_by(subject: row["subject"], professor: row["professor"])
 
-  #     if lecture
+      if lecture
         
-  #     else
-  #       lecture = Lecture.new
-  #       lecture.lecturetime = []
-  #     end
-  #     # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
-  #     lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester", "open_department", "credit")
-  #     lecture.save
-  #     #lecture.lecturetime = [row["lecturetime"]]
+      else
+        lecture = Lecture.new
+      end
+      byebug
+      lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lecturetime"], place: row["place"])
+      lec_plural_attrs.save
+      # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
+      # lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester", "open_department", "credit")
+      lecture.save
+      #lecture.lecturetime = [row["lecturetime"]]
       
-  #   end
-  # end
+    end
+  end
 
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
@@ -69,40 +74,40 @@ class Lecture < ActiveRecord::Base
   
 
   # 3 DB에 있는 강의 중 lecturetime 업데이트.. 좀 복잡한거 설명 들어야함
-  def self.import(file)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
-      #lecture = find_by_id(row["id"]) || new
-      # lecture.update_attribute("isu", row["isu"] )
-      # lecture.update_attribute("place", row["place"] )
+  # def self.import(file)
+  #   spreadsheet = open_spreadsheet(file)
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
+  #     #lecture = find_by_id(row["id"]) || new
+  #     # lecture.update_attribute("isu", row["isu"] )
+  #     # lecture.update_attribute("place", row["place"] )
       
-      # if lecture.lecturetime == nil
-      if lecture 
-        @bool_value = true
-          # 강의시간이 
-          if lecture.lecturetime.length != 0  
-            lecture.lecturetime.each do |time|
-              if time == row["lecturetime"]
-                @bool_value = false
-              end
-            end
+  #     # if lecture.lecturetime == nil
+  #     if lecture 
+  #       @bool_value = true
+  #         # 강의시간이 
+  #         if lecture.lecturetime.length != 0  
+  #           lecture.lecturetime.each do |time|
+  #             if time == row["lecturetime"]
+  #               @bool_value = false
+  #             end
+  #           end
           
-          end
+  #         end
 
-          if @bool_value
-            lecture.lecturetime << row["lecturetime"]  
-          end
-        lecture.save
-      end
-      # elsif lecture.lecturetime.length >= 1
-      #   lecture.lecturetime << row["lecturetime"]
-      # end
-      # lecture.lecturetime = [row["lecturetime"]]
-    end
-  end
+  #         if @bool_value
+  #           lecture.lecturetime << row["lecturetime"]  
+  #         end
+  #       lecture.save
+  #     end
+  #     # elsif lecture.lecturetime.length >= 1
+  #     #   lecture.lecturetime << row["lecturetime"]
+  #     # end
+  #     # lecture.lecturetime = [row["lecturetime"]]
+  #   end
+  # end
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
   # def self.import(file)
@@ -238,7 +243,7 @@ class Lecture < ActiveRecord::Base
 
   def self.search_timetable(search, semester)
     unless search.nil?
-      where(['(professor LIKE ? OR subject LIKE ? OR major LIKE ?)AND semester LIKE ?',
+      where(['(professor LIKE ? OR subject LIKE ? OR open_department LIKE ?)AND semester LIKE ?',
              "#{search}%","%#{search}%","#{search}%", "#{semester}"])
     end
   end  
@@ -255,9 +260,11 @@ class Lecture < ActiveRecord::Base
   end
 
 
+  def name
+    subject + " "
+  end
 
-
-
+  
 
 
 

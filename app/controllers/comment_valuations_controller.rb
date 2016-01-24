@@ -1,7 +1,5 @@
 class CommentValuationsController < ApplicationController
 	def create
-
-#ㅇㅇㅇㅇㅇ
 		# 현재유저가 이 댓글에 대해 평가한적 있니?
 		# 현재유저.
 		unless current_user.comment_valuations.find_by(comment_id: params[:comment_id])

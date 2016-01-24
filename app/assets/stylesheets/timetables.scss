@@ -28,6 +28,11 @@ $ft_10       : #898989;
 $hover_gray   : #f9f9f9;
 
 
+.row_container
+{
+    width : 1200px;
+    margin : 0 auto;
+}
 
 .time_cell{
 	padding-bottom: 0;
@@ -105,10 +110,9 @@ $hover_gray   : #f9f9f9;
 }
 .right-container
 {
-    width:26%;
-    float:right;
+    width:35%;
+    float:left;
     padding-left:2%;
-    margin-right:2%;
     margin-bottom:20px;
     
     .search_box
@@ -126,9 +130,12 @@ $hover_gray   : #f9f9f9;
         width:80%;
         padding-left : 15px;
         padding-bottom : 3px;
-        h4
+        .subject
         {
+            font-size:15px;
+            font-weight:bold;
             margin-bottom:3px;
+            width : 80%;
         }
         .department_open
         {
@@ -308,7 +315,14 @@ $hover_gray   : #f9f9f9;
             border-radius:0;
             float:left;
             border:none;
-            
+        }
+        .download_btn
+        {
+            background-color:#009ce6;
+            max-width:90px;
+            border-radius:0;
+            float:left;
+            border:none;
         }
     }
     .copy_btn
@@ -375,8 +389,9 @@ $hover_gray   : #f9f9f9;
 	background : #eeeeee;
 }
 
-.timetable_container{
-	width:55%;
+.timetable_container
+{
+	width:64%;
 	float:left;
 
 	.timetable_name_box
@@ -413,6 +428,7 @@ $hover_gray   : #f9f9f9;
 
 		td {
 			height:32px;
+            word-break: break-all;
 			.duplicated
 			{
 				background-color : #fff3f2 !important;
@@ -509,6 +525,21 @@ $hover_gray   : #f9f9f9;
 	}
 }
 
+/* 
+ * my_cart_container
+*/
+
+.my_cart_container
+{
+    table
+    {
+        width:80%;
+    }
+    table > tr > td
+    {
+        word-break : break-all;
+    }
+}
 
 
 /* detailsearch */
