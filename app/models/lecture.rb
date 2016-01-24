@@ -39,14 +39,12 @@ class Lecture < ActiveRecord::Base
       else
         lecture = Lecture.new
       end
-      byebug
       lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lecturetime"], place: row["place"])
       lec_plural_attrs.save
       # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
       # lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester", "open_department", "credit")
       lecture.save
       #lecture.lecturetime = [row["lecturetime"]]
-      
     end
   end
 
@@ -207,38 +205,15 @@ class Lecture < ActiveRecord::Base
   end
 
   
-  def lec_valuation(counts,g,w,a,l,h,t)
+  def lec_valuation(counts,t)
     
     if self.acc_grade.nil?
-        grade =  g.to_i
-        workload = w.to_i
-        achievement = a.to_i
-        level = l.to_i
-        homework = h.to_i
         total = t.to_i
-        counts+=1;
-        self.acc_grade = grade/counts/20;
-        self.acc_workload = workload/counts/20;
-        self.acc_achievement = achievement/counts/20;
-        self.acc_level = level/counts/20;
-        self.acc_homework = homework/counts/20; 
-        self.acc_total = total/counts;
-
     else
-        grade = self.acc_grade * counts + g.to_i/20
-        workload =self.acc_workload * counts + w.to_i/20
-        achievement =self.acc_achievement * counts + a.to_i/20
-        level = self.acc_level * counts + l.to_i/20
-        homework = self.acc_homework * counts + h.to_i/20
         total = self.acc_total*counts + t.to_i
-        counts+=1;
-        self.acc_grade = grade/counts
-        self.acc_workload = workload/counts
-        self.acc_achievement = achievement/counts
-        self.acc_level = level/counts
-        self.acc_homework = homework/counts
-        self.acc_total = total/counts
     end   
+    counts+=1
+    self.acc_total = total/counts
   end
 
   def self.search_timetable(search, semester)

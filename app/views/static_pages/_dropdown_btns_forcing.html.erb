@@ -1,12 +1,12 @@
 <div class="btn-group">
 
   <button class="btn btn-default btn-md dropdown-toggle major-btn" style="border: 3px solid #8FCEFF;" data-toggle="dropdown">
-    학과 전체 강의 검색 <span class="caret"></span>
+    학과로 검색 <span class="caret"></span>
 
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="
   height : 400%; overflow:scroll;">
-    <li><%= link_to '모든학과', forcingwritting_url(:major => '모든학과',:search=> params[:search]), remote: true %></li>
+    <li><%= link_to '교양학부', forcingwritting_url(:major => '교양학부',:search=> params[:search]), remote: true %></li>
     <li><%= link_to '컴퓨터공학과', forcingwritting_url(:major => '컴퓨터공학과',:search=> params[:search]), remote: true %></li>
 
     <li><%= link_to '전자공학과', forcingwritting_url(:major => '전자공학과',:search=> params[:search]), remote: true  %></li>

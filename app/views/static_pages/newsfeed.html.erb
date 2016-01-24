@@ -1,37 +1,29 @@
+<div class = "temp_box">
 
- 
-<div class = "newsfeed_box">
-  <div class = "recent_valuations">
-    <div id="recent">
-        <div class = "jumbotron">
-          <%= render 'dropdown_btns'%>
-          <h5 class = "v_text"> 오늘의 평가 
-            <b id = "v_today_count"><%= @count_of_today %></b>개 
-          </h5>
-          <h5 class = "v_text"> 총 평가
-            <b id = "v_total_count"><%= @valuations.count%></b>개
-          </h5>
-        </div>
-    </div>  <!-- recent -->
-
-  <div class = "valuation_subject"> 
-    <% if @major_name.nil? %>
-      <span style = "font-size : 20px;" id = "major_name">
-      모든학과의 최근평가     
-      </span>
-    <% else %>
-      <h4><%= @major_name %>의 최근평가</h4>
-
+  <div class = "search_box">
+    <%= form_tag newsfeed_path, :method => 'get', :class =>'form-inline',
+        :style => 'text-align:center;' do %>
+      <%= text_field_tag :search, params[:search], placeholder: :"과목 또는 교수님명을 입력해주세요!" ,:class => 'form-control  form-group' ,:style => "width:40%;"%>
+      <%= submit_tag "찾아줘!", data: { disable_with: "검색 중..." }, :class =>'btn btn-success', :style =>"width:15%;" %>
     <% end %>
+    <div class = "popular_words">
+        자주 찾는 검색어 : 서양고전강독, 경영학원론, 노용덕, 박기호
+    </div>
+  </div> <!-- search_box -->
+
+  <div class = "search_result_box">
+    <div class= "dropdown_box">
+      <h4><B>학과별로 보기</B></h4>
+      <%= render 'dropdown_btns_home'%>
+    </div>
+    <div class = "result_table">
+      <div class="sort_paginate_ajax" id="searchtables">
+          <%= render 'searchtables' %>
+      </div> 
+    </div>
   </div>
 
-  <div class="valuationlist">
-    <%= render 'home_user' %>
-  </div>
-  
-  </div> <!-- recent_valuations -->
-</div>  <!-- newsfeed box -->
-
+</div> <!-- home_box -->
 
 
 <script>
@@ -52,7 +44,7 @@
  
  
   <% if !@lecture_name.nil? %>
-    $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>')
+    $('.dropdown-toggle').dropdown().html('<%=@lecture_name%>');
   <% end %>
   $(function(){
     $(".dropdown-menu").on('click', 'li a', function(){
@@ -60,4 +52,19 @@
       $("#border-none:first-child").val($(this).text());
   });
 });
+function showLecture(lec_num)
+  {
+      <% if user_login? %>
+        <% if current_user.valuations.count>=2 %>
+          window.location="/lectures/"+lec_num.toString()
+         <% else %>
+         window.location="<%=forcingwritting_url%>"
+         <% end %>  
+       <% else %>
+          window.location="<%=root_url%>"
+      <% end %>        
+  }
 </script>
+
+
+

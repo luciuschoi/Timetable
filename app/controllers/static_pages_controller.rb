@@ -19,65 +19,51 @@ class StaticPagesController < ApplicationController
   end
 
   def newsfeed
-
-    if !params[:major].nil? && !params[:major].include?('모든학과')
-      @valuations = Valuation.join_major.where("major = ?", params[:major]).
+    if params[:search]
+      if !params[:major].nil? && !params[:major].include?('모든학과')
+        @lectures = Lecture.search_home(params[:search]).where(:major =>params[:major]).order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+      else 
+       @lectures = Lecture.search_home(params[:search]).order("acc_total DESC").paginate(:page => params[:page], :per_page => 10 )
+      end 
+    elsif !params[:major].nil? && !params[:major].include?('모든학과')
+      @lectures = Lecture.where(:major =>params[:major]).
       order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
-      @major_name = params[:major]
-      @count_of_today = 0
+    end 
+
+
+
+    # if !params[:major].nil? && !params[:major].include?('모든학과')
+    #   @valuations = Valuation.join_major.where("major = ?", params[:major]).
+    #   order("acc_total DESC").paginate(:page => params[:page], :per_page =>10)
+    #   @major_name = params[:major]
+    #   @count_of_today = 0
       
-      @valuations.each do |v|
-        difference = Time.zone.now - v.created_at 
-        if difference < 86400 && difference > 0
-          @count_of_today += 1
-        end
-      end
+    #   @valuations.each do |v|
+    #     difference = Time.zone.now - v.created_at 
+    #     if difference < 86400 && difference > 0
+    #       @count_of_today += 1
+    #     end
+    #   end
 
 
-      respond_to do |format|
-        format.js
-        format.html {redirect_to newsfeed_path}
-      end
-    else
-      @valuations=Valuation.join_major.where("major = ?", '전체학과')
-      .order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
-      @count_of_today = 0
-      @major_name = '전체학과'
-      @valuations.each do |v|
-        difference = Time.zone.now - v.created_at 
-        if difference < 86400 && difference > 0
-          @count_of_today += 1 
-        end
-      end
-    end
+    #   respond_to do |format|
+    #     format.js
+    #     format.html {redirect_to newsfeed_path}
+    #   end
+    # else
+    #   @valuations=Valuation.join_major.where("major = ?", '전체학과')
+    #   .order("created_at DESC").paginate(:page => params[:page], :per_page =>10)
+    #   @count_of_today = 0
+    #   @major_name = '전체학과'
+    #   @valuations.each do |v|
+    #     difference = Time.zone.now - v.created_at 
+    #     if difference < 86400 && difference > 0
+    #       @count_of_today += 1 
+    #     end
+    #   end
+    # end
 
   end 
-
-  def rank  
-
-    # 검색 수행 유무 확인
-    if params[:search]==''||params[:search].nil?
-
-    else
-        @lectures = Lecture.search_timetable(params[:search]).paginate(:page => params[:page], :per_page => 10)
-    end
-    
-    # 시간표에 강의 등록한 사용자
-    if current_user.timetables[0]
-      # 기본 타임테이블(0번 인덱스) 안에 등록된 강의 collection 담기
-      @lectures_in_timetable = current_user.timetables[0].enrollments  
-      # 유저가 생성한 타임테이블 collection 
-      @timetables = current_user.timetables
-    
-    # 강의 등록한 적 없는 사용자
-    else
-      current_user.timetables.create!(name: "기본시간표")
-      @lectures_in_timetable = current_user.timetables[0].enrollments  
-    end
-
-    # enrollment 있는 사용자
-    
-  end
 
   def goLog
     unless current_user

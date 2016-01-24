@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+
   # devise_for :admin
  # get 'users/new'
  get 'home_admin' => 'static_pages#home_admin'

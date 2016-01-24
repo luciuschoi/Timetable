@@ -3,7 +3,9 @@
 
 <div class = "v_textarea">
 	<div class="valuation_text_box">
-		<h4 class="h_size">구체적인 강의평을 남겨주세요(40자이상 입력해주세요!)</h4>
+		<h4 class="h_size">구체적인 강의평을 남겨주세요</h4>
+		<p class = "lead" style = "font-size : 12px"> 욕설 및 의미 없는 평가를 기재할 시 이용에 제한이 있을 수 있습니다. </p>
+		<p class = "lead" style = "font-size : 12px"> 학사정보시스템과 달리 강의평가는 별명(익명)으로 작성이 됩니다.</p>
 		<textarea class="message" rows='15' cols='500' maxlength="500" 
 		placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요!">
 		</textarea>
@@ -844,9 +846,9 @@ $('#first_grade, #second_grade, #third_grade, #fourth_grade, #fifth_grade').bind
 $('#submit_button').click(function(event){
 
 
-	if($('.message').val().length<40)
+	if($('.message').val().length<10)
 	{
-		alert('강의평을 40자이상 입력해주세요!');
+		alert('강의평을 10자이상 입력해주세요!');
 	}
 	else 
 	{
@@ -861,9 +863,9 @@ $('#submit_button').click(function(event){
 				   $('#submit_button').html('평가하기')
 				    this.disabled=false;
 			<% else %>
-					if(grade==0 || workload==0 || achievement==0 || level==0 || homework ==0 ||total ==0)
+					if(total ==0)
 					{ 
-									alert('모든 평가 항목에 대해서 체크해주세요');
+									alert('별점 평가를 해주세요!');
 									 $('#submit_button').html('평가하기')
 				    				 this.disabled=false;
 					}
@@ -872,7 +874,7 @@ $('#submit_button').click(function(event){
 						$.ajax({
 							url: "/valuations",
 							type: "post",
-							data: {'grade':grade, 'lecture_id':<%=params[:id]%>, 'workload':workload, 'achievement':achievement, 'level':level, 'homework':homework, 'total':total,
+							data: {'lecture_id':<%=params[:id]%>, 'total':total,
 							'content':$(".message").val()},
 							success: function(){
 								<%if current_user.valuations.count<1 %>
