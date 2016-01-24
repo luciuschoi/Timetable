@@ -1,25 +1,15 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: <%= Figaro.env.db_user_name%>
+  password: <%= Figaro.env.db_password%>
+  socket: <%= Figaro.env.socketLocation %>
+
 development:
-  adapter: mysql2
-  encoding: utf8
+  <<: *default
   database: db_dev
-  pool: 5
-  username: root
-  password: root
-  socket: /tmp/mysql.sock
-  limit: false
 test:
-  adapter: mysql2
-  encoding: utf8
   database: db_test
-  pool: 5
-  username: root
-  password: root
-  socket: /tmp/mysql.sock
 production:
-  adapter: mysql2
-  encoding: utf8
   database: db_production
-  pool: 5
-  username: root
-  password: root
-  socket: /tmp/mysql.sock
