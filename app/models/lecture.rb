@@ -68,7 +68,7 @@ class Lecture < ActiveRecord::Base
   # end
   
 
-  # 3 DB에 있는 강의 중 lecturetime 업데이트.. 좀 복잡한거 설명 들어야함
+  # # 3 DB에 있는 강의 중 lecturetime 업데이트.. 좀 복잡한거 설명 들어야함
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
@@ -103,53 +103,6 @@ class Lecture < ActiveRecord::Base
       # lecture.lecturetime = [row["lecturetime"]]
     end
   end
-
-  # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 
-  # def self.import(file)
-  #   spreadsheet = open_spreadsheet(file)
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     @lecture = Lecture.find_by(subject: row["subject"], professor: row["professor"])
-  #     # lecture = find_by_id(row["id"]) || new
-  #     # lecture.update_attribute("isu", row["isu"] )
-  #     # lecture.update_attribute("place", row["place"] )
-      
-  #     # if lecture.lecturetime == nil
-
-  #     ##########################################################################################
-  #     @bool_value = true
-  #     if @lecture
-  #       unless @lecture.lecturetime.nil?
-  #         if @lecture.lecturetime.length <= 3
-  #           @lecture.lecturetime.each do |time|
-  #             if time == row["lecturetime"]
-  #               @bool_value = false
-  #             end
-  #           end
-  #         else
-  #           @lecture.lecturetime = nil
-  #         end
-  #       end
-
-  #       if @bool_value && @lecture.lecturetime.nil?
-  #         @lecture.lecturetime = [row["lecturetime"]]
-  #       elsif @bool_value
-  #         @lecture.lecturetime << row["lecturetime"]  
-  #       end
-        
-  #       @lecture.save
-  #     end
-        
-  #     #########################################################################################
-
-  #   end
-  # end
-
-
- #   end
- # end
-
 
 
 

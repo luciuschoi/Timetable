@@ -1,4 +1,5 @@
 
+
   <div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;">
     <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
   </div>
@@ -281,10 +282,6 @@ $(document).ready(function() {
     
     else 
     {
-<<<<<<< HEAD
-=======
-      
->>>>>>> eab61afa26ae614d94d314bb412640afb2469082
       var arr_rows = [];
       // 자동으로 사강 col에 강의 추가
       // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
@@ -688,7 +685,7 @@ $(document).ready(function() {
     a_info      = '<a> </a>';
     span_info   = '<span class = info_btn> </span>';
 
-    var contents = [lec_name, lec_professor, lec_place, lec_credit];
+    var contents = [lec_name, lec_credit, lec_place, lec_professor];
 
     // 1 element 추가
     // 2 class 추가
@@ -703,7 +700,7 @@ $(document).ready(function() {
     // $(content_box).addClass(lec_credit);
 
     // td안에 span을 순서대로 추가(place -> professor -> lecture_name)
-    $(content_box).prepend(span_cr).prepend(span_pl).prepend(span_lp).prepend(span_ln);
+    $(content_box).prepend(span_lp).prepend(span_pl).prepend(span_cr).prepend(span_ln);
 
     for(var i = 0; i < contents.length; i++)
     {
@@ -914,6 +911,7 @@ $(document).ready(function() {
     }
     $('.credits').html(new_credits);  
   }
+
 </script>
 
 
