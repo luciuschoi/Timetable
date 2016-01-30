@@ -1,8 +1,5 @@
 <div class = "row_container">
-  <!-- <div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;"> -->
-    <!--%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %-->
-  <!-- </div> -->
-
+  
 
   <!-- 시간표 TABLE VIEW -->
   <div class = "timetable_container">
@@ -26,6 +23,11 @@
       <span class = "lead credits"></span>
       <span class = "lead">학점</span>
     </div>
+
+    <div class = "timetable_btn_container">
+      <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
+    </div>
+
     
     <div class="lessons" style = "font-size:14px;">
       <%= render 'enrollments/table_form' %>
@@ -134,7 +136,7 @@ $(document).ready(function() {
 
           });
     });
-  timetable = $('#timetable');
+  
 
   // 겹치니 안겹치니?
   //   1  겹치면     return 겹치는 강의명;
@@ -143,7 +145,7 @@ $(document).ready(function() {
   {
     var col_num;
     var duplicated_lec_name = "false";
-
+    var timetable = $('#timetable');
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -177,6 +179,8 @@ $(document).ready(function() {
     var lecture_name_span;
     var lecture_name;
     var be_duplicated;
+        var timetable = $('#timetable');
+
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -236,7 +240,11 @@ $(document).ready(function() {
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
 
-  $('body').on('click', '.list-group',function(event){
+  jQuery(document).on('touchstart', '.list-group', function(e) {
+       console.log("mobile touchstart");
+  });
+
+  $('body').on('click', '.list-group', '.list-group > .send_lec',function(event){
     // d_col | 요일 저장하는 배열 
     // s_row | 시작시간 
     // e_row | 종료시간 
@@ -441,6 +449,8 @@ $(document).ready(function() {
   // timetable에서 강의 시간(행)을 찾습니다.
   function find_begin_time_row(s_time)
   { 
+        var timetable = $('#timetable');
+
     var rows = timetable.find('tbody th');
     var refined_time = s_time.split(":");
     var row_num;
@@ -460,6 +470,7 @@ $(document).ready(function() {
 
   function find_end_time_row (e_time)
   {
+    var timetable = $('#timetable');
     var rows = timetable.find('tbody th');
     var refined_time = e_time.split(":");
     var row_num;
@@ -480,6 +491,7 @@ $(document).ready(function() {
   // 요일을 기준으로 몇열에 해당하는지 찾아 열값을 리턴.
   function find_day_td(day)
   {
+    var timetable = $('#timetable');
     var t_datas = timetable.find('thead th'); 
     var td_num = [];
 
@@ -506,6 +518,8 @@ $(document).ready(function() {
     var lecture_cell;
     var first_cells = [];
     //var class_arr = [];
+        var timetable = $('#timetable');
+
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -564,6 +578,7 @@ $(document).ready(function() {
     var lecture_cell;
     // 클릭(빈셀, 채워진 셀)과 첫 로드 구분
     var c_index = decide_cell_color();
+    var timetable = $('#timetable');
 
     for (h=0; h<col.length; h++)
     {

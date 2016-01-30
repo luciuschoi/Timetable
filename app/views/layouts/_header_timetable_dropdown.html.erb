@@ -8,9 +8,11 @@
         <% session[:timetables].each do |timetable| %>
 
         	<li>
-        		<a href="<%= timetable_path(timetable) %>"> 
-        			<%= timetable.name %> 
-        		</a>
+            <% if timetable.id %>
+          		<a href="<%= timetable_path(timetable) %>"> 
+          			<%= timetable.name %> 
+          		</a>
+            <% end %>d
         	</li>
 
         <% end %>

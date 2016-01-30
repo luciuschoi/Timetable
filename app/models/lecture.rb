@@ -35,9 +35,15 @@ class Lecture < ActiveRecord::Base
       lecture = find_by(subject: row["subject"], professor: row["professor"])
 
       if lecture
-        
+        # isu, semester, credit , opendepartment, major
+        lecture.update_attributes(isu: row["isu"], semester: row["semester"], credit: row["credit"],
+                                  open_department: row["open_department"], major: row["major"])
       else
+        # + subject, professor
         lecture = Lecture.new
+        lecture.update_attributes(isu: row["isu"], semester: row["semester"], credit: row["credit"],
+                                  open_department: row["open_department"], major: row["major"],
+                                  subject: row["subject"], professor: row["professor"])
       end
       lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lecturetime"], place: row["place"])
       lec_plural_attrs.save

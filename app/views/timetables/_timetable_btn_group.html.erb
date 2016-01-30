@@ -1,16 +1,15 @@
-<div class="timetable_btn">
-  <%= button_to "", class: 'btn btn-default download_btn', :type => 'button', id: 'save_image_locally' do %>
-      <i class="glyphicon glyphicon-download-alt" style="color:white;"><B>다운로드</B></i>
-  <% end %>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style = "border-color : white">
+    ...
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><i class="glyphicon glyphicon-download-alt" style="color:white;"></i>  <a href="#" id = "save_image_locally"> 다운로드</a> </li>
+    <li>
+      <%= link_to "현재 시간표 삭제", delete_timetable_path(current_timetable.id), method: :delete %>
+    </li>
+  </ul>
 </div>
 
-<div class="timetable_btn">
-    <%= button_to delete_timetable_path(current_timetable.id),
-                  method: :delete, data: { confirm: "현재 시간표 지울꺼에요..??" },
-                  class: 'btn btn-default del_btn', :type => 'button', :id => 'del_timetable_btn' do %>
-      <i class="glyphicon glyphicon-remove" style="color:white;"><B> 삭제 </B></i>
-    <% end %>
-</div>
 
 <!-- <div> -->
   

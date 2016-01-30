@@ -20,6 +20,10 @@
       <span class = "credit" style = "display : none"><%= p.lecture.credit %> </span>
       <span class = "isu" style = "display : none"><%= p.lecture.isu %> </span>
 
+      <div class = "send_lec" style = "position : absolute; right:10px; top : 2px">
+        <a> + </a>
+      </div>
+
       <div class = "department_open">
         <span><%= p.lecture.open_department %></span>
       </div>
@@ -36,13 +40,13 @@ $(document).ready(function(){
 });
    
 
+// $( "div.box" ).bind( "tap", tapHandler );
 
 
+// $('body').on('tap', '.list-group',function(event){
+//   console.log("a");
 
-
-
-
-
+// });
 
 
 </script>

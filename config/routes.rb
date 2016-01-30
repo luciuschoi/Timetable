@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # devise_for :admin
  # get 'users/new'
  get 'home_admin' => 'static_pages#home_admin'
@@ -40,7 +39,7 @@ Rails.application.routes.draw do
 delete '/delete_timetable/:id' => 'timetables#destroy', as: 'delete_timetable'
 # patch '/timetables/:id' => 'timetables#update', as: 'timetable'
 # put '/timetables/:id' => 'timetables#update', as: 'update_timetable'
-resources :timetables, only: [:show, :create, :new, :edit, :update]
+resources :timetables, only: [:show, :create, :new, :edit, :update, :destroy]
 get 'copy'   => 'timetables#copy'
 post 'paste' => 'timetables#paste'
 

@@ -303,6 +303,9 @@ $hover_gray   : #f9f9f9;
 /* timetable의 삭제, 복사, 공유 버튼 container */
 .timetable_btn_container
 {
+    display:inline-block;
+    right:0;
+    position:absolute;
     .timetable_btn
     {
         display:inline-block;
@@ -393,7 +396,7 @@ $hover_gray   : #f9f9f9;
 {
 	width:64%;
 	float:left;
-
+    position:relative;
 	.timetable_name_box
 	{
 		display :inline-block;

@@ -882,7 +882,7 @@ $('#submit_button').click(function(event){
 									window.location ="/forcingwritting"
 								<%else%>
 									alert('감사합니다. 강의평가 모두 완료되었습니다.')
-									window.location ="/"
+									window.location = ""+"<%= Figaro.env.amodzzi_url%>"+"lectures/"+ <%= @lecture.id%>
 								<%end%>
 							},
 							

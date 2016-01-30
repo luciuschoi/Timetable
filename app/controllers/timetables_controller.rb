@@ -53,7 +53,6 @@ class TimetablesController < ApplicationController
 	def create
 
 		@timetable = current_user.timetables.build(timetable_params)
-
 		if @timetable.save
 			redirect_to timetable_path(@timetable)
 		else
