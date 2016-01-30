@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160125072740) do
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -125,17 +126,6 @@ ActiveRecord::Schema.define(version: 20160125072740) do
     t.string   "open_department", limit: 255
   end
 
-  create_table "microposts", force: :cascade do |t|
-    t.text     "content",    limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "picture",    limit: 255
-  end
-
-  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
-  add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
-
   create_table "plural_attrs", force: :cascade do |t|
     t.string   "lectureTime", limit: 255
     t.string   "place",       limit: 255
@@ -144,23 +134,12 @@ ActiveRecord::Schema.define(version: 20160125072740) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "follower_id", limit: 4
-    t.integer  "followed_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
-
   create_table "timetables", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "semester",   limit: 255
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "semester",   limit: 255, default: "1학기"
   end
 
   create_table "users", force: :cascade do |t|

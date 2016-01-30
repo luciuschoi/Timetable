@@ -25,8 +25,5 @@ module SessionsHelper
 	    session.delete(:user_id)
 	    @current_user = nil
   	end
-  	
-  	def activated_timetable(timetable)
-  		session[:timetable_id] = timetable.id
-  	end
+
 end

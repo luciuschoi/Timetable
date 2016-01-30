@@ -79,7 +79,7 @@ GEM
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
     debug_inspector (0.0.2)
-    devise (3.5.4)
+    devise (3.5.5)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -280,3 +280,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate
   yaml_db
+
+BUNDLED WITH
+   1.10.6

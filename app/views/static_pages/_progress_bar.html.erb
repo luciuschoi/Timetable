@@ -4,7 +4,7 @@
 <div class = "v_textarea">
 	<div class="valuation_text_box">
 		<h4 class="h_size">구체적인 강의평을 남겨주세요</h4>
-		<p class = "lead" style = "font-size : 12px"> 욕설 및 의미 없는 평가를 기재할 시 이용에 제한이 있을 수 있습니다. </p>
+		<p class = "lead" style = "font-size : 12px"> 욕설 및 성의없는 평가를 기재할 시 이용에 제한이 있을 수 있습니다. </p>
 		<p class = "lead" style = "font-size : 12px"> 학사정보시스템과 달리 강의평가는 별명(익명)으로 작성이 됩니다.</p>
 		<textarea class="message" rows='15' cols='500' maxlength="500" 
 		placeholder = "강의 방식등 여러 학우를 위해 구체적인 강의평가를 남겨주세요!">
@@ -882,7 +882,7 @@ $('#submit_button').click(function(event){
 									window.location ="/forcingwritting"
 								<%else%>
 									alert('감사합니다. 강의평가 모두 완료되었습니다.')
-									window.location = ""+"<%= Figaro.env.amodzzi_url%>"+"lectures/"+ <%= @lecture.id%>
+									window.location = ""+"<%= Figaro.env.amodzzi_url%>"+"/lectures/"+ <%= @lecture.id%>
 								<%end%>
 							},
 							

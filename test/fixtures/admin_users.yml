@@ -3,13 +3,26 @@
 # This model initially had no columns defined.  If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
+<<<<<<< HEAD
 #
+=======
+
+>>>>>>> 1f6705ecc6cb679666cd7bd4687c6de816498da9
 one: 
   id: 1
   email: admin@admin.duswndangb
   password: password
   password_confirmation: password
+<<<<<<< HEAD
 # column: value
 #
 two: {}
+=======
+
+two: 
+  id: 2
+  email: admin@openyearound.com
+  password: password10
+  password_confirmation: password10
+>>>>>>> 1f6705ecc6cb679666cd7bd4687c6de816498da9
 #  column: value

@@ -3,6 +3,7 @@ class Timetable < ActiveRecord::Base
 	has_many :enrollments, dependent: :destroy
 	validates :name, presence: true, length: {maximum: 20}
 
+
 	scope :countMore1, -> {having('count(user_id) > 1').order('user_id DESC')}
 	scope :countMore2, -> {having('count(user_id) > 2').order('user_id DESC')}
 	# scope :countAll, -> {where(:user_id => (Timetable.find_by_sql("SELECT user_id FROM timetables WHERE user_id IN (SELECT user_id FROM timetables GROUP BY user_id HAVING COUNT(*) > 1)")))}
