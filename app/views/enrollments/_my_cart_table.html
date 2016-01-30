@@ -17,7 +17,11 @@
         <td class = "professor"> <%= l.professor %> </td>
         <td class = "isu"> <%= l.isu %> </td>
         <td class = "del_btn"> 
-          <span class = "glyphicon glyphicon-remove"> </span> 
+          <span class = "glyphicon glyphicon-remove">
+            <span class = "lec_credit" style = "display:none">
+              <%= l.credit %>
+            </span>
+          </span> 
         </td>
       </tr>
 

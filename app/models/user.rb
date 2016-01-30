@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+   # scope :count_of_timetable, -> { joins(:timetables).select() }
 	 has_many :comments, dependent: :destroy
 	 has_many :valuations, dependent: :destroy
    has_many :comment_valuations, dependent: :destroy
@@ -29,5 +30,8 @@ class User < ActiveRecord::Base
     valuations.create(lecture_id: lec.id,total: t, content: c)
 
   end
- 
+  
+  private
+    
+
 end

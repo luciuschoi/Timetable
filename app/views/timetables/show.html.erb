@@ -1,8 +1,5 @@
 <div class = "row_container">
-  <!-- <div class = "timetable_btn_container" style="width:13%;float:left;margin-left:2%;"> -->
-    <!--%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %-->
-  <!-- </div> -->
-
+  
 
   <!-- 시간표 TABLE VIEW -->
   <div class = "timetable_container">
@@ -26,6 +23,11 @@
       <span class = "lead credits"></span>
       <span class = "lead">학점</span>
     </div>
+
+    <div class = "timetable_btn_container">
+      <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
+    </div>
+
     
     <div class = "timetable_btn_container">
       <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
@@ -111,7 +113,7 @@ $(document).ready(function() {
     // });
 
   
-  timetable = $('#timetable');
+  // timetable = $('#timetable');
   $('.glyphicon-star').click(function (){
       var elements = document.getElementsByClassName('list-group')
       var pagenation= document.getElementsByClassName('paginate')
@@ -141,7 +143,6 @@ $(document).ready(function() {
 
           });
     });
-  // timetable = $('#timetable');
 
   // 겹치니 안겹치니?
   //   1  겹치면     return 겹치는 강의명;
@@ -150,7 +151,7 @@ $(document).ready(function() {
   {
     var col_num;
     var duplicated_lec_name = "false";
-
+    var timetable = $('#timetable');
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -184,6 +185,8 @@ $(document).ready(function() {
     var lecture_name_span;
     var lecture_name;
     var be_duplicated;
+    var timetable = $('#timetable');
+
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -247,7 +250,12 @@ $(document).ready(function() {
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
 
-  $('body').on('click', '.list-group', '.list-group > .send_lec', function(event){
+
+  jQuery(document).on('touchstart', '.list-group', function(e) {
+       console.log("mobile touchstart");
+  });
+
+  $('body').on('click', '.list-group', '.list-group > .send_lec',function(event){
     // d_col | 요일 저장하는 배열 
     // s_row | 시작시간 
     // e_row | 종료시간 
@@ -315,7 +323,7 @@ $(document).ready(function() {
     {
       modify_total_credits(lec_credit, '+');
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
-      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu);
+      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit);
 
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
     }
@@ -363,8 +371,6 @@ $(document).ready(function() {
   
 
   $('body').on('mouseenter', '.list-group',function(event){
-
-
 
     var data = $(this).find('.lecture_time').html();
         data = split_text_for_lectureTime(data);
@@ -451,6 +457,7 @@ $(document).ready(function() {
   // timetable에서 강의 시간(행)을 찾습니다.
   function find_begin_time_row(s_time)
   { 
+    var timetable = $('#timetable');
     var rows = timetable.find('tbody th');
     var refined_time = s_time.split(":");
     var row_num;
@@ -470,6 +477,7 @@ $(document).ready(function() {
 
   function find_end_time_row (e_time)
   {
+    var timetable = $('#timetable');
     var rows = timetable.find('tbody th');
     var refined_time = e_time.split(":");
     var row_num;
@@ -490,6 +498,7 @@ $(document).ready(function() {
   // 요일을 기준으로 몇열에 해당하는지 찾아 열값을 리턴.
   function find_day_td(day)
   {
+    var timetable = $('#timetable');
     var t_datas = timetable.find('thead th'); 
     var td_num = [];
 
@@ -516,6 +525,8 @@ $(document).ready(function() {
     var lecture_cell;
     var first_cells = [];
     //var class_arr = [];
+        var timetable = $('#timetable');
+
     for (h=0; h<col.length; h++)
     {
       col_num = col[h]+")";
@@ -574,6 +585,7 @@ $(document).ready(function() {
     var lecture_cell;
     // 클릭(빈셀, 채워진 셀)과 첫 로드 구분
     var c_index = decide_cell_color();
+    var timetable = $('#timetable');
 
     for (h=0; h<col.length; h++)
     {
@@ -642,7 +654,7 @@ $(document).ready(function() {
     return index;
   }
 
-  function make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu)
+  function make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit)
   {
     var t_body = $('#my_cart_table').find('tbody');
 
@@ -658,14 +670,16 @@ $(document).ready(function() {
     td_professor  = '<td class = professor> </td>';
     td_isu        = '<td class = isu></td>';
     td_del_btn    = '<td class = del_btn></td>';
+
     span_glyphicon= '<span class = glyphicon></span>';
+    span_lec_credit = '<span class = lec_credit></span>';
 
     var td_contents    = [lec_name, lec_professor, lec_isu, span_glyphicon];
 
     $(t_body).append(tr_contents);
     var tr_container = $(t_body).find('tr:last-child');
 
-    tr_container.append(td_subject).append(td_professor).append(td_isu).append(td_del_btn);
+    tr_container.append(td_subject).append(td_professor).append(td_isu).append(td_del_btn)
     
     for (var i = 0; i < td_contents.length; i++) 
     {
@@ -673,7 +687,9 @@ $(document).ready(function() {
       $(temp_td).html(td_contents[i]);
     }
     $(tr_container).addClass('l'+s_row+'-'+e_row+'_'+lec_id);
-    $(tr_container).find('td:last-child span').addClass('glyphicon-remove');
+    $(tr_container).find('td:last-child span').addClass('glyphicon-remove').html(span_lec_credit);
+
+    $(tr_container).find('.lec_credit').html(lec_credit).css('display','none');
     
   }
 
