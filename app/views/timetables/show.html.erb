@@ -27,6 +27,10 @@
       <span class = "lead">학점</span>
     </div>
     
+    <div class = "timetable_btn_container">
+      <%= render 'timetables/timetable_btn_group', :current_timetable => @current_timetable %>
+    </div>
+    
     <div class="lessons" style = "font-size:14px;">
       <%= render 'enrollments/table_form' %>
     </div>
@@ -107,7 +111,7 @@ $(document).ready(function() {
     // });
 
   
-
+  timetable = $('#timetable');
   $('.glyphicon-star').click(function (){
       var elements = document.getElementsByClassName('list-group')
       var pagenation= document.getElementsByClassName('paginate')
@@ -117,6 +121,9 @@ $(document).ready(function() {
       pagenation[0].style.display='none';
   });
 
+  // jQuery(document).on('touchstart', '.list-group', function(e) {
+  //      console.log("mobile touchstart");
+  // });
 
 //이미지 저장하는 코드 
   $('#save_image_locally').click(function() {
@@ -134,7 +141,7 @@ $(document).ready(function() {
 
           });
     });
-  timetable = $('#timetable');
+  // timetable = $('#timetable');
 
   // 겹치니 안겹치니?
   //   1  겹치면     return 겹치는 강의명;
@@ -199,6 +206,10 @@ $(document).ready(function() {
     return duplicated_lec_name;
   }
 
+  jQuery(document).on('touchstart', '.list-group', function(e) {
+       console.log("mobile touchstart");
+  });
+
   function alert_branch(which_alert, duplicated_lec_name)
   {
     $('.alert-container').prepend('<div> </div>');
@@ -236,7 +247,7 @@ $(document).ready(function() {
   // 시간표에 담을 강의를 클릭하면, timetable에서 해당 강의가
   // 속한 행과 열을 결정한다.
 
-  $('body').on('click', '.list-group',function(event){
+  $('body').on('click', '.list-group', '.list-group > .send_lec', function(event){
     // d_col | 요일 저장하는 배열 
     // s_row | 시작시간 
     // e_row | 종료시간 
@@ -756,6 +767,9 @@ $(document).ready(function() {
     });
   }
 
+  jQuery(document).on('touchstart', '.my_cart_container #my_cart_table .t_contents .del_btn', function(e) {
+       console.log("mobile touchstart");
+  });
 
   $('body').on('click', '.lessons > .table-striped > tbody > tr > td > div > .del_btn' ,dynamic_delete);
   $('body').on('click', '.my_cart_container #my_cart_table .t_contents .del_btn' ,dynamic_delete);
@@ -918,7 +932,15 @@ $(document).ready(function() {
 
 </script>
 
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+    ga('create', 'UA-72706618-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 
 

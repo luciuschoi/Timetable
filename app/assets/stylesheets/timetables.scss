@@ -35,7 +35,7 @@ $hover_gray   : #f9f9f9;
 }
 
 .time_cell{
-	padding-bottom: 0;
+    padding-bottom: 0;
     padding-top: 0;
     padding-right: 0;
     height: 29px;
@@ -282,11 +282,11 @@ $hover_gray   : #f9f9f9;
     margin : 10px auto;
     margin-bottom: 20%;
     .add_form_box{
-    	border-radius : 3px;
-    	background-color: #ecf0f1;
-    	padding : 20px;
-		width:500px;
-		margin : 10px auto;
+        border-radius : 3px;
+        background-color: #ecf0f1;
+        padding : 20px;
+        width:500px;
+        margin : 10px auto;
     }
 }
 
@@ -294,15 +294,18 @@ $hover_gray   : #f9f9f9;
 
 
 
-/* 						        	  */
+/*                                    */
 /*   timetableController # timetable  */
-/*   시간표 뷰 입니다. 			          */
-/*   						  		  */
+/*   시간표 뷰 입니다.                       */
+/*                                    */
 
 
 /* timetable의 삭제, 복사, 공유 버튼 container */
 .timetable_btn_container
 {
+    display:inline-block;
+    right:0;
+    position:absolute;
     .timetable_btn
     {
         display:inline-block;
@@ -311,14 +314,6 @@ $hover_gray   : #f9f9f9;
         .del_btn
         {
             background-color:#e00000;
-            max-width:90px;
-            border-radius:0;
-            float:left;
-            border:none;
-        }
-        .download_btn
-        {
-            background-color:#009ce6;
             max-width:90px;
             border-radius:0;
             float:left;
@@ -350,7 +345,7 @@ $hover_gray   : #f9f9f9;
  .table > tbody > tr > th, 
   .table > tfoot > tr > th, .table > tfoot > tr > td
 {
-	border:0;
+    border:0;
 }
 .table > tbody > tr > td
 {
@@ -359,7 +354,7 @@ $hover_gray   : #f9f9f9;
 
 .table
 {
-	border:0;
+    border:0;
 }
 .table > thead > tr > th,
 .table > thead > tr > td,
@@ -381,49 +376,49 @@ $hover_gray   : #f9f9f9;
 /* duplicated 클래스가 캐스캐이딩 기준으로 c클래스의 style의 우선순위보다 높아지기 위함 */
 .lessons > #timetable > tbody > tr > td.duplicated
 {
-	background : #e00000 !important;
-	color : white;
-	border : 0;
+    background : #e00000 !important;
+    color : white;
+    border : 0;
 }
 
 .lessons > #timetable > tbody > tr > td.temporary_fill
 {
-	background : #009ce6 !important;
-	color : white;
+    background : #009ce6 !important;
+    color : white;
 }
 
 .lessons > #timetable > tbody > tr > td.not_duplicated
 {
-	background : #eeeeee;
+    background : #eeeeee;
 }
 
 .timetable_container
 {
-	width:64%;
-	float:left;
-
-	.timetable_name_box
-	{
-		display :inline-block;
-		
-		span
-		{
-			width:15px;
-			height:15px;
-		}
-	}
+    width:64%;
+    float:left;
+    position:relative;
+    .timetable_name_box
+    {
+        display :inline-block;
+        
+        span
+        {
+            width:15px;
+            height:15px;
+        }
+    }
 
     .name_edit_btn
     {
         display: inline-block;
     }
 
-	.timetable_semester
-	{
-		display :inline-block;
-		margin-left : 25px;
-		color : #cbd4db;	
-	}
+    .timetable_semester
+    {
+        display :inline-block;
+        margin-left : 25px;
+        color : #cbd4db;    
+    }
 
     .total_credits
     {
@@ -431,41 +426,41 @@ $hover_gray   : #f9f9f9;
     }
 
     
-	.lessons
-	{
+    .lessons
+    {
 
-		td {
-			height:32px;
+        td {
+            height:32px;
             word-break: break-all;
-			.duplicated
-			{
-				background-color : #fff3f2 !important;
-			}
-		}
-		.c0{
-			background-color : $bg_1 !important;
-			color : $ft_1; 
-		}	
-		.c1{
-			background-color : $bg_2 !important;
-			color : $ft_2;
-		}	
-		.c2{
-			background-color : $bg_3 !important;
-			color : $ft_3;
-		}	
-		.c3{
-			background-color : $bg_4 !important;
-			color : $ft_4;
-		}
-		.c4{
-			background-color : $bg_5 !important;
-			color : $ft_5;
-		}
-		.c5{
-			background-color : $bg_6 !important;
-			color : $ft_6;			
-		}
+            .duplicated
+            {
+                background-color : #fff3f2 !important;
+            }
+        }
+        .c0{
+            background-color : $bg_1 !important;
+            color : $ft_1; 
+        }   
+        .c1{
+            background-color : $bg_2 !important;
+            color : $ft_2;
+        }   
+        .c2{
+            background-color : $bg_3 !important;
+            color : $ft_3;
+        }   
+        .c3{
+            background-color : $bg_4 !important;
+            color : $ft_4;
+        }
+        .c4{
+            background-color : $bg_5 !important;
+            color : $ft_5;
+        }
+        .c5{
+            background-color : $bg_6 !important;
+            color : $ft_6;          
+        }
         .c6{
             background-color : $bg_7 !important;
             color : $ft_7;          
@@ -491,14 +486,14 @@ $hover_gray   : #f9f9f9;
         }
 
 
-		.lec{}
-		.lec_box
-		{
-			position:relative;
+        .lec{}
+        .lec_box
+        {
+            position:relative;
 
-			.lec_place, .lec_professor, .lec_name {
-				width:99%;		
-			}
+            .lec_place, .lec_professor, .lec_name {
+                width:99%;      
+            }
             .lec_name
             {
                 font-size :13px;
@@ -508,29 +503,29 @@ $hover_gray   : #f9f9f9;
             {
                 font-size:12px;
             }
-			
+            
 
-			.del_btn {
-				cursor : pointer;
-				top   : 0;
-			}
-			
+            .del_btn {
+                cursor : pointer;
+                top   : 0;
+            }
+            
 
-			a{
-				color : #333333;
-				
-				.info_btn{
-				cursor : pointer;
-				top: 20px;
-				}	
-			}
+            a{
+                color : #333333;
+                
+                .info_btn{
+                cursor : pointer;
+                top: 20px;
+                }   
+            }
 
-			.glyphicon {
-				right : 0;
-				position:absolute;
-			}	
-		}
-	}
+            .glyphicon {
+                right : 0;
+                position:absolute;
+            }   
+        }
+    }
 }
 
 /* 

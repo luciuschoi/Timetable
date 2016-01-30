@@ -51,8 +51,9 @@ gem 'figaro'
 gem 'execjs'
 gem 'therubyracer'
 
-gem 'rails_admin'
 gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

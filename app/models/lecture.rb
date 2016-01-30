@@ -35,11 +35,17 @@ class Lecture < ActiveRecord::Base
       lecture = find_by(subject: row["subject"], professor: row["professor"])
 
       if lecture
-        
+        # isu, semester, credit , opendepartment, major
+        lecture.update_attributes(isu: row["isu"], semester: row["semester"], credit: row["credit"],
+                                  open_department: row["open_department"], major: row["major"])
       else
+        # + subject, professor
         lecture = Lecture.new
+        lecture.update_attributes(isu: row["isu"], semester: row["semester"], credit: row["credit"],
+                                  open_department: row["open_department"], major: row["major"],
+                                  subject: row["subject"], professor: row["professor"])
       end
-      lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lecturetime"], place: row["place"])
+      lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lectureTime"], place: row["place"])
       lec_plural_attrs.save
       # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
       # lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester", "open_department", "credit")
@@ -47,6 +53,41 @@ class Lecture < ActiveRecord::Base
       #lecture.lecturetime = [row["lecturetime"]]
     end
   end
+
+  # 학기 검사용
+  def self.import(file)
+
+    ps = PluralAttr.all
+    ps.each do |p|
+      p.destroy
+    end
+
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      lecture = find_by(subject: row["subject"], professor: row["professor"])
+
+      if lecture
+        # isu, semester, credit , opendepartment, major
+        lecture.update_attributes(isu: row["isu"], semester: row["semester"], credit: row["credit"],
+                                  open_department: row["open_department"], major: row["major"])
+      else
+        # + subject, professor
+        lecture = Lecture.new
+        lecture.update_attributes(isu: row["isu"], semester: row["semester"], credit: row["credit"],
+                                  open_department: row["open_department"], major: row["major"],
+                                  subject: row["subject"], professor: row["professor"])
+      end
+      lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lectureTime"], place: row["place"])
+      lec_plural_attrs.save
+      # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.
+      # lecture.attributes = row.to_hash.slice("subject", "professor", "major", "place", "isu","semester", "open_department", "credit")
+      lecture.save
+      #lecture.lecturetime = [row["lecturetime"]]
+    end
+  end
+
 
 
   # 2 DB에 있는 강의에 몇가지 COLUMN 업데이트 

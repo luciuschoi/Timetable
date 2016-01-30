@@ -5,7 +5,6 @@
     <div class = "add_form_box">
       <h1>시간표 만들기</h1>
       <br><br>
-error_messages_timetable.html.erb
         <%= form_for(@timetable) do |f| %>
           <%= render 'shared/error_messages_timetable' %>
           <div class = "form-group">
@@ -20,7 +19,7 @@ error_messages_timetable.html.erb
             <%= f.select :semester, "<option class = 'form-control'>2016년 1학기</option>
                                      <option class = 'form-control'>2015년 2학기</option>".html_safe,
                                      :class => "form-control"%>
-            <!-- <select class="form-control">
+            <!-- <select class="form-ediecontrol">
               <option>16-1학기</option>
               <option>16-2학기</option>
               <option>계절 학기</option>
@@ -32,3 +31,12 @@ error_messages_timetable.html.erb
         <% end %>
     </div>
   </div>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-72706618-1', 'auto');
+    ga('send', 'pageview');
+</script>
