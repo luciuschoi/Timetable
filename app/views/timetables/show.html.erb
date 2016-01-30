@@ -323,7 +323,7 @@ $(document).ready(function() {
     {
       modify_total_credits(lec_credit, '+');
       default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
-      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu);
+      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit);
 
       send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
     }
@@ -654,7 +654,7 @@ $(document).ready(function() {
     return index;
   }
 
-  function make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu)
+  function make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit)
   {
     var t_body = $('#my_cart_table').find('tbody');
 
@@ -670,14 +670,16 @@ $(document).ready(function() {
     td_professor  = '<td class = professor> </td>';
     td_isu        = '<td class = isu></td>';
     td_del_btn    = '<td class = del_btn></td>';
+
     span_glyphicon= '<span class = glyphicon></span>';
+    span_lec_credit = '<span class = lec_credit></span>';
 
     var td_contents    = [lec_name, lec_professor, lec_isu, span_glyphicon];
 
     $(t_body).append(tr_contents);
     var tr_container = $(t_body).find('tr:last-child');
 
-    tr_container.append(td_subject).append(td_professor).append(td_isu).append(td_del_btn);
+    tr_container.append(td_subject).append(td_professor).append(td_isu).append(td_del_btn)
     
     for (var i = 0; i < td_contents.length; i++) 
     {
@@ -685,7 +687,9 @@ $(document).ready(function() {
       $(temp_td).html(td_contents[i]);
     }
     $(tr_container).addClass('l'+s_row+'-'+e_row+'_'+lec_id);
-    $(tr_container).find('td:last-child span').addClass('glyphicon-remove');
+    $(tr_container).find('td:last-child span').addClass('glyphicon-remove').html(span_lec_credit);
+
+    $(tr_container).find('.lec_credit').html(lec_credit).css('display','none');
     
   }
 
