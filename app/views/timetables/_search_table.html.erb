@@ -21,8 +21,11 @@ e
       <span class = "credit" style = "display : none"><%= p.lecture.credit %> </span>
       <span class = "isu" style = "display : none"><%= p.lecture.isu %> </span>
 
-      <div class = "send_lec" style = "position : absolute; right:10px; top : 2px">
-        <a> + </a>
+      <div class = "send_lec" style = "position : absolute; right:4px; top : 4px">
+
+      <%= button_to lecture_path(p.lecture), method: :get, class: 'btn btn-default btn_info', :type => 'button', form: {target: '_blank'}, dataid: p.lecture.id, style: 'display:none' do %>
+        <i class="icon-info"></i>
+      <% end %>
       </div>
 
       <div class = "department_open">
@@ -41,13 +44,10 @@ $(document).ready(function(){
 });
    
 
-// $( "div.box" ).bind( "tap", tapHandler );
 
 
-// $('body').on('tap', '.list-group',function(event){
-//   console.log("a");
 
-// });
+
 
 
 </script>

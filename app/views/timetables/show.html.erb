@@ -94,23 +94,106 @@ $(document).ready(function() {
   
 
 <script>
-  // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    // Kakao.init('8af2fccfaf9fe878576de125c4ba83eb');
 
-    // //카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    // Kakao.Link.createTalkLinkButton({
-    //   container: '#kakao-link-btn',
-    //   label: '세종대 강의정보공유 사이트 구경오세요.',
-    //   image: {
-    //     src: 'http://xn--oy1bw5jn8ijte.com/assets/logo2-bfa40186d9f501f9483243509d751037a6da6190d053cef4cc15f1221d3ed4b1.png', //카카오톡에 보여질 이미지 
-    //     width: '300',
-    //     height: '200'
-    //   },
-    //   webButton: {
-    //     text: '아뭐듣지.com',
-    //     url: 'http://xn--oy1bw5jn8ijte.com' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
-    //   }
-    // });
+
+  (function($,document,window,undefined){
+    timetable = {
+
+      bongjae: function(e) {
+        e.preventDefault();
+        return false;
+      },
+
+      init: function()
+      {
+        $(document).on('click', '.list-group',function(e)
+        {
+    // d_col | 요일 저장하는 배열 
+    // s_row | 시작시간 
+    // e_row | 종료시간 
+    var d_col;
+    var s_row;
+    var e_row;
+    var lec_professor;
+    var lec_place;
+    var duplicated_lec_name = 'false';
+
+    $(this).off('mouseleave');
+    $(this).off('mouseenter');
+
+    var lecture_time_data = $(this).find('.lecture_time').html();
+    
+    // lectureTime = "월수13:30-15:00"
+    lecture_time_data = split_text_for_lectureTime(lecture_time_data);
+
+    var timetable_id = $('.lessons').attr('id');
+
+    // 강의 필수 요소
+    var lec_id = $(this).attr('class').split('_')[1];
+    var lec_name = $(this).find('.subject').html();
+    var lec_isu = $(this).find('.isu').html();
+    var lec_credit = $(this).find('.credit').html();
+
+
+
+    // lecture_time_data = ["월수","13:30","15:00"]
+    if (lecture_time_data != null)
+    {
+      d_col = find_day_td(lecture_time_data[0]);
+      s_row = find_begin_time_row(lecture_time_data[1]);
+      e_row = find_end_time_row(lecture_time_data[2]);
+
+      lec_professor = $(this).find('.professor').html();
+      lec_professor = lec_professor.split('/')[0];
+      lec_place = $(this).find('.place').html();
+
+      // 시간표에 등록된 강의 중 겹치는 강의 있는지 확인.
+      // 있다면 이름 반환, 없으면 false(겹치는 강의 '없'다) 반환.
+      duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
+        
+    }
+    
+    else 
+    {
+      var arr_rows = [];
+      // 자동으로 사강 col에 강의 추가
+      // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
+      // 강의추가를 위해 필요한 것 : col, s_row, e_row 정하기
+      duplicated_lec_name = search_duplicate_for_e_lecture(1,20,['7'], lec_name)
+      arr_rows = find_location_of_cyber_lecture_cell();
+      d_col = [7];
+      s_row = find_begin_time_row(arr_rows[0]);
+      e_row = find_end_time_row(arr_rows[1]);
+    }
+
+
+    if (duplicated_lec_name != 'false')
+    {
+      alert_branch('duplicate', duplicated_lec_name);
+    }
+    else
+    {
+      modify_total_credits(lec_credit, '+');
+      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
+      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit);
+
+      send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
+    }
+          return timetable.bongjae(e);
+        });
+
+        $(document).on('click', 'button.btn_info', function(e){
+          window.open('/lectures/'+$(this).attr('dataid'));
+          return timetable.bongjae(e);
+
+        });
+
+      }
+
+    };
+
+    $(document).ready(timetable.init);
+  })(jQuery,document,window);
 
   
   // timetable = $('#timetable');
@@ -255,80 +338,7 @@ $(document).ready(function() {
        console.log("mobile touchstart");
   });
 
-  $('body').on('click', '.list-group', '.list-group > .send_lec',function(event){
-    // d_col | 요일 저장하는 배열 
-    // s_row | 시작시간 
-    // e_row | 종료시간 
-    var d_col;
-    var s_row;
-    var e_row;
-    var lec_professor;
-    var lec_place;
-    var duplicated_lec_name = 'false';
 
-    $(this).off('mouseleave');
-    $(this).off('mouseenter');
-
-    var lecture_time_data = $(this).find('.lecture_time').html();
-    
-    // lectureTime = "월수13:30-15:00"
-    lecture_time_data = split_text_for_lectureTime(lecture_time_data);
-
-    var timetable_id = $('.lessons').attr('id');
-
-    // 강의 필수 요소
-    var lec_id = $(this).attr('class').split('_')[1];
-    var lec_name = $(this).find('.subject').html();
-    var lec_isu = $(this).find('.isu').html();
-    var lec_credit = $(this).find('.credit').html();
-
-
-
-    // lecture_time_data = ["월수","13:30","15:00"]
-    if (lecture_time_data != null)
-    {
-      d_col = find_day_td(lecture_time_data[0]);
-      s_row = find_begin_time_row(lecture_time_data[1]);
-      e_row = find_end_time_row(lecture_time_data[2]);
-
-      lec_professor = $(this).find('.professor').html();
-      lec_professor = lec_professor.split('/')[0];
-      lec_place = $(this).find('.place').html();
-
-      // 시간표에 등록된 강의 중 겹치는 강의 있는지 확인.
-      // 있다면 이름 반환, 없으면 false(겹치는 강의 '없'다) 반환.
-      duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
-        
-    }
-    
-    else 
-    {
-      var arr_rows = [];
-      // 자동으로 사강 col에 강의 추가
-      // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
-      // 강의추가를 위해 필요한 것 : col, s_row, e_row 정하기
-      duplicated_lec_name = search_duplicate_for_e_lecture(1,20,['7'], lec_name)
-      arr_rows = find_location_of_cyber_lecture_cell();
-      d_col = [7];
-      s_row = find_begin_time_row(arr_rows[0]);
-      e_row = find_end_time_row(arr_rows[1]);
-    }
-
-
-    if (duplicated_lec_name != 'false')
-    {
-      alert_branch('duplicate', duplicated_lec_name);
-    }
-    else
-    {
-      modify_total_credits(lec_credit, '+');
-      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
-      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit);
-
-      send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
-    }
-    
-  });
 
   function find_location_of_cyber_lecture_cell()
   {
@@ -369,8 +379,19 @@ $(document).ready(function() {
 
   });
   
+  function show_info_btn(ele)
+  {
+    $(ele).find('button.btn').css('display','inline-block');
+  }
 
-  $('body').on('mouseenter', '.list-group',function(event){
+  function remove_info_btn(ele)
+  {
+    $(ele).find('button.btn').css('display','none'); 
+  }
+
+  $(document).on('mouseenter', '.list-group',function(event){
+    show_info_btn($(this));
+
 
     var data = $(this).find('.lecture_time').html();
         data = split_text_for_lectureTime(data);
@@ -414,6 +435,7 @@ $(document).ready(function() {
 
 
   $('body').on('mouseleave', '.list-group',function(event){
+    remove_info_btn($(this));
     var del_class = $(this).attr('class');
     del_class = del_class.split(' ')[1];
     delete_timetable_cell_background(del_class);
@@ -948,15 +970,6 @@ $(document).ready(function() {
 
 </script>
 
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-72706618-1', 'auto');
-    ga('send', 'pageview');
-</script>
 
 
 
