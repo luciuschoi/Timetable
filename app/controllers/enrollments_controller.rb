@@ -3,14 +3,15 @@ class EnrollmentsController < ApplicationController
 		current_timetable = Timetable.find(params[:timetable_id])
 
 		@request_lecture = current_timetable.enrollments.build(enrollment_params)
-		@request_lecture.save!
+		@request_lecture.save
 
-		lec = Lecture.find(params[:lecture_id])
-		@place = lec.place
+		@lec = Lecture.find(params[:lecture_id])
+		# @place = @lec.place
 
 		respond_to do |format|
-			format.js
-			format.html {redirect_to rank_path}
+			# render :json => { :success => "success", :status_code => "200" }
+			format.json {render json: @lec, status: :created}
+			# format.html {redirect_to timetable_path(current_timetable)}
 		end
 	end
 
@@ -23,6 +24,7 @@ class EnrollmentsController < ApplicationController
 		respond_to do |format|
 			format.js
 			format.html {redirect_to rank_path}
+
 		end
 	end
 

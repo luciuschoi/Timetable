@@ -108,91 +108,118 @@ $(document).ready(function() {
       {
         $(document).on('click', '.list-group',function(e)
         {
-    // d_col | 요일 저장하는 배열 
-    // s_row | 시작시간 
-    // e_row | 종료시간 
-    var d_col;
-    var s_row;
-    var e_row;
-    var lec_professor;
-    var lec_place;
-    var duplicated_lec_name = 'false';
+          // d_col | 요일 저장하는 배열 
+          // s_row | 시작시간 
+          // e_row | 종료시간 
+          var d_col;
+          var s_row;
+          var e_row;
+          var lec_professor;
+          var lec_place;
+          var duplicated_lec_name = 'false';
 
-    $(this).off('mouseleave');
-    $(this).off('mouseenter');
+          $(this).off('mouseleave');
+          $(this).off('mouseenter');
 
-    var lecture_time_data = $(this).find('.lecture_time').html();
-    
-    // lectureTime = "월수13:30-15:00"
-    lecture_time_data = split_text_for_lectureTime(lecture_time_data);
+          var lecture_time_data = $(this).find('.lecture_time').html();
+          
+          // lectureTime = "월수13:30-15:00"
+          lecture_time_data = split_text_for_lectureTime(lecture_time_data);
 
-    var timetable_id = $('.lessons').attr('id');
+          var timetable_id = $('.lessons').attr('id');
 
-    // 강의 필수 요소
-    var lec_id = $(this).attr('class').split('_')[1];
-    var lec_name = $(this).find('.subject').html();
-    var lec_isu = $(this).find('.isu').html();
-    var lec_credit = $(this).find('.credit').html();
-
-
-
-    // lecture_time_data = ["월수","13:30","15:00"]
-    if (lecture_time_data != null)
-    {
-      d_col = find_day_td(lecture_time_data[0]);
-      s_row = find_begin_time_row(lecture_time_data[1]);
-      e_row = find_end_time_row(lecture_time_data[2]);
-
-      lec_professor = $(this).find('.professor').html();
-      lec_professor = lec_professor.split('/')[0];
-      lec_place = $(this).find('.place').html();
-
-      // 시간표에 등록된 강의 중 겹치는 강의 있는지 확인.
-      // 있다면 이름 반환, 없으면 false(겹치는 강의 '없'다) 반환.
-      duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
-        
-    }
-    
-    else 
-    {
-      var arr_rows = [];
-      // 자동으로 사강 col에 강의 추가
-      // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
-      // 강의추가를 위해 필요한 것 : col, s_row, e_row 정하기
-      duplicated_lec_name = search_duplicate_for_e_lecture(1,20,['7'], lec_name)
-      arr_rows = find_location_of_cyber_lecture_cell();
-      d_col = [7];
-      s_row = find_begin_time_row(arr_rows[0]);
-      e_row = find_end_time_row(arr_rows[1]);
-    }
+          // 강의 필수 요소
+          var lec_id = $(this).attr('class').split('_')[1];
+          var lec_name = $(this).find('.subject').html();
+          var lec_isu = $(this).find('.isu').html();
+          var lec_credit = $(this).find('.credit').html();
 
 
-    if (duplicated_lec_name != 'false')
-    {
-      alert_branch('duplicate', duplicated_lec_name);
-    }
-    else
-    {
-      modify_total_credits(lec_credit, '+');
-      default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
-      make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit);
 
-      send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
-    }
+          // lecture_time_data = ["월수","13:30","15:00"]
+          if (lecture_time_data != null)
+          {
+            d_col = find_day_td(lecture_time_data[0]);
+            s_row = find_begin_time_row(lecture_time_data[1]);
+            e_row = find_end_time_row(lecture_time_data[2]);
+
+            lec_professor = $(this).find('.professor').html();
+            lec_professor = lec_professor.split('/')[0];
+            lec_place = $(this).find('.place').html();
+
+            // 시간표에 등록된 강의 중 겹치는 강의 있는지 확인.
+            // 있다면 이름 반환, 없으면 false(겹치는 강의 '없'다) 반환.
+            duplicated_lec_name = duplicate_lecture_name(s_row, e_row, d_col);
+
+          }
+          
+          else 
+          {
+            var arr_rows = [];
+            // 자동으로 사강 col에 강의 추가
+            // 강의 클릭시 필요한 것  1 시간표 cell 채우기  2 my_cart_Table에 셀 채우기  3 DB에 등록하기
+            // 강의추가를 위해 필요한 것 : col, s_row, e_row 정하기
+            duplicated_lec_name = search_duplicate_for_e_lecture(1,20,['7'], lec_name)
+            arr_rows = find_location_of_cyber_lecture_cell();
+            d_col = [7];
+            s_row = find_begin_time_row(arr_rows[0]);
+            e_row = find_end_time_row(arr_rows[1]);
+          }
+
+
+          if (duplicated_lec_name != 'false')
+          {
+            alert_branch('duplicate', duplicated_lec_name);
+          }
+          else
+          {
+            modify_total_credits(lec_credit, '+');
+            default_fill_cell(s_row, e_row, d_col, lec_id, lec_name, lec_professor, lec_place, lec_credit, event.type);
+            make_cell_in_my_cart_table(s_row, e_row, lec_id, lec_name, lec_professor, lec_isu, lec_credit);
+
+            timetable.send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id);
+          }
           return timetable.bongjae(e);
-        });
+        }); // click .list-group
 
         $(document).on('click', 'button.btn_info', function(e){
           window.open('/lectures/'+$(this).attr('dataid'));
+          
           return timetable.bongjae(e);
+        }); 
 
-        });
+        
 
-      }
+      }, // init
 
-    };
+      send_lecture_to_timetable: function(s_row,e_row,d_col,lec_id, timetable_id) {
+        $.ajax({
+            url:'<%= add_enrollment_url %>',
+            dataType: "json",
+            type:'post',
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            data:{'begin_time':s_row, 'end_time':e_row, 'days':d_col,
+                  'lecture_id':lec_id, 'timetable_id':timetable_id},
+            success:function(data)
+            {
+              // console.log(JSON.stringify(jqXHR));
+              // console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+              alert_branch('add_success');
+            },
+            error:function(jqXHR, textStatus, errorThrown) {
+              console.log(JSON.stringify(jqXHR));
+              console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+              // alert(d2);
+              // alert_branch('duplicate', d);
+            }
+          });
+        } // send_lecture_to_timetable
 
+    }; // tiemtable 정의 
     $(document).ready(timetable.init);
+
+
+  
   })(jQuery,document,window);
 
   
@@ -788,22 +815,7 @@ $(document).ready(function() {
 
 
   
-  function send_lecture_to_timetable(s_row,e_row,d_col,lec_id, timetable_id) {
-    $.ajax({
-        url:'<%= add_enrollment_url %>',
-        type:'post',
-        data:{'begin_time':s_row, 'end_time':e_row, 'days':d_col,
-              'lecture_id':lec_id, 'timetable_id':timetable_id},
-        success:function()
-        {
-          alert_branch('add_success');
-        },
-        error:function()
-        {
-          alert_branch('duplicate');
-        }
-    });
-  }
+  
 
   jQuery(document).on('touchstart', '.my_cart_container #my_cart_table .t_contents .del_btn', function(e) {
        console.log("mobile touchstart");
