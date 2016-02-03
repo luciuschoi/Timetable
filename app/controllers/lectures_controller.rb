@@ -4,6 +4,8 @@ class LecturesController < ApplicationController
 	before_action :fillnickname, only: [:show]
 	before_action :correct_user, only: [:timetable]
 	before_action :godaemoon, only:[:show]
+	before_action :goforcingwritting, only:[:show]
+
 	require 'roo'
 
 	def show
@@ -100,5 +102,11 @@ class LecturesController < ApplicationController
 		      redirect_to root_path
 		    end
 	    end
+
+	    def goforcingwritting
+      	if current_user.valuations.count<2
+        	redirect_to forcingwritting_path
+      end 
+  end
 
 end

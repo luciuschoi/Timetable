@@ -45,6 +45,9 @@ class Lecture < ActiveRecord::Base
                                   open_department: row["open_department"], major: row["major"],
                                   subject: row["subject"], professor: row["professor"])
       end
+
+
+
       lec_plural_attrs = lecture.plural_attrs.build(lectureTime: row["lectureTime"], place: row["place"])
       lec_plural_attrs.save
       # 현재 엑셀의 column 개수와 업데이트 할 attr 개수 일치 확인.

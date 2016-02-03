@@ -1,16 +1,23 @@
 class EnrollmentsController < ApplicationController
 	def create
-		current_timetable = Timetable.find(params[:timetable_id])
+		@current_timetable = Timetable.find(params[:timetable_id])
 
-		@request_lecture = current_timetable.enrollments.build(enrollment_params)
-		@request_lecture.save!
+		@request_lecture = @current_timetable.enrollments.build(enrollment_params)
+		@request_lecture.save
 
-		lec = Lecture.find(params[:lecture_id])
-		@place = lec.place
+		@lec = Lecture.find(params[:lecture_id])
+		# @place = @lec.place
 
 		respond_to do |format|
-			format.js
-			format.html {redirect_to rank_path}
+			if @request_lecture.save	
+				format.js
+				format.html {redirect_to @current_timetable}
+				format.json {render json: @lec}
+			else
+				format.html{redirect_to @current_timetable}
+				format.json {render json: @lec}
+			end
+
 		end
 	end
 
@@ -23,6 +30,7 @@ class EnrollmentsController < ApplicationController
 		respond_to do |format|
 			format.js
 			format.html {redirect_to rank_path}
+
 		end
 	end
 
